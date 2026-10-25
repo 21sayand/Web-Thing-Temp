@@ -346,13 +346,13 @@
 
         <a href="../index.html" class="dock-home-btn">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-          Return to Main Directory
+          Return to Homepage
         </a>
 
         ${formSnippet}
       </div>
 
-      <div class="dock-pill-trigger" id="dockPillTrigger" title="Click to open assignment tools or return to directory">
+      <div class="dock-pill-trigger" id="dockPillTrigger" title="Click to open assignment tools or return to homepage">
         <span class="dock-status-dot ${isSub ? 'submitted' : ''}" id="dockTriggerDot"></span>
         <span>Assignment Desk</span>
         <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"></path></svg>
