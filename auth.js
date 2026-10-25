@@ -1,7 +1,7 @@
 // Institutional Client-Side Authentication Service with Session Timeout
 (function() {
   const AUTH_KEY = 'college_portal_auth_user';
-  const TIMEOUT_SECONDS = 90; // 90-second inactivity / session timeout
+  const TIMEOUT_SECONDS = 150; // 150-second session timeout as requested
 
   const FACULTY_CREDENTIALS = {
     username: 'faculty',
@@ -15,7 +15,6 @@
         if (!raw) return null;
         const data = JSON.parse(raw);
         
-        // Check timeout
         const now = Date.now();
         if (data.expiresAt && now > data.expiresAt) {
           this.logout(true);
@@ -48,7 +47,7 @@
       ) {
         const user = {
           role: 'faculty',
-          name: 'Faculty Member / Department Evaluator',
+          name: 'Faculty Member / Evaluator',
           regNo: 'FACULTY_CSE',
           id: 'faculty'
         };
@@ -57,7 +56,7 @@
         return { success: true, user, redirect: 'index.html' };
       }
 
-      // 2. Check Student Login against STUDENTS_DATA (strictly case-insensitive)
+      // 2. Check Student Login against STUDENTS_DATA (case-insensitive)
       const students = window.STUDENTS_DATA || [];
       const student = students.find(s => 
         (s.regNo && s.regNo.toUpperCase() === idClean) ||
@@ -66,7 +65,6 @@
       );
 
       if (student) {
-        // Password is case-insensitive and can match Register No, Roll No, or Folder ID
         const validPass = (student.regNo && passClean === student.regNo.toUpperCase()) ||
                           passClean === student.rollNo.toString() ||
                           passClean === student.id.toUpperCase();
@@ -87,7 +85,7 @@
         }
       }
 
-      return { success: false, message: 'Register Number not found in batch roster.' };
+      return { success: false, message: 'Register Number not found.' };
     },
 
     startTimer() {
@@ -99,7 +97,7 @@
           const data = JSON.parse(raw);
           if (Date.now() > data.expiresAt) {
             clearInterval(this._interval);
-            alert('Your session has timed out after 90 seconds of inactivity.');
+            alert('Your session has expired after 150 seconds of inactivity.');
             this.logout();
           }
         } catch(e) {}
@@ -111,7 +109,6 @@
       localStorage.removeItem(AUTH_KEY);
       if (this._interval) clearInterval(this._interval);
 
-      // Return to root index
       const loc = window.location.pathname;
       if (loc.includes('/')) {
         const parts = loc.split('/').filter(Boolean);

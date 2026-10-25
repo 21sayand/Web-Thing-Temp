@@ -21,7 +21,7 @@
 
   if (!studentId) studentId = '01';
 
-  // 1. Session verification & Route Guard
+  // 1. Instant Synchronous Auth Verification (Prevents any visual glitch)
   let authUser = null;
   try {
     const raw = sessionStorage.getItem('college_portal_auth_user');
@@ -31,74 +31,84 @@
         sessionStorage.removeItem('college_portal_auth_user');
         authUser = null;
       } else {
-        data.expiresAt = Date.now() + (90 * 1000);
+        data.expiresAt = Date.now() + (150 * 1000); // 150 seconds
         sessionStorage.setItem('college_portal_auth_user', JSON.stringify(data));
         authUser = data.user;
       }
     }
   } catch(e) {}
 
-  // If visiting without being logged in OR logged in as another student:
-  if (!authUser || (authUser.role === 'student' && authUser.id !== studentId)) {
-    showAuthUnlockScreen();
+  const isAuthorized = authUser && (authUser.role === 'faculty' || authUser.id === studentId);
+
+  if (isAuthorized) {
+    // Immediately un-shield the page
+    const shield = document.getElementById('auth-shield-style');
+    if (shield) shield.remove();
+    document.documentElement.style.visibility = 'visible';
+    document.documentElement.style.opacity = '1';
+  } else {
+    // Keep page completely hidden and render unlock screen immediately
+    document.documentElement.style.visibility = 'visible';
+    document.documentElement.style.opacity = '1';
+    renderUnlockView();
     return;
   }
 
-  function showAuthUnlockScreen() {
-    document.addEventListener('DOMContentLoaded', () => {
+  function renderUnlockView() {
+    // Replace whole document content so nothing behind flashes
+    function mount() {
       document.body.innerHTML = `
-        <div style="min-height: 100vh; background: #0b0f19; color: #f8fafc; display: flex; align-items: center; justify-content: center; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 20px;">
-          <div style="background: #161e2e; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 32px; max-width: 460px; width: 100%; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); text-align: left;">
-            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-              <div style="width: 44px; height: 44px; border-radius: 10px; background: #1e40af; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;">ST</div>
+        <div style="min-height: 100vh; background: #0d1117; color: #f0f6fc; display: flex; align-items: center; justify-content: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; padding: 20px;">
+          <div style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px 28px; max-width: 380px; width: 100%; box-shadow: 0 16px 32px rgba(0,0,0,0.5); text-align: left;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+              <div style="width: 32px; height: 32px; border-radius: 6px; background: #21262d; border: 1px solid #30363d; color: #58a6ff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px;">ST</div>
               <div>
-                <h3 style="margin: 0; font-size: 1.15rem; font-weight: 700; color: #fff;">Portfolio Authentication</h3>
-                <p style="margin: 0; font-size: 0.8rem; color: #94a3b8;">Student Portfolio #${studentId} Verification</p>
+                <h3 style="margin: 0; font-size: 14px; font-weight: 600; color: #f0f6fc;">Portfolio #${studentId} Verification</h3>
+                <p style="margin: 0; font-size: 12px; color: #8b949e;">Authenticate to access this portfolio</p>
               </div>
             </div>
 
             ${authUser ? `
-              <div style="background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.25); border-radius: 8px; padding: 10px 12px; margin-bottom: 18px; font-size: 0.82rem; color: #fef08a;">
-                Currently active: <strong>${authUser.name}</strong> (${authUser.regNo}).<br>
-                To view this portfolio (#${studentId}), enter this student's credentials below or switch to your own portfolio.
+              <div style="background: rgba(210, 153, 34, 0.15); border: 1px solid rgba(210, 153, 34, 0.3); border-radius: 6px; padding: 8px 10px; margin-bottom: 14px; font-size: 12px; color: #d29922;">
+                Active session: <strong>${authUser.name}</strong>.<br>Enter credentials for #${studentId} or switch below.
               </div>
             ` : `
-              <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 18px; line-height: 1.5;">
-                Please authenticate with your University Register Number to access this portfolio.
+              <p style="font-size: 12px; color: #8b949e; margin-bottom: 14px; line-height: 1.4;">
+                Enter this student's University Register Number to unlock and view.
               </p>
             `}
 
             <form id="portfolioUnlockForm" onsubmit="handleUnlock(event)">
-              <div style="margin-bottom: 14px;">
-                <label style="display: block; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; color: #94a3b8; margin-bottom: 6px;">
-                  University Register Number
+              <div style="margin-bottom: 10px;">
+                <label style="display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; color: #8b949e; margin-bottom: 4px;">
+                  Register Number
                 </label>
-                <input type="text" id="unlockIdentifier" required autocomplete="username" placeholder="Enter University Register Number" 
-                       style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 10px 12px; color: #fff; font-size: 0.9rem; outline: none;">
+                <input type="text" id="unlockIdentifier" required autocomplete="username" placeholder="University Register Number" 
+                       style="width: 100%; box-sizing: border-box; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 7px 10px; color: #f0f6fc; font-size: 13px; outline: none;">
               </div>
 
-              <div style="margin-bottom: 18px;">
-                <label style="display: block; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; color: #94a3b8; margin-bottom: 6px;">
+              <div style="margin-bottom: 14px;">
+                <label style="display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; color: #8b949e; margin-bottom: 4px;">
                   Password
                 </label>
-                <input type="password" id="unlockPassword" required autocomplete="current-password" placeholder="Password (Same as Register Number)" 
-                       style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 10px 12px; color: #fff; font-size: 0.9rem; outline: none;">
+                <input type="password" id="unlockPassword" required autocomplete="current-password" placeholder="Password (Register Number)" 
+                       style="width: 100%; box-sizing: border-box; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 7px 10px; color: #f0f6fc; font-size: 13px; outline: none;">
               </div>
 
-              <div id="unlockError" style="display: none; background: #fee2e2; color: #991b1b; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; margin-bottom: 14px;"></div>
+              <div id="unlockError" style="display: none; color: #f85149; font-size: 12px; margin-bottom: 10px;"></div>
 
-              <button type="submit" style="width: 100%; background: #2563eb; color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; margin-bottom: 10px;">
-                Unlock & View Portfolio
+              <button type="submit" style="width: 100%; background: #238636; color: #fff; border: 1px solid rgba(240,246,252,0.1); padding: 7px 12px; border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer; margin-bottom: 10px;">
+                Unlock & View
               </button>
 
               <div style="display: flex; gap: 8px;">
                 ${authUser ? `
-                  <a href="../${authUser.id}/index.html" style="flex: 1; text-align: center; background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid #334155; padding: 8px; border-radius: 6px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">
+                  <a href="../${authUser.id}/index.html" style="flex: 1; text-align: center; background: #21262d; color: #c9d1d9; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 500;">
                     My Portfolio (#${authUser.id})
                   </a>
                 ` : ''}
-                <a href="../index.html" style="flex: 1; text-align: center; background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid #334155; padding: 8px; border-radius: 6px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">
-                  Central Portal Home
+                <a href="../index.html" style="flex: 1; text-align: center; background: #21262d; color: #c9d1d9; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 500;">
+                  Return to Home
                 </a>
               </div>
             </form>
@@ -110,19 +120,25 @@
         e.preventDefault();
         const id = document.getElementById('unlockIdentifier').value.trim();
         const pass = document.getElementById('unlockPassword').value.trim();
-        const res = window.CollegeAuth.login(id, pass);
-        if (res.success) {
+        const res = window.CollegeAuth ? window.CollegeAuth.login(id, pass) : null;
+        if (res && res.success) {
           window.location.reload();
         } else {
           const err = document.getElementById('unlockError');
-          err.textContent = res.message;
+          err.textContent = res ? res.message : 'Invalid credentials.';
           err.style.display = 'block';
         }
       };
-    });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', mount);
+    } else {
+      mount();
+    }
   }
 
-  // 2. Inject Bottom-Right Expandable Floating Dock
+  // 2. Bottom-Right Floating Pill Widget for Authenticated Student
   const style = document.createElement('style');
   style.textContent = `
     .college-bottom-dock {
@@ -134,50 +150,50 @@
       flex-direction: column;
       align-items: flex-end;
       gap: 10px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     .dock-pill-trigger {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #0f172a;
-      color: #f8fafc;
-      border: 1px solid #334155;
-      padding: 9px 16px;
-      border-radius: 999px;
-      font-size: 13px;
+      background: #161b22;
+      color: #f0f6fc;
+      border: 1px solid #30363d;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 12px;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      transition: all 0.15s ease;
       user-select: none;
     }
 
     .dock-pill-trigger:hover {
-      background: #1e293b;
-      transform: translateY(-2px);
+      background: #21262d;
+      border-color: #8b949e;
     }
 
     .dock-status-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #d97706;
+      background: #d29922;
     }
 
     .dock-status-dot.submitted {
-      background: #16a34a;
+      background: #3fb950;
     }
 
     .dock-panel {
-      background: #ffffff;
-      color: #0f172a;
-      border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      width: 320px;
+      background: #161b22;
+      color: #f0f6fc;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      width: 300px;
       padding: 16px;
-      box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
       display: none;
       flex-direction: column;
       gap: 12px;
@@ -189,30 +205,32 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #f1f5f9;
+      border-bottom: 1px solid #21262d;
       padding-bottom: 8px;
     }
 
     .dock-panel-header h4 {
       margin: 0;
       font-size: 13px;
-      font-weight: 700;
-      color: #0f172a;
+      font-weight: 600;
     }
 
     .dock-close-btn {
       background: none;
       border: none;
-      color: #94a3b8;
+      color: #8b949e;
       font-size: 18px;
       cursor: pointer;
+      line-height: 1;
     }
+
+    .dock-close-btn:hover { color: #f0f6fc; }
 
     .dock-user-tag {
       font-size: 12px;
-      color: #0369a1;
-      background: #f0f9ff;
-      border: 1px solid #e0f2fe;
+      color: #58a6ff;
+      background: rgba(56, 139, 253, 0.1);
+      border: 1px solid rgba(56, 139, 253, 0.2);
       padding: 6px 10px;
       border-radius: 6px;
       display: flex;
@@ -225,37 +243,36 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      color: #334155;
-      padding: 7px 10px;
-      border-radius: 8px;
+      background: #21262d;
+      border: 1px solid #30363d;
+      color: #c9d1d9;
+      padding: 6px 10px;
+      border-radius: 6px;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 500;
       text-decoration: none;
       transition: background 0.15s;
     }
 
     .dock-home-btn:hover {
-      background: #f1f5f9;
-      color: #0f172a;
+      background: #30363d;
+      color: #f0f6fc;
     }
 
     .dock-field-group label {
       font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
-      color: #64748b;
+      color: #8b949e;
       display: block;
       margin-bottom: 4px;
     }
 
     .dock-field-group select, .dock-field-group input {
       width: 100%;
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      color: #0f172a;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      color: #f0f6fc;
       padding: 6px 8px;
       border-radius: 6px;
       font-size: 12px;
@@ -264,30 +281,30 @@
     }
 
     .dock-submit-btn {
-      background: #1e40af;
+      background: #238636;
       color: #fff;
-      border: none;
-      padding: 8px;
-      border-radius: 8px;
+      border: 1px solid rgba(240, 246, 252, 0.1);
+      padding: 7px;
+      border-radius: 6px;
       font-weight: 600;
       font-size: 12px;
       cursor: pointer;
     }
 
-    .dock-submit-btn:hover { background: #1d4ed8; }
+    .dock-submit-btn:hover { background: #2ea043; }
 
     .dock-logout-btn {
       background: none;
-      border: 1px solid #fecaca;
-      color: #dc2626;
-      padding: 3px 8px;
+      border: 1px solid rgba(248, 81, 73, 0.4);
+      color: #ff7b72;
+      padding: 2px 6px;
       border-radius: 4px;
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 600;
       cursor: pointer;
     }
 
-    .dock-logout-btn:hover { background: #fee2e2; }
+    .dock-logout-btn:hover { background: rgba(248, 81, 73, 0.15); }
   `;
   document.head.appendChild(style);
 
@@ -313,7 +330,7 @@
         </div>
 
         <div class="dock-user-tag">
-          <span>User: <strong>${authUser ? authUser.name : 'Authenticated'}</strong></span>
+          <span>User: <strong>${authUser ? authUser.name : 'Authorized'}</strong></span>
           <button class="dock-logout-btn" id="dockLogoutBtn">Sign Out</button>
         </div>
 
@@ -323,8 +340,8 @@
         </a>
 
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0;">
-          <span style="font-size: 12px; color: #64748b;">Assignment 1:</span>
-          <span style="font-size: 11px; font-weight: 700; padding: 3px 6px; border-radius: 4px; background: ${isSub ? '#dcfce7' : '#fef3c7'}; color: ${isSub ? '#15803d' : '#b45309'};" id="dockStatusBadge">
+          <span style="font-size: 12px; color: #8b949e;">Assignment 1:</span>
+          <span style="font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 4px; background: ${isSub ? 'rgba(46, 160, 67, 0.15)' : 'rgba(210, 153, 34, 0.15)'}; color: ${isSub ? '#3fb950' : '#d29922'};" id="dockStatusBadge">
             ${isSub ? '✓ Submitted (1)' : '⏳ Pending (0)'}
           </span>
         </div>
@@ -338,16 +355,16 @@
         </div>
 
         <div class="dock-field-group">
-          <label>File Attachment</label>
+          <label>Attach File</label>
           <input type="file" id="dockFileInput">
         </div>
 
-        <button class="dock-submit-btn" id="dockSubmitBtn">Submit Assignment (Flip to 1)</button>
+        <button class="dock-submit-btn" id="dockSubmitBtn">Submit Assignment (Bit 1)</button>
       </div>
 
       <div class="dock-pill-trigger" id="dockPillTrigger" title="Click to open portal tools or return home">
         <span class="dock-status-dot ${isSub ? 'submitted' : ''}" id="dockTriggerDot"></span>
-        <span>Portal & Assignment</span>
+        <span>Portal Hub</span>
         <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"></path></svg>
       </div>
     `;
@@ -383,11 +400,11 @@
       } catch (e) {}
 
       document.getElementById('dockStatusBadge').textContent = '✓ Submitted (1)';
-      document.getElementById('dockStatusBadge').style.background = '#dcfce7';
-      document.getElementById('dockStatusBadge').style.color = '#15803d';
+      document.getElementById('dockStatusBadge').style.background = 'rgba(46, 160, 67, 0.15)';
+      document.getElementById('dockStatusBadge').style.color = '#3fb950';
       document.getElementById('dockTriggerDot').classList.add('submitted');
 
-      alert(`Assignment ${aId} submitted successfully for Student #${studentId}! Flag updated to 1.`);
+      alert(`Assignment ${aId} submitted for Student #${studentId}! Flag updated to 1.`);
       document.getElementById('collegeDockPanel').classList.remove('open');
     });
   }
