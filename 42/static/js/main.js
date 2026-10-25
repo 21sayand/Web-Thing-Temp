@@ -147,7 +147,9 @@ function triggerZenMode() {
       ctx.save();
       ctx.translate(this.x, this.y);
       ctx.rotate(this.angle);
-      ctx.fillStyle = 'rgba(217, 119, 6, 0.45)';
+      ctx.fillStyle = 'rgba(245, 158, 11, 0.75)';
+      ctx.shadowColor = 'rgba(245, 158, 11, 0.6)';
+      ctx.shadowBlur = 8;
       ctx.beginPath();
       ctx.ellipse(0, 0, this.size, this.size / 2, 0, 0, Math.PI * 2);
       ctx.fill();
@@ -264,9 +266,9 @@ function initLiquidCanvas() {
     }
     draw() {
       const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
-      grad.addColorStop(0, 'rgba(217, 119, 6, 0.035)');
-      grad.addColorStop(0.6, 'rgba(244, 241, 234, 0.02)');
-      grad.addColorStop(1, 'rgba(250, 248, 245, 0)');
+      grad.addColorStop(0, 'rgba(245, 158, 11, 0.055)');
+      grad.addColorStop(0.5, 'rgba(59, 130, 246, 0.025)');
+      grad.addColorStop(1, 'rgba(9, 13, 22, 0)');
       ctx.fillStyle = grad;
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
