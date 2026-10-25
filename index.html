@@ -6,8 +6,9 @@
   <title>CSE Department Directory & Student Academic Portfolios</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* Theme Tokens */
     :root[data-theme="light"] {
       --bg: #f8fafc;
       --surface: #ffffff;
@@ -29,14 +30,16 @@
       --status-pen-text: #b45309;
       --shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
       --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+      --modal-bg: #ffffff;
+      --modal-overlay: rgba(15, 23, 42, 0.7);
     }
 
     :root[data-theme="dark"] {
-      --bg: #0f172a;
-      --surface: #1e293b;
-      --surface-subtle: #334155;
-      --border: #334155;
-      --border-hover: #475569;
+      --bg: #0b0f19;
+      --surface: #161e2e;
+      --surface-subtle: #202b3f;
+      --border: #293548;
+      --border-hover: #3d4f6c;
       --text: #f8fafc;
       --text-muted: #94a3b8;
       --primary: #3b82f6;
@@ -52,6 +55,8 @@
       --status-pen-text: #fbbf24;
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
       --shadow-hover: 0 14px 20px -2px rgba(0, 0, 0, 0.45);
+      --modal-bg: #161e2e;
+      --modal-overlay: rgba(5, 8, 16, 0.85);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -59,7 +64,7 @@
     body {
       background-color: var(--bg);
       color: var(--text);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       min-height: 100vh;
       line-height: 1.5;
       transition: background-color 0.25s ease, color 0.25s ease;
@@ -88,7 +93,7 @@
     .nav-container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 1rem 1.5rem;
+      padding: 0.9rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -99,34 +104,34 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.85rem;
       text-decoration: none;
       color: inherit;
     }
 
     .brand-crest {
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
       background: var(--primary);
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       flex-shrink: 0;
     }
 
     .brand-info h1 {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: var(--text);
       line-height: 1.2;
     }
 
     .brand-info p {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
     }
 
@@ -153,6 +158,7 @@
     .btn-primary { background: var(--primary); color: #ffffff; }
     .btn-primary:hover { background: var(--primary-hover); }
     .btn-outline { background: var(--surface); border-color: var(--border); color: var(--text); }
+    .btn-outline:hover { background: var(--surface-subtle); }
 
     .theme-toggle-btn {
       padding: 0.55rem;
@@ -166,12 +172,12 @@
       justify-content: center;
     }
 
-    /* Auth Modal Screen */
+    /* Prestigious Institutional Login Modal */
     .auth-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(10px);
+      background: var(--modal-overlay);
+      backdrop-filter: blur(12px);
       z-index: 1000;
       display: flex;
       align-items: center;
@@ -180,9 +186,9 @@
     }
 
     .auth-card {
-      background: var(--surface);
+      background: var(--modal-bg);
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 20px;
       width: 100%;
       max-width: 440px;
       padding: 2.25rem;
@@ -195,35 +201,39 @@
     }
 
     .auth-crest {
-      width: 52px;
-      height: 52px;
-      border-radius: 12px;
-      background: var(--primary);
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
       color: #fff;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
       font-size: 1.4rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.85rem;
+      box-shadow: 0 8px 16px rgba(30, 64, 175, 0.25);
     }
 
     .auth-header h2 {
       font-size: 1.35rem;
       font-weight: 800;
       color: var(--text);
+      letter-spacing: -0.01em;
     }
 
     .auth-header p {
       font-size: 0.85rem;
       color: var(--text-muted);
-      margin-top: 0.25rem;
+      margin-top: 0.35rem;
+      line-height: 1.4;
     }
 
     .auth-tabs {
       display: flex;
       background: var(--surface-subtle);
-      border-radius: 8px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
       padding: 4px;
       margin-bottom: 1.5rem;
     }
@@ -231,12 +241,12 @@
     .auth-tab {
       flex: 1;
       text-align: center;
-      padding: 0.5rem;
-      font-size: 0.8rem;
+      padding: 0.55rem;
+      font-size: 0.82rem;
       font-weight: 600;
       color: var(--text-muted);
       cursor: pointer;
-      border-radius: 6px;
+      border-radius: 7px;
       border: none;
       background: none;
       transition: all 0.15s;
@@ -254,36 +264,40 @@
 
     .form-group label {
       display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
       color: var(--text);
       margin-bottom: 0.4rem;
     }
 
     .form-control {
       width: 100%;
-      padding: 0.7rem 0.9rem;
+      padding: 0.75rem 0.95rem;
       background: var(--surface-subtle);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 9px;
       color: var(--text);
       font-size: 0.9rem;
       outline: none;
+      transition: border-color 0.15s;
     }
 
     .form-control:focus {
       border-color: var(--primary);
     }
 
+    /* Notice: Only show error when it actually contains text! */
     .auth-alert {
       padding: 0.65rem 0.85rem;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 0.8rem;
       margin-bottom: 1.25rem;
       display: none;
     }
 
-    .auth-alert.error {
+    .auth-alert.visible {
       display: block;
       background: #fee2e2;
       color: #991b1b;
@@ -555,7 +569,7 @@
       <div class="auth-header">
         <div class="auth-crest">ST</div>
         <h2>Academic Portal Login</h2>
-        <p id="authSubtitle">Enter your University Register Number to access your portfolio</p>
+        <p id="authSubtitle">Enter your credentials to access student portfolios and departmental dossiers</p>
       </div>
 
       <div class="auth-tabs">
@@ -563,19 +577,20 @@
         <button class="auth-tab" id="tabFaculty" onclick="switchTab('faculty')">Faculty / Admin</button>
       </div>
 
-      <div class="auth-alert error" id="authError"></div>
+      <!-- Error box only visible when populated -->
+      <div class="auth-alert" id="authError"></div>
 
       <form id="authForm" onsubmit="handleAuthSubmit(event)">
         <div class="form-group">
           <label id="idLabel">University Register Number</label>
-          <input type="text" id="authIdentifier" class="form-control" placeholder="e.g. STM23CS043" required autocomplete="username">
+          <input type="text" id="authIdentifier" class="form-control" placeholder="Enter University Register Number" required autocomplete="username">
         </div>
 
         <div class="form-group">
           <label>Password</label>
-          <input type="password" id="authPassword" class="form-control" placeholder="Default: Same as Register No." required autocomplete="current-password">
+          <input type="password" id="authPassword" class="form-control" placeholder="Password (Same as Register Number)" required autocomplete="current-password">
           <span style="font-size: 0.72rem; color: var(--text-muted); display: block; margin-top: 4px;" id="passHint">
-            Students: Your initial password is your University Register No (case-insensitive).
+            Default password is your University Register Number (case-insensitive).
           </span>
         </div>
 
@@ -725,19 +740,22 @@
 
     function switchTab(role) {
       activeRoleTab = role;
-      document.getElementById('authError').style.display = 'none';
+      const errEl = document.getElementById('authError');
+      errEl.textContent = '';
+      errEl.classList.remove('visible');
+
       if (role === 'student') {
         document.getElementById('tabStudent').classList.add('active');
         document.getElementById('tabFaculty').classList.remove('active');
         document.getElementById('idLabel').textContent = 'University Register Number';
-        document.getElementById('authIdentifier').placeholder = 'e.g. STM23CS043';
-        document.getElementById('passHint').textContent = 'Students: Your initial password is your University Register No (case-insensitive).';
+        document.getElementById('authIdentifier').placeholder = 'Enter University Register Number';
+        document.getElementById('passHint').textContent = 'Default password is your University Register Number (case-insensitive).';
       } else {
         document.getElementById('tabFaculty').classList.add('active');
         document.getElementById('tabStudent').classList.remove('active');
         document.getElementById('idLabel').textContent = 'Faculty Username';
         document.getElementById('authIdentifier').placeholder = 'faculty';
-        document.getElementById('passHint').textContent = 'Faculty pass: cse@stthomas';
+        document.getElementById('passHint').textContent = 'Faculty username: faculty | pass: cse@stthomas';
       }
     }
 
@@ -745,14 +763,14 @@
       e.preventDefault();
       const identifier = document.getElementById('authIdentifier').value;
       const pass = document.getElementById('authPassword').value;
-      const res = window.CollegeAuth.login(identifier, pass, true);
+      const res = window.CollegeAuth.login(identifier, pass);
 
       if (res.success) {
         window.location.href = res.redirect;
       } else {
         const errEl = document.getElementById('authError');
         errEl.textContent = res.message;
-        errEl.style.display = 'block';
+        errEl.classList.add('visible');
       }
     }
 
@@ -792,7 +810,6 @@
         render();
       });
 
-      // Theme toggle
       const themeBtn = document.getElementById('themeToggleBtn');
       const savedTheme = localStorage.getItem('college_portal_theme') || 'light';
       document.documentElement.setAttribute('data-theme', savedTheme);

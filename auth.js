@@ -18,7 +18,7 @@
         // Check timeout
         const now = Date.now();
         if (data.expiresAt && now > data.expiresAt) {
-          this.logout(true); // timed out
+          this.logout(true);
           return null;
         }
 
@@ -33,22 +33,22 @@
 
     login(identifier, password) {
       if (!identifier || !password) {
-        return { success: false, message: 'Please enter both identifier and password.' };
+        return { success: false, message: 'Please enter both credentials.' };
       }
 
       const idClean = identifier.trim().toUpperCase();
-      const passClean = password.trim();
+      const passClean = password.trim().toUpperCase();
       const now = Date.now();
       const expiresAt = now + (TIMEOUT_SECONDS * 1000);
 
-      // 1. Check Faculty Login
+      // 1. Check Faculty Login (case-insensitive)
       if (
         (idClean === 'FACULTY' || idClean === 'ADMIN' || idClean === 'TEACHER') &&
-        (passClean === FACULTY_CREDENTIALS.password || passClean === 'admin123' || passClean === 'faculty')
+        (passClean === FACULTY_CREDENTIALS.password.toUpperCase() || passClean === 'ADMIN123' || passClean === 'FACULTY')
       ) {
         const user = {
           role: 'faculty',
-          name: 'Faculty Member / Department Head',
+          name: 'Faculty Member / Department Evaluator',
           regNo: 'FACULTY_CSE',
           id: 'faculty'
         };
@@ -57,18 +57,19 @@
         return { success: true, user, redirect: 'index.html' };
       }
 
-      // 2. Check Student Login against STUDENTS_DATA
+      // 2. Check Student Login against STUDENTS_DATA (strictly case-insensitive)
       const students = window.STUDENTS_DATA || [];
       const student = students.find(s => 
         (s.regNo && s.regNo.toUpperCase() === idClean) ||
         (s.rollNo && s.rollNo.toString() === idClean) ||
-        (s.id && s.id === idClean)
+        (s.id && s.id.toUpperCase() === idClean)
       );
 
       if (student) {
-        const validPass = passClean.toUpperCase() === student.regNo.toUpperCase() ||
+        // Password is case-insensitive and can match Register No, Roll No, or Folder ID
+        const validPass = (student.regNo && passClean === student.regNo.toUpperCase()) ||
                           passClean === student.rollNo.toString() ||
-                          passClean.toUpperCase() === student.id.toUpperCase();
+                          passClean === student.id.toUpperCase();
 
         if (validPass) {
           const user = {
@@ -82,11 +83,11 @@
           this.startTimer();
           return { success: true, user, redirect: `${student.id}/index.html` };
         } else {
-          return { success: false, message: 'Invalid password. For students, default password is your University Register No.' };
+          return { success: false, message: 'Invalid password. Password is your University Register Number.' };
         }
       }
 
-      return { success: false, message: 'Register Number not found. Please check your KTU register number.' };
+      return { success: false, message: 'Register Number not found in batch roster.' };
     },
 
     startTimer() {
@@ -98,33 +99,34 @@
           const data = JSON.parse(raw);
           if (Date.now() > data.expiresAt) {
             clearInterval(this._interval);
-            alert('Your session has expired due to 90 seconds of inactivity. Please log in again.');
+            alert('Your session has timed out after 90 seconds of inactivity.');
             this.logout();
           }
         } catch(e) {}
       }, 5000);
     },
 
-    logout(isTimeout = false) {
+    logout() {
       sessionStorage.removeItem(AUTH_KEY);
       localStorage.removeItem(AUTH_KEY);
       if (this._interval) clearInterval(this._interval);
 
-      // Return to portal index
-      let target = 'index.html';
-      if (window.location.pathname.includes('/')) {
-        const segments = window.location.pathname.split('/').filter(Boolean);
-        if (segments.length > 1 && /^\d+$/.test(segments[segments.length - 2])) {
-          target = '../index.html';
-        } else if (segments.length > 0 && /^\d+$/.test(segments[segments.length - 1])) {
-          target = '../index.html';
+      // Return to root index
+      const loc = window.location.pathname;
+      if (loc.includes('/')) {
+        const parts = loc.split('/').filter(Boolean);
+        if (parts.length > 0 && /^\d+$/.test(parts[parts.length - 1])) {
+          window.location.href = '../index.html';
+          return;
+        } else if (parts.length > 1 && /^\d+$/.test(parts[parts.length - 2])) {
+          window.location.href = '../index.html';
+          return;
         }
       }
-      window.location.href = target;
+      window.location.href = 'index.html';
     }
   };
 
-  // Start background watchdog if already logged in
   if (sessionStorage.getItem(AUTH_KEY)) {
     window.CollegeAuth.startTimer();
   }

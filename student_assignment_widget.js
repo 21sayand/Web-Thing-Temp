@@ -21,7 +21,7 @@
 
   if (!studentId) studentId = '01';
 
-  // 1. Session timeout & Auth Verification
+  // 1. Session verification & Route Guard
   let authUser = null;
   try {
     const raw = sessionStorage.getItem('college_portal_auth_user');
@@ -31,7 +31,6 @@
         sessionStorage.removeItem('college_portal_auth_user');
         authUser = null;
       } else {
-        // renew activity
         data.expiresAt = Date.now() + (90 * 1000);
         sessionStorage.setItem('college_portal_auth_user', JSON.stringify(data));
         authUser = data.user;
@@ -39,32 +38,87 @@
     }
   } catch(e) {}
 
-  // Route Guard check
-  if (!authUser) {
-    showAuthGate('Session required: Please log in with your University Register Number to view this portfolio.');
-    return;
-  } else if (authUser.role === 'student' && authUser.id !== studentId) {
-    showAuthGate(`Access Restricted: You are authenticated as ${authUser.name} (${authUser.regNo}). You may only access your own assigned portfolio (#${authUser.id}).`, authUser.id);
+  // If visiting without being logged in OR logged in as another student:
+  if (!authUser || (authUser.role === 'student' && authUser.id !== studentId)) {
+    showAuthUnlockScreen();
     return;
   }
 
-  function showAuthGate(message, ownId = null) {
+  function showAuthUnlockScreen() {
     document.addEventListener('DOMContentLoaded', () => {
       document.body.innerHTML = `
-        <div style="min-height: 100vh; background: #f8fafc; color: #0f172a; display: flex; align-items: center; justify-content: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 20px;">
-          <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 32px; max-width: 440px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.08);">
-            <div style="width: 48px; height: 48px; border-radius: 10px; background: #fee2e2; color: #dc2626; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15v2m0 0v2m0-2h2m-2 0H10m11-5a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <div style="min-height: 100vh; background: #0b0f19; color: #f8fafc; display: flex; align-items: center; justify-content: center; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 20px;">
+          <div style="background: #161e2e; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 32px; max-width: 460px; width: 100%; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); text-align: left;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+              <div style="width: 44px; height: 44px; border-radius: 10px; background: #1e40af; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;">ST</div>
+              <div>
+                <h3 style="margin: 0; font-size: 1.15rem; font-weight: 700; color: #fff;">Portfolio Authentication</h3>
+                <p style="margin: 0; font-size: 0.8rem; color: #94a3b8;">Student Portfolio #${studentId} Verification</p>
+              </div>
             </div>
-            <h2 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 8px;">Access Guard</h2>
-            <p style="font-size: 0.9rem; color: #64748b; line-height: 1.5; margin-bottom: 24px;">${message}</p>
-            <div style="display: flex; gap: 10px;">
-              ${ownId ? `<a href="../${ownId}/index.html" style="flex: 1; background: #1e40af; color: #fff; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.85rem;">Go to My Portfolio (#${ownId})</a>` : ''}
-              <a href="../index.html" style="flex: 1; background: #f1f5f9; color: #0f172a; border: 1px solid #cbd5e1; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.85rem;">Return to Login</a>
-            </div>
+
+            ${authUser ? `
+              <div style="background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.25); border-radius: 8px; padding: 10px 12px; margin-bottom: 18px; font-size: 0.82rem; color: #fef08a;">
+                Currently active: <strong>${authUser.name}</strong> (${authUser.regNo}).<br>
+                To view this portfolio (#${studentId}), enter this student's credentials below or switch to your own portfolio.
+              </div>
+            ` : `
+              <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 18px; line-height: 1.5;">
+                Please authenticate with your University Register Number to access this portfolio.
+              </p>
+            `}
+
+            <form id="portfolioUnlockForm" onsubmit="handleUnlock(event)">
+              <div style="margin-bottom: 14px;">
+                <label style="display: block; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; color: #94a3b8; margin-bottom: 6px;">
+                  University Register Number
+                </label>
+                <input type="text" id="unlockIdentifier" required autocomplete="username" placeholder="Enter University Register Number" 
+                       style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 10px 12px; color: #fff; font-size: 0.9rem; outline: none;">
+              </div>
+
+              <div style="margin-bottom: 18px;">
+                <label style="display: block; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; color: #94a3b8; margin-bottom: 6px;">
+                  Password
+                </label>
+                <input type="password" id="unlockPassword" required autocomplete="current-password" placeholder="Password (Same as Register Number)" 
+                       style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 10px 12px; color: #fff; font-size: 0.9rem; outline: none;">
+              </div>
+
+              <div id="unlockError" style="display: none; background: #fee2e2; color: #991b1b; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; margin-bottom: 14px;"></div>
+
+              <button type="submit" style="width: 100%; background: #2563eb; color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; margin-bottom: 10px;">
+                Unlock & View Portfolio
+              </button>
+
+              <div style="display: flex; gap: 8px;">
+                ${authUser ? `
+                  <a href="../${authUser.id}/index.html" style="flex: 1; text-align: center; background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid #334155; padding: 8px; border-radius: 6px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">
+                    My Portfolio (#${authUser.id})
+                  </a>
+                ` : ''}
+                <a href="../index.html" style="flex: 1; text-align: center; background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid #334155; padding: 8px; border-radius: 6px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">
+                  Central Portal Home
+                </a>
+              </div>
+            </form>
           </div>
         </div>
       `;
+
+      window.handleUnlock = function(e) {
+        e.preventDefault();
+        const id = document.getElementById('unlockIdentifier').value.trim();
+        const pass = document.getElementById('unlockPassword').value.trim();
+        const res = window.CollegeAuth.login(id, pass);
+        if (res.success) {
+          window.location.reload();
+        } else {
+          const err = document.getElementById('unlockError');
+          err.textContent = res.message;
+          err.style.display = 'block';
+        }
+      };
     });
   }
 
@@ -83,7 +137,6 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    /* Floating Pill Button */
     .dock-pill-trigger {
       display: inline-flex;
       align-items: center;
@@ -104,7 +157,6 @@
     .dock-pill-trigger:hover {
       background: #1e293b;
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
     }
 
     .dock-status-dot {
@@ -118,7 +170,6 @@
       background: #16a34a;
     }
 
-    /* Expandable action drawer */
     .dock-panel {
       background: #ffffff;
       color: #0f172a;
@@ -132,9 +183,7 @@
       gap: 12px;
     }
 
-    .dock-panel.open {
-      display: flex;
-    }
+    .dock-panel.open { display: flex; }
 
     .dock-panel-header {
       display: flex;
@@ -157,10 +206,7 @@
       color: #94a3b8;
       font-size: 18px;
       cursor: pointer;
-      line-height: 1;
     }
-
-    .dock-close-btn:hover { color: #0f172a; }
 
     .dock-user-tag {
       font-size: 12px;
@@ -226,21 +272,18 @@
       font-weight: 600;
       font-size: 12px;
       cursor: pointer;
-      transition: background 0.2s;
     }
 
-    .dock-submit-btn:hover {
-      background: #1d4ed8;
-    }
+    .dock-submit-btn:hover { background: #1d4ed8; }
 
     .dock-logout-btn {
       background: none;
       border: 1px solid #fecaca;
       color: #dc2626;
-      padding: 3px 7px;
+      padding: 3px 8px;
       border-radius: 4px;
-      font-size: 10px;
-      font-weight: 600;
+      font-size: 11px;
+      font-weight: 700;
       cursor: pointer;
     }
 
@@ -263,7 +306,6 @@
     const dock = document.createElement('div');
     dock.className = 'college-bottom-dock';
     dock.innerHTML = `
-      <!-- Collapsible Drawer -->
       <div class="dock-panel" id="collegeDockPanel">
         <div class="dock-panel-header">
           <h4>Portal Hub (Student #${studentId})</h4>
@@ -271,11 +313,10 @@
         </div>
 
         <div class="dock-user-tag">
-          <span>Logged in: <strong>${authUser.name}</strong></span>
+          <span>User: <strong>${authUser ? authUser.name : 'Authenticated'}</strong></span>
           <button class="dock-logout-btn" id="dockLogoutBtn">Sign Out</button>
         </div>
 
-        <!-- Return to Home / Central Portal Button -->
         <a href="../index.html" class="dock-home-btn">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
           Return to Portal Homepage
@@ -304,37 +345,30 @@
         <button class="dock-submit-btn" id="dockSubmitBtn">Submit Assignment (Flip to 1)</button>
       </div>
 
-      <!-- Floating Pill Trigger -->
       <div class="dock-pill-trigger" id="dockPillTrigger" title="Click to open portal tools or return home">
         <span class="dock-status-dot ${isSub ? 'submitted' : ''}" id="dockTriggerDot"></span>
         <span>Portal & Assignment</span>
-        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"></path></svg>
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"></path></svg>
       </div>
     `;
 
     document.body.appendChild(dock);
 
-    const trigger = document.getElementById('dockPillTrigger');
-    const panel = document.getElementById('collegeDockPanel');
-    const closeBtn = document.getElementById('closeDockPanel');
-    const submitBtn = document.getElementById('dockSubmitBtn');
-    const logoutBtn = document.getElementById('dockLogoutBtn');
-
-    trigger.addEventListener('click', () => {
-      panel.classList.toggle('open');
+    document.getElementById('dockPillTrigger').addEventListener('click', () => {
+      document.getElementById('collegeDockPanel').classList.toggle('open');
     });
 
-    closeBtn.addEventListener('click', () => {
-      panel.classList.remove('open');
+    document.getElementById('closeDockPanel').addEventListener('click', () => {
+      document.getElementById('collegeDockPanel').classList.remove('open');
     });
 
-    logoutBtn.addEventListener('click', () => {
+    document.getElementById('dockLogoutBtn').addEventListener('click', () => {
       sessionStorage.removeItem('college_portal_auth_user');
       localStorage.removeItem('college_portal_auth_user');
       window.location.href = '../index.html';
     });
 
-    submitBtn.addEventListener('click', () => {
+    document.getElementById('dockSubmitBtn').addEventListener('click', () => {
       const aId = document.getElementById('dockAssignSelect').value;
       const fileInput = document.getElementById('dockFileInput');
       const fileName = fileInput.files[0] ? fileInput.files[0].name : `assignment_${aId}.pdf`;
@@ -354,7 +388,7 @@
       document.getElementById('dockTriggerDot').classList.add('submitted');
 
       alert(`Assignment ${aId} submitted successfully for Student #${studentId}! Flag updated to 1.`);
-      panel.classList.remove('open');
+      document.getElementById('collegeDockPanel').classList.remove('open');
     });
   }
 
