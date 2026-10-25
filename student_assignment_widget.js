@@ -231,6 +231,13 @@
     let formSnippet = '';
 
     if (isOwnerOrFaculty) {
+      // Find current student profile
+      const students = window.STUDENTS_DATA || [];
+      const currentProfile = students.find(s => s.id === studentId) || {};
+      const currentName = currentProfile.name || (authUser ? authUser.name : '');
+      const currentBlood = currentProfile.blood || 'O+';
+      const currentCgpa = currentProfile.cgpa || '';
+
       authSnippet = `
         <div class="dock-user-tag auth">
           <span>Signed In: <strong>${authUser.name}</strong></span>
@@ -239,6 +246,44 @@
       `;
 
       formSnippet = `
+        <!-- Profile Customization Tab/Section -->
+        <div style="background: rgba(88, 166, 255, 0.08); border: 1px solid rgba(88, 166, 255, 0.2); border-radius: 6px; padding: 10px; margin-bottom: 6px;">
+          <div style="font-size: 11px; font-weight: 700; color: #58a6ff; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+            <span>✏️ Edit Profile Info</span>
+            <span style="font-size: 10px; color: #8b949e; font-weight: 400;">Owner Controls</span>
+          </div>
+
+          <div class="dock-field-group">
+            <label>Display Name</label>
+            <input type="text" id="dockEditName" value="${currentName.replace(/"/g, '&quot;')}" placeholder="Full Name">
+          </div>
+
+          <div style="display: flex; gap: 8px; margin-top: 6px;">
+            <div class="dock-field-group" style="flex: 1;">
+              <label>Blood Group</label>
+              <select id="dockEditBlood">
+                <option value="A+" ${currentBlood === 'A+' ? 'selected' : ''}>A+</option>
+                <option value="A-" ${currentBlood === 'A-' ? 'selected' : ''}>A-</option>
+                <option value="B+" ${currentBlood === 'B+' ? 'selected' : ''}>B+</option>
+                <option value="B-" ${currentBlood === 'B-' ? 'selected' : ''}>B-</option>
+                <option value="O+" ${currentBlood === 'O+' ? 'selected' : ''}>O+</option>
+                <option value="O-" ${currentBlood === 'O-' ? 'selected' : ''}>O-</option>
+                <option value="AB+" ${currentBlood === 'AB+' ? 'selected' : ''}>AB+</option>
+                <option value="AB-" ${currentBlood === 'AB-' ? 'selected' : ''}>AB-</option>
+              </select>
+            </div>
+            <div class="dock-field-group" style="flex: 1;">
+              <label>CGPA</label>
+              <input type="number" step="0.01" min="0" max="10" id="dockEditCgpa" value="${currentCgpa}" placeholder="e.g. 8.45">
+            </div>
+          </div>
+
+          <button class="dock-submit-btn" style="width: 100%; margin-top: 8px; background: #1f6feb;" id="dockSaveProfileBtn">
+            Save & Update Site Info
+          </button>
+        </div>
+
+        <!-- Assignment Section -->
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0;">
           <span style="font-size: 12px; color: #8b949e;">Assignment 1:</span>
           <span style="font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 4px; background: ${isSub ? 'rgba(46, 160, 67, 0.15)' : 'rgba(210, 153, 34, 0.15)'}; color: ${isSub ? '#3fb950' : '#d29922'};" id="dockStatusBadge">
@@ -259,7 +304,7 @@
           <input type="file" id="dockFileInput">
         </div>
 
-        <button class="dock-submit-btn" id="dockSubmitBtn">Submit / Edit Assignment (Bit 1)</button>
+        <button class="dock-submit-btn" id="dockSubmitBtn">Submit Assignment (Bit 1)</button>
       `;
     } else {
       authSnippet = `
@@ -278,7 +323,7 @@
         </div>
 
         <div style="background: rgba(56, 139, 253, 0.1); border: 1px solid rgba(56, 139, 253, 0.2); border-radius: 6px; padding: 8px 10px; font-size: 11px; color: #79c0ff; line-height: 1.4;">
-          🔒 Only this student or faculty can submit or edit assignments for portfolio #${studentId}. Sign in to make submissions.
+          🔒 Only this student or faculty can edit profile details or submit assignments. Sign in to edit your info.
         </div>
 
         <div id="dockInlineLogin" style="display: none; flex-direction: column; gap: 8px;">
@@ -385,6 +430,50 @@
         if (dot) dot.classList.add('submitted');
 
         alert(`Assignment ${aId} submitted for Student #${studentId}! Submission bit updated to 1.`);
+        document.getElementById('collegeDockPanel').classList.remove('open');
+      });
+    }
+
+    const saveProfileBtn = document.getElementById('dockSaveProfileBtn');
+    if (saveProfileBtn) {
+      saveProfileBtn.addEventListener('click', () => {
+        const nameVal = document.getElementById('dockEditName').value.trim();
+        const bloodVal = document.getElementById('dockEditBlood').value;
+        const cgpaVal = parseFloat(document.getElementById('dockEditCgpa').value) || 0;
+
+        if (!nameVal) {
+          alert('Please enter a display name.');
+          return;
+        }
+
+        const updatedFields = {
+          name: nameVal,
+          blood: bloodVal,
+          cgpa: cgpaVal
+        };
+
+        if (window.updateStudentProfileData) {
+          window.updateStudentProfileData(studentId, updatedFields);
+        }
+
+        // Live DOM Updates on the student's personal portfolio page
+        const oldName = currentName;
+        function replaceTextInPage(node) {
+          if (node.nodeType === Node.TEXT_NODE) {
+            if (oldName && oldName.length > 2 && node.nodeValue.includes(oldName)) {
+              node.nodeValue = node.nodeValue.split(oldName).join(nameVal);
+            }
+          } else {
+            for (let child of node.childNodes) {
+              if (child.id !== 'collegeDockPanel') {
+                replaceTextInPage(child);
+              }
+            }
+          }
+        }
+        replaceTextInPage(document.body);
+
+        alert('Profile information updated successfully! Changes saved across directory and your portfolio.');
         document.getElementById('collegeDockPanel').classList.remove('open');
       });
     }

@@ -531,3 +531,38 @@ window.STUDENTS_DATA = [
     "photo": "59/student.jpg"
   }
 ];
+
+// Helper to load student customizations from localStorage
+(function() {
+  try {
+    const raw = localStorage.getItem('college_portal_students_overrides');
+    if (raw) {
+      const overrides = JSON.parse(raw);
+      window.STUDENTS_DATA = window.STUDENTS_DATA.map(s => {
+        if (overrides[s.id]) {
+          return Object.assign({}, s, overrides[s.id]);
+        }
+        return s;
+      });
+    }
+  } catch (e) {}
+
+  window.updateStudentProfileData = function(studentId, updatedFields) {
+    try {
+      const raw = localStorage.getItem('college_portal_students_overrides');
+      const overrides = raw ? JSON.parse(raw) : {};
+      overrides[studentId] = Object.assign({}, overrides[studentId] || {}, updatedFields);
+      localStorage.setItem('college_portal_students_overrides', JSON.stringify(overrides));
+
+      // Update in-memory
+      const idx = window.STUDENTS_DATA.findIndex(s => s.id === studentId);
+      if (idx !== -1) {
+        window.STUDENTS_DATA[idx] = Object.assign({}, window.STUDENTS_DATA[idx], updatedFields);
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+})();
+
