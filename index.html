@@ -782,6 +782,16 @@
         </div>
       </a>
       <div class="nav-tools">
+        <!-- Sound Effects Toggle Button -->
+        <button class="btn" id="soundToggleBtn" onclick="toggleSound()" title="Card Hover Sound (Click to toggle on/off)">
+          <svg id="soundIcon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+          <span id="soundLabel">Sound: On</span>
+        </button>
+
         <!-- Settings Button to choose official themes -->
         <button class="btn" onclick="openThemeSettingsModal()" title="Appearance & Themes">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><circle cx="12" cy="12" r="3"></circle></svg>
@@ -1178,9 +1188,74 @@
     let activeStatus = 'all';
     let searchQuery = '';
 
+    let soundEnabled = localStorage.getItem('college_portal_sound') !== 'disabled';
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playHoverSound() {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        if (!audioCtx) return;
+
+        // Elegant soft glass pop/bubble sound (sine wave 560Hz -> 720Hz quick decay)
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        const now = audioCtx.currentTime;
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(560, now);
+        osc.frequency.exponentialRampToValueAtTime(740, now + 0.05);
+
+        gain.gain.setValueAtTime(0.04, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.07);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.08);
+      } catch (e) {
+        // audio policy or unsupported - ignore silently
+      }
+    }
+
+    function toggleSound() {
+      initAudio();
+      soundEnabled = !soundEnabled;
+      localStorage.setItem('college_portal_sound', soundEnabled ? 'enabled' : 'disabled');
+      updateSoundUI();
+      if (soundEnabled) playHoverSound();
+    }
+
+    function updateSoundUI() {
+      const label = document.getElementById('soundLabel');
+      const icon = document.getElementById('soundIcon');
+      if (soundEnabled) {
+        label.textContent = 'Sound: On';
+        icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>';
+      } else {
+        label.textContent = 'Sound: Off';
+        icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>';
+      }
+    }
+
     function init() {
       const savedTheme = localStorage.getItem('college_portal_theme') || 'dark-default';
       applyTheme(savedTheme);
+      updateSoundUI();
+
+      // Resume audio context on first user click anywhere
+      document.addEventListener('pointerdown', initAudio, { once: true });
 
       setupListeners();
       render();
@@ -1377,7 +1452,7 @@
           : `<div class="avatar-fallback">${(s.name || 'S')[0]}</div>`;
 
         return `
-          <a href="${s.id}/index.html" class="student-card" target="_blank">
+          <a href="${s.id}/index.html" class="student-card" target="_blank" onmouseenter="playHoverSound()">
             <div>
               <div class="card-top">
                 ${avatar}
