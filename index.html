@@ -121,6 +121,16 @@
   <!-- Students Grid -->
   <main class="grid-wrap">
     <div class="students-grid" id="studentsGrid"></div>
+    <div class="load-more-wrap" id="loadMoreWrap" style="display: none;">
+      <button class="btn btn-load-more" id="loadMoreBtn" onclick="handleLoadMore()">
+        <svg id="loadMoreSpinner" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" class="load-spinner" style="display: none;">
+          <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+          <path d="M12 2a10 10 0 0 1 10 10"></path>
+        </svg>
+        <span id="loadMoreLabel">Load More Portfolios</span>
+      </button>
+      <div class="load-more-count" id="loadMoreCount"></div>
+    </div>
   </main>
 
   <!-- Unified Settings Modal (Appearance & Audio) -->

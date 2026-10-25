@@ -255,11 +255,46 @@ function updateMetrics() {
   document.getElementById('pendingCount').textContent = pending;
 }
 
-function render() {
+let mobileBatchSize = 13;
+let visibleCount = 13;
+let isMobileDevice = window.innerWidth <= 768;
+
+window.addEventListener('resize', () => {
+  const newIsMobile = window.innerWidth <= 768;
+  if (newIsMobile !== isMobileDevice) {
+    isMobileDevice = newIsMobile;
+    visibleCount = isMobileDevice ? mobileBatchSize : 9999;
+    render();
+  }
+});
+
+function handleLoadMore() {
+  const spinner = document.getElementById('loadMoreSpinner');
+  const btn = document.getElementById('loadMoreBtn');
+  const label = document.getElementById('loadMoreLabel');
+
+  if (spinner) spinner.style.display = 'inline-block';
+  if (label) label.textContent = 'Loading...';
+  if (btn) btn.disabled = true;
+
+  setTimeout(() => {
+    visibleCount += mobileBatchSize;
+    render(true);
+    if (spinner) spinner.style.display = 'none';
+    if (label) label.textContent = 'Load More Portfolios';
+    if (btn) btn.disabled = false;
+  }, 240);
+}
+
+function render(isAppend = false) {
   const container = document.getElementById('studentsGrid');
+  const loadMoreWrap = document.getElementById('loadMoreWrap');
+  const loadMoreCount = document.getElementById('loadMoreCount');
   const students = window.STUDENTS_DATA || [];
   const user = window.CollegeAuth.getCurrentUser();
   const currentStudentId = user && user.role === 'student' ? user.id : null;
+
+  isMobileDevice = window.innerWidth <= 768;
 
   const filtered = students.filter(s => {
     if (searchQuery) {
@@ -299,15 +334,21 @@ function render() {
     });
   }
 
-  container.innerHTML = filtered.map(s => {
+  // Determine slice for mobile pagination vs desktop
+  const effectiveLimit = isMobileDevice ? visibleCount : filtered.length;
+  const displayed = filtered.slice(0, effectiveLimit);
+
+  container.innerHTML = displayed.map((s, index) => {
     const isSub = window.AssignmentStore.isSubmitted(s.id, 'A1');
     const isMe = s.id === currentStudentId;
     const avatar = s.photo 
       ? `<img src="${s.photo}" alt="${s.name}" class="avatar-circle" onerror="this.outerHTML='<div class=\\'avatar-fallback\\'>${(s.name || 'S')[0]}</div>'">`
       : `<div class="avatar-fallback">${(s.name || 'S')[0]}</div>`;
 
+    const animDelay = isAppend ? Math.min((index % mobileBatchSize) * 0.04, 0.4) : 0;
+
     return `
-      <a href="${s.id}/index.html" class="student-card ${isMe ? 'my-portfolio' : ''}" target="_blank" onmouseenter="playHoverSound()">
+      <a href="${s.id}/index.html" class="student-card anim-enter ${isMe ? 'my-portfolio' : ''}" target="_blank" onmouseenter="playHoverSound()" style="animation-delay: ${animDelay}s;">
         ${isMe ? '<div class="my-portfolio-badge">✦ Your Portfolio</div>' : ''}
         <div>
           <div class="card-top">
@@ -334,6 +375,18 @@ function render() {
       </a>
     `;
   }).join('');
+
+  // Handle Load More Button Visibility
+  if (loadMoreWrap) {
+    if (isMobileDevice && filtered.length > effectiveLimit) {
+      loadMoreWrap.style.display = 'flex';
+      if (loadMoreCount) {
+        loadMoreCount.textContent = `Showing ${displayed.length} of ${filtered.length} students`;
+      }
+    } else {
+      loadMoreWrap.style.display = 'none';
+    }
+  }
 }
 
 function setupListeners() {
