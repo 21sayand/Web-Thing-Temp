@@ -21,33 +21,26 @@
 
   if (!studentId) studentId = '01';
 
-  // 1. Instant Synchronous Auth Verification (Prevents any visual glitch)
+  // 1. Tab Session Auth Verification (Persists as long as the tab is open)
   let authUser = null;
   try {
     const raw = sessionStorage.getItem('college_portal_auth_user');
     if (raw) {
       const data = JSON.parse(raw);
-      if (data.expiresAt && Date.now() > data.expiresAt) {
-        sessionStorage.removeItem('college_portal_auth_user');
-        authUser = null;
-      } else {
-        data.expiresAt = Date.now() + (150 * 1000); // 150 seconds
-        sessionStorage.setItem('college_portal_auth_user', JSON.stringify(data));
-        authUser = data.user;
-      }
+      authUser = data.user || data;
     }
   } catch(e) {}
 
   const isAuthorized = authUser && (authUser.role === 'faculty' || authUser.id === studentId);
 
   if (isAuthorized) {
-    // Immediately un-shield the page
+    // Immediately un-shield the page (Zero Flicker)
     const shield = document.getElementById('auth-shield-style');
     if (shield) shield.remove();
     document.documentElement.style.visibility = 'visible';
     document.documentElement.style.opacity = '1';
   } else {
-    // Keep page completely hidden and render unlock screen immediately
+    // Keep page protected and render unlock screen immediately
     document.documentElement.style.visibility = 'visible';
     document.documentElement.style.opacity = '1';
     renderUnlockView();
@@ -55,7 +48,6 @@
   }
 
   function renderUnlockView() {
-    // Replace whole document content so nothing behind flashes
     function mount() {
       document.body.innerHTML = `
         <div style="min-height: 100vh; background: #0d1117; color: #f0f6fc; display: flex; align-items: center; justify-content: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; padding: 20px;">

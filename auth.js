@@ -1,7 +1,6 @@
-// Institutional Client-Side Authentication Service with Session Timeout
+// Institutional Client-Side Authentication Service (Tab Session Based)
 (function() {
   const AUTH_KEY = 'college_portal_auth_user';
-  const TIMEOUT_SECONDS = 150; // 150-second session timeout as requested
 
   const FACULTY_CREDENTIALS = {
     username: 'faculty',
@@ -11,20 +10,11 @@
   window.CollegeAuth = {
     getCurrentUser() {
       try {
+        // sessionStorage naturally persists while tab is open and clears when tab is closed
         const raw = sessionStorage.getItem(AUTH_KEY);
         if (!raw) return null;
         const data = JSON.parse(raw);
-        
-        const now = Date.now();
-        if (data.expiresAt && now > data.expiresAt) {
-          this.logout(true);
-          return null;
-        }
-
-        // Renew activity timestamp
-        data.expiresAt = now + (TIMEOUT_SECONDS * 1000);
-        sessionStorage.setItem(AUTH_KEY, JSON.stringify(data));
-        return data.user;
+        return data.user || data;
       } catch (e) {
         return null;
       }
@@ -37,8 +27,6 @@
 
       const idClean = identifier.trim().toUpperCase();
       const passClean = password.trim().toUpperCase();
-      const now = Date.now();
-      const expiresAt = now + (TIMEOUT_SECONDS * 1000);
 
       // 1. Check Faculty Login (case-insensitive)
       if (
@@ -51,8 +39,7 @@
           regNo: 'FACULTY_CSE',
           id: 'faculty'
         };
-        sessionStorage.setItem(AUTH_KEY, JSON.stringify({ user, expiresAt }));
-        this.startTimer();
+        sessionStorage.setItem(AUTH_KEY, JSON.stringify({ user }));
         return { success: true, user, redirect: 'index.html' };
       }
 
@@ -77,8 +64,7 @@
             rollNo: student.rollNo,
             id: student.id
           };
-          sessionStorage.setItem(AUTH_KEY, JSON.stringify({ user, expiresAt }));
-          this.startTimer();
+          sessionStorage.setItem(AUTH_KEY, JSON.stringify({ user }));
           return { success: true, user, redirect: `${student.id}/index.html` };
         } else {
           return { success: false, message: 'Invalid password. Password is your University Register Number.' };
@@ -88,26 +74,9 @@
       return { success: false, message: 'Register Number not found.' };
     },
 
-    startTimer() {
-      if (this._interval) clearInterval(this._interval);
-      this._interval = setInterval(() => {
-        try {
-          const raw = sessionStorage.getItem(AUTH_KEY);
-          if (!raw) return;
-          const data = JSON.parse(raw);
-          if (Date.now() > data.expiresAt) {
-            clearInterval(this._interval);
-            alert('Your session has expired after 150 seconds of inactivity.');
-            this.logout();
-          }
-        } catch(e) {}
-      }, 5000);
-    },
-
     logout() {
       sessionStorage.removeItem(AUTH_KEY);
       localStorage.removeItem(AUTH_KEY);
-      if (this._interval) clearInterval(this._interval);
 
       const loc = window.location.pathname;
       if (loc.includes('/')) {
@@ -123,8 +92,4 @@
       window.location.href = 'index.html';
     }
   };
-
-  if (sessionStorage.getItem(AUTH_KEY)) {
-    window.CollegeAuth.startTimer();
-  }
 })();
