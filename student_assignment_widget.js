@@ -670,14 +670,51 @@
 
         // Live DOM Updates on the student's personal portfolio page
         const oldName = currentName;
+        const oldCgpaStr = currentCgpa ? String(currentCgpa) : '';
+        const newCgpaStr = cgpaVal > 0 ? cgpaVal.toFixed(2) : '';
+
         function replaceTextInPage(node) {
           if (node.nodeType === Node.TEXT_NODE) {
-            if (oldName && oldName.length > 2 && node.nodeValue.includes(oldName)) {
-              node.nodeValue = node.nodeValue.split(oldName).join(nameVal);
+            let val = node.nodeValue;
+            let changed = false;
+
+            // Replace Name
+            if (oldName && oldName.length > 2 && val.includes(oldName)) {
+              val = val.split(oldName).join(nameVal);
+              changed = true;
             }
+            // Replace CGPA text
+            if (oldCgpaStr && val.includes(oldCgpaStr)) {
+              val = val.split(oldCgpaStr).join(newCgpaStr || oldCgpaStr);
+              changed = true;
+            }
+            if (changed) node.nodeValue = val;
           } else {
+            // Check form inputs or elements with common IDs
+            if (node.tagName === 'INPUT' && node.id !== 'dockEditName' && node.id !== 'dockEditCgpa') {
+              if (node.id === 'name' || node.name === 'name') node.value = nameVal;
+              if (node.id === 'cgpa' || node.name === 'cgpa') node.value = cgpaVal;
+            }
+            if (node.tagName === 'SELECT' && node.id !== 'dockEditBlood') {
+              if (node.id === 'blood' || node.name === 'blood' || node.id === 'bloodGroup') node.value = bloodVal;
+            }
+
+            // Check element tags like #dossierCGPATag or badges
+            if (node.id === 'dossierCGPATag' || node.classList && node.classList.contains('cgpa-val')) {
+              node.textContent = newCgpaStr;
+            }
+            if (node.id === 'dossierBloodBadge') {
+              node.textContent = `Blood: ${bloodVal}`;
+            }
+            if (node.id === 'dossierBloodGroup') {
+              node.textContent = bloodVal;
+            }
+            if (node.id === 'dossierName') {
+              node.textContent = nameVal;
+            }
+
             for (let child of node.childNodes) {
-              if (child.id !== 'collegeDockPanel') {
+              if (child.id !== 'collegeDockPanel' && child.id !== 'dockAnnouncementBanner') {
                 replaceTextInPage(child);
               }
             }
@@ -685,7 +722,7 @@
         }
         replaceTextInPage(document.body);
 
-        alert('Profile information updated successfully! Changes saved across directory and your portfolio.');
+        alert(`Profile details updated!\n\n• Name: ${nameVal}\n• Blood Group: ${bloodVal}\n• CGPA: ${newCgpaStr || cgpaVal}\n\nChanges have been saved to your site and synchronized with the batch directory.`);
         document.getElementById('collegeDockPanel').classList.remove('open');
       });
     }
