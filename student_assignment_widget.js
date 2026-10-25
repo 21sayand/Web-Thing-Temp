@@ -29,7 +29,7 @@
 
   if (!studentId) studentId = '01';
 
-  // 1. Session Auth Verification
+  // 1. Session Auth Verification & Access Privacy Enforcement
   let authUser = null;
   try {
     const raw = sessionStorage.getItem('college_portal_auth_user');
@@ -40,6 +40,39 @@
   } catch(e) {}
 
   const isOwnerOrFaculty = authUser && (authUser.role === 'faculty' || authUser.id === studentId);
+  const guestAccessAllowed = window.CollegeAuth ? window.CollegeAuth.isGuestAccessAllowed() : (localStorage.getItem('college_portal_guest_access_allowed') !== 'false');
+
+  // If faculty has restricted guest access and the user is NOT the owner or faculty, block content
+  if (!guestAccessAllowed && !isOwnerOrFaculty) {
+    const shield = document.createElement('div');
+    shield.id = 'guestPrivacyShield';
+    shield.style.cssText = `
+      position: fixed; inset: 0; z-index: 10000000;
+      background: #0d1117; color: #f0f6fc;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 24px; text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    `;
+    shield.innerHTML = `
+      <div style="background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 32px 24px; max-width: 440px; box-shadow: 0 16px 36px rgba(0,0,0,0.5);">
+        <div style="font-size: 38px; margin-bottom: 12px;">🔒</div>
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Private Student Portfolio</h3>
+        <p style="font-size: 13px; color: #8b949e; line-height: 1.5; margin-bottom: 20px;">
+          Guest access has been restricted by faculty administration. Only the authenticated student owner or faculty members may view this academic profile.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="../index.html" style="display: inline-block; background: #238636; color: #fff; text-decoration: none; padding: 10px 18px; border-radius: 6px; font-weight: 600; font-size: 13px;">
+            Sign In on Homepage
+          </a>
+          <a href="../index.html" style="display: inline-block; background: #21262d; border: 1px solid #30363d; color: #c9d1d9; text-decoration: none; padding: 9px 18px; border-radius: 6px; font-weight: 500; font-size: 13px;">
+            Return to Homepage
+          </a>
+        </div>
+      </div>
+    `;
+    document.documentElement.appendChild(shield);
+    return; // Halt widget execution and leave privacy shield in place
+  }
 
   // 2. Inject Bottom Floating Widget Dock (Always visible for viewing, submitting, returning home)
   const style = document.createElement('style');

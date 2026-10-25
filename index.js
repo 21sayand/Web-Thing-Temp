@@ -338,17 +338,26 @@ function render(isAppend = false) {
   const effectiveLimit = isMobileDevice ? visibleCount : filtered.length;
   const displayed = filtered.slice(0, effectiveLimit);
 
+  const isGuestAllowed = window.CollegeAuth.isGuestAccessAllowed();
+
   container.innerHTML = displayed.map((s, index) => {
     const isSub = window.AssignmentStore.isSubmitted(s.id, 'A1');
     const isMe = s.id === currentStudentId;
+    const isFaculty = user && user.role === 'faculty';
+    const canAccess = isGuestAllowed || isMe || isFaculty;
+
     const avatar = s.photo 
       ? `<img src="${s.photo}" alt="${s.name}" class="avatar-circle" onerror="this.outerHTML='<div class=\\'avatar-fallback\\'>${(s.name || 'S')[0]}</div>'">`
       : `<div class="avatar-fallback">${(s.name || 'S')[0]}</div>`;
 
     const animDelay = isAppend ? Math.min((index % mobileBatchSize) * 0.04, 0.4) : 0;
 
+    let actionLabel = 'View Portfolio';
+    if (isMe) actionLabel = 'Open My Portfolio (Full Edit)';
+    else if (!canAccess) actionLabel = '🔒 Private (Sign In Required)';
+
     return `
-      <a href="${s.id}/index.html" class="student-card anim-enter ${isMe ? 'my-portfolio' : ''}" target="_blank" onmouseenter="playHoverSound()" style="animation-delay: ${animDelay}s;">
+      <a href="${s.id}/index.html" class="student-card anim-enter ${isMe ? 'my-portfolio' : ''}" target="_blank" onmouseenter="playHoverSound()" style="animation-delay: ${animDelay}s; ${!canAccess ? 'opacity: 0.88;' : ''}">
         ${isMe ? '<div class="my-portfolio-badge">✦ Your Portfolio</div>' : ''}
         <div>
           <div class="card-top">
@@ -365,12 +374,13 @@ function render(isAppend = false) {
             <span class="tag-chip ${isSub ? 'chip-sub' : 'chip-pen'}">
               ${isSub ? '✓ Submitted' : '⏳ Pending'}
             </span>
+            ${!isGuestAllowed && !isMe ? '<span class="tag-chip" style="background: rgba(248,81,73,0.12); color: var(--badge-blood-text); border: 1px solid rgba(248,81,73,0.2);">🔒 Private</span>' : ''}
           </div>
         </div>
 
         <div class="card-action-bar">
-          <span>${isMe ? 'Open My Portfolio (Full Edit)' : 'View Portfolio'}</span>
-          <span>→</span>
+          <span style="${!canAccess ? 'color: var(--text-muted); font-size: 11px;' : ''}">${actionLabel}</span>
+          <span>${!canAccess ? '🔒' : '→'}</span>
         </div>
       </a>
     `;
@@ -443,6 +453,10 @@ function init() {
   window.addEventListener('submissionsUpdated', () => {
     render();
     updateMetrics();
+  });
+
+  window.addEventListener('guestAccessUpdated', () => {
+    render();
   });
 }
 

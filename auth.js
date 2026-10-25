@@ -7,7 +7,20 @@
     password: 'cse@stthomas'
   };
 
+  const GUEST_ACCESS_KEY = 'college_portal_guest_access_allowed';
+
   window.CollegeAuth = {
+    isGuestAccessAllowed() {
+      // Defaults to true (publicly viewable), faculty can toggle to false (restricted)
+      const val = localStorage.getItem(GUEST_ACCESS_KEY);
+      return val === null ? true : val === 'true';
+    },
+
+    setGuestAccess(allowed) {
+      localStorage.setItem(GUEST_ACCESS_KEY, allowed ? 'true' : 'false');
+      window.dispatchEvent(new Event('guestAccessUpdated'));
+    },
+
     getCurrentUser() {
       try {
         // sessionStorage naturally persists while tab is open and clears when tab is closed

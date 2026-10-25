@@ -321,7 +321,11 @@
         <h1>Assignment Evaluation Matrix</h1>
         <p>Interactive Continuous Evaluation Desk. Click any bit cell to toggle submission states (`0` ⇄ `1`). All submissions synchronize live.</p>
       </div>
-      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+        <button class="btn" id="guestAccessToggleBtn" onclick="toggleGuestAccessPolicy()" title="Toggle whether unauthenticated guests can view student portfolios">
+          <span id="guestAccessDot" style="width: 8px; height: 8px; border-radius: 50%; display: inline-block; background: #3fb950;"></span>
+          <span id="guestAccessLabel">Guest Access: Allowed</span>
+        </button>
         <button class="btn btn-primary" onclick="openNewAssignmentModal()">
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"></path></svg>
           + Add New Assignment
@@ -452,6 +456,37 @@
       }
     }
 
+    function toggleGuestAccessPolicy() {
+      const current = window.CollegeAuth.isGuestAccessAllowed();
+      const next = !current;
+      window.CollegeAuth.setGuestAccess(next);
+      updateGuestAccessUI();
+      if (!next) {
+        alert('Guest access is now DENIED.\n\nOnly authenticated students (viewing their own profile) and verified faculty can access individual portfolio sites.');
+      } else {
+        alert('Guest access is now ALLOWED.\n\nAll student portfolios are publicly accessible to guests and evaluators.');
+      }
+    }
+
+    function updateGuestAccessUI() {
+      const allowed = window.CollegeAuth.isGuestAccessAllowed();
+      const dot = document.getElementById('guestAccessDot');
+      const label = document.getElementById('guestAccessLabel');
+      const btn = document.getElementById('guestAccessToggleBtn');
+
+      if (dot && label && btn) {
+        if (allowed) {
+          dot.style.background = '#3fb950';
+          label.textContent = 'Guest Access: Allowed';
+          btn.style.borderColor = 'var(--border)';
+        } else {
+          dot.style.background = '#f85149';
+          label.textContent = 'Guest Access: Restricted (Denied)';
+          btn.style.borderColor = 'rgba(248, 81, 73, 0.4)';
+        }
+      }
+    }
+
     function setTheme(theme) {
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('college_portal_theme', theme);
@@ -460,6 +495,7 @@
     }
 
     function init() {
+      updateGuestAccessUI();
       renderCards();
       renderTable();
 
