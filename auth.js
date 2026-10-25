@@ -1,30 +1,45 @@
-// Institutional Client-Side Authentication Service
+// Institutional Client-Side Authentication Service with Session Timeout
 (function() {
   const AUTH_KEY = 'college_portal_auth_user';
+  const TIMEOUT_SECONDS = 90; // 90-second inactivity / session timeout
 
-  // Default Faculty Credentials
   const FACULTY_CREDENTIALS = {
     username: 'faculty',
-    password: 'cse@stthomas' // can also accept 'admin' or 'faculty123'
+    password: 'cse@stthomas'
   };
 
   window.CollegeAuth = {
     getCurrentUser() {
       try {
-        const stored = sessionStorage.getItem(AUTH_KEY) || localStorage.getItem(AUTH_KEY);
-        return stored ? JSON.parse(stored) : null;
+        const raw = sessionStorage.getItem(AUTH_KEY);
+        if (!raw) return null;
+        const data = JSON.parse(raw);
+        
+        // Check timeout
+        const now = Date.now();
+        if (data.expiresAt && now > data.expiresAt) {
+          this.logout(true); // timed out
+          return null;
+        }
+
+        // Renew activity timestamp
+        data.expiresAt = now + (TIMEOUT_SECONDS * 1000);
+        sessionStorage.setItem(AUTH_KEY, JSON.stringify(data));
+        return data.user;
       } catch (e) {
         return null;
       }
     },
 
-    login(identifier, password, remember = true) {
+    login(identifier, password) {
       if (!identifier || !password) {
-        return { success: false, message: 'Please enter both University Register Number and password.' };
+        return { success: false, message: 'Please enter both identifier and password.' };
       }
 
       const idClean = identifier.trim().toUpperCase();
       const passClean = password.trim();
+      const now = Date.now();
+      const expiresAt = now + (TIMEOUT_SECONDS * 1000);
 
       // 1. Check Faculty Login
       if (
@@ -37,8 +52,8 @@
           regNo: 'FACULTY_CSE',
           id: 'faculty'
         };
-        const storage = remember ? localStorage : sessionStorage;
-        storage.setItem(AUTH_KEY, JSON.stringify(user));
+        sessionStorage.setItem(AUTH_KEY, JSON.stringify({ user, expiresAt }));
+        this.startTimer();
         return { success: true, user, redirect: 'index.html' };
       }
 
@@ -51,7 +66,6 @@
       );
 
       if (student) {
-        // Password matches Register Number (case-insensitive) or Roll Number
         const validPass = passClean.toUpperCase() === student.regNo.toUpperCase() ||
                           passClean === student.rollNo.toString() ||
                           passClean.toUpperCase() === student.id.toUpperCase();
@@ -64,8 +78,8 @@
             rollNo: student.rollNo,
             id: student.id
           };
-          const storage = remember ? localStorage : sessionStorage;
-          storage.setItem(AUTH_KEY, JSON.stringify(user));
+          sessionStorage.setItem(AUTH_KEY, JSON.stringify({ user, expiresAt }));
+          this.startTimer();
           return { success: true, user, redirect: `${student.id}/index.html` };
         } else {
           return { success: false, message: 'Invalid password. For students, default password is your University Register No.' };
@@ -75,32 +89,43 @@
       return { success: false, message: 'Register Number not found. Please check your KTU register number.' };
     },
 
-    logout() {
-      sessionStorage.removeItem(AUTH_KEY);
-      localStorage.removeItem(AUTH_KEY);
-      window.location.href = window.location.origin + window.location.pathname.replace(/\/(\d+|assignment\.html).*$/, '/index.html');
+    startTimer() {
+      if (this._interval) clearInterval(this._interval);
+      this._interval = setInterval(() => {
+        try {
+          const raw = sessionStorage.getItem(AUTH_KEY);
+          if (!raw) return;
+          const data = JSON.parse(raw);
+          if (Date.now() > data.expiresAt) {
+            clearInterval(this._interval);
+            alert('Your session has expired due to 90 seconds of inactivity. Please log in again.');
+            this.logout();
+          }
+        } catch(e) {}
+      }, 5000);
     },
 
-    // Guard for specific pages
-    protectRoute(requiredRole = 'any', studentFolder = null) {
-      const user = this.getCurrentUser();
+    logout(isTimeout = false) {
+      sessionStorage.removeItem(AUTH_KEY);
+      localStorage.removeItem(AUTH_KEY);
+      if (this._interval) clearInterval(this._interval);
 
-      // If not logged in at all
-      if (!user) {
-        return false;
+      // Return to portal index
+      let target = 'index.html';
+      if (window.location.pathname.includes('/')) {
+        const segments = window.location.pathname.split('/').filter(Boolean);
+        if (segments.length > 1 && /^\d+$/.test(segments[segments.length - 2])) {
+          target = '../index.html';
+        } else if (segments.length > 0 && /^\d+$/.test(segments[segments.length - 1])) {
+          target = '../index.html';
+        }
       }
-
-      // If faculty only required (e.g. assignment.html)
-      if (requiredRole === 'faculty' && user.role !== 'faculty') {
-        return false;
-      }
-
-      // If on a student page, student cannot view other students' pages
-      if (studentFolder && user.role === 'student' && user.id !== studentFolder) {
-        return false;
-      }
-
-      return true;
+      window.location.href = target;
     }
   };
+
+  // Start background watchdog if already logged in
+  if (sessionStorage.getItem(AUTH_KEY)) {
+    window.CollegeAuth.startTimer();
+  }
 })();
