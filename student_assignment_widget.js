@@ -251,6 +251,79 @@
 
     .dock-logout-btn:hover { background: rgba(248, 81, 73, 0.15); }
 
+    /* New Assignment Broadcast Notification Popup */
+    @keyframes dockSlideBounce {
+      0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+      70% { transform: translateY(-4px) scale(1.02); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(88, 166, 255, 0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(88, 166, 255, 0); }
+    }
+
+    .dock-announcement-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #161b22;
+      color: #f0f6fc;
+      border: 1px solid #388bfd;
+      border-radius: 8px;
+      padding: 12px 14px;
+      width: 320px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      animation: dockSlideBounce 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .dock-announcement-badge {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 10px;
+      background: rgba(56, 139, 253, 0.15);
+      color: #58a6ff;
+      border: 1px solid rgba(56, 139, 253, 0.3);
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .dock-announcement-close {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      background: none;
+      border: none;
+      color: #8b949e;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 0 4px;
+      line-height: 1;
+    }
+
+    .dock-announcement-close:hover {
+      color: #f0f6fc;
+    }
+
+    .dock-pill-trigger.has-notification {
+      animation: pulseGlow 2s infinite;
+      border-color: #58a6ff;
+    }
+
+    .dock-notif-count {
+      background: #f85149;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 10px;
+      margin-left: 2px;
+    }
+
     /* Mobile Responsive Safeguards for Dock */
     @media (max-width: 600px) {
       .college-bottom-dock {
@@ -417,31 +490,88 @@
       `;
     }
 
-    dock.innerHTML = `
-      <div class="dock-panel" id="collegeDockPanel">
-        <div class="dock-panel-header">
-          <h4>Assignment Desk (Student #${studentId})</h4>
-          <button class="dock-close-btn" id="closeDockPanel">&times;</button>
+      let notificationBanner = '';
+      let hasUnreadAnnouncement = false;
+      let latestAnnouncement = null;
+
+      try {
+        const rawAnnounce = localStorage.getItem('college_portal_latest_announcement');
+        if (rawAnnounce) {
+          latestAnnouncement = JSON.parse(rawAnnounce);
+          const dismissedId = localStorage.getItem(`college_portal_dismissed_notif_${studentId}`);
+          if (latestAnnouncement && dismissedId !== latestAnnouncement.id) {
+            hasUnreadAnnouncement = true;
+            notificationBanner = `
+              <div class="dock-announcement-banner" id="dockAnnouncementBanner">
+                <button class="dock-announcement-close" id="dockCloseAnnouncement" title="Dismiss">&times;</button>
+                <div style="font-size: 20px; line-height: 1;">📢</div>
+                <div style="flex: 1;">
+                  <span class="dock-announcement-badge">New Assignment Assigned!</span>
+                  <div style="font-size: 13px; font-weight: 700; color: #f0f6fc; margin-bottom: 2px;">
+                    ${latestAnnouncement.title}
+                  </div>
+                  <div style="font-size: 11px; color: #8b949e;">
+                    Due Date: <strong>${latestAnnouncement.dueDate || 'Ongoing'}</strong> • Open Assignment Desk to submit.
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+        }
+      } catch (e) {}
+
+      dock.innerHTML = `
+        ${notificationBanner}
+
+        <div class="dock-panel" id="collegeDockPanel">
+          <div class="dock-panel-header">
+            <h4>Assignment Desk (Student #${studentId})</h4>
+            <button class="dock-close-btn" id="closeDockPanel">&times;</button>
+          </div>
+
+          ${authSnippet}
+
+          <a href="../index.html" class="dock-home-btn">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            Return to Homepage
+          </a>
+
+          ${formSnippet}
         </div>
 
-        ${authSnippet}
+        <div class="dock-pill-trigger ${hasUnreadAnnouncement ? 'has-notification' : ''}" id="dockPillTrigger" title="Click to open assignment tools or return to homepage">
+          <span class="dock-status-dot ${isSub ? 'submitted' : ''}" id="dockTriggerDot"></span>
+          <span>Assignment Desk</span>
+          ${hasUnreadAnnouncement ? '<span class="dock-notif-count">1 NEW</span>' : ''}
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"></path></svg>
+        </div>
+      `;
 
-        <a href="../index.html" class="dock-home-btn">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-          Return to Homepage
-        </a>
+      document.body.appendChild(dock);
 
-        ${formSnippet}
-      </div>
+      // Handle Announcement Interaction
+      const banner = document.getElementById('dockAnnouncementBanner');
+      if (banner) {
+        banner.addEventListener('click', (e) => {
+          if (e.target.id === 'dockCloseAnnouncement') return;
+          document.getElementById('collegeDockPanel').classList.add('open');
+          banner.style.display = 'none';
+          if (latestAnnouncement) {
+            localStorage.setItem(`college_portal_dismissed_notif_${studentId}`, latestAnnouncement.id);
+          }
+        });
+      }
 
-      <div class="dock-pill-trigger" id="dockPillTrigger" title="Click to open assignment tools or return to homepage">
-        <span class="dock-status-dot ${isSub ? 'submitted' : ''}" id="dockTriggerDot"></span>
-        <span>Assignment Desk</span>
-        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"></path></svg>
-      </div>
-    `;
-
-    document.body.appendChild(dock);
+      const closeBannerBtn = document.getElementById('dockCloseAnnouncement');
+      if (closeBannerBtn) {
+        closeBannerBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (banner) banner.style.display = 'none';
+          if (latestAnnouncement) {
+            localStorage.setItem(`college_portal_dismissed_notif_${studentId}`, latestAnnouncement.id);
+          }
+        });
+      }
 
     document.getElementById('dockPillTrigger').addEventListener('click', () => {
       document.getElementById('collegeDockPanel').classList.toggle('open');

@@ -27,8 +27,24 @@
       const current = this.getAssignments();
       const nextNum = current.length + 1;
       const newId = `A${nextNum}`;
-      current.push({ id: newId, title, maxMarks: 10, dueDate });
+      const newAssign = {
+        id: newId,
+        title,
+        maxMarks: 10,
+        dueDate,
+        createdAt: new Date().toISOString()
+      };
+      current.push(newAssign);
       this.saveAssignments(current);
+
+      // Save as latest broadcast announcement
+      localStorage.setItem('college_portal_latest_announcement', JSON.stringify({
+        id: newId,
+        title,
+        dueDate,
+        timestamp: Date.now()
+      }));
+
       return newId;
     },
 
