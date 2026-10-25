@@ -13,7 +13,7 @@ window.STUDENTS_DATA = [
     "rollNo": "2",
     "regNo": "STM23CS002",
     "name": "Adwaith K",
-    "blood": "A",
+    "blood": "A+",
     "cgpa": 7.5,
     "photo": "02/Adwaith.jpeg"
   },
@@ -21,8 +21,8 @@ window.STUDENTS_DATA = [
     "id": "03",
     "rollNo": "3",
     "regNo": "STM23CS003",
-    "name": "Akash's",
-    "blood": "INFOSYS",
+    "name": "Akash",
+    "blood": "O+",
     "cgpa": 7.09,
     "photo": "03/AKASHPS.jpeg"
   },
@@ -84,7 +84,7 @@ window.STUDENTS_DATA = [
     "id": "10",
     "rollNo": "10",
     "regNo": "STM23CS011",
-    "name": "Athul's",
+    "name": "Athul",
     "blood": "O+",
     "cgpa": 7.5,
     "photo": "10/AthulK.jpeg"
@@ -139,7 +139,7 @@ window.STUDENTS_DATA = [
     "rollNo": "16",
     "regNo": "STM23CS017",
     "name": "Fathimathu Suhadha K V",
-    "blood": "INFOSYS",
+    "blood": "B+",
     "cgpa": 8.78,
     "photo": "16/stthomaskannur.jpeg"
   },
@@ -175,7 +175,7 @@ window.STUDENTS_DATA = [
     "rollNo": "20",
     "regNo": "STM23CS021",
     "name": "Hredya M",
-    "blood": "O",
+    "blood": "O+",
     "cgpa": 7.63,
     "photo": "20/stthomaskannur.jpeg"
   },
@@ -220,7 +220,7 @@ window.STUDENTS_DATA = [
     "rollNo": "25",
     "regNo": "STM23CS025",
     "name": "Student 25",
-    "blood": "A",
+    "blood": "A+",
     "cgpa": 7.5,
     "photo": ""
   },
@@ -264,8 +264,8 @@ window.STUDENTS_DATA = [
     "id": "30",
     "rollNo": "30",
     "regNo": "STM23CS031",
-    "name": "Muhammed Mazin KP — Portfolio",
-    "blood": "A",
+    "name": "Muhammed Mazin KP",
+    "blood": "A+",
     "cgpa": 7.5,
     "photo": ""
   },
@@ -273,8 +273,8 @@ window.STUDENTS_DATA = [
     "id": "31",
     "rollNo": "31",
     "regNo": "STM23CS032",
-    "name": "Muhammed Thaha K T — Portfolio",
-    "blood": "O",
+    "name": "Muhammed Thaha K T",
+    "blood": "O+",
     "cgpa": 7.5,
     "photo": ""
   },
@@ -318,7 +318,7 @@ window.STUDENTS_DATA = [
     "id": "36",
     "rollNo": "36",
     "regNo": "STM23CS037",
-    "name": "Riya's",
+    "name": "Riya",
     "blood": "A+",
     "cgpa": 7.5,
     "photo": "36/Riya.jpeg"
