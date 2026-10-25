@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Student Profile</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<h1>🎓 Student Profile</h1>
+<form id="f" novalidate>
+
+<section>
+  <h2>Personal Details</h2>
+  <div class="top">
+    <div>
+      <img id="pv" class="photo" alt="Profile photo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23cfd6ea'/%3E%3Ccircle cx='50' cy='38' r='18' fill='%238c98b8'/%3E%3Cellipse cx='50' cy='90' rx='32' ry='26' fill='%238c98b8'/%3E%3C/svg%3E">
+      <label class="f" style="margin-top:8px">Upload photo<input type="file" id="photo" accept="image/*"></label>
+    </div>
+    <div class="grid" style="flex:1;min-width:240px">
+      <label class="f">Full Name *<input type="text" id="name" placeholder="Your name"><span class="err" id="e-name"></span></label>
+      <label class="f">Register / Roll No *<input type="text" id="roll" placeholder="e.g. 22CS101"><span class="err" id="e-roll"></span></label>
+      <label class="f">Date of Birth *<input type="date" id="dob"><span class="err" id="e-dob"></span></label>
+      <label class="f">Email *<input type="email" id="email" placeholder="you@college.edu"><span class="err" id="e-email"></span></label>
+      <label class="f">Phone *<input type="tel" id="phone" placeholder="10-digit number" maxlength="10"><span class="err" id="e-phone"></span></label>
+      <label class="f">Department / Year *
+        <select id="dept"><option value="">-- Select --</option><option>CSE</option><option>IT</option><option>ECE</option><option>EEE</option><option>Mechanical</option><option>Civil</option><option>Other</option></select>
+        <span class="err" id="e-dept"></span></label>
+    </div>
+  </div>
+  <div style="margin-top:14px"><strong style="font-size:.85rem;color:var(--muted)">Gender *</strong>
+    <div class="opts">
+      <label><input type="radio" name="gender" value="Male"> Male</label>
+      <label><input type="radio" name="gender" value="Female"> Female</label>
+      <label><input type="radio" name="gender" value="Other"> Other</label>
+    </div><span class="err" id="e-gender"></span>
+  </div>
+  <div class="grid" style="margin-top:12px">
+    <label class="f">Blood Group *
+      <select id="blood"><option value="">-- Select --</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select>
+      <span class="err" id="e-blood"></span></label>
+    <label class="f">Interested Company (1st choice) *
+      <select id="c1"><option value="">-- Select --</option><option>Infosys</option><option>TCS</option><option>Wipro</option><option>HCL</option><option>Cognizant</option><option>Accenture</option><option>Tech Mahindra</option><option>Capgemini</option><option>Zoho</option></select>
+      <span class="err" id="e-c1"></span></label>
+    <label class="f">Interested Company (2nd choice)
+      <select id="c2"><option value="">-- Select --</option><option>Infosys</option><option>TCS</option><option>Wipro</option><option>HCL</option><option>Cognizant</option><option>Accenture</option><option>Tech Mahindra</option><option>Capgemini</option><option>Zoho</option></select>
+      <span class="err" id="e-c2"></span></label>
+  </div>
+</section>
+
+<section>
+  <h2>Academic Performance</h2>
+  <p style="margin:0 0 8px;color:var(--muted);font-size:.85rem">Edit the values (SGPA out of 10, internals out of 50). CGPA and totals are calculated automatically.</p>
+  <div class="table-wrap">
+  <table id="sg">
+    <thead><tr><th>Semester</th><th>SGPA</th></tr></thead>
+    <tbody></tbody>
+    <tfoot><tr><td>CGPA</td><td id="cgpa">-</td></tr></tfoot>
+  </table></div>
+  <div class="table-wrap" style="margin-top:14px">
+  <table id="im">
+    <thead><tr><th>Subject</th><th>Internal 1 (50)</th><th>Internal 2 (50)</th><th>Average</th></tr></thead>
+    <tbody></tbody>
+    <tfoot><tr><td colspan="3">Overall Internal Average</td><td id="iavg">-</td></tr></tfoot>
+  </table></div>
+  <span class="err" id="e-marks"></span>
+</section>
+
+<section>
+  <h2>Skills</h2>
+  <div class="opts" id="skills">
+    <label><input type="checkbox" value="C / C++"> C / C++</label>
+    <label><input type="checkbox" value="Java"> Java</label>
+    <label><input type="checkbox" value="Python"> Python</label>
+    <label><input type="checkbox" value="HTML / CSS / JS"> HTML / CSS / JS</label>
+    <label><input type="checkbox" value="SQL"> SQL</label>
+    <label><input type="checkbox" value="Communication"> Communication</label>
+    <label><input type="checkbox" value="Problem Solving"> Problem Solving</label>
+    <label><input type="checkbox" value="Teamwork"> Teamwork</label>
+  </div>
+  <span class="err" id="e-skills"></span>
+</section>
+
+<section>
+  <h2>NSS / Extracurricular Activities</h2>
+  <div class="opts" id="acts">
+    <label><input type="checkbox" value="NSS"> NSS</label>
+    <label><input type="checkbox" value="NCC"> NCC</label>
+    <label><input type="checkbox" value="Sports"> Sports</label>
+    <label><input type="checkbox" value="Cultural Club"> Cultural Club</label>
+    <label><input type="checkbox" value="Coding Club"> Coding Club</label>
+    <label><input type="checkbox" value="Blood Donation"> Blood Donation</label>
+    <label><input type="checkbox" value="Volunteering"> Volunteering</label>
+  </div>
+</section>
+
+<section>
+  <h2>About / Career Goal</h2>
+  <label class="f">Short bio (max 200 characters)
+    <input type="text" id="bio" maxlength="200" placeholder="Tell us about yourself"></label>
+  <span class="err" id="c-bio" style="color:var(--muted)">0 / 200</span>
+  <div class="btns" style="margin-top:12px">
+    <button type="submit" class="primary">Submit</button>
+    <button type="button" class="secondary" id="clr">Clear Skills &amp; Activities</button>
+    <button type="reset" class="danger">Reset</button>
+  </div>
+  <div class="msg" id="ok"></div>
+</section>
+</form>
+
+<section id="summary" aria-live="polite">
+  <h2>Profile Summary</h2>
+  <div id="sum-body"></div>
+</section>
+</div>
+
+<script src="script.js"></script>
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

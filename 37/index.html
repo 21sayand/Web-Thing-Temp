@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Profile</title>
+
+    <style>
+
+        /* ===== GLOBAL STYLES ===== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7fb;
+            color: #26334a;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+
+        /* ===== HEADER ===== */
+
+        header {
+            background: linear-gradient(135deg, #252b61, #4d5bd4);
+            color: white;
+            text-align: center;
+            padding: 42px 20px;
+            box-shadow: 0 4px 15px rgba(37, 43, 97, 0.25);
+        }
+
+        header h1 {
+            font-size: 38px;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 17px;
+            color: #e5e8ff;
+        }
+
+
+        /* ===== PROFILE SECTION ===== */
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 45px;
+            margin: 35px 0;
+            padding: 35px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(45, 55, 95, 0.1);
+        }
+
+        .photo-area {
+            flex-shrink: 0;
+        }
+
+        /* Square with slightly rounded corners */
+border-radius: 12px;
+
+/* Rounded rectangle */
+border-radius: 18px;
+
+/* Capsule-style rectangle */
+border-radius: 35px;
+
+/* Hexagonal-style clipped shape */
+clip-path: polygon(
+    15% 0,
+    85% 0,
+    100% 20%,
+    100% 80%,
+    85% 100%,
+    15% 100%,
+    0 80%,
+    0 20%
+);
+
+        .profile-info h2 {
+            color: #252b61;
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        .profile-info .course {
+            color: #687394;
+            font-size: 18px;
+            margin-bottom: 18px;
+        }
+
+        .profile-info p {
+            margin: 8px 0;
+            color: #59657c;
+        }
+
+        .profile-info strong {
+            color: #4d5bd4;
+        }
+
+        .profile-info a {
+            color: #4d5bd4;
+            text-decoration: none;
+        }
+
+        .profile-info a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* ===== FORM SECTIONS ===== */
+
+        section {
+            margin-bottom: 30px;
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 7px 22px rgba(45, 55, 95, 0.08);
+        }
+
+        section h2 {
+            display: block;
+            color: #252b61;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            font-size: 25px;
+            border-bottom: 3px solid #8b86e8;
+        }
+
+
+        /* ===== PERSONAL DETAILS ===== */
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px 35px;
+        }
+
+        .detail {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 18px;
+            background: #f7f8ff;
+            border-left: 4px solid #6c63d9;
+            border-radius: 8px;
+        }
+
+        .detail-title {
+            font-weight: 700;
+            color: #344275;
+        }
+
+
+        /* ===== RADIO BUTTONS ===== */
+
+        .gender-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .gender-options label {
+            color: #59657c;
+            font-size: 14px;
+        }
+
+        .gender-options input {
+            margin-right: 4px;
+            accent-color: #4d5bd4;
+        }
+
+
+        /* ===== DROPDOWNS ===== */
+
+        select {
+            width: 58%;
+            padding: 10px 12px;
+            border: 1px solid #cbd2e5;
+            border-radius: 7px;
+            background: white;
+            color: #35415e;
+            font-size: 14px;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #4d5bd4;
+            box-shadow: 0 0 0 3px rgba(77, 91, 212, 0.12);
+        }
+
+
+        /* ===== ACADEMIC TABLE ===== */
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .academic-table {
+            width: 100%;
+            min-width: 650px;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .academic-table th {
+            padding: 14px;
+            background: #353f9c;
+            color: white;
+            font-weight: 600;
+        }
+
+        .academic-table td {
+            padding: 13px;
+            text-align: center;
+            color: #56627a;
+            border: 1px solid #e0e4f0;
+        }
+
+        .academic-table tr:nth-child(even) {
+            background: #f5f6ff;
+        }
+
+        .academic-table tr:hover {
+            background: #e5e7ff;
+        }
+
+
+        /* ===== SKILLS AND ACTIVITIES ===== */
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 55px;
+        }
+
+        .check-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .check-list label {
+            padding: 12px;
+            color: #536078;
+            background: #f7f8ff;
+            border: 1px solid #e0e3f2;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .check-list label:hover {
+            background: #eceeff;
+            border-color: #918de8;
+        }
+
+        .check-list input {
+            margin-right: 8px;
+            accent-color: #4d5bd4;
+        }
+
+
+        /* ===== BUTTONS ===== */
+
+        .buttons {
+            text-align: center;
+            padding: 15px 0 35px;
+        }
+
+        button {
+            padding: 13px 32px;
+            margin: 5px 8px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .submit-btn {
+            background: #4d5bd4;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background: #353f9c;
+            transform: translateY(-2px);
+        }
+
+        .reset-btn {
+            background: #e4e7f4;
+            color: #35415e;
+        }
+
+        .reset-btn:hover {
+            background: #cdd2e6;
+            transform: translateY(-2px);
+        }
+
+
+        /* ===== MESSAGE ===== */
+
+        #message {
+            margin-top: 16px;
+            font-weight: 600;
+        }
+
+
+        /* ===== FOOTER ===== */
+
+        footer {
+            padding: 20px;
+            background: #252b61;
+            color: #dfe3ff;
+            text-align: center;
+            font-size: 14px;
+        }
+
+
+        /* ===== RESPONSIVE DESIGN ===== */
+
+        @media (max-width: 750px) {
+
+            header h1 {
+                font-size: 29px;
+            }
+
+            .profile {
+                flex-direction: column;
+                text-align: center;
+                padding: 28px 20px;
+            }
+
+            .profile-info h2 {
+                font-size: 27px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .detail {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            select {
+                width: 100%;
+            }
+
+            .check-list {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 22px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+
+    <header>
+        <div class="container">
+            <h1>STUDENT PROFILE</h1>
+            <p>Student Portfolio and Academic Information</p>
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- ===== PROFILE SECTION ===== -->
+
+        <div class="profile">
+
+            <div class="photo-area">
+                <img src="Riza  Mehak S7 CSE.jpeg" alt="Student Photo" class="photo">
+            </div>
+
+            <div class="profile-info">
+                <h2>Riza Mehak</h2>
+
+                <p class="course">
+                    B.Tech Computer Science and Engineering
+                </p>
+
+                <p>
+                    <strong>Roll Number:</strong>
+                    STM23CS038
+                </p>
+
+                <p>
+                    <strong>Email:</strong>
+                    <a href="mailto:rizamehaksaleem@gmail.com">
+                        rizamehaksaleem@gmail.com
+                    </a>
+                </p>
+
+                <p>
+                    <strong>Phone:</strong>
+                    7025433400
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- ===== FORM ===== -->
+
+        <form id="studentForm" onsubmit="return validateForm()">
+
+            <!-- ===== PERSONAL DETAILS ===== -->
+
+            <section>
+
+                <h2>Personal Details</h2>
+
+                <div class="details-grid">
+
+                    <div class="detail">
+
+                        <span class="detail-title">
+                            Gender
+                        </span>
+
+                        <div class="gender-options">
+
+                            <label>
+                                <input type="radio" name="gender" value="Male">
+                                Male
+                            </label>
+
+                            <label>
+                                <input type="radio" name="gender" value="Female">
+                                Female
+                            </label>
+
+                            <label>
+                                <input type="radio" name="gender" value="Other">
+                                Other
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-title">
+                            Blood Group
+                        </span>
+
+                        <select id="bloodGroup">
+
+                            <option value="">
+                                Select Blood Group
+                            </option>
+
+                            <option>A+</option>
+                            <option>A-</option>
+                            <option>B+</option>
+                            <option>B-</option>
+                            <option>O+</option>
+                            <option>O-</option>
+                            <option>AB+</option>
+                            <option>AB-</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-title">
+                            Interested Company
+                        </span>
+
+                        <select id="company">
+
+                            <option value="">
+                                Select Company
+                            </option>
+
+                            <option>Infosys</option>
+                            <option>TCS</option>
+                            <option>Wipro</option>
+                            <option>Accenture</option>
+                            <option>IBM</option>
+                            <option>Microsoft</option>
+                            <option>Google</option>
+                            <option>Amazon</option>
+                            <option>Oracle</option>
+                            <option>Capgemini</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ===== ACADEMIC DETAILS ===== -->
+
+            <section>
+
+                <h2>Academic Performance</h2>
+
+                <div class="table-wrapper">
+
+                    <table class="academic-table">
+
+                        <thead>
+                            <tr>
+                                <th>Semester</th>
+                                <th>SGPA</th>
+                                <th>CGPA</th>
+                                <th>Internal Marks</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Semester 1</td>
+                                <td>6.56</td>
+                                <td>6.56</td>
+                                <td>42 / 50</td>
+                            </tr>
+
+                            <tr>
+                                <td>Semester 2</td>
+                                <td>7.05</td>
+                                <td>6.69</td>
+                                <td>44 / 50</td>
+                            </tr>
+
+                            <tr>
+                                <td>Semester 3</td>
+                                <td>6.64</td>
+                                <td>6.7</td>
+                                <td>46 / 50</td>
+                            </tr>
+
+                            <tr>
+                                <td>Semester 4</td>
+                                <td>7.59</td>
+                                <td>6.82</td>
+                                <td>45 / 50</td>
+                            </tr>
+
+                            <tr>
+                                <td>Semester 5</td>
+                                <td>6.8</td>
+                                <td>6.9</td>
+                                <td>45 / 50</td>
+                            </tr>
+
+                            <tr>
+                                <td>Semester 6</td>
+                                <td>7.33</td>
+                                <td>7.01</td>
+                                <td>45 / 50</td>
+                            </tr>
+
+                            <tr>
+                                <td>Semester 7</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+
+                            <tr>
+                                <td>Semester 8</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- ===== SKILLS AND ACTIVITIES ===== -->
+
+            <section>
+
+                <div class="two-column">
+
+                    <div>
+
+                        <h2>Skills</h2>
+
+                        <div class="check-list">
+
+                            <label>
+                                <input type="checkbox" name="skills" value="HTML">
+                                HTML
+                            </label>
+
+                            <label>
+                                <input type="checkbox" name="skills" value="CSS">
+                                CSS
+                            </label>
+
+                            <label>
+                                <input type="checkbox" name="skills" value="JavaScript">
+                                JavaScript
+                            </label>
+
+                            <label>
+                                <input type="checkbox" name="skills" value="Python">
+                                Python
+                            </label>
+
+                            <label>
+                                <input type="checkbox" name="skills" value="Java">
+                                Java
+                            </label>
+
+                            <label>
+                                <input type="checkbox" name="skills" value="SQL">
+                                SQL
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>NSS / Extracurricular Activities</h2>
+
+                        <div class="check-list">
+
+                            <label>
+                                <input type="checkbox" name="activities" value="NSS">
+                                NSS
+                            </label>
+
+                            <label>
+                                <input type="checkbox" name="activities" value="Sports">
+                                Sports
+                            </label>
+
+                            <label>
+                                <input type="checkbox" name="activities" value="Music">
+                                Music
+                            </label>
+
+                            <label>
+                                <input type="checkbox" name="activities" value="Arts">
+                                Arts
+                            </label>
+
+                            <label>
+                                <input type="checkbox" name="activities" value="Coding Club">
+                                Coding Club
+                            </label>
+
+                            <label>
+                                <input type="checkbox" name="activities" value="Volunteering">
+                                Volunteering
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ===== BUTTONS ===== -->
+
+            <div class="buttons">
+
+                <button type="submit" class="submit-btn">
+                    Submit
+                </button>
+
+                <button type="button" class="reset-btn" onclick="resetForm()">
+                    Reset
+                </button>
+
+                <p id="message"></p>
+
+            </div>
+
+        </form>
+
+    </main>
+
+
+    <!-- ===== FOOTER ===== -->
+
+   
+
+
+
+    <!-- ===== JAVASCRIPT ===== -->
+
+    <script>
+
+        function validateForm() {
+
+            const gender = document.querySelector(
+                'input[name="gender"]:checked'
+            );
+
+            const bloodGroup = document.getElementById("bloodGroup").value;
+            const company = document.getElementById("company").value;
+            const message = document.getElementById("message");
+
+            if (!gender) {
+                message.style.color = "#d64545";
+                message.innerHTML = "Please select your gender.";
+                return false;
+            }
+
+            if (bloodGroup === "") {
+                message.style.color = "#d64545";
+                message.innerHTML = "Please select your blood group.";
+                return false;
+            }
+
+            if (company === "") {
+                message.style.color = "#d64545";
+                message.innerHTML = "Please select your interested company.";
+                return false;
+            }
+
+            const skills = document.querySelectorAll(
+                'input[name="skills"]:checked'
+            );
+
+            if (skills.length === 0) {
+                message.style.color = "#d64545";
+                message.innerHTML = "Please select at least one skill.";
+                return false;
+            }
+
+            message.style.color = "#25864a";
+            message.innerHTML =
+                "Student profile submitted successfully!";
+
+            return false;
+        }
+
+
+        function resetForm() {
+
+            document.getElementById("studentForm").reset();
+            document.getElementById("message").innerHTML = "";
+
+        }
+
+    </script>
+
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+
+</html>

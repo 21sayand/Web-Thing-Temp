@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Yadhu Sagar N's student profile and academic record." />
+    <title>Yadhu Sagar N | Student Profile</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script src="./js/app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <a class="brand" href="#top">Student Profile</a>
+        <span class="semester-badge">Semester 7</span>
+      </div>
+    </header>
+
+    <main class="container page-content" id="top">
+      <section class="intro-panel" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Web Development Assignment</p>
+          <h1 id="page-title">Student Profile</h1>
+          <p class="intro-text">Personal details, academic performance, and career interests.</p>
+        </div>
+        <div class="roll-card">
+          <span>Portal roll number</span>
+          <strong>49</strong>
+        </div>
+      </section>
+
+      <form id="profile-form" novalidate>
+        <section class="profile-card" aria-labelledby="details-title">
+          <div class="section-heading">
+            <p class="eyebrow">01 / Personal information</p>
+            <h2 id="details-title">Your Details</h2>
+          </div>
+          <div class="overview-grid">
+            <div class="photo-area">
+              <img id="profile-photo" src="./image/profile.jpg" alt="Yadhu Sagar N profile photo" />
+            </div>
+            <div class="form-grid">
+              <label class="field">
+                <span>Full name</span>
+                <input type="text" name="name" value="Yadhu Sagar N" required />
+              </label>
+              <label class="field">
+                <span>University register number</span>
+                <input type="text" name="registerNumber" value="STM23CS050" readonly />
+              </label>
+              <label class="field">
+                <span>Department</span>
+                <input type="text" value="Computer Science and Engineering" readonly />
+              </label>
+              <label class="field">
+                <span>Semester</span>
+                <input type="text" name="semester" value="S7" readonly />
+              </label>
+              <label class="field">
+                <span>Email address</span>
+                <input type="email" name="email" placeholder="Enter your email" />
+              </label>
+              <fieldset class="field radio-field">
+                <legend>Gender</legend>
+                <label><input type="radio" name="gender" value="Male" required /> Male</label>
+                <label><input type="radio" name="gender" value="Female" /> Female</label>
+                <label><input type="radio" name="gender" value="Other" /> Other</label>
+              </fieldset>
+              <label class="field">
+                <span>Blood group</span>
+                <select name="bloodGroup" required>
+                  <option value="">Select a blood group</option>
+                  <option>A+</option>
+                  <option>A-</option>
+                  <option>B+</option>
+                  <option>B-</option>
+                  <option>AB+</option>
+                  <option>AB-</option>
+                  <option>O+</option>
+                  <option>O-</option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <section class="profile-card" aria-labelledby="academic-title">
+          <div class="section-heading">
+            <p class="eyebrow">02 / Academic record</p>
+            <h2 id="academic-title">Academic Performance</h2>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th scope="col">Measure</th><th scope="col">Result</th><th scope="col">Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">CGPA</th>
+                  <td><input type="number" name="cgpa" min="0" max="10" step="0.01" value="8.82" aria-label="CGPA" /></td>
+                  <td><input type="text" name="cgpaNotes" placeholder="Optional notes" aria-label="CGPA notes" /></td>
+                </tr>
+                <tr>
+                  <th scope="row">SGPA</th>
+                  <td><input type="number" name="sgpa" min="0" max="10" step="0.01" placeholder="Enter SGPA" aria-label="SGPA" /></td>
+                  <td><input type="text" name="sgpaNotes" placeholder="Optional notes" aria-label="SGPA notes" /></td>
+                </tr>
+                <tr>
+                  <th scope="row">Internal marks</th>
+                  <td><input type="number" name="internalMarks" min="0" max="100" placeholder="Enter marks" aria-label="Internal marks" /></td>
+                  <td><input type="text" name="marksNotes" placeholder="Optional notes" aria-label="Internal marks notes" /></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="profile-card two-column" aria-label="Career interests and activities">
+          <div>
+            <div class="section-heading">
+              <p class="eyebrow">03 / Career direction</p>
+              <h2>Interested Company</h2>
+            </div>
+            <label class="field">
+              <span>Select a company</span>
+              <select name="company" required>
+                <option value="">Choose a company</option>
+                <option>Infosys</option>
+                <option>TCS</option>
+                <option>Wipro</option>
+                <option>Accenture</option>
+                <option>UST</option>
+                <option>IBM</option>
+                <option>Other</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <div class="section-heading">
+              <p class="eyebrow">04 / Skills and involvement</p>
+              <h2>Skills &amp; Activities</h2>
+            </div>
+            <fieldset class="checkbox-list">
+              <legend>Skills</legend>
+              <label><input type="checkbox" name="skills" value="HTML" /> HTML</label>
+              <label><input type="checkbox" name="skills" value="CSS" /> CSS</label>
+              <label><input type="checkbox" name="skills" value="JavaScript" /> JavaScript</label>
+              <label><input type="checkbox" name="skills" value="Communication" /> Communication</label>
+            </fieldset>
+            <fieldset class="checkbox-list activity-list">
+              <legend>Extracurricular activities</legend>
+              <label><input type="checkbox" name="activities" value="NSS" /> NSS</label>
+              <label><input type="checkbox" name="activities" value="Sports" /> Sports</label>
+              <label><input type="checkbox" name="activities" value="Arts" /> Arts / Cultural Activities</label>
+            </fieldset>
+          </div>
+        </section>
+
+        <section class="profile-card" aria-labelledby="about-title">
+          <div class="section-heading">
+            <p class="eyebrow">05 / About</p>
+            <h2 id="about-title">Short Introduction</h2>
+          </div>
+          <label class="field">
+            <span>Tell us a little about yourself</span>
+            <textarea name="about" rows="4" placeholder="Write a short introduction"></textarea>
+          </label>
+        </section>
+
+        <div class="form-actions">
+          <button class="button button-primary" type="submit">Validate Profile</button>
+          <button class="button button-secondary" type="reset">Reset Form</button>
+        </div>
+        <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+      </form>
+    </main>
+
+    <footer class="container site-footer">Yadhu Sagar N · STM23CS050 · Portal roll 49</footer>
+  
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

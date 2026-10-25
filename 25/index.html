@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        }
+
+        /* ================= BODY ================= */
+
+        body {
+            background: #e9eef5;
+            color: #26354a;
+            padding: 30px;
+        }
+
+        /* ================= MAIN CONTAINER ================= */
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(36, 55, 80, 0.15);
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            background: linear-gradient(135deg, #243b55, #141e30);
+            color: white;
+            padding: 30px 35px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .header p {
+            color: #b9c7d8;
+            font-size: 15px;
+        }
+
+        /* ================= PROFILE ================= */
+
+        .profile-top {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 30px 35px;
+            background: #f3f6fa;
+            border-bottom: 1px solid #d8e0ea;
+        }
+
+        .photo-container {
+            text-align: center;
+        }
+
+        .photo {
+            width: 190px;
+            height: 190px;
+            border-radius: 18px;
+            object-fit: cover;
+            border: 5px solid #3b82c4;
+            box-shadow: 0 5px 15px rgba(35, 65, 100, 0.2);
+            background: #dfe7f1;
+        }
+
+        /* ================= UPLOAD PHOTO ================= */
+
+        .upload-label {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 9px 18px;
+            background: #3b82c4;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .upload-label:hover {
+            background: #285f91;
+            transform: translateY(-1px);
+        }
+
+        #photoUpload {
+            display: none;
+        }
+
+        .profile-info h2 {
+            color: #243b55;
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .profile-info p {
+            color: #65758a;
+            margin-bottom: 5px;
+        }
+
+        /* ================= CONTENT ================= */
+
+        .content {
+            padding: 35px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section h2 {
+            color: #243b55;
+            border-left: 5px solid #3b82c4;
+            padding-left: 12px;
+            margin-bottom: 20px;
+            font-size: 21px;
+        }
+
+        /* ================= PERSONAL DETAILS ================= */
+
+        .personal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px 25px;
+        }
+
+        .form-group {
+            margin-bottom: 5px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #34465c;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #c8d3df;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #26354a;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border: 2px solid #3b82c4;
+            box-shadow: 0 0 0 3px rgba(59, 130, 196, 0.12);
+        }
+
+        /* ================= RADIO BUTTONS ================= */
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .radio-group label {
+            font-weight: normal;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #edf3f9;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .radio-group input {
+            accent-color: #3b82c4;
+        }
+
+        /* ================= CHECKBOXES ================= */
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .checkbox-group label {
+            font-weight: normal;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #edf3f9;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .checkbox-group input {
+            accent-color: #3b82c4;
+        }
+
+        /* ================= ACADEMIC TABLE ================= */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #243b55;
+            color: white;
+            padding: 13px;
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #d8e0ea;
+        }
+
+        tr:nth-child(even) {
+            background: #f3f6fa;
+        }
+
+        tr:hover {
+            background: #e2edf8;
+        }
+
+        /* ================= SKILLS & ACTIVITIES ================= */
+
+        .bottom-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .bottom-box {
+            background: #f3f6fa;
+            padding: 22px;
+            border-radius: 12px;
+            border-top: 4px solid #3b82c4;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 30px;
+            margin: 5px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        .submit-btn {
+            background: #3b82c4;
+            color: white;
+        }
+
+        .reset-btn {
+            background: #243b55;
+            color: white;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* ================= MESSAGE ================= */
+
+        #message {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+       
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+
+            body {
+                padding: 10px;
+            }
+
+            .profile-top {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .personal-grid,
+            .bottom-sections {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 22px;
+            }
+
+            .photo {
+                width: 170px;
+                height: 170px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="header">
+
+        <h1>Student Profile</h1>
+
+        <p>Academic and Personal Information</p>
+
+    </div>
+
+
+    <!-- ================= PROFILE ================= -->
+
+    <div class="profile-top">
+
+        <div class="photo-container">
+
+            <img
+                id="profilePhoto"
+                src="pspt.jpeg"
+                alt="Student Photo"
+                class="photo"
+            >
+
+            <!-- Upload photo from computer -->
+            <input
+                type="file"
+                id="photoUpload"
+                accept="image/*"
+            >
+
+            <label for="photoUpload" class="upload-label">
+                Upload Photo
+            </label>
+
+        </div>
+
+
+        <div class="profile-info">
+
+            <h2>Marjana K.P.</h2>
+
+            <p>Computer Science & Engineering Student</p>
+
+            <p>Academic & Personal Information</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="content">
+
+
+        <!-- ================= PERSONAL DETAILS ================= -->
+
+        <div class="section">
+
+            <h2>Personal Details</h2>
+
+
+            <div class="personal-grid">
+
+
+                <!-- FULL NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                    >
+
+                </div>
+
+
+                <!-- ROLL NUMBER -->
+
+                <div class="form-group">
+
+                    <label for="rollno">
+                        Roll Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="rollno"
+                        placeholder="Enter your roll number"
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                    >
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Enter your phone number"
+                    >
+
+                </div>
+
+
+                <!-- GENDER -->
+
+                <div class="form-group">
+
+                    <label>
+                        Gender
+                    </label>
+
+
+                    <div class="radio-group">
+
+                        <label>
+
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="Male"
+                            >
+
+                            Male
+
+                        </label>
+
+
+                        <label>
+
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="Female"
+                            >
+
+                            Female
+
+                        </label>
+
+
+                        <label>
+
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="Other"
+                            >
+
+                            Other
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BLOOD GROUP -->
+
+                <div class="form-group">
+
+                    <label for="blood">
+                        Blood Group
+                    </label>
+
+
+                    <select id="blood">
+
+                        <option value="">
+                            -- Select Blood Group --
+                        </option>
+
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                        <option>O+</option>
+                        <option>O-</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- COMPANY -->
+
+                <div class="form-group">
+
+                    <label for="company">
+                        Interested Company
+                    </label>
+
+
+                    <select id="company">
+
+                        <option value="">
+                            -- Select Company --
+                        </option>
+
+                        <option>Infosys</option>
+                        <option>TCS</option>
+                        <option>Wipro</option>
+                        <option>Accenture</option>
+                        <option>IBM</option>
+                        <option>Microsoft</option>
+                        <option>Google</option>
+                        <option>Amazon</option>
+                        <option>Oracle</option>
+                        <option>Capgemini</option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= ACADEMIC DETAILS ================= -->
+
+        <div class="section">
+
+            <h2>Academic Details</h2>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <tr>
+
+                        <th>Semester</th>
+                        <th>SGPA</th>
+                        <th>CGPA</th>
+                        <th>Internal Marks</th>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>Semester 1</td>
+                        <td>7.53</td>
+                        <td>7.53</td>
+                        <td>42 / 50</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>Semester 2</td>
+                        <td>7.64</td>
+                        <td>7.62</td>
+                        <td>44 / 50</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>Semester 3</td>
+                        <td>7.22</td>
+                        <td>7.62</td>
+                        <td>46 / 50</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>Semester 4</td>
+                        <td>7.94</td>
+                        <td>7.62</td>
+                        <td>45 / 50</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>Semester 5</td>
+                        <td>7.50</td>
+                        <td>7.62</td>
+                        <td>45 / 50</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>Semester 6</td>
+                        <td>7.80</td>
+                        <td>7.62</td>
+                        <td>45 / 50</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>Semester 7</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>Semester 8</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+
+                    </tr>
+
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= SKILLS + ACTIVITIES ================= -->
+
+        <div class="bottom-sections">
+
+
+            <!-- SKILLS -->
+
+            <div class="bottom-box">
+
+                <div class="section">
+
+                    <h2>Skills</h2>
+
+
+                    <div class="checkbox-group">
+
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="skills"
+                                value="HTML"
+                            >
+
+                            HTML
+
+                        </label>
+
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="skills"
+                                value="CSS"
+                            >
+
+                            CSS
+
+                        </label>
+
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="skills"
+                                value="JavaScript"
+                            >
+
+                            JavaScript
+
+                        </label>
+
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="skills"
+                                value="Python"
+                            >
+
+                            Python
+
+                        </label>
+
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="skills"
+                                value="Java"
+                            >
+
+                            Java
+
+                        </label>
+
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="skills"
+                                value="SQL"
+                            >
+
+                            SQL
+
+                        </label>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIVITIES -->
+
+            <div class="bottom-box">
+
+                <div class="section">
+
+                    <h2>NSS / Extracurricular</h2>
+
+
+                    <div class="checkbox-group">
+
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="activities"
+                                value="NSS"
+                            >
+
+                            NSS
+
+                        </label>
+
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="activities"
+                                value="Sports"
+                            >
+
+                            Sports
+
+                        </label>
+
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="activities"
+                                value="Music"
+                            >
+
+                            Music
+
+                        </label>
+
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="activities"
+                                value="Arts"
+                            >
+
+                            Arts
+
+                        </label>
+
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="activities"
+                                value="Coding Club"
+                            >
+
+                            Coding Club
+
+                        </label>
+
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="activities"
+                                value="Volunteering"
+                            >
+
+                            Volunteering
+
+                        </label>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================= BUTTONS ================= -->
+
+        <div class="buttons">
+
+            <button
+                type="button"
+                class="submit-btn"
+                onclick="validateForm()"
+            >
+
+                Submit
+
+            </button>
+
+
+            <button
+                type="button"
+                class="reset-btn"
+                onclick="resetForm()"
+            >
+
+                Reset
+
+            </button>
+
+        </div>
+
+
+        <p id="message"></p>
+
+
+    </div>
+
+
+   
+
+
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    /* ================= PHOTO UPLOAD ================= */
+
+    const photoUpload =
+        document.getElementById("photoUpload");
+
+    const profilePhoto =
+        document.getElementById("profilePhoto");
+
+
+    photoUpload.addEventListener("change", function () {
+
+        const file = this.files[0];
+
+        if (!file) {
+            return;
+        }
+
+
+        /* Check whether selected file is an image */
+
+        if (!file.type.startsWith("image/")) {
+
+            alert("Please select a valid image file.");
+
+            this.value = "";
+
+            return;
+        }
+
+
+        /* Display selected image */
+
+        const reader = new FileReader();
+
+
+        reader.onload = function (event) {
+
+            profilePhoto.src = event.target.result;
+
+        };
+
+
+        reader.readAsDataURL(file);
+
+    });
+
+
+    /* ================= FORM VALIDATION ================= */
+
+    function validateForm() {
+
+        let name =
+            document.getElementById("name").value.trim();
+
+
+        let rollno =
+            document.getElementById("rollno").value.trim();
+
+
+        let email =
+            document.getElementById("email").value.trim();
+
+
+        let phone =
+            document.getElementById("phone").value.trim();
+
+
+        let gender =
+            document.querySelector(
+                'input[name="gender"]:checked'
+            );
+
+
+        let blood =
+            document.getElementById("blood").value;
+
+
+        let company =
+            document.getElementById("company").value;
+
+
+        let message =
+            document.getElementById("message");
+
+
+        /* REQUIRED FIELD CHECK */
+
+        if (
+            name === "" ||
+            rollno === "" ||
+            email === "" ||
+            phone === "" ||
+            gender === null ||
+            blood === "" ||
+            company === ""
+        ) {
+
+            message.style.color = "red";
+
+            message.innerHTML =
+                "Please fill in all required fields.";
+
+            return;
+        }
+
+
+        /* EMAIL VALIDATION */
+
+        let emailPattern =
+            /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+
+        if (!email.match(emailPattern)) {
+
+            message.style.color = "red";
+
+            message.innerHTML =
+                "Please enter a valid email address.";
+
+            return;
+        }
+
+
+        /* PHONE VALIDATION */
+
+        let phonePattern =
+            /^[0-9]{10}$/;
+
+
+        if (!phone.match(phonePattern)) {
+
+            message.style.color = "red";
+
+            message.innerHTML =
+                "Please enter a valid 10-digit phone number.";
+
+            return;
+        }
+
+
+        /* SUCCESS */
+
+        message.style.color = "#3b82c4";
+
+        message.innerHTML =
+            "✓ Student profile submitted successfully!";
+
+    }
+
+
+    /* ================= RESET FORM ================= */
+
+    function resetForm() {
+
+        document.getElementById("name").value = "";
+
+        document.getElementById("rollno").value = "";
+
+        document.getElementById("email").value = "";
+
+        document.getElementById("phone").value = "";
+
+
+        document.getElementById("blood").value = "";
+
+        document.getElementById("company").value = "";
+
+
+        document.querySelectorAll(
+            'input[type="radio"], input[type="checkbox"]'
+        ).forEach(function(input) {
+
+            input.checked = false;
+
+        });
+
+
+        document.getElementById("message").innerHTML = "";
+
+
+        /* Reset uploaded photo */
+
+        photoUpload.value = "";
+
+        profilePhoto.src = "pspt.jpeg";
+
+    }
+
+</script>
+
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

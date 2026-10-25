@@ -1,0 +1,336 @@
+/* CSS for Student Profile Web Page */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f2f4f8;
+    color: #333333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    padding: 25px 30px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+    text-align: center;
+    color: #1a56db;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-top: 0;
+    font-size: 14px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #2b3a4a;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 6px;
+    margin-top: 25px;
+    font-size: 18px;
+}
+
+h4 {
+    color: #2b3a4a;
+    margin-top: 18px;
+    margin-bottom: 8px;
+}
+
+.note {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+/* Photo Section */
+.photo-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding: 12px;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+}
+
+.photo-box {
+    width: 100px;
+    height: 100px;
+    border: 2px dashed #9ca3af;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eeeeee;
+    color: #888888;
+    font-size: 13px;
+    overflow: hidden;
+}
+
+.photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Form Layout */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.form-col {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #1a56db;
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Radio & Checkboxes */
+.radio-options {
+    margin-top: 5px;
+}
+
+.radio-options label {
+    margin-right: 15px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.checkbox-group label {
+    font-weight: normal;
+    cursor: pointer;
+    background-color: #f8fafc;
+    padding: 6px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+/* Collapsible Semesters */
+.sem-box {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    background-color: #fafafa;
+    overflow: hidden;
+}
+
+.sem-box summary {
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #1a56db;
+    background-color: #f1f5f9;
+    user-select: none;
+}
+
+.sem-box summary:hover {
+    background-color: #e2e8f0;
+}
+
+.sem-body {
+    padding: 15px;
+    background-color: #ffffff;
+    border-top: 1px solid #e5e7eb;
+}
+
+.gpa-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.gpa-row label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.gpa-row input {
+    width: 95px;
+    padding: 6px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.gpa-row input:focus {
+    border-color: #1a56db;
+    outline: none;
+}
+
+/* Marks Table */
+.marks-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.marks-table th,
+.marks-table td {
+    border: 1px solid #d1d5db;
+    padding: 7px 10px;
+    font-size: 13px;
+}
+
+.marks-table th {
+    background-color: #f8fafc;
+    color: #1e293b;
+    text-align: left;
+}
+
+.marks-table th:last-child,
+.marks-table td:last-child {
+    text-align: center;
+}
+
+.marks-table td input.int-input {
+    width: 80px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.marks-table td input.int-input:focus {
+    border-color: #1a56db;
+    outline: none;
+}
+
+/* Buttons */
+.btn-group {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.btn {
+    padding: 10px 24px;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 8px;
+}
+
+.submit-btn {
+    background-color: #1a56db;
+    color: white;
+}
+
+.submit-btn:hover {
+    background-color: #1646b5;
+}
+
+.reset-btn {
+    background-color: #6b7280;
+    color: white;
+}
+
+.reset-btn:hover {
+    background-color: #4b5563;
+}
+
+/* Result Box */
+.result-box {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #10b981;
+    background-color: #f0fdf4;
+    border-radius: 6px;
+}
+
+.result-box h3 {
+    color: #065f46;
+    margin-top: 0;
+    border-bottom: 1px solid #a7f3d0;
+}
+
+#resultContent p {
+    margin: 6px 0;
+    font-size: 14px;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .gpa-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .marks-table td input.int-input {
+        width: 60px;
+    }
+}

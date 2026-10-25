@@ -1,0 +1,1402 @@
+/* ==========================================================================
+   Yashika Prasanth — Student Profile Portal
+   Theme: Modern Slate & Electric Rose-Pink Aesthetics
+   ========================================================================== */
+
+:root {
+  /* Color Palette - Light Theme */
+  --bg-page: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-subtle: #fbfbfe;
+  --bg-surface-elevated: #ffffff;
+  
+  --text-main: #0f172a;
+  --text-body: #334155;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+  
+  --border-light: #e2e8f0;
+  --border-subtle: #edf2f7;
+  --border-focus: #f43f5e;
+  
+  /* Pink Accents (User Requested) */
+  --pink-50: #fff1f2;
+  --pink-100: #ffe4e6;
+  --pink-200: #fecdd3;
+  --pink-300: #fda4af;
+  --pink-400: #fb7185;
+  --pink-500: #f43f5e;
+  --pink-600: #e11d48;
+  --pink-700: #be123c;
+  --pink-800: #9f1239;
+  --pink-900: #881337;
+  
+  --pink-gradient: linear-gradient(135deg, #f43f5e 0%, #db2777 100%);
+  --pink-gradient-subtle: linear-gradient(135deg, #fff1f2 0%, #fdf2f8 100%);
+  --pink-glow: rgba(244, 63, 94, 0.16);
+  --pink-glow-strong: rgba(225, 29, 72, 0.28);
+  
+  /* Hero & Dark Accent Gradients */
+  --hero-gradient: linear-gradient(135deg, #090d16 0%, #1e1b4b 40%, #701a75 75%, #be185d 100%);
+  --ktu-card-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #831843 100%);
+  
+  /* Accent Colors */
+  --indigo-500: #6366f1;
+  --indigo-600: #4f46e5;
+  --purple-500: #a855f7;
+  --emerald-500: #10b981;
+  --emerald-bg: #ecfdf5;
+  --emerald-border: #a7f3d0;
+  --emerald-text: #047857;
+
+  /* Typography & Layout */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+  
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 14px 35px rgba(15, 23, 42, 0.08);
+  --shadow-pink: 0 8px 24px rgba(225, 29, 72, 0.18);
+  
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   Dark Theme
+   ========================================================================== */
+[data-theme="dark"] {
+  --bg-page: #07090e;
+  --bg-surface: #101623;
+  --bg-surface-subtle: #151d2f;
+  --bg-surface-elevated: #1a2337;
+  
+  --text-main: #f8fafc;
+  --text-body: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-subtle: #64748b;
+  
+  --border-light: #1e293b;
+  --border-subtle: #182234;
+  --border-focus: #fb7185;
+  
+  --pink-50: #1f121a;
+  --pink-100: #2d1323;
+  --pink-200: #4a1532;
+  --pink-300: #711947;
+  --pink-glow: rgba(251, 113, 133, 0.18);
+  --pink-glow-strong: rgba(251, 113, 133, 0.32);
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 14px 35px rgba(0, 0, 0, 0.5);
+  
+  --emerald-bg: rgba(16, 185, 129, 0.12);
+  --emerald-border: rgba(16, 185, 129, 0.25);
+  --emerald-text: #34d399;
+}
+
+/* ==========================================================================
+   Base Styles & Reset
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
+  color: var(--text-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  position: relative;
+  background-image: 
+    radial-gradient(circle at 10% 10%, rgba(244, 63, 94, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 90% 20%, rgba(99, 102, 241, 0.04) 0%, transparent 45%);
+}
+
+a {
+  color: var(--pink-600);
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Top Header Bar
+   ========================================================================== */
+.top-bar {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.top-bar-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.college-logo-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--pink-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 17px;
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25);
+  flex-shrink: 0;
+}
+
+.brand-text h1 {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.2px;
+  line-height: 1.25;
+}
+
+.brand-text p {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand-text p .dot {
+  width: 4px;
+  height: 4px;
+  background: var(--pink-500);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.top-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.live-time-chip {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-light);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.live-pulse {
+  width: 7px;
+  height: 7px;
+  background: var(--pink-500);
+  border-radius: 50%;
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(244, 63, 94, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+}
+
+.btn-icon {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-light);
+  color: var(--text-body);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-icon:hover {
+  background: var(--pink-50);
+  border-color: var(--pink-200);
+  color: var(--pink-600);
+}
+
+.btn-pink {
+  background: var(--pink-gradient);
+  color: white;
+  border: none;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(225, 29, 72, 0.28);
+  transition: var(--transition);
+}
+
+.btn-pink:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(225, 29, 72, 0.38);
+}
+
+/* ==========================================================================
+   Hero Profile Section
+   ========================================================================== */
+.hero-container {
+  max-width: 1300px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+}
+
+.hero-banner {
+  background: var(--hero-gradient);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: 24px 28px 70px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-banner::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(244, 63, 94, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-banner-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
+.hero-institution-pill {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+/* Elevated Profile Card overlapping banner */
+.hero-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-lg);
+  margin-top: -50px;
+  position: relative;
+  z-index: 10;
+  padding: 24px 28px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 28px;
+  align-items: center;
+}
+
+/* Left: Avatar / QR combo */
+.profile-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-avatar-wrap {
+  width: 105px;
+  height: 105px;
+  border-radius: 20px;
+  background: var(--pink-gradient-subtle);
+  border: 3px solid var(--pink-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(225, 29, 72, 0.12);
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: 17px;
+  display: block;
+}
+
+.avatar-initials {
+  font-size: 34px;
+  font-weight: 800;
+  background: var(--pink-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.qr-mini-badge {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 3px;
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.active-pill {
+  background: var(--emerald-bg);
+  color: var(--emerald-text);
+  border: 1px solid var(--emerald-border);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.active-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--emerald-500);
+  border-radius: 50%;
+}
+
+/* Center: Identity details */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-name-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.profile-name {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+}
+
+.verified-badge {
+  background: linear-gradient(135deg, rgba(225, 29, 72, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+  color: var(--pink-600);
+  border: 1px solid var(--pink-200);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11.5px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.profile-degree {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.meta-chip {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: var(--text-body);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta-chip strong {
+  color: var(--text-main);
+}
+
+.meta-chip.pink-highlight {
+  background: var(--pink-50);
+  border-color: var(--pink-200);
+  color: var(--pink-700);
+}
+
+/* Right: KPI Summary Cards */
+.hero-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  border-left: 1px solid var(--border-light);
+  padding-left: 24px;
+}
+
+.kpi-card {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  text-align: center;
+  min-width: 120px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--border-light);
+}
+
+.kpi-card.highlight::before {
+  background: var(--pink-gradient);
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--pink-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.kpi-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.kpi-val {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.1;
+  display: block;
+}
+
+.kpi-card.highlight .kpi-val {
+  background: var(--pink-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.kpi-sub {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  display: block;
+}
+
+/* ==========================================================================
+   Dashboard Main Layout (2-Column Grid)
+   ========================================================================== */
+.main-dashboard {
+  max-width: 1300px;
+  margin: 24px auto 60px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 430px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Card Structure */
+.dash-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  padding: 22px 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.dash-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: rgba(244, 63, 94, 0.25);
+}
+
+.dash-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  gap: 12px;
+}
+
+.dash-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.dash-card-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--pink-50);
+  color: var(--pink-600);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  border: 1px solid var(--pink-200);
+}
+
+.card-action-pill {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-light);
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ==========================================================================
+   LEFT COLUMN: Profile & Preferences Form
+   ========================================================================== */
+.form-section-title {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 700;
+  color: var(--pink-600);
+  margin: 16px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+
+.form-field.full {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.form-label .req {
+  color: var(--pink-500);
+}
+
+.input-box, .select-box, .textarea-box {
+  width: 100%;
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--text-main);
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.input-box:focus, .select-box:focus, .textarea-box:focus {
+  outline: none;
+  border-color: var(--pink-500);
+  box-shadow: 0 0 0 3px var(--pink-glow);
+  background: var(--bg-surface);
+}
+
+.textarea-box {
+  resize: vertical;
+  min-height: 65px;
+}
+
+/* Gender Pill Radios with Pink Active State */
+.pill-radio-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.pill-radio-option {
+  position: relative;
+}
+
+.pill-radio-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pill-radio-label {
+  display: block;
+  text-align: center;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-light);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-body);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.pill-radio-option input:checked + .pill-radio-label {
+  background: var(--pink-gradient);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25);
+}
+
+/* Interactive Chips (Companies & Skills) */
+.chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.interactive-chip {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-light);
+  color: var(--text-body);
+  padding: 5px 11px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition);
+  user-select: none;
+}
+
+.interactive-chip:hover {
+  border-color: var(--pink-300);
+  background: var(--pink-50);
+  color: var(--pink-700);
+}
+
+.interactive-chip.active {
+  background: var(--pink-50);
+  border-color: var(--pink-300);
+  color: var(--pink-800);
+  font-weight: 600;
+  box-shadow: 0 2px 8px var(--pink-glow);
+}
+
+.interactive-chip .chip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border-light);
+}
+
+.interactive-chip.active .chip-dot {
+  background: var(--pink-500);
+}
+
+/* Form Action Buttons */
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.btn-primary-pink {
+  flex: 1;
+  background: var(--pink-gradient);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(225, 29, 72, 0.25);
+  transition: var(--transition);
+}
+
+.btn-primary-pink:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(225, 29, 72, 0.35);
+}
+
+.btn-secondary {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-secondary:hover {
+  background: var(--border-light);
+  color: var(--text-main);
+}
+
+.toast-feedback {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  font-weight: 600;
+  display: none;
+}
+
+.toast-feedback.success {
+  display: block;
+  background: var(--emerald-bg);
+  border: 1px solid var(--emerald-border);
+  color: var(--emerald-text);
+}
+
+.toast-feedback.error {
+  display: block;
+  background: var(--pink-50);
+  border: 1px solid var(--pink-200);
+  color: var(--pink-700);
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: Academic Intelligence & Results
+   ========================================================================== */
+
+/* KTU Official Authentication Banner */
+.ktu-official-card {
+  background: var(--ktu-card-gradient);
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 18px 24px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(244, 63, 94, 0.25);
+}
+
+.ktu-official-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(244, 63, 94, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ktu-official-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ktu-seal-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fbcfe8;
+  flex-shrink: 0;
+}
+
+.ktu-official-text h2 {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: white;
+  margin-bottom: 2px;
+}
+
+.ktu-official-text p {
+  font-size: 12px;
+  color: #cbd5e1;
+}
+
+.ktu-official-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ktu-tag {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11.5px;
+  color: white;
+  font-weight: 600;
+}
+
+.ktu-tag.cgpa-pill {
+  background: var(--pink-gradient);
+  border: none;
+  font-weight: 800;
+  padding: 5px 13px;
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.35);
+}
+
+/* SGPA Progression Chart Card */
+.chart-card-inner {
+  padding-top: 8px;
+}
+
+.chart-header-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--pink-gradient);
+}
+
+.chart-svg-container {
+  width: 100%;
+  height: 175px;
+  position: relative;
+  background: var(--bg-surface-subtle);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  padding: 12px 16px 8px;
+}
+
+.chart-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.chart-line {
+  fill: none;
+  stroke: url(#pinkLineGrad);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 4px 8px rgba(225, 29, 72, 0.35));
+}
+
+.chart-area {
+  fill: url(#pinkAreaGrad);
+}
+
+.chart-point {
+  fill: var(--bg-surface);
+  stroke: var(--pink-500);
+  stroke-width: 3;
+  r: 5.5;
+  cursor: pointer;
+  transition: r 0.2s ease, stroke-width 0.2s ease;
+}
+
+.chart-point:hover {
+  r: 8;
+  stroke-width: 4;
+}
+
+.chart-point.peak {
+  fill: var(--pink-600);
+  stroke: white;
+  stroke-width: 2.5;
+  r: 6.5;
+}
+
+.chart-label {
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--text-main);
+  text-anchor: middle;
+}
+
+.chart-sem-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  fill: var(--text-muted);
+  text-anchor: middle;
+}
+
+/* Formula Ribbon Card */
+.formula-ribbon {
+  background: var(--pink-50);
+  border: 1px solid var(--pink-200);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.formula-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.formula-icon {
+  font-size: 18px;
+  color: var(--pink-600);
+}
+
+.formula-text {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--pink-900);
+}
+
+.formula-math {
+  font-family: monospace;
+  background: var(--bg-surface);
+  border: 1px solid var(--pink-200);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pink-700);
+}
+
+.formula-result {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.formula-result strong {
+  color: var(--pink-600);
+  font-size: 14px;
+}
+
+/* Data Tables */
+.table-responsive {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+  min-width: 600px;
+}
+
+.data-table thead th {
+  background: var(--bg-surface-subtle);
+  color: var(--text-muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 700;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.data-table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-body);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+  background: rgba(244, 63, 94, 0.02);
+}
+
+.sem-pill {
+  font-weight: 700;
+  color: var(--pink-600);
+  background: var(--pink-50);
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--pink-200);
+  display: inline-block;
+  font-size: 11.5px;
+}
+
+.status-badge-pass {
+  background: var(--emerald-bg);
+  color: var(--emerald-text);
+  border: 1px solid var(--emerald-border);
+  font-weight: 700;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ==========================================================================
+   Internal Marks Section Controls & Filters
+   ========================================================================== */
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.search-input-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 280px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 13px;
+  pointer-events: none;
+}
+
+.search-field {
+  width: 100%;
+  padding: 7px 10px 7px 30px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-light);
+  background: var(--bg-surface-subtle);
+  font-size: 12.5px;
+  color: var(--text-main);
+  transition: var(--transition);
+}
+
+.search-field:focus {
+  outline: none;
+  border-color: var(--pink-400);
+  box-shadow: 0 0 0 3px var(--pink-glow);
+  background: var(--bg-surface);
+}
+
+.filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.sem-filter-btn {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.sem-filter-btn:hover {
+  background: var(--pink-50);
+  border-color: var(--pink-200);
+  color: var(--pink-600);
+}
+
+.sem-filter-btn.active {
+  background: var(--pink-gradient);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 2px 10px rgba(225, 29, 72, 0.28);
+}
+
+.attendance-meter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meter-bar {
+  width: 50px;
+  height: 6px;
+  background: var(--border-light);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  background: var(--pink-gradient);
+  border-radius: 99px;
+}
+
+.mark-val {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.high-mark {
+  color: var(--pink-600);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--text-muted);
+  font-size: 13px;
+  display: none;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.app-footer {
+  max-width: 1300px;
+  margin: 0 auto 30px;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid var(--border-light);
+  color: var(--text-muted);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-hash {
+  font-family: monospace;
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-light);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 1080px) {
+  .main-dashboard {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .profile-media {
+    margin: 0 auto;
+  }
+  
+  .profile-name-row {
+    justify-content: center;
+  }
+  
+  .profile-degree {
+    justify-content: center;
+  }
+  
+  .profile-tags-row {
+    justify-content: center;
+  }
+  
+  .hero-kpis {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--border-light);
+    padding-top: 18px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .top-bar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .top-bar-actions {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 6px;
+  }
+  
+  .hero-kpis {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .ktu-official-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .ktu-official-badges {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .table-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-input-wrap {
+    max-width: 100%;
+  }
+  
+  .formula-ribbon {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ==========================================================================
+   Print Stylesheet
+   ========================================================================== */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .top-bar, .form-actions, .table-toolbar, .btn-icon, .btn-pink, .filter-pills, .search-input-wrap {
+    display: none !important;
+  }
+  
+  .hero-banner {
+    background: #222 !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .dash-card, .hero-card, .ktu-official-card {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    break-inside: avoid;
+  }
+  
+  .main-dashboard {
+    grid-template-columns: 1fr !important;
+  }
+}

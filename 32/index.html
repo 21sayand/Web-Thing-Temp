@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Profile</title>
+<style>
+  :root {
+    --paper: #f3f5f2;
+    --ink: #1c2b27;
+    --muted: #5d6f69;
+    --pine: #14453a;
+    --pine-dark: #0d2f27;
+    --mint: #cfe8dc;
+    --amber: #e8a33d;
+    --line: #d5ddd8;
+    --error: #b3372f;
+    --ok: #1f7a4d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  h1, h2, h3, label, th, button, select, .sans {
+    font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+  }
+
+  /* ---------- layout: sticky sidebar + content ---------- */
+  .page {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    max-width: 1180px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+
+  aside {
+    background: var(--pine);
+    color: #eaf3ee;
+    padding: 48px 32px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .avatar {
+    width: 140px;
+    height: 170px;
+    border-radius: 6px 6px 60px 6px;
+    background: var(--mint);
+    color: var(--pine);
+    display: grid;
+    place-items: center;
+    font: 700 46px "Trebuchet MS", sans-serif;
+    overflow: hidden;
+    border: 3px solid var(--amber);
+  }
+  .avatar { cursor: pointer; position: relative; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .avatar img[hidden] { display: none; }
+  .photo-actions { display: flex; gap: 8px; margin-top: 12px; }
+  .photo-btn {
+    padding: 6px 14px; font-size: 13px; border-radius: 6px;
+    background: transparent; color: #eaf3ee; border: 1px solid rgba(255,255,255,.4);
+  }
+  .photo-btn:hover { background: rgba(255,255,255,.12); }
+  .photo-btn[hidden] { display: none; }
+  aside h1 { font-size: 28px; line-height: 1.2; }
+  .course { color: #b9d3c8; font-size: 16px; margin-top: 4px; }
+  .contact { list-style: none; width: 100%; border-top: 1px solid rgba(255,255,255,.2); }
+  .contact li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.2); font-size: 15px; }
+  .contact span { display: block; font-size: 13px; color: #9dbfb1; }
+  .contact a { color: #fff; text-decoration: underline; text-decoration-color: var(--amber); text-underline-offset: 3px; }
+
+  main { padding: 48px 44px 64px; }
+  main > form > section { margin-bottom: 44px; }
+  h2 {
+    font-size: 22px;
+    color: var(--pine-dark);
+    margin-bottom: 18px;
+    padding-left: 14px;
+    border-left: 5px solid var(--amber);
+  }
+
+  /* ---------- personal details ---------- */
+  .field { margin-bottom: 22px; }
+  .field > .label { display: block; font: 600 15px "Trebuchet MS", sans-serif; margin-bottom: 8px; }
+  .segmented { display: inline-flex; border: 1.5px solid var(--pine); border-radius: 8px; overflow: hidden; }
+  .segmented input { position: absolute; opacity: 0; pointer-events: none; }
+  .segmented label {
+    padding: 9px 22px; cursor: pointer; font-size: 15px; color: var(--pine);
+    border-right: 1.5px solid var(--pine); background: #fff;
+  }
+  .segmented label:last-of-type { border-right: 0; }
+  .segmented input:checked + label { background: var(--pine); color: #fff; }
+  .segmented input:focus-visible + label { outline: 3px solid var(--amber); outline-offset: -3px; }
+
+  .selects { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  select {
+    width: 100%; padding: 11px 12px; font-size: 15px; color: var(--ink);
+    background: #fff; border: 1.5px solid var(--line); border-radius: 8px;
+  }
+  select:focus-visible { outline: 3px solid var(--amber); border-color: var(--pine); }
+
+  /* ---------- academics ---------- */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+  table { width: 100%; min-width: 560px; border-collapse: collapse; }
+  th { background: var(--pine-dark); color: #fff; padding: 12px 14px; text-align: left; font-weight: 600; font-size: 14px; }
+  td { padding: 11px 14px; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  tbody tr:nth-child(odd) { background: #f8faf8; }
+  td.pending { color: #98a6a1; }
+  .bar { display: inline-block; height: 6px; border-radius: 3px; background: var(--amber); vertical-align: middle; margin-left: 8px; }
+
+  /* ---------- chips ---------- */
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips input { position: absolute; opacity: 0; pointer-events: none; }
+  .chips label {
+    padding: 8px 18px; border: 1.5px solid var(--line); border-radius: 999px;
+    background: #fff; cursor: pointer; font-size: 15px; color: var(--muted);
+  }
+  .chips label:hover { border-color: var(--pine); }
+  .chips input:checked + label { background: var(--mint); border-color: var(--pine); color: var(--pine-dark); font-weight: 600; }
+  .chips input:focus-visible + label { outline: 3px solid var(--amber); outline-offset: 2px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .two h2 { font-size: 20px; }
+
+  /* ---------- actions ---------- */
+  .actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  button { padding: 12px 30px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; border: 1.5px solid var(--pine); }
+  .primary { background: var(--pine); color: #fff; }
+  .primary:hover { background: var(--pine-dark); }
+  .ghost { background: transparent; color: var(--pine); }
+  .ghost:hover { background: var(--mint); }
+  button:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+  #message { font: 600 15px "Trebuchet MS", sans-serif; min-height: 1.5em; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 860px) {
+    .page { grid-template-columns: 1fr; }
+    aside { position: static; height: auto; padding: 32px 24px; }
+    main { padding: 32px 22px 48px; }
+    .selects, .two { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <aside>
+    <div class="photo-upload">
+      <label class="avatar" for="photoInput" id="avatar" title="Click to upload a photo">
+        <span id="avatarText">SN</span>
+        <img id="photoPreview" alt="Student photo" hidden>
+      </label>
+      <input type="file" id="photoInput" accept="image/*" hidden>
+      <div class="photo-actions">
+        <button type="button" class="photo-btn" id="changePhoto">Upload photo</button>
+        <button type="button" class="photo-btn" id="removePhoto" hidden>Remove</button>
+      </div>
+    </div>
+    <div>
+      <h1>Muhammed Zaid O.V.</h1>
+      <p class="course">B.Tech Computer Science and Engineering</p>
+    </div>
+    <ul class="contact">
+      <li><span></span>STM23CS033</li>
+      <li><span>Email</span><a href="mailto:muhammedzaidov123@gmail.com">muhammedzaidov123@gmail.com</a></li>
+      <li><span>Phone</span>9605928943</li>
+    </ul>
+  </aside>
+
+  <main>
+    <form id="studentForm" novalidate>
+
+      <section>
+        <h2>Personal details</h2>
+
+        <div class="field">
+          <span class="label" id="genderLabel">Gender</span>
+          <div class="segmented" role="radiogroup" aria-labelledby="genderLabel">
+            <input type="radio" name="gender" id="g1" value="Male"><label for="g1">Male</label>
+            <input type="radio" name="gender" id="g2" value="Female"><label for="g2">Female</label>
+            <input type="radio" name="gender" id="g3" value="Other"><label for="g3">Other</label>
+          </div>
+        </div>
+
+        <div class="selects">
+          <div class="field">
+            <label class="label" for="bloodGroup">Blood group</label>
+            <select id="bloodGroup"></select>
+          </div>
+          <div class="field">
+            <label class="label" for="company">Interested company</label>
+            <select id="company"></select>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Academic performance</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Semester</th><th>SGPA</th><th>CGPA</th><th>Internal marks</th></tr>
+            </thead>
+            <tbody id="gradeBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="two">
+        <div>
+          <h2>Skills</h2>
+          <div class="chips" id="skillChips"></div>
+        </div>
+        <div>
+          <h2>NSS and extracurricular activities</h2>
+          <div class="chips" id="activityChips"></div>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button type="submit" class="primary">Submit profile</button>
+        <button type="button" class="ghost" id="resetBtn">Reset form</button>
+        <p id="message" role="status" aria-live="polite"></p>
+      </div>
+
+    </form>
+  </main>
+</div>
+
+<script>
+  // ---------- data ----------
+  const bloodGroups = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
+  const companies = ["Infosys", "TCS", "Wipro", "Accenture", "IBM", "Microsoft", "Google", "Amazon", "Oracle", "Capgemini"];
+  const skills = ["HTML", "CSS", "JavaScript", "Python", "Java", "SQL"];
+  const activities = ["NSS", "Sports", "Music", "Arts", "Coding Club", "Volunteering"];
+  const grades = [
+    ["Semester 1", 7.53, 7.53, 42],
+    ["Semester 2", 7.64, 7.62, 44],
+    ["Semester 3", 7.22, 7.62, 46],
+    ["Semester 4", 7.94, 7.62, 45],
+    ["Semester 5", 7.50, 7.62, 45],
+    ["Semester 6", 7.80, 7.62, 45],
+    ["Semester 7"],
+    ["Semester 8"]
+  ];
+
+  // ---------- build the page ----------
+  function fillSelect(id, placeholder, items) {
+    const el = document.getElementById(id);
+    el.innerHTML = `<option value="">${placeholder}</option>` +
+      items.map(i => `<option>${i}</option>`).join("");
+  }
+  fillSelect("bloodGroup", "Select blood group", bloodGroups);
+  fillSelect("company", "Select company", companies);
+
+  function fillChips(containerId, name, items) {
+    document.getElementById(containerId).innerHTML = items.map((item, i) => {
+      const id = `${name}-${i}`;
+      return `<input type="checkbox" name="${name}" id="${id}" value="${item}">` +
+             `<label for="${id}">${item}</label>`;
+    }).join("");
+  }
+  fillChips("skillChips", "skills", skills);
+  fillChips("activityChips", "activities", activities);
+
+  document.getElementById("gradeBody").innerHTML = grades.map(([sem, sgpa, cgpa, marks]) => {
+    if (sgpa === undefined) {
+      return `<tr><td>${sem}</td><td class="pending">-</td><td class="pending">-</td><td class="pending">-</td></tr>`;
+    }
+    return `<tr><td>${sem}</td>` +
+           `<td>${sgpa.toFixed(2)}<span class="bar" style="width:${sgpa * 8}px"></span></td>` +
+           `<td>${cgpa.toFixed(2)}</td><td>${marks} / 50</td></tr>`;
+  }).join("");
+
+  // ---------- photo upload ----------
+  const photoInput = document.getElementById("photoInput");
+  const photoPreview = document.getElementById("photoPreview");
+  const avatarText = document.getElementById("avatarText");
+  const removeBtn = document.getElementById("removePhoto");
+  const changeBtn = document.getElementById("changePhoto");
+
+  function setPhoto(src) {
+    if (src) {
+      photoPreview.src = src;
+      photoPreview.hidden = false;
+      avatarText.hidden = true;
+      removeBtn.hidden = false;
+      changeBtn.textContent = "Change photo";
+    } else {
+      photoPreview.removeAttribute("src");
+      photoPreview.hidden = true;
+      avatarText.hidden = false;
+      removeBtn.hidden = true;
+      changeBtn.textContent = "Upload photo";
+    }
+  }
+
+  // restore a previously uploaded photo (if the browser allows storage)
+  try { setPhoto(localStorage.getItem("studentPhoto")); } catch (e) {}
+
+  changeBtn.addEventListener("click", () => photoInput.click());
+
+  photoInput.addEventListener("change", () => {
+    const file = photoInput.files[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) return show("Please choose an image file.", true);
+    if (file.size > 2 * 1024 * 1024) return show("Photo must be under 2 MB.", true);
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setPhoto(reader.result);
+      try { localStorage.setItem("studentPhoto", reader.result); } catch (e) {}
+      message.textContent = "";
+    };
+    reader.readAsDataURL(file);
+  });
+
+  removeBtn.addEventListener("click", () => {
+    setPhoto(null);
+    photoInput.value = "";
+    try { localStorage.removeItem("studentPhoto"); } catch (e) {}
+  });
+
+  // ---------- validation ----------
+  const form = document.getElementById("studentForm");
+  const message = document.getElementById("message");
+
+  function show(text, isError) {
+    message.style.color = isError ? "var(--error)" : "var(--ok)";
+    message.textContent = text;
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!form.querySelector('input[name="gender"]:checked')) return show("Please select your gender.", true);
+    if (!document.getElementById("bloodGroup").value) return show("Please select your blood group.", true);
+    if (!document.getElementById("company").value) return show("Please select your interested company.", true);
+    if (!form.querySelector('input[name="skills"]:checked')) return show("Please select at least one skill.", true);
+    show("Student profile submitted successfully!", false);
+  });
+
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    form.reset();
+    message.textContent = "";
+  });
+</script>
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

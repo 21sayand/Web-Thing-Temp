@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fathimath Shifana TV - Student Profile</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Student Profile</h1>
+
+    <!-- PERSONAL DETAILS -->
+    <div class="profile">
+
+        <div class="photo-section">
+            <img src="student.jpg" alt="Fathimath Shifana Photo">
+        </div>
+
+        <div class="details">
+
+            <h2>Personal Details</h2>
+
+            <p><b>Name:</b> Fathimath Shifana TV</p>
+
+            <p><b>Roll Number:</b> STM23CS016</p>
+
+            <p><b>Course:</b> B.Tech Computer Science and Engineering</p>
+
+            <p><b>College:</b> St. Thomas College of Engineering and Technology</p>
+
+            <p><b>Email:</b> fathimathshifanatvc@gmail.com</p>
+
+            <p><b>Phone:</b> 7025138590</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- FORM -->
+    <form id="studentForm">
+
+        <h2>Student Information</h2>
+
+
+        <!-- GENDER -->
+        <label>Gender:</label>
+
+        <div class="radio-group">
+
+            <label>
+                <input type="radio" name="gender" value="Male">
+                Male
+            </label>
+
+            <label>
+                <input type="radio" name="gender" value="Female" checked>
+                Female
+            </label>
+
+            <label>
+                <input type="radio" name="gender" value="Other">
+                Other
+            </label>
+
+        </div>
+
+
+        <!-- BLOOD GROUP -->
+        <label for="blood">Blood Group:</label>
+
+        <select id="blood" name="blood">
+
+            <option value="">Select Blood Group</option>
+
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+
+            <option value="O+" selected>O+</option>
+
+            <option>O-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+
+        </select>
+
+
+        <!-- INTERESTED COMPANY -->
+        <label for="company">Interested Company:</label>
+
+        <select id="company" name="company">
+
+            <option value="">Select Company</option>
+
+            <option value="Infosys" selected>Infosys</option>
+            <option>TCS</option>
+            <option>Wipro</option>
+            <option>Accenture</option>
+            <option>Google</option>
+            <option>Microsoft</option>
+            <option>Amazon</option>
+            <option>Other</option>
+
+        </select>
+
+
+        <!-- ACADEMIC DETAILS -->
+        <h2>Academic Details</h2>
+
+        <table>
+
+            <tr>
+                <th>Semester</th>
+                <th>SGPA</th>
+                <th>Internal Marks</th>
+            </tr>
+
+            <tr>
+                <td>S1</td>
+                <td>6.21</td>
+                <td>
+                    <input type="number" value="40" min="0" max="50">
+                </td>
+            </tr>
+
+            <tr>
+                <td>S2</td>
+                <td>6.74</td>
+                <td>
+                    <input type="number" value="40" min="0" max="50">
+                </td>
+            </tr>
+
+            <tr>
+                <td>S3</td>
+                <td>7.00</td>
+                <td>
+                    <input type="number" value="39" min="0" max="50">
+                </td>
+            </tr>
+
+            <tr>
+                <td>S4</td>
+                <td>6.95</td>
+                <td>
+                    <input type="number" value="36" min="0" max="50">
+                </td>
+            </tr>
+
+            <tr>
+                <td>S5</td>
+                <td>7.14</td>
+                <td>
+                    <input type="number" value="35" min="0" max="50">
+                </td>
+            </tr>
+
+            <tr>
+                <td>S6</td>
+                <td>7.00</td>
+                <td>
+                    <input type="number" value="41" min="0" max="50">
+                </td>
+            </tr>
+
+            <tr>
+                <td>S7</td>
+                <td>7.46</td>
+                <td>
+                    <input type="number" value="0" min="0" max="50">
+                </td>
+            </tr>
+
+        </table>
+
+
+        <!-- SKILLS -->
+        <h2>Skills</h2>
+
+        <div class="checkbox-group">
+
+            <label>
+                <input type="checkbox" name="skills" value="C" checked>
+                C
+            </label>
+
+            <label>
+                <input type="checkbox" name="skills" value="Java" checked>
+                Java
+            </label>
+
+            <label>
+                <input type="checkbox" name="skills" value="Python" checked>
+                Python
+            </label>
+
+            <label>
+                <input type="checkbox" name="skills" value="HTML/CSS" checked>
+                HTML/CSS
+            </label>
+
+            <label>
+                <input type="checkbox" name="skills" value="JavaScript">
+                JavaScript
+            </label>
+
+            <label>
+                <input type="checkbox" name="skills" value="SQL">
+                SQL
+            </label>
+
+            <label>
+                <input type="checkbox" name="skills" value="Flutter">
+                Flutter
+            </label>
+
+            <label>
+                <input type="checkbox" name="skills" value="Other">
+                Other
+            </label>
+
+        </div>
+
+
+        <!-- NSS / EXTRACURRICULAR ACTIVITIES -->
+        <h2>NSS / Extracurricular Activities</h2>
+
+        <div class="checkbox-group">
+
+            <label>
+                <input type="checkbox" name="activity" value="Arts">
+                Arts
+            </label>
+
+            <label>
+                <input type="checkbox" name="activity" value="NSS">
+                NSS
+            </label>
+
+            <label>
+                <input type="checkbox" name="activity" value="Sports">
+                Sports
+            </label>
+
+            <label>
+                <input type="checkbox" name="activity" value="Coding Club">
+                Coding Club
+            </label>
+
+            <label>
+                <input type="checkbox" name="activity" value="Volunteering">
+                Volunteering
+            </label>
+
+            <label>
+                <input type="checkbox" name="activity" value="Other">
+                Other
+            </label>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+        <div class="buttons">
+
+            <button type="submit">
+                Submit
+            </button>
+
+            <button type="reset" class="reset-btn">
+                Reset
+            </button>
+
+        </div>
+
+    </form>
+
+
+    <p id="message"></p>
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Profile Portal | St. Thomas College of Engineering and Technology, Mattanur</title>
+  
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="brand-logo-wrap">
+          <img src="stthomaskannur.png" alt="St. Thomas College of Engineering & Technology Logo" class="brand-logo-img" />
+        </div>
+        <div class="brand-text">
+          <h2>St. Thomas College of Engineering & Technology</h2>
+          <p>Mattanur, Kannur | B.Tech Academic & Career Portal</p>
+        </div>
+      </div>
+      
+      <div class="nav-actions">
+        <button id="btnNavForm" class="nav-tab-btn active" onclick="switchView('form')">
+          <i class="fa-solid fa-user-pen"></i> <span>Profile Form</span>
+        </button>
+        <button id="btnNavProfile" class="nav-tab-btn" onclick="switchView('profile')">
+          <i class="fa-solid fa-id-card"></i> <span>View Profile Card</span>
+        </button>
+        <button id="btnQuickSample" class="btn-secondary" onclick="loadSampleData()" title="Reload Sayanand's Academic Records">
+          <i class="fa-solid fa-rotate"></i> <span>Reload Records</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="main-wrapper">
+
+    <!-- Notification / Toast Message Box -->
+    <div id="toast" class="toast hidden">
+      <i id="toastIcon" class="fa-solid fa-circle-check"></i>
+      <span id="toastMsg">Action completed successfully!</span>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION A: STUDENT REGISTRATION & PROFILE EDIT FORM                      -->
+    <!-- ========================================================================= -->
+    <section id="formSection" class="view-panel active-panel">
+      <div class="panel-header">
+        <div class="panel-title-area">
+          <div class="institute-badge">
+            <img src="stthomaskannur.png" alt="STM Logo" class="mini-badge-logo" />
+            <span>STM Kannur • KTU Affiliated • B.Tech CSE</span>
+          </div>
+          <h1>B.Tech Student Academic & Placement Profile</h1>
+          <p>Review or edit personal details, KTU semester performance, internal marks, and career preferences.</p>
+        </div>
+        <div class="panel-meta">
+          <span class="required-note">* Mandatory fields</span>
+        </div>
+      </div>
+
+      <form id="studentRegistrationForm" novalidate onsubmit="handleFormSubmit(event)">
+        
+        <!-- 1. Profile Picture & Core Identity -->
+        <fieldset class="form-card">
+          <legend><i class="fa-solid fa-camera-retro"></i> 1. Profile Photo & Core Identification</legend>
+          
+          <div class="photo-upload-container">
+            <div class="avatar-preview-box">
+              <img id="avatarPreview" src="sayii.jpeg" alt="Student Profile Avatar" />
+              <div class="avatar-overlay">
+                <i class="fa-solid fa-camera"></i>
+                <span>Change Photo</span>
+              </div>
+            </div>
+            
+            <div class="upload-controls">
+              <label for="studentPhotoInput" class="custom-file-upload">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Choose Photo (.jpg, .png)
+              </label>
+              <input type="file" id="studentPhotoInput" accept="image/*" onchange="handlePhotoUpload(event)" />
+              <button type="button" class="btn-text-danger" onclick="removeCustomPhoto()">
+                <i class="fa-solid fa-trash-can"></i> Reset Avatar
+              </button>
+              <p class="helper-text">Recommended: Square portrait format, max 3MB.</p>
+            </div>
+          </div>
+
+          <div class="form-grid grid-3">
+            <!-- Full Name -->
+            <div class="form-group">
+              <label for="fullName">Student Full Name <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-regular fa-user"></i>
+                <input type="text" id="fullName" name="fullName" placeholder="e.g., SAYANAND M P" required />
+              </div>
+              <small class="error-msg" id="err-fullName">Please enter a valid full name.</small>
+            </div>
+
+            <!-- Roll Number -->
+            <div class="form-group">
+              <label for="admissionNo">Roll Number <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-hashtag"></i>
+                <input type="text" id="admissionNo" name="admissionNo" value="41" placeholder="e.g., 41" required />
+              </div>
+              <small class="error-msg" id="err-admissionNo">Roll number is required.</small>
+            </div>
+
+            <!-- University Register Number -->
+            <div class="form-group">
+              <label for="universityRegNo">University Register No (KTU) <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-id-badge"></i>
+                <input type="text" id="universityRegNo" name="universityRegNo" value="STM23CS042" placeholder="e.g., STM23CS042" required />
+              </div>
+              <small class="error-msg" id="err-universityRegNo">Register number is required.</small>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="form-group">
+              <label for="dob">Date of Birth <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-regular fa-calendar-days"></i>
+                <input type="date" id="dob" name="dob" value="2004-11-24" required />
+              </div>
+              <small class="error-msg" id="err-dob">Please choose date of birth.</small>
+            </div>
+
+            <!-- Gender (Radio Buttons) -->
+            <div class="form-group">
+              <label>Gender <span class="req">*</span></label>
+              <div class="radio-pill-group">
+                <label class="radio-pill">
+                  <input type="radio" name="gender" value="Male" checked />
+                  <span><i class="fa-solid fa-mars"></i> Male</span>
+                </label>
+                <label class="radio-pill">
+                  <input type="radio" name="gender" value="Female" />
+                  <span><i class="fa-solid fa-venus"></i> Female</span>
+                </label>
+                <label class="radio-pill">
+                  <input type="radio" name="gender" value="Other" />
+                  <span><i class="fa-solid fa-genderless"></i> Other</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Blood Group Dropdown -->
+            <div class="form-group">
+              <label for="bloodGroup">Blood Group <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-droplet"></i>
+                <select id="bloodGroup" name="bloodGroup" required>
+                  <option value="">-- Select Blood Group --</option>
+                  <option value="A+" selected>A+ (A Positive)</option>
+                  <option value="A-">A- (A Negative)</option>
+                  <option value="B+">B+ (B Positive)</option>
+                  <option value="B-">B- (B Negative)</option>
+                  <option value="AB+">AB+ (AB Positive)</option>
+                  <option value="AB-">AB- (AB Negative)</option>
+                  <option value="O+">O+ (O Positive)</option>
+                  <option value="O-">O- (O Negative)</option>
+                </select>
+              </div>
+              <small class="error-msg" id="err-bloodGroup">Please select blood group.</small>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- 2. Contact & Residential Details -->
+        <fieldset class="form-card">
+          <legend><i class="fa-solid fa-address-book"></i> 2. Contact & Residential Information</legend>
+          
+          <div class="form-grid grid-2">
+            <!-- Email -->
+            <div class="form-group">
+              <label for="email">Student Email Address <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-regular fa-envelope"></i>
+                <input type="email" id="email" name="email" value="sayanandmp@gmail.com" placeholder="sayanandmp@gmail.com" required />
+              </div>
+              <small class="error-msg" id="err-email">Please provide a valid email address.</small>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-group">
+              <label for="phone">Phone Number (10 Digits) <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-phone"></i>
+                <input type="tel" id="phone" name="phone" value="6238798913" placeholder="6238798913" maxlength="10" required />
+              </div>
+              <small class="error-msg" id="err-phone">Please enter a valid 10-digit mobile number.</small>
+            </div>
+          </div>
+
+          <!-- Residential Address -->
+          <div class="form-group full-width" style="margin-top: 14px;">
+            <label for="address">Permanent Residential Address <span class="req">*</span></label>
+            <div class="input-with-icon textarea-icon">
+              <i class="fa-solid fa-location-dot"></i>
+              <textarea id="address" name="address" rows="3" placeholder="Madappurakkal(H), Aduvappuram, Malappattam(P.O), 670631, Kannur, Kerala" required>Madappurakkal(H), Aduvappuram, Malappattam(P.O), 670631, Kannur, Kerala</textarea>
+            </div>
+            <small class="error-msg" id="err-address">Please enter your residential address.</small>
+          </div>
+        </fieldset>
+
+        <!-- 3. College & Academic Enrollment -->
+        <fieldset class="form-card">
+          <legend><i class="fa-solid fa-building-columns"></i> 3. College & Academic Enrollment</legend>
+          
+          <div class="form-grid grid-3">
+            <!-- College Name -->
+            <div class="form-group full-col-span">
+              <label for="collegeName">College / Institute Name <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-landmark"></i>
+                <input type="text" id="collegeName" name="collegeName" value="ST. THOMAS COLLEGE OF ENGINEERING AND TECHNOLOGY, MATTANUR" required />
+              </div>
+              <small class="error-msg" id="err-collegeName">Please specify college name.</small>
+            </div>
+
+            <!-- B.Tech Branch -->
+            <div class="form-group">
+              <label for="branch">B.Tech Engineering Branch <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-microchip"></i>
+                <select id="branch" name="branch" required>
+                  <option value="">-- Select Branch --</option>
+                  <option value="Computer Science & Engineering" selected>Computer Science & Engineering (CSE)</option>
+                  <option value="Information Technology">Information Technology (IT)</option>
+                  <option value="Artificial Intelligence & Data Science">Artificial Intelligence & Data Science (AI & DS)</option>
+                  <option value="Electronics & Communication Engineering">Electronics & Communication Engineering (ECE)</option>
+                  <option value="Electrical & Electronics Engineering">Electrical & Electronics Engineering (EEE)</option>
+                  <option value="Mechanical Engineering">Mechanical Engineering (MECH)</option>
+                  <option value="Civil Engineering">Civil Engineering (CIVIL)</option>
+                </select>
+              </div>
+              <small class="error-msg" id="err-branch">Please select branch.</small>
+            </div>
+
+            <!-- Current Semester -->
+            <div class="form-group">
+              <label for="currentSemester">Current Semester <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-layer-group"></i>
+                <select id="currentSemester" name="currentSemester" required>
+                  <option value="Semester 1">Semester 1 (Year 1)</option>
+                  <option value="Semester 2">Semester 2 (Year 1)</option>
+                  <option value="Semester 3">Semester 3 (Year 2)</option>
+                  <option value="Semester 4">Semester 4 (Year 2)</option>
+                  <option value="Semester 5">Semester 5 (Year 3)</option>
+                  <option value="Semester 6">Semester 6 (Year 3)</option>
+                  <option value="Semester 7" selected>Semester 7 (Year 4)</option>
+                  <option value="Semester 8">Semester 8 (Year 4)</option>
+                </select>
+              </div>
+              <small class="error-msg" id="err-currentSemester">Please choose current semester.</small>
+            </div>
+              <small class="error-msg" id="err-currentSemester">Please choose current semester.</small>
+            </div>
+
+            <!-- Cumulative CGPA Field -->
+            <div class="form-group">
+              <label for="overallCgpa">Overall Cumulative CGPA (0.00 - 10.00) <span class="req">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-chart-line"></i>
+                <input type="number" id="overallCgpa" name="overallCgpa" step="0.01" min="0" max="10" value="6.92" required />
+              </div>
+              <small class="error-msg" id="err-overallCgpa">Enter valid CGPA between 0.00 and 10.00.</small>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- 4. Academic Details & Performance Table -->
+        <fieldset class="form-card">
+          <legend><i class="fa-solid fa-table-list"></i> 4. Semester-Wise Academic Performance & Internal Marks</legend>
+          
+          <div class="table-intro">
+            <div>
+              <p>KTU Academic Transcripts & Internal Evaluation (S1 – S6 records loaded from examination grade card):</p>
+              <div class="semester-filter-chips">
+                <button type="button" class="filter-chip active" onclick="filterAcademicInputTable('ALL')">All Semesters (S1–S6)</button>
+                <button type="button" class="filter-chip" onclick="filterAcademicInputTable('S1')">S1</button>
+                <button type="button" class="filter-chip" onclick="filterAcademicInputTable('S2')">S2</button>
+                <button type="button" class="filter-chip" onclick="filterAcademicInputTable('S3')">S3</button>
+                <button type="button" class="filter-chip" onclick="filterAcademicInputTable('S4')">S4</button>
+                <button type="button" class="filter-chip" onclick="filterAcademicInputTable('S5')">S5</button>
+                <button type="button" class="filter-chip" onclick="filterAcademicInputTable('S6')">S6</button>
+              </div>
+            </div>
+            <button type="button" class="btn-secondary btn-sm" onclick="addNewSemesterRow()">
+              <i class="fa-solid fa-plus"></i> Add Course Row
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="academic-table" id="academicInputTable">
+              <thead>
+                <tr>
+                  <th style="width: 14%;">Semester</th>
+                  <th style="width: 32%;">Subject Code & Course Name</th>
+                  <th style="width: 15%;">Internal Marks</th>
+                  <th style="width: 13%;">Grade</th>
+                  <th style="width: 11%;">SGPA</th>
+                  <th style="width: 11%;">CGPA</th>
+                  <th style="width: 4%;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="academicTableBody">
+                <!-- Rows populated dynamically via script.js -->
+              </tbody>
+            </table>
+          </div>
+        </fieldset>
+
+        <!-- 5. Career & Placement Preferences -->
+        <fieldset class="form-card">
+          <legend><i class="fa-solid fa-briefcase"></i> 5. Career & Placement Preferences</legend>
+          
+          <!-- Preferred Career Role -->
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label for="careerRole">Preferred Career Role <span class="req">*</span></label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-user-tie"></i>
+              <select id="careerRole" name="careerRole" required>
+                <option value="">-- Choose Your Target Role --</option>
+                <option value="Software Developer" selected>Software Developer (Full Stack / Backend)</option>
+                <option value="Web Developer">Web Developer (Frontend / Modern Web)</option>
+                <option value="Data Analyst">Data Analyst (Business & Data Intelligence)</option>
+                <option value="AI/ML Engineer">AI/ML Engineer (Machine Learning & Deep Learning)</option>
+                <option value="Cybersecurity Analyst">Cybersecurity Analyst (InfoSec & Auditing)</option>
+                <option value="Cloud & DevOps Engineer">Cloud & DevOps Engineer</option>
+              </select>
+            </div>
+            <small class="error-msg" id="err-careerRole">Please choose a preferred career role.</small>
+          </div>
+
+          <!-- Target Companies (Checkboxes) -->
+          <div class="form-group">
+            <label class="section-sublabel">
+              <span>Interested Placement Companies:</span>
+              <span class="sub-hint">(Select prospective recruitment companies)</span>
+            </label>
+            
+            <div class="checkbox-badge-grid">
+              <label class="company-checkbox-card">
+                <input type="checkbox" name="companies" value="Infosys" checked />
+                <span class="company-chip">
+                  <i class="fa-solid fa-building"></i>
+                  <strong>Infosys</strong>
+                </span>
+              </label>
+
+              <label class="company-checkbox-card">
+                <input type="checkbox" name="companies" value="TCS" checked />
+                <span class="company-chip">
+                  <i class="fa-solid fa-building"></i>
+                  <strong>TCS</strong>
+                </span>
+              </label>
+
+              <label class="company-checkbox-card">
+                <input type="checkbox" name="companies" value="Wipro" checked />
+                <span class="company-chip">
+                  <i class="fa-solid fa-building"></i>
+                  <strong>Wipro</strong>
+                </span>
+              </label>
+
+              <label class="company-checkbox-card">
+                <input type="checkbox" name="companies" value="Accenture" checked />
+                <span class="company-chip">
+                  <i class="fa-solid fa-building"></i>
+                  <strong>Accenture</strong>
+                </span>
+              </label>
+
+              <label class="company-checkbox-card">
+                <input type="checkbox" name="companies" value="Cognizant" checked />
+                <span class="company-chip">
+                  <i class="fa-solid fa-building"></i>
+                  <strong>Cognizant</strong>
+                </span>
+              </label>
+
+              <label class="company-checkbox-card">
+                <input type="checkbox" name="companies" value="IBM" checked />
+                <span class="company-chip">
+                  <i class="fa-solid fa-building"></i>
+                  <strong>IBM</strong>
+                </span>
+              </label>
+
+              <label class="company-checkbox-card">
+                <input type="checkbox" name="companies" value="Capgemini" />
+                <span class="company-chip">
+                  <i class="fa-solid fa-building"></i>
+                  <strong>Capgemini</strong>
+                </span>
+              </label>
+
+              <label class="company-checkbox-card">
+                <input type="checkbox" name="companies" value="Zoho" checked />
+                <span class="company-chip">
+                  <i class="fa-solid fa-building"></i>
+                  <strong>Zoho</strong>
+                </span>
+              </label>
+            </div>
+            <small class="error-msg" id="err-companies">Select at least one interested company.</small>
+          </div>
+        </fieldset>
+
+        <!-- 6. Technical Skills (Checkboxes) -->
+        <fieldset class="form-card">
+          <legend><i class="fa-solid fa-code"></i> 6. Technical Skills & Proficiencies</legend>
+          <p class="helper-text" style="margin-bottom: 14px;">Select all technical programming languages, frameworks, and tools in your skillset:</p>
+          
+          <div class="skills-checkbox-grid">
+            <label class="skill-pill-card">
+              <input type="checkbox" name="technicalSkills" value="C" checked />
+              <div class="skill-content">
+                <i class="fa-solid fa-c"></i>
+                <span>C (Programming in C - EST102)</span>
+              </div>
+            </label>
+
+            <label class="skill-pill-card">
+              <input type="checkbox" name="technicalSkills" value="Java" checked />
+              <div class="skill-content">
+                <i class="fa-brands fa-java"></i>
+                <span>Java & OOP (CST205 / CSL203)</span>
+              </div>
+            </label>
+
+            <label class="skill-pill-card">
+              <input type="checkbox" name="technicalSkills" value="Python" checked />
+              <div class="skill-content">
+                <i class="fa-brands fa-python"></i>
+                <span>Python (Programming in Python - CST362)</span>
+              </div>
+            </label>
+
+            <label class="skill-pill-card">
+              <input type="checkbox" name="technicalSkills" value="HTML, CSS, and JavaScript" checked />
+              <div class="skill-content">
+                <i class="fa-brands fa-html5"></i>
+                <span>HTML, CSS, and JavaScript</span>
+              </div>
+            </label>
+
+            <label class="skill-pill-card">
+              <input type="checkbox" name="technicalSkills" value="React" checked />
+              <div class="skill-content">
+                <i class="fa-brands fa-react"></i>
+                <span>React</span>
+              </div>
+            </label>
+
+            <label class="skill-pill-card">
+              <input type="checkbox" name="technicalSkills" value="Node.js" />
+              <div class="skill-content">
+                <i class="fa-brands fa-node-js"></i>
+                <span>Node.js</span>
+              </div>
+            </label>
+
+            <label class="skill-pill-card">
+              <input type="checkbox" name="technicalSkills" value="SQL" checked />
+              <div class="skill-content">
+                <i class="fa-solid fa-database"></i>
+                <span>SQL & DBMS (CST204 / CSL333)</span>
+              </div>
+            </label>
+
+            <label class="skill-pill-card">
+              <input type="checkbox" name="technicalSkills" value="Machine Learning" />
+              <div class="skill-content">
+                <i class="fa-solid fa-brain"></i>
+                <span>Machine Learning</span>
+              </div>
+            </label>
+          </div>
+          <small class="error-msg" id="err-technicalSkills">Please select at least one technical skill.</small>
+        </fieldset>
+
+        <!-- 7. Extracurricular Activities (Checkboxes) -->
+        <fieldset class="form-card">
+          <legend><i class="fa-solid fa-medal"></i> 7. Extracurricular & Co-Curricular Activities</legend>
+          <p class="helper-text" style="margin-bottom: 14px;">Select the campus clubs, institutional activities, and co-curricular programs:</p>
+          
+          <div class="activities-checkbox-grid">
+            <label class="activity-card">
+              <input type="checkbox" name="activities" value="NSS" />
+              <div class="activity-box">
+                <i class="fa-solid fa-hands-holding-child"></i>
+                <div class="act-details">
+                  <strong>NSS</strong>
+                  <span>National Service Scheme - STM</span>
+                </div>
+              </div>
+            </label>
+
+            <label class="activity-card">
+              <input type="checkbox" name="activities" value="NCC" />
+              <div class="activity-box">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div class="act-details">
+                  <strong>NCC</strong>
+                  <span>National Cadet Corps</span>
+                </div>
+              </div>
+            </label>
+
+            <label class="activity-card">
+              <input type="checkbox" name="activities" value="Sports" checked />
+              <div class="activity-box">
+                <i class="fa-solid fa-volleyball"></i>
+                <div class="act-details">
+                  <strong>Sports</strong>
+                  <span>Athletics & College Sports</span>
+                </div>
+              </div>
+            </label>
+
+            <label class="activity-card">
+              <input type="checkbox" name="activities" value="Arts and Cultural Activities" checked />
+              <div class="activity-box">
+                <i class="fa-solid fa-palette"></i>
+                <div class="act-details">
+                  <strong>Arts & Cultural</strong>
+                  <span>College Fest & Cultural Club</span>
+                </div>
+              </div>
+            </label>
+
+            <label class="activity-card">
+              <input type="checkbox" name="activities" value="Technical Club" checked />
+              <div class="activity-box">
+                <i class="fa-solid fa-laptop-code"></i>
+                <div class="act-details">
+                  <strong>Technical Club</strong>
+                  <span>CSE Association & Coding Guild</span>
+                </div>
+              </div>
+            </label>
+
+            <label class="activity-card">
+              <input type="checkbox" name="activities" value="Hackathons" checked />
+              <div class="activity-box">
+                <i class="fa-solid fa-lightbulb"></i>
+                <div class="act-details">
+                  <strong>Hackathons</strong>
+                  <span>Inter-Collegiate Hackathons</span>
+                </div>
+              </div>
+            </label>
+
+            <label class="activity-card">
+              <input type="checkbox" name="activities" value="Coding Competitions" checked />
+              <div class="activity-box">
+                <i class="fa-solid fa-trophy"></i>
+                <div class="act-details">
+                  <strong>Coding Competitions</strong>
+                  <span>Competitive Programming</span>
+                </div>
+              </div>
+            </label>
+
+            <label class="activity-card">
+              <input type="checkbox" name="activities" value="Volunteering and Social Service" />
+              <div class="activity-box">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <div class="act-details">
+                  <strong>Volunteering</strong>
+                  <span>Community Outreach & Welfare</span>
+                </div>
+              </div>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- Form Actions Toolbar -->
+        <div class="form-actions-toolbar">
+          <div class="actions-left">
+            <button type="button" class="btn-outline-danger" onclick="confirmResetForm()">
+              <i class="fa-solid fa-rotate-left"></i> Reset Form
+            </button>
+          </div>
+          <div class="actions-right">
+            <button type="submit" class="btn-primary btn-lg" id="btnSubmitProfile">
+              <i class="fa-solid fa-circle-check"></i> Submit & View Official Profile Dossier
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION B: RENDERED DIGITAL STUDENT PROFILE CARD / DOSSIER               -->
+    <!-- ========================================================================= -->
+    <section id="profileSection" class="view-panel">
+      
+      <!-- Top Action Bar for Profile -->
+      <div class="profile-top-bar">
+        <div class="top-bar-left">
+          <span class="status-indicator live"><i class="fa-solid fa-circle"></i> Student Profile Verified & Active</span>
+          <span class="last-updated" id="displayUpdatedTime">KTU Transcript Sync: S1–S6 Verified</span>
+        </div>
+        <div class="top-bar-right">
+          <button class="btn-secondary" onclick="switchView('form')">
+            <i class="fa-solid fa-user-pen"></i> Edit Profile Details
+          </button>
+          <button class="btn-primary" onclick="window.print()">
+            <i class="fa-solid fa-print"></i> Print / Save as PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Profile Dossier Card -->
+      <div class="student-profile-dossier" id="printableDossier">
+        
+        <!-- Header Banner & Hero Details -->
+        <div class="profile-hero-banner">
+          <div class="hero-college-seal">
+            <img src="stthomaskannur.png" alt="St. Thomas College of Engineering Logo" class="hero-seal-img" />
+          </div>
+          
+          <div class="hero-content">
+            <div class="hero-avatar-wrapper">
+              <img id="cardAvatar" src="sayii.jpeg" alt="Student Profile Avatar" />
+              <div class="verified-badge" title="KTU Enrolment Verified">
+                <i class="fa-solid fa-check"></i>
+              </div>
+            </div>
+
+            <div class="hero-details">
+              <div class="name-status-row">
+                <h1 id="cardFullName">SAYANAND M P</h1>
+                <span class="degree-pill" id="cardBranchTag">B.Tech - Computer Science & Engineering</span>
+              </div>
+
+              <div class="id-chips-row">
+                <div class="id-chip highlight">
+                  <i class="fa-solid fa-id-badge"></i>
+                  <span>Register No: <strong id="cardUniversityRegNo">STM23CS042</strong></span>
+                </div>
+                <div class="id-chip">
+                  <i class="fa-solid fa-hashtag"></i>
+                  <span>Roll No: <strong id="cardAdmissionNo">41</strong></span>
+                </div>
+                <div class="id-chip">
+                  <i class="fa-solid fa-layer-group"></i>
+                  <span>Academic Standing: <strong id="cardSemester">Semester 7</strong></span>
+                </div>
+              </div>
+
+              <p class="college-affiliation" id="cardCollegeName">
+                <i class="fa-solid fa-building-columns"></i> ST. THOMAS COLLEGE OF ENGINEERING AND TECHNOLOGY, MATTANUR
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Highlight Counters -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-icon blue">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">Cumulative CGPA</span>
+              <h3 id="cardOverallCgpa">6.92 <span>/ 10.0</span></h3>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon indigo">
+              <i class="fa-solid fa-coins"></i>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">Earned Credits</span>
+              <h3 id="cardCreditsEarned">128 <span>/ 128 (S1-S6)</span></h3>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon green">
+              <i class="fa-solid fa-user-tie"></i>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">Target Career Role</span>
+              <h3 id="cardCareerRole">Software Developer</h3>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon amber">
+              <i class="fa-solid fa-droplet"></i>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">Blood Group</span>
+              <h3 id="cardBloodGroup">A+</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Two-Column Profile Body -->
+        <div class="profile-layout-grid">
+          
+          <!-- Left Column: Personal & Contact Information -->
+          <div class="profile-col-left">
+            
+            <!-- Personal Information Box -->
+            <div class="dossier-card">
+              <div class="card-heading">
+                <i class="fa-solid fa-id-card-clip"></i>
+                <h3>Personal & Contact Dossier</h3>
+              </div>
+              
+              <ul class="info-list">
+                <li>
+                  <div class="info-label"><i class="fa-regular fa-envelope"></i> Email Address:</div>
+                  <div class="info-value" id="cardEmail">sayanandmp@gmail.com</div>
+                </li>
+                <li>
+                  <div class="info-label"><i class="fa-solid fa-phone"></i> Mobile Phone:</div>
+                  <div class="info-value" id="cardPhone">+91 6238798913</div>
+                </li>
+                <li>
+                  <div class="info-label"><i class="fa-regular fa-calendar-days"></i> Date of Birth:</div>
+                  <div class="info-value" id="cardDob">24-Nov-2004</div>
+                </li>
+                <li>
+                  <div class="info-label"><i class="fa-solid fa-venus-mars"></i> Gender:</div>
+                  <div class="info-value" id="cardGender">Male</div>
+                </li>
+                <li>
+                  <div class="info-label"><i class="fa-solid fa-location-dot"></i> Permanent Address:</div>
+                  <div class="info-value" id="cardAddress">Madappurakkal(H), Aduvappuram, Malappattam(P.O), 670631, Kannur, Kerala</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Semester SGPA Summary Card -->
+            <div class="dossier-card">
+              <div class="card-heading">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Semester-Wise SGPA Summary</h3>
+              </div>
+              <div class="sgpa-summary-list">
+                <div class="sgpa-row"><span>Semester 1 (S1)</span><strong>6.00 SGPA</strong> <span class="badge-credits">17 Credits</span></div>
+                <div class="sgpa-row"><span>Semester 2 (S2)</span><strong>6.55 SGPA</strong> <span class="badge-credits">21 Credits</span></div>
+                <div class="sgpa-row"><span>Semester 3 (S3)</span><strong>6.50 SGPA</strong> <span class="badge-credits">22 Credits</span></div>
+                <div class="sgpa-row highlight"><span>Semester 4 (S4)</span><strong>7.68 SGPA</strong> <span class="badge-credits">22 Credits</span></div>
+                <div class="sgpa-row"><span>Semester 5 (S5)</span><strong>7.26 SGPA</strong> <span class="badge-credits">23 Credits</span></div>
+                <div class="sgpa-row highlight"><span>Semester 6 (S6)</span><strong>7.28 SGPA</strong> <span class="badge-credits">23 Credits</span></div>
+              </div>
+            </div>
+
+            <!-- Target Companies Box -->
+            <div class="dossier-card">
+              <div class="card-heading">
+                <i class="fa-solid fa-building-circle-check"></i>
+                <h3>Target Placement Companies</h3>
+              </div>
+              <div class="company-tags-wrap" id="cardCompaniesContainer">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+
+            <!-- Extracurricular Activities Box -->
+            <div class="dossier-card">
+              <div class="card-heading">
+                <i class="fa-solid fa-award"></i>
+                <h3>Extracurricular & Co-Curricular</h3>
+              </div>
+              <div class="activity-tags-wrap" id="cardActivitiesContainer">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Academic Record Table & Technical Skills -->
+          <div class="profile-col-right">
+            
+            <!-- Academic Performance Table Card -->
+            <div class="dossier-card">
+              <div class="card-heading-with-filter">
+                <div class="heading-title">
+                  <i class="fa-solid fa-chart-column"></i>
+                  <h3>KTU Academic Record & Internal Evaluation</h3>
+                </div>
+                <div class="card-sem-filter">
+                  <select id="profileSemFilter" onchange="filterProfileAcademicTable(this.value)">
+                    <option value="ALL" selected>All Semesters (S1–S6)</option>
+                    <option value="Semester 1">Semester 1 (S1)</option>
+                    <option value="Semester 2">Semester 2 (S2)</option>
+                    <option value="Semester 3">Semester 3 (S3)</option>
+                    <option value="Semester 4">Semester 4 (S4)</option>
+                    <option value="Semester 5">Semester 5 (S5)</option>
+                    <option value="Semester 6">Semester 6 (S6)</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="table-responsive">
+                <table class="academic-table display-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 14%;">Sem</th>
+                      <th style="width: 36%;">Course Code & Subject Name</th>
+                      <th style="width: 16%;">Internal Marks</th>
+                      <th style="width: 10%;">Grade</th>
+                      <th style="width: 12%;">SGPA</th>
+                      <th style="width: 12%;">CGPA</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cardAcademicTableBody">
+                    <!-- Dynamic Rows Rendered Here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Technical Skills Card -->
+            <div class="dossier-card">
+              <div class="card-heading">
+                <i class="fa-solid fa-terminal"></i>
+                <h3>Technical Stack & Course Competencies</h3>
+              </div>
+              <div class="skills-tags-wrap" id="cardSkillsContainer">
+                <!-- Dynamic Skills Injected Here -->
+              </div>
+            </div>
+
+            <!-- Verification & Endorsement Card -->
+            <div class="dossier-card cert-endorsement">
+              <div class="endorsement-content">
+                <div class="endorsement-seal">
+                  <img src="stthomaskannur.png" alt="STM Seal" class="seal-inner-logo" />
+                </div>
+                <div class="endorsement-text">
+                  <h4>St. Thomas College of Engineering & Technology, Mattanur</h4>
+                  <p>Certified official student record for <strong>SAYANAND M P (STM23CS042)</strong> under the B.Tech Computer Science & Engineering program affiliated with APJ Abdul Kalam Technological University (KTU).</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand-info">
+        <img src="stthomaskannur.png" alt="STM Logo" class="footer-logo-img" />
+        <p>© 2024-2026 St. Thomas College of Engineering and Technology, Mattanur, Kannur | B.Tech Academic Portal</p>
+      </div>
+      <div class="footer-links">
+        <span><i class="fa-solid fa-shield-halved"></i> KTU Transcripts</span>
+        <span><i class="fa-solid fa-bolt"></i> Responsive & Verified</span>
+        <span><i class="fa-solid fa-file-pdf"></i> PDF Printable</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript File -->
+  <script src="script.js"></script>
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

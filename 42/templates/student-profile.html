@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Profile &amp; Academic Record | Sayand (CGPA 7.75)</title>
+  <meta name="description"
+    content="Official Student Profile Web Page featuring personal details, verified academic performance table (7.75 CGPA, Sem 4: 8.45 SGPA), skills, and extracurricular activities." />
+  <meta name="author" content="Sayand" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/student-profile.css" />
+</head>
+
+<body class="selection:bg-amber-100 selection:text-amber-900">
+
+  <canvas id="liquidCanvas"></canvas>
+
+  <header class="top-navbar">
+    <div class="nav-inner">
+      <div class="brand-wrapper">
+        <img src="static/images/profile.jpg" alt="Sayand" onerror="this.onerror=null; this.src='static/images/profile.png';" style="width:40px; height:40px; border-radius:var(--radius-md); object-fit:cover; border:1.5px solid var(--border-subtle); box-shadow:var(--shadow-sm);" />
+        <div class="brand-text">
+          <h1>Sayand</h1>
+          <p>Student Profile &bull; Computer Science &amp; Engineering &bull; Semester 7</p>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <a href="index.html" class="btn btn-secondary btn-sm" title="View Portfolio Home">
+          ← Portfolio Home
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border-subtle);">
+      <div>
+        <h2 style="font-size:1.75rem; font-weight:800; color:var(--ink-primary); margin:0;">Student Profile &amp; Academic Record</h2>
+        <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.25rem;">Immutable official student record &bull; Verified 7-semester academic performance telemetry.</p>
+      </div>
+    </div>
+
+    <div class="content-grid">
+
+      <div class="form-column">
+        <div class="student-dossier-wrap">
+
+          <div class="form-card-section">
+            <div class="section-header">
+              <div class="section-title-wrap">
+                <span class="section-num">01</span>
+                <div>
+                  <h3 class="section-title">Personal Details &amp; Identification</h3>
+                  <p class="section-subtitle">Student identity and academic affiliation</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Student Full Name</label>
+                <input type="text" class="input-field" value="Sayand" readonly />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Register Number</label>
+                <input type="text" class="input-field" value="stm23cs043" readonly />
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Department / Branch</label>
+                <input type="text" class="input-field" value="Computer Science & Engineering" readonly />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Current Semester</label>
+                <input type="text" class="input-field" value="Semester 7 (Final Year)" readonly />
+              </div>
+            </div>
+
+            <div class="form-grid-3">
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="input-field" value="sayand.r23@gmail.com" readonly />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Contact Mobile</label>
+                <div class="input-field" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;">
+                  <span class="blurred-phone" id="studentPhone">+91 99953 11232</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-muted);"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Date of Birth</label>
+                <input type="text" class="input-field" value="March 2026" readonly />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Permanent Address</label>
+              <textarea rows="2" class="textarea-field" readonly>Kuthuparamba, Kannur, Kerala</textarea>
+            </div>
+          </div>
+
+          <div class="form-card-section">
+            <div class="section-header">
+              <div class="section-title-wrap">
+                <span class="section-num">02</span>
+                <div>
+                  <h3 class="section-title">Demographics &amp; Favorite Companies</h3>
+                  <p class="section-subtitle">Gender, blood group, and preferred companies</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Gender</label>
+              <div class="radio-group-container">
+                <label class="radio-card-label" style="cursor:default;">
+                  <input type="radio" checked disabled class="custom-radio" />
+                  <span class="radio-text">
+                    <span>♂</span> Male
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Blood Group</label>
+                <input type="text" class="input-field" value="O+ (O Positive)" readonly />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Favorite Companies</label>
+                <input type="text" class="input-field" value="Tesla, IBM" readonly />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-card-section">
+            <div class="section-header">
+              <div class="section-title-wrap">
+                <span class="section-num">03</span>
+                <div>
+                  <h3 class="section-title">Technical Skills &amp; Proficiencies</h3>
+                  <p class="section-subtitle">Acquired programming languages, frameworks, and tools</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="checkbox-grid">
+              <div class="checkbox-card-label" style="cursor:default;">
+                <input type="checkbox" checked disabled class="custom-checkbox" />
+                <div class="checkbox-details">
+                  <span class="checkbox-title">Python Programming</span>
+                  <span class="checkbox-desc">Data analysis, Flask, AI logic</span>
+                </div>
+              </div>
+
+              <div class="checkbox-card-label" style="cursor:default;">
+                <input type="checkbox" checked disabled class="custom-checkbox" />
+                <div class="checkbox-details">
+                  <span class="checkbox-title">Java &amp; Android SDK</span>
+                  <span class="checkbox-desc">Native mobile systems &amp; Kotlin</span>
+                </div>
+              </div>
+
+              <div class="checkbox-card-label" style="cursor:default;">
+                <input type="checkbox" checked disabled class="custom-checkbox" />
+                <div class="checkbox-details">
+                  <span class="checkbox-title">HTML5, CSS3 &amp; JavaScript</span>
+                  <span class="checkbox-desc">Modern responsive web architecture</span>
+                </div>
+              </div>
+
+              <div class="checkbox-card-label" style="cursor:default;">
+                <input type="checkbox" checked disabled class="custom-checkbox" />
+                <div class="checkbox-details">
+                  <span class="checkbox-title">Data Structures &amp; Algorithms</span>
+                  <span class="checkbox-desc">Trees, graphs, dynamic programming</span>
+                </div>
+              </div>
+
+              <div class="checkbox-card-label" style="cursor:default;">
+                <input type="checkbox" checked disabled class="custom-checkbox" />
+                <div class="checkbox-details">
+                  <span class="checkbox-title">Flutter &amp; Dart</span>
+                  <span class="checkbox-desc">Cross-platform fluid mobile UIs</span>
+                </div>
+              </div>
+
+              <div class="checkbox-card-label" style="cursor:default;">
+                <input type="checkbox" checked disabled class="custom-checkbox" />
+                <div class="checkbox-details">
+                  <span class="checkbox-title">Databases (SQL &amp; Firebase)</span>
+                  <span class="checkbox-desc">PostgreSQL, queries, schema design</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-card-section">
+            <div class="section-header">
+              <div class="section-title-wrap">
+                <span class="section-num">04</span>
+                <div>
+                  <h3 class="section-title">Extracurricular Activities</h3>
+                  <p class="section-subtitle">Sports, interests, and recreation</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <div class="checkbox-card-label" style="cursor:default; display:flex; flex-direction:column; align-items:flex-start; gap:0.75rem;">
+                <div style="display:flex; align-items:center; gap:0.75rem;">
+                  <input type="checkbox" checked disabled class="custom-checkbox" />
+                  <span class="checkbox-title" style="font-size:1rem; font-weight:700; color:var(--text-primary);">Cricket</span>
+                </div>
+                <div style="padding-left:1.85rem;">
+                  <button type="button" class="fav-player-glowing" id="favPlayerTrigger" title="Hover to see favorite player" style="border:none; outline:none; font-family:inherit; font-size:0.85rem; cursor:pointer;">
+                    fav player
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-card-section">
+            <div class="section-header">
+              <div class="section-title-wrap">
+                <span class="section-num">05</span>
+                <div>
+                  <h3 class="section-title">Academic Record Table (7 Semesters)</h3>
+                  <p class="section-subtitle">
+                    Verified SGPA and cumulative CGPA progression.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="academic-table" id="academicPerformanceTable">
+                <thead>
+                  <tr>
+                    <th>Semester</th>
+                    <th>Term &amp; Core Coursework</th>
+                    <th>SGPA</th>
+                    <th>Cumulative CGPA</th>
+                  </tr>
+                </thead>
+                <tbody id="academicTableBody">
+                  
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-summary-footer" style="grid-template-columns: 1fr;">
+              <div class="summary-metric-card">
+                <span class="summary-metric-label">Cumulative CGPA</span>
+                <span class="summary-metric-val highlight" id="summaryAvgCgpa">7.75</span>
+                <span class="summary-metric-sub">Average of 7 Semesters</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <aside class="preview-sidebar">
+        <div class="student-id-card">
+          
+          <div class="card-top-strip">
+            <span>STUDENT SUMMARY</span>
+            <span class="card-logo-mini">CS &bull; S7</span>
+          </div>
+
+          <div class="id-card-body">
+            
+            <div class="id-photo-frame">
+              <img id="cardAvatarPreview" src="static/images/profile.jpg" alt="Sayand Portrait" onerror="this.onerror=null; this.src='static/images/profile.png';" />
+              <div class="id-status-dot" title="Active Enrolled Student"></div>
+            </div>
+
+            <h3 class="id-name" id="cardStudentName">Sayand</h3>
+            <span class="id-reg" id="cardRegNo">stm23cs043</span>
+            <div class="id-dept" id="cardDepartment">Computer Science &amp; Engineering &bull; Sem 7</div>
+
+            <div class="id-quick-grid">
+              <div class="id-detail-box">
+                <div class="id-detail-label">CGPA (7 Sems)</div>
+                <div class="id-detail-value highlight-cgpa" id="cardCgpa">7.75</div>
+              </div>
+
+              <div class="id-detail-box">
+                <div class="id-detail-label">Blood Group</div>
+                <div class="id-detail-value" id="cardBloodGroup">O+</div>
+              </div>
+
+              <div class="id-detail-box">
+                <div class="id-detail-label">Gender</div>
+                <div class="id-detail-value" id="cardGender">Male</div>
+              </div>
+
+              <div class="id-detail-box" style="grid-column: span 2;">
+                <div class="id-detail-label">Favorite Companies</div>
+                <div class="id-detail-value" style="color:#065F46;" id="cardCompany">Tesla, IBM</div>
+              </div>
+            </div>
+
+            <div class="id-skills-cloud">
+              <div class="id-skills-title">Active Competencies</div>
+              <div class="id-skills-tags" id="cardSkillsTags">
+                
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <div id="benStokesOverlay" class="fullscreen-blur-overlay">
+    <div class="fullscreen-blur-content">
+      <div class="fullscreen-blur-text" id="benStokesText">😊 benstokes</div>
+      <div class="fullscreen-blur-sub">Headingley 2019 Miracle Grit &bull; Click anywhere to dismiss</div>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="static/js/student-profile.js"></script>
+
+</body>
+
+</html>

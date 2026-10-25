@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athul Raj | Student Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="container">
+        
+        <!-- Top Navigation -->
+        <header class="navbar">
+            <div class="brand">
+                <span class="brand-title">Athul Raj</span>
+                <span class="brand-sep">/</span>
+                <span class="brand-sub">Academic Profile</span>
+            </div>
+            <div class="nav-tag">B.Tech Computer Science &bull; KTU</div>
+        </header>
+
+        <!-- Main Form -->
+        <form id="profileForm" onsubmit="return handleFormSubmit(event)">
+
+            <!-- Hero Section: ID Card & Key Details -->
+            <section class="card hero-section">
+                
+                <!-- Left: Full Uncropped Photo & CGPA Pill Directly Below -->
+                <div class="id-photo-column">
+                    <div class="id-photo-frame">
+                        <img src="new image.jpeg" alt="Athul Raj" class="id-photo-img" onerror="this.src='athul_full.jpeg'">
+                    </div>
+                    <!-- CGPA directly beneath photo as requested -->
+                    <div class="cgpa-badge">
+                        <span class="cgpa-label">CGPA</span>
+                        <span class="cgpa-number">2.74</span>
+                    </div>
+                </div>
+
+                <!-- Right: Identity & Academic Institution -->
+                <div class="hero-info">
+                    <div class="title-row">
+                        <h1 class="student-name">Athul Raj</h1>
+                        <span class="roll-pill">STM23CS012</span>
+                    </div>
+                    
+                    <p class="dept-text">Department of Computer Science &amp; Engineering</p>
+                    <p class="college-text">St. Thomas College of Engineering and Technology, Mattanur</p>
+
+                    <!-- Contact Details Strip -->
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <span class="item-icon">✉</span>
+                            <span>athul94967@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="item-icon">✆</span>
+                            <span>+91 94967 82145</span>
+                        </div>
+                        <div class="contact-item full-width">
+                            <span class="item-icon">⚲</span>
+                            <span>Heights, Mundayad, (PO) Chovva, Kannur</span>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Personal & Recruitment Details -->
+            <section class="card form-section">
+                <div class="section-header">
+                    <h2 class="section-title">Personal Details</h2>
+                    <span class="section-hint">Student background &amp; preferences</span>
+                </div>
+
+                <div class="controls-row">
+                    <!-- Gender Radio -->
+                    <div class="input-block">
+                        <label class="block-label">Gender</label>
+                        <div class="pill-toggle-group">
+                            <label class="toggle-pill">
+                                <input type="radio" name="gender" value="Male" checked>
+                                <span>Male</span>
+                            </label>
+                            <label class="toggle-pill">
+                                <input type="radio" name="gender" value="Female">
+                                <span>Female</span>
+                            </label>
+                            <label class="toggle-pill">
+                                <input type="radio" name="gender" value="Other">
+                                <span>Other</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Blood Group Dropdown -->
+                    <div class="input-block">
+                        <label for="bloodGroup" class="block-label">Blood Group</label>
+                        <select id="bloodGroup" class="minimal-select">
+                            <option value="O+" selected>O+ (Positive)</option>
+                            <option value="A+">A+ (Positive)</option>
+                            <option value="A-">A- (Negative)</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+
+                    <!-- Company Dropdown -->
+                    <div class="input-block">
+                        <label for="targetCompany" class="block-label">Interested Company</label>
+                        <select id="targetCompany" class="minimal-select">
+                            <option value="Infosys" selected>Infosys</option>
+                            <option value="TCS">TCS</option>
+                            <option value="Wipro">Wipro</option>
+                            <option value="Cognizant">Cognizant</option>
+                            <option value="Accenture">Accenture</option>
+                            <option value="Google">Google</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Academic Performance Table -->
+            <section class="card form-section">
+                <div class="section-header">
+                    <h2 class="section-title">Academic Performance</h2>
+                    <span class="section-hint">Semester-wise examination records</span>
+                </div>
+
+                <!-- Semester Tab Switcher -->
+                <div class="sem-tabs-bar">
+                    <button type="button" class="tab-btn active" onclick="loadSemester('S1')">Semester 1</button>
+                    <button type="button" class="tab-btn" onclick="loadSemester('S2')">Semester 2</button>
+                    <button type="button" class="tab-btn" onclick="loadSemester('S3')">Semester 3</button>
+                    <button type="button" class="tab-btn" onclick="loadSemester('S4')">Semester 4</button>
+                    <button type="button" class="tab-btn" onclick="loadSemester('S5')">Semester 5</button>
+                    <button type="button" class="tab-btn" onclick="loadSemester('S6')">Semester 6</button>
+                </div>
+
+                <!-- Overview Banner -->
+                <div class="sem-overview-banner">
+                    <span class="sem-banner-title" id="semBannerTitle">Semester 1 Course Evaluation</span>
+                    <div class="sgpa-chip">
+                        <span>Semester SGPA:</span>
+                        <strong id="semSgpaValue">3.10</strong>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="table-wrap">
+                    <table class="clean-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code &amp; Title</th>
+                                <th class="align-center">Internal Mark (/50)</th>
+                                <th class="align-center">Attendance</th>
+                                <th class="align-center">Result</th>
+                            </tr>
+                        </thead>
+                        <tbody id="marksTableBody">
+                            <!-- Populated dynamically via script.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Technical Skills -->
+            <section class="card form-section">
+                <div class="section-header">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <span class="section-hint">Core proficiencies &amp; technologies</span>
+                </div>
+                <div class="skills-wrap">
+                    <span class="minimal-skill-tag">HTML / CSS</span>
+                    <span class="minimal-skill-tag">JavaScript</span>
+                    <span class="minimal-skill-tag">Python</span>
+                    <span class="minimal-skill-tag">Java</span>
+                    <span class="minimal-skill-tag">C Programming</span>
+                    <span class="minimal-skill-tag">DBMS &amp; SQL</span>
+                    <span class="minimal-skill-tag">Data Structures</span>
+                </div>
+            </section>
+
+            <!-- Extracurricular Activities -->
+            <section class="card form-section">
+                <div class="section-header">
+                    <h2 class="section-title">Extracurricular Activities</h2>
+                    <span class="section-hint">Clubs, athletics &amp; societies</span>
+                </div>
+                <div class="checkbox-row">
+                    <label class="clean-checkbox">
+                        <input type="checkbox" name="activities" value="NSS">
+                        <span class="check-indicator"></span>
+                        <span class="activity-text">NSS</span>
+                    </label>
+                    <label class="clean-checkbox">
+                        <input type="checkbox" name="activities" value="NCC">
+                        <span class="check-indicator"></span>
+                        <span class="activity-text">NCC</span>
+                    </label>
+                    <label class="clean-checkbox">
+                        <input type="checkbox" name="activities" value="Sports" checked>
+                        <span class="check-indicator"></span>
+                        <span class="activity-text">Sports Team</span>
+                    </label>
+                    <label class="clean-checkbox">
+                        <input type="checkbox" name="activities" value="Coding Club" checked>
+                        <span class="check-indicator"></span>
+                        <span class="activity-text">Coding Club</span>
+                    </label>
+                    <label class="clean-checkbox">
+                        <input type="checkbox" name="activities" value="CSI" checked>
+                        <span class="check-indicator"></span>
+                        <span class="activity-text">CSI</span>
+                    </label>
+                    <label class="clean-checkbox">
+                        <input type="checkbox" name="activities" value="Arts Club">
+                        <span class="check-indicator"></span>
+                        <span class="activity-text">Arts Club</span>
+                    </label>
+                    <label class="clean-checkbox">
+                        <input type="checkbox" name="activities" value="Debate Club">
+                        <span class="check-indicator"></span>
+                        <span class="activity-text">Debate Club</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Actions Bar -->
+            <div class="actions-bar">
+                <button type="submit" class="btn btn-black">Submit Profile</button>
+                <button type="reset" class="btn btn-white" onclick="resetForm()">Reset</button>
+            </div>
+
+        </form>
+
+        <div id="toastMessage" class="minimal-toast">Profile submitted successfully</div>
+
+    </main>
+
+    <script src="script.js"></script>
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Student Profile Web Page">
+
+    <title>Student Profile</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="header-content">
+
+            <h1>STUDENT PROFILE</h1>
+
+            <p>
+                Computer Science and Engineering
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN CONTAINER ================= -->
+
+    <main class="container">
+
+
+        <!-- ================= PROFILE SECTION ================= -->
+
+        <section class="profile-card">
+
+            <div class="photo-container">
+
+                <img src="images/profile.jpg"
+                     alt="Student Profile Photo"
+                     id="profilePhoto">
+
+            </div>
+
+
+            <div class="profile-details">
+
+                <h2 id="displayName">
+                    SHYAMJITH M
+                </h2>
+
+                <p>
+                    <strong>Register Number:</strong>
+                    <span id="displayRollNo">
+                        STM23CS047
+                    </span>
+                </p>
+
+                <p>
+                    <strong>Department:</strong>
+                    Computer Science and Engineering
+                </p>
+
+                <p>
+                    <strong>College:</strong>
+                    St. Thomas College of Engineering and Technology, Kannur
+                </p>
+
+                <p>
+                    <strong>Email:</strong>
+                    shyamjithm0904@gmail.com
+                </p>
+
+                <p>
+                    <strong>Phone:</strong>
+                    +91 333-333-3333
+                </p>
+
+                <p>
+                    <strong>Date of Birth:</strong>
+                    09/04/2005
+                </p>
+
+                <p>
+                    <strong>Address:</strong>
+                    Thilannur, P.O.Thazhe Chovva, Kannur, Kerala.
+                </p>
+                
+                <p>
+                    <strong>CGPA:</strong>
+                    8.82
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- ================= PERSONAL DETAILS ================= -->
+
+        <section class="card">
+
+            <h2 class="section-title">
+                Personal Details
+            </h2>
+
+
+            <div class="form-group">
+
+                <label>
+                    Gender:
+                </label>
+
+                <div class="radio-group">
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="Male"
+                            checked>
+                        Male
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="Female">
+                        Female
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="Other">
+                        Other
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="bloodGroup">
+                    Blood Group:
+                </label>
+
+                <select id="bloodGroup">
+
+                    <option value="">
+                        B+
+                    </option>
+
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="company">
+                    Interested Company:
+                </label>
+
+                <select id="company">
+
+                    <option value="">
+                        Google
+                    </option>
+
+                    <option value="Infosys">
+                        Infosys
+                    </option>
+
+                    <option value="TCS">
+                        TCS
+                    </option>
+
+                    <option value="Wipro">
+                        Wipro
+                    </option>
+
+                    <option value="Accenture">
+                        Accenture
+                    </option>
+
+                    <option value="Cognizant">
+                        Cognizant
+                    </option>
+
+                    <option value="IBM">
+                        IBM
+                    </option>
+
+                    <option value="Microsoft">
+                        Microsoft
+                    </option>
+
+                    <option value="Google">
+                        Google
+                    </option>
+
+                    <option value="Amazon">
+                        Amazon
+                    </option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ACADEMIC DETAILS ================= -->
+
+        <section class="card">
+
+            <h2 class="section-title">
+                Academic Performance
+            </h2>
+
+
+            <nav class="semester-tabs" aria-label="Choose semester">
+                <button class="semester-tab active" type="button" data-semester="s1" aria-selected="true">S1</button>
+                <button class="semester-tab" type="button" data-semester="s2" aria-selected="false">S2</button>
+                <button class="semester-tab" type="button" data-semester="s3" aria-selected="false">S3</button>
+                <button class="semester-tab" type="button" data-semester="s4" aria-selected="false">S4</button>
+                <button class="semester-tab" type="button" data-semester="s5" aria-selected="false">S5</button>
+                <button class="semester-tab" type="button" data-semester="s6" aria-selected="false">S6</button>
+            </nav>
+
+            <div class="semester-panel active" id="s1" role="tabpanel">
+                <div class="table-container"><table>
+                    <thead><tr><th>Course Name</th><th>Internal Mark</th><th>Attendance</th></tr></thead>
+                    <tbody>
+                        <tr><td>LINEAR ALGEBRA AND CALCULUS (MAT101)</td><td>50.0</td><td>100.0%</td></tr>
+                        <tr><td>ENGINEERING CHEMISTRY (CYT100)</td><td>47.0</td><td>100.0%</td></tr>
+                        <tr><td>ENGINEERING MECHANICS (EST100)</td><td>48.0</td><td>100.0%</td></tr>
+                        <tr><td>BASICS OF CIVIL AND MECHANICAL ENGINEERING (EST120)</td><td>48.0</td><td>100.0%</td></tr>
+                        <tr><td>LIFE SKILLS (HUN101)</td><td>47.0</td><td>100.0%</td></tr>
+                        <tr><td>ENGINEERING CHEMISTRY LAB (CYL120)</td><td>97.0</td><td>100.0%</td></tr>
+                        <tr><td>CIVIL AND MECHANICAL WORKSHOP (ESL120)</td><td>95.0</td><td>100.0%</td></tr>
+                        <tr class="sgpa-row"><th colspan="2">SGPA</th><td>9.26</td></tr>
+                    </tbody>
+                </table></div>
+            </div>
+
+            <div class="semester-panel" id="s2" role="tabpanel" hidden>
+                <div class="table-container"><table>
+                    <thead><tr><th>Course Name</th><th>Internal Mark</th><th>Attendance</th></tr></thead>
+                    <tbody>
+                        <tr><td>ENGINEERING PHYSICS A (PHT100)</td><td>47.0</td><td>95.0%</td></tr>
+                        <tr><td>ENGINEERING GRAPHICS (EST110)</td><td>43.0</td><td>93.0%</td></tr>
+                        <tr><td>BASICS OF ELECTRICAL AND ELECTRONICS ENGINEERING (EST130)</td><td>49.0</td><td>96.0%</td></tr>
+                        <tr><td>ENGINEERING PHYSICS LAB (PHL120)</td><td>91.0</td><td>100.0%</td></tr>
+                        <tr><td>ELECTRICAL AND ELECTRONICS WORKSHOP (ESL130)</td><td>90.0</td><td>100.0%</td></tr>
+                        <tr><td>VECTOR CALCULUS, DIFFERENTIAL EQUATIONS AND TRANSFORMS (MAT102)</td><td>49.0</td><td>100.0%</td></tr>
+                        <tr><td>PROFESSIONAL COMMUNICATION (HUN102)</td><td>46.0</td><td>96.0%</td></tr>
+                        <tr><td>PROGRAMMING IN C (EST102)</td><td>49.0</td><td>99.0%</td></tr>
+                        <tr class="sgpa-row"><th colspan="2">SGPA</th><td>9.24</td></tr>
+                    </tbody>
+                </table></div>
+            </div>
+
+            <div class="semester-panel" id="s3" role="tabpanel" hidden>
+                <div class="table-container"><table>
+                    <thead><tr><th>Course Name</th><th>Internal Mark</th><th>Attendance</th></tr></thead>
+                    <tbody>
+                        <tr><td>DESIGN AND ENGINEERING (EST200)</td><td>50.0</td><td>95.0%</td></tr>
+                        <tr><td>SUSTAINABLE ENGINEERING (MCN201)</td><td>49.0</td><td>97.44%</td></tr>
+                        <tr><td>DISCRETE MATHEMATICAL STRUCTURES (MAT203)</td><td>49.0</td><td>97.0%</td></tr>
+                        <tr><td>DATA STRUCTURES (CST201)</td><td>47.0</td><td>98.0%</td></tr>
+                        <tr><td>LOGIC SYSTEM DESIGN (CST203)</td><td>45.0</td><td>99.0%</td></tr>
+                        <tr><td>OBJECT ORIENTED PROGRAMMING USING JAVA (CST205)</td><td>48.0</td><td>99.0%</td></tr>
+                        <tr><td>DATA STRUCTURES LAB (CSL201)</td><td>72.0</td><td>100.0%</td></tr>
+                        <tr><td>OBJECT ORIENTED PROGRAMMING LAB (IN JAVA) (CSL203)</td><td>72.0</td><td>100.0%</td></tr>
+                        <tr class="sgpa-row"><th colspan="2">SGPA</th><td>8.77</td></tr>
+                    </tbody>
+                </table></div>
+            </div>
+
+            <div class="semester-panel" id="s4" role="tabpanel" hidden>
+                <div class="table-container"><table>
+                    <thead><tr><th>Course Name</th><th>Internal Mark</th><th>Attendance</th></tr></thead>
+                    <tbody>
+                        <tr><td>PROFESSIONAL ETHICS (HUT200)</td><td>48.0</td><td>98.0%</td></tr>
+                        <tr><td>CONSTITUTION OF INDIA (MCN202)</td><td>49.0</td><td>97.0%</td></tr>
+                        <tr><td>GRAPH THEORY (MAT206)</td><td>49.0</td><td>97.0%</td></tr>
+                        <tr><td>COMPUTER ORGANISATION AND ARCHITECTURE (CST202)</td><td>48.0</td><td>97.0%</td></tr>
+                        <tr><td>DATABASE MANAGEMENT SYSTEMS (CST204)</td><td>48.0</td><td>97.0%</td></tr>
+                        <tr><td>OPERATING SYSTEMS (CST206)</td><td>47.0</td><td>100.0%</td></tr>
+                        <tr><td>DIGITAL LAB (CSL202)</td><td>73.0</td><td>100.0%</td></tr>
+                        <tr><td>OPERATING SYSTEMS LAB (CSL204)</td><td>74.0</td><td>100.0%</td></tr>
+                        <tr class="sgpa-row"><th colspan="2">SGPA</th><td>9.09</td></tr>
+                    </tbody>
+                </table></div>
+            </div>
+
+            <div class="semester-panel" id="s5" role="tabpanel" hidden>
+                <div class="table-container"><table>
+                    <thead><tr><th>Course Name</th><th>Internal Mark</th><th>Attendance</th></tr></thead>
+                    <tbody>
+                        <tr><td>DISASTER MANAGEMENT (MCN301)</td><td>46.0</td><td>100.0%</td></tr>
+                        <tr><td>FORMAL LANGUAGES AND AUTOMATA THEORY (CST301)</td><td>48.0</td><td>97.0%</td></tr>
+                        <tr><td>COMPUTER NETWORKS (CST303)</td><td>49.0</td><td>98.0%</td></tr>
+                        <tr><td>SYSTEM SOFTWARE (CST305)</td><td>48.0</td><td>97.0%</td></tr>
+                        <tr><td>MICROPROCESSORS AND MICROCONTROLLERS (CST307)</td><td>42.0</td><td>98.0%</td></tr>
+                        <tr><td>MANAGEMENT OF SOFTWARE SYSTEMS (CST309)</td><td>44.0</td><td>98.0%</td></tr>
+                        <tr><td>SYSTEM SOFTWARE AND MICROPROCESSORS LAB (CSL331)</td><td>73.0</td><td>100.0%</td></tr>
+                        <tr><td>DATABASE MANAGEMENT SYSTEMS LAB (CSL333)</td><td>72.0</td><td>100.0%</td></tr>
+                        <tr class="sgpa-row"><th colspan="2">SGPA</th><td>8.54</td></tr>
+                    </tbody>
+                </table></div>
+            </div>
+
+            <div class="semester-panel" id="s6" role="tabpanel" hidden>
+                <div class="table-container"><table>
+                    <thead><tr><th>Course Name</th><th>Internal Mark</th><th>Attendance</th></tr></thead>
+                    <tbody>
+                        <tr><td>INDUSTRIAL ECONOMICS AND FOREIGN TRADE (HUT300)</td><td>45.0</td><td>98.0%</td></tr>
+                        <tr><td>COMPILER DESIGN (CST302)</td><td>47.0</td><td>96.0%</td></tr>
+                        <tr><td>COMPUTER GRAPHICS AND IMAGE PROCESSING (CST304)</td><td>48.0</td><td>97.0%</td></tr>
+                        <tr><td>ALGORITHM ANALYSIS AND DESIGN (CST306)</td><td>46.0</td><td>99.0%</td></tr>
+                        <tr><td>COMPREHENSIVE COURSE WORK (CST308)</td><td>NA</td><td>100.0%</td></tr>
+                        <tr><td>NETWORKING LAB (CSL332)</td><td>74.0</td><td>100.0%</td></tr>
+                        <tr><td>MINIPROJECT (CSD334)</td><td>70.0</td><td>100.0%</td></tr>
+                        <tr><td>PROGRAMMING IN PYTHON (CST362)</td><td>48.0</td><td>97.0%</td></tr>
+                        <tr class="sgpa-row"><th colspan="2">SGPA</th><td>8.20</td></tr>
+                    </tbody>
+                </table></div>
+            </div>
+
+        </section>
+
+
+        <!-- ================= SKILLS ================= -->
+
+        <section class="card">
+
+            <h2 class="section-title">
+                Technical Skills
+            </h2>
+
+
+            <div class="skills">
+
+                <span>C</span>
+
+                <span>C++</span>
+
+                <span>HTML</span>
+
+                <span>CSS</span>
+
+                <span>JavaScript</span>
+
+                <span>Flutter</span>
+
+                <span>Dart</span>
+
+                <span>React</span>
+
+                <span>MongoDB</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ACTIVITIES ================= -->
+
+        <section class="card">
+
+            <h2 class="section-title">
+               Extracurricular Activities
+            </h2>
+
+
+            <div class="checkbox-group">
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        name="activity"
+                        value="Sports"
+                        checked>
+
+                    Sports
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        name="activity"
+                        value="Arts">
+
+                    Arts
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        name="activity"
+                        value="Technical Events"
+                        checked>
+
+                    Technical Events
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        name="activity"
+                        value="Hackathon"
+                        checked>
+
+                    Hackathon
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        name="activity"
+                        value="Volunteering"
+                        checked>
+
+                    Volunteering
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FORM ================= -->
+
+        <section class="card">
+
+            <h2 class="section-title">
+                Student Information Form
+            </h2>
+
+
+            <form id="studentForm">
+
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label for="name">
+                            Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter your name">
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="rollNo">
+                            Roll Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="rollNo"
+                            placeholder="Enter roll number">
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email">
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Enter phone number">
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="message">
+                        Message
+                    </label>
+
+                    <textarea
+                        id="message"
+                        rows="5"
+                        placeholder="Enter your message">
+                    </textarea>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <button
+                        type="submit"
+                        class="btn primary">
+                        Submit
+                    </button>
+
+
+                    <button
+                        type="reset"
+                        class="btn secondary"
+                        id="resetButton">
+                        Reset
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn validate"
+                        id="validateButton">
+                        Validate
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <p
+                id="formMessage"
+                class="form-message">
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 Student Profile Web Page
+        </p>
+
+    </footer>
+
+
+    <script src="js/script.js"></script>
+
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+
+</html>

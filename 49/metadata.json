@@ -1,0 +1,6 @@
+{
+  "name": "Student Profile & Academic Task Manager",
+  "description": "Interactive Student Profile and Academic Task Management Portal featuring personal details, photo preview, blood group, interested recruiters, CGPA/SGPA and internal marks tables, skills, NSS/extracurricular activities, and form validation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

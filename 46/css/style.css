@@ -1,0 +1,627 @@
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f2f5f8;
+
+    color: #222;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+
+    background: #1f3c88;
+
+    color: white;
+
+    padding: 35px 20px;
+
+    text-align: center;
+
+    border-bottom: 5px solid #162d68;
+}
+
+.header-content h1 {
+
+    font-size: 34px;
+
+    margin-bottom: 5px;
+}
+
+.header-content p {
+
+    font-size: 16px;
+
+    opacity: 0.9;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+
+    width: 90%;
+
+    max-width: 1100px;
+
+    margin: 35px auto;
+}
+
+
+/* =========================
+   PROFILE CARD
+========================= */
+
+.profile-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 35px;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.08);
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   PHOTO
+========================= */
+
+.photo-container {
+
+    width: 180px;
+
+    height: 210px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    border: 4px solid #1f3c88;
+}
+
+.photo-container img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* =========================
+   PROFILE DETAILS
+========================= */
+
+.profile-details h2 {
+
+    color: #1f3c88;
+
+    font-size: 28px;
+
+    margin-bottom: 15px;
+}
+
+.profile-details p {
+
+    margin-bottom: 7px;
+
+    color: #444;
+}
+
+
+/* =========================
+   GENERAL CARD
+========================= */
+
+.card {
+
+    background: white;
+
+    padding: 30px;
+
+    margin-bottom: 25px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title {
+
+    color: #1f3c88;
+
+    font-size: 24px;
+
+    margin-bottom: 25px;
+
+    border-left: 5px solid #1f3c88;
+
+    padding-left: 12px;
+}
+
+
+/* =========================
+   FORM GROUP
+========================= */
+
+.form-group {
+
+    margin-bottom: 20px;
+}
+
+.form-group > label {
+
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+
+/* =========================
+   RADIO BUTTONS
+========================= */
+
+.radio-group {
+
+    display: flex;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+}
+
+.radio-group label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   SELECT
+========================= */
+
+select {
+
+    width: 100%;
+
+    max-width: 400px;
+
+    padding: 11px;
+
+    border: 1px solid #bbb;
+
+    border-radius: 6px;
+
+    background: white;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-container {
+
+    overflow-x: auto;
+}
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 600px;
+}
+
+table th {
+
+    background: #1f3c88;
+
+    color: white;
+
+    padding: 13px;
+
+    text-align: center;
+}
+
+table td {
+
+    border: 1px solid #ccc;
+
+    padding: 12px;
+
+    text-align: center;
+}
+
+table tbody tr:nth-child(even) {
+
+    background: #f2f5f8;
+}
+
+table tbody tr:hover {
+
+    background: #e7edf8;
+}
+
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.skills span {
+
+    background: #1f3c88;
+
+    color: white;
+
+    padding: 9px 16px;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   CHECKBOX
+========================= */
+
+.checkbox-group {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.checkbox-group label {
+
+    background: #f3f6fa;
+
+    padding: 12px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    border: 1px solid #ddd;
+}
+
+.checkbox-group label:hover {
+
+    background: #e7edf8;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 20px;
+}
+
+.input-group {
+
+    margin-bottom: 20px;
+}
+
+.input-group label {
+
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #bbb;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    font-family: inherit;
+}
+
+textarea {
+
+    resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+
+    outline: none;
+
+    border-color: #1f3c88;
+
+    box-shadow:
+        0 0 0 2px rgba(
+            31,
+            60,
+            136,
+            0.15
+        );
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-top: 10px;
+}
+
+.btn {
+
+    padding: 11px 22px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.primary {
+
+    background: #1f3c88;
+
+    color: white;
+}
+
+.primary:hover {
+
+    background: #162d68;
+}
+
+.secondary {
+
+    background: #777;
+
+    color: white;
+}
+
+.secondary:hover {
+
+    background: #555;
+}
+
+.validate {
+
+    background: #198754;
+
+    color: white;
+}
+
+.validate:hover {
+
+    background: #146c43;
+}
+
+
+/* =========================
+   FORM MESSAGE
+========================= */
+
+.form-message {
+
+    margin-top: 15px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    background: #1f3c88;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 20px;
+
+    margin-top: 40px;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 750px) {
+
+    .profile-card {
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .photo-container {
+
+        width: 160px;
+
+        height: 190px;
+    }
+
+    .checkbox-group {
+
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .form-row {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .header-content h1 {
+
+        font-size: 26px;
+    }
+
+    .checkbox-group {
+
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+
+        padding: 20px;
+    }
+}
+
+.semester-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 0 0 20px;
+}
+
+.semester-tab {
+    border: 1px solid #1f3c88;
+    border-radius: 5px;
+    padding: 9px 18px;
+    background: white;
+    color: #1f3c88;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.semester-tab:hover,
+.semester-tab.active {
+    background: #1f3c88;
+    color: white;
+}
+
+.semester-tab:focus-visible {
+    outline: 3px solid rgba(31, 60, 136, 0.3);
+    outline-offset: 2px;
+}
+
+.semester-panel[hidden] {
+    display: none;
+}
+
+.semester-panel table {
+    min-width: 520px;
+}
+
+.semester-panel table td:first-child {
+    text-align: left;
+}
+
+.semester-panel .sgpa-row {
+    background: #e7edf8;
+    font-weight: bold;
+}
+
+.semester-panel .sgpa-row th {
+    background: #e7edf8;
+    color: #1f3c88;
+    text-align: right;
+}

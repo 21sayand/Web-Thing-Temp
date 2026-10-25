@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Profile | St Thomas College of Engineering and Technology, Kannur</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- soft floating petals -->
+  <div class="petal" style="width:70px;height:70px;top:12%;left:4%;"></div>
+  <div class="petal" style="width:48px;height:48px;top:55%;left:2%;animation-delay:2.5s;"></div>
+  <div class="petal" style="width:85px;height:85px;top:8%;right:3%;animation-delay:1.2s;"></div>
+  <div class="petal" style="width:45px;height:45px;top:70%;right:6%;animation-delay:3.4s;"></div>
+
+  <!-- ===== Academic Portal Top Navigation ===== -->
+  <header class="portal-header">
+    <div class="header-container">
+      <div class="college-brand">
+        <div class="college-crest">
+          <img src="stthomas-logo.png" alt="St Thomas College of Engineering and Technology Logo" class="college-crest-img" />
+        </div>
+        <div class="brand-text">
+          <h1 class="college-title">St Thomas College of Engineering and Technology</h1>
+          <p class="college-subtitle">Mattannur, Kannur, Kerala &bull; Affiliated to APJ Abdul Kalam Technological University</p>
+        </div>
+      </div>
+      <div class="header-meta">
+        <span class="portal-badge">Academic &amp; Placement Portal</span>
+        <span class="session-badge">Academic Year 2026–2027</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Main Container ===== -->
+  <main class="page-wrapper">
+
+    <!-- ===== Quick Status Banner ===== -->
+    <section class="student-quick-banner">
+      <div class="quick-banner-inner">
+        <div class="banner-avatar-wrap">
+          <img id="bannerPhoto" src="" alt="Profile Picture" class="banner-photo" />
+          <span class="initials" id="bannerInitials">AP</span>
+          <span class="status-indicator" title="Active Student"></span>
+        </div>
+        <div class="banner-info">
+          <div class="name-row">
+            <h2 id="bannerName">Anusree Prakashan</h2>
+            <span class="verified-tag">&#10003; Verified Profile</span>
+          </div>
+          <div class="meta-row">
+            <span><strong>Reg No:</strong> <span id="bannerRegNo">LSTM23CS058</span></span>
+            <span>&bull;</span>
+            <span><strong>Program:</strong> <span id="bannerDegree">BTech in Computer Science and Engineering</span> (<span id="bannerBranch">CSE</span>)</span>
+          </div>
+        </div>
+        <div class="banner-stats">
+          <div class="stat-box primary">
+            <span class="stat-label">Cumulative CGPA</span>
+            <span class="stat-value" id="bannerCGPA">8.11</span>
+            <span class="stat-sub">First Class with Distinction</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Current Status</span>
+            <span class="stat-value text-green">Eligible</span>
+            <span class="stat-sub">Placement Ready</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="portal-grid">
+
+      <!-- ================================================ -->
+      <!-- LEFT COLUMN: Profile Form (Editor)               -->
+      <!-- ================================================ -->
+      <section class="portal-card form-section">
+        <div class="card-header">
+          <div class="header-icon-title">
+            <span class="card-icon">&#9998;</span>
+            <div>
+              <h3>Profile Information &amp; Preferences Form</h3>
+              <p class="card-desc">Update personal details, company preferences, and co-curricular records</p>
+            </div>
+          </div>
+          <button type="button" id="loadDefaultsBtn" class="btn btn-outline-sm">&#8635; Load College Defaults</button>
+        </div>
+
+        <form id="studentProfileForm" novalidate>
+
+          <!-- Section 1: Personal Details -->
+          <fieldset class="form-group-fieldset">
+            <legend class="fieldset-legend">1. Personal &amp; Contact Details</legend>
+
+            <div class="photo-upload-row">
+              <div class="photo-preview-box">
+                <img id="formPhotoPreview" src="" alt="Form Photo Preview" />
+                <span class="initials" id="formInitials">AP</span>
+              </div>
+              <div class="photo-upload-controls">
+                <label class="form-label" for="studentPhoto">Upload Profile Photograph</label>
+                <div class="file-input-wrapper">
+                  <input type="file" id="studentPhoto" accept="image/png, image/jpeg, image/webp" class="file-input" />
+                  <span class="file-help">Accepted formats: JPG, PNG, WEBP. Ideal for ID cards &amp; placement dossiers.</span>
+                </div>
+                <button type="button" id="resetPhotoBtn" class="btn btn-ghost-sm" style="display:none;">Remove Custom Photo</button>
+              </div>
+            </div>
+
+            <div class="form-row-grid cols-2">
+              <div class="input-control">
+                <label for="fullName" class="form-label">Full Name <span class="req">*</span></label>
+                <input type="text" id="fullName" value="Anusree Prakashan" />
+                <span class="error-msg" data-for="fullName">Enter a valid name (letters only, min 3 characters).</span>
+              </div>
+              <div class="input-control">
+                <label for="regNo" class="form-label">Register Number <span class="req">*</span></label>
+                <input type="text" id="regNo" value="LSTM23CS058" />
+                <span class="error-msg" data-for="regNo">Enter a valid register number.</span>
+              </div>
+              <div class="input-control">
+                <label for="dob" class="form-label">Date of Birth <span class="req">*</span></label>
+                <input type="date" id="dob" value="2002-11-05" />
+                <span class="error-msg" data-for="dob">Please select your date of birth.</span>
+              </div>
+              <div class="input-control">
+                <label for="phone" class="form-label">Phone Number <span class="req">*</span></label>
+                <input type="tel" id="phone" value="8848198404" maxlength="10" />
+                <span class="error-msg" data-for="phone">Enter a valid 10-digit Indian mobile number.</span>
+              </div>
+              <div class="input-control full">
+                <label for="email" class="form-label">Email Address <span class="req">*</span></label>
+                <input type="email" id="email" value="anusreeprakashan1105@gmail.com" />
+                <span class="error-msg" data-for="email">Enter a valid email address.</span>
+              </div>
+              <div class="input-control full">
+                <label for="address" class="form-label">Address <span class="req">*</span></label>
+                <textarea id="address" rows="2">Prarthana, P.O. Palayad</textarea>
+                <span class="error-msg" data-for="address">Address must be at least 5 characters.</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Section 2: Demographic Details -->
+          <fieldset class="form-group-fieldset">
+            <legend class="fieldset-legend">2. Demographic Details</legend>
+
+            <div class="input-control">
+              <label class="form-label">Gender <span class="req">*</span></label>
+              <div class="chip-row">
+                <label class="radio-chip"><input type="radio" name="gender" value="Male"><span>♂ Male</span></label>
+                <label class="radio-chip"><input type="radio" name="gender" value="Female" checked><span>♀ Female</span></label>
+                <label class="radio-chip"><input type="radio" name="gender" value="Other"><span>✦ Other</span></label>
+              </div>
+            </div>
+
+            <div class="form-row-grid cols-2">
+              <div class="input-control">
+                <label for="bloodGroup" class="form-label">Blood Group <span class="req">*</span></label>
+                <select id="bloodGroup">
+                  <option value="">— Select blood group —</option>
+                  <option>A+</option><option>A-</option>
+                  <option>B+</option><option>B-</option>
+                  <option selected>O+</option><option>O-</option>
+                  <option>AB+</option><option>AB-</option>
+                </select>
+                <span class="error-msg" data-for="bloodGroup">Please select your blood group.</span>
+              </div>
+              <div class="input-control">
+                <label class="form-label">Hobbies &amp; Interests</label>
+                <div class="hobby-row">
+                  <span class="hobby-chip">🎨 Drawing</span>
+                  <span class="hobby-chip">🌿 Gardening</span>
+                  <span class="hobby-chip">🎬 Animation</span>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Section 3: Placement & Industry Preferences -->
+          <fieldset class="form-group-fieldset">
+            <legend class="fieldset-legend">3. Placement &amp; Industry Preferences</legend>
+            <div class="form-row-grid cols-2">
+              <div class="input-control">
+                <label for="primaryCompany" class="form-label">Primary Target Company (MNC) <span class="req">*</span></label>
+                <select id="primaryCompany">
+                  <option value="">— Select company —</option>
+                  <optgroup label="Indian MNCs">
+                    <option selected>TCS (Tata Consultancy Services)</option>
+                    <option>Infosys</option><option>Wipro</option>
+                    <option>HCL Technologies</option><option>Tech Mahindra</option>
+                    <option>Zoho Corporation</option><option>Mphasis</option>
+                    <option>L&amp;T Technology Services (LTTS)</option>
+                  </optgroup>
+                  <optgroup label="Global MNCs">
+                    <option>Google</option><option>Microsoft</option>
+                    <option>Amazon</option><option>Apple</option>
+                    <option>Meta</option><option>IBM</option>
+                    <option>Oracle</option><option>Accenture</option>
+                    <option>Capgemini</option><option>Cognizant</option>
+                    <option>Deloitte</option><option>Adobe</option>
+                    <option>Intel</option><option>SAP Labs</option>
+                  </optgroup>
+                </select>
+                <span class="error-msg" data-for="primaryCompany">Please choose a target company.</span>
+              </div>
+              <div class="input-control">
+                <label for="secondaryCompany" class="form-label">Secondary Preference</label>
+                <select id="secondaryCompany">
+                  <option value="">— Optional —</option>
+                  <optgroup label="Indian MNCs">
+                    <option>TCS (Tata Consultancy Services)</option>
+                    <option selected>Infosys</option><option>Wipro</option>
+                    <option>HCL Technologies</option><option>Tech Mahindra</option>
+                    <option>Zoho Corporation</option><option>Mphasis</option>
+                    <option>L&amp;T Technology Services (LTTS)</option>
+                  </optgroup>
+                  <optgroup label="Global MNCs">
+                    <option>Google</option><option>Microsoft</option>
+                    <option>Amazon</option><option>Apple</option>
+                    <option>Meta</option><option>IBM</option>
+                    <option>Oracle</option><option>Accenture</option>
+                    <option>Capgemini</option><option>Cognizant</option>
+                    <option>Deloitte</option><option>Adobe</option>
+                    <option>Intel</option><option>SAP Labs</option>
+                  </optgroup>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Section 4: Technical Skills -->
+          <fieldset class="form-group-fieldset">
+            <legend class="fieldset-legend">4. Technical Skills &amp; Proficiencies</legend>
+            <div class="check-grid">
+              <label class="check-item"><input type="checkbox" name="skills" value="Python" checked><span class="box"></span><span class="txt">Python</span></label>
+              <label class="check-item"><input type="checkbox" name="skills" value="Java (OOP)" checked><span class="box"></span><span class="txt">Java (OOP)</span></label>
+              <label class="check-item"><input type="checkbox" name="skills" value="C / C++"><span class="box"></span><span class="txt">C / C++</span></label>
+              <label class="check-item"><input type="checkbox" name="skills" value="JavaScript"><span class="box"></span><span class="txt">JavaScript</span></label>
+              <label class="check-item"><input type="checkbox" name="skills" value="HTML & CSS"><span class="box"></span><span class="txt">HTML &amp; CSS</span></label>
+              <label class="check-item"><input type="checkbox" name="skills" value="SQL / MySQL" checked><span class="box"></span><span class="txt">SQL / MySQL</span></label>
+              <label class="check-item"><input type="checkbox" name="skills" value="Flask / Django"><span class="box"></span><span class="txt">Flask / Django</span></label>
+              <label class="check-item"><input type="checkbox" name="skills" value="React"><span class="box"></span><span class="txt">React</span></label>
+              <label class="check-item"><input type="checkbox" name="skills" value="Data Structures & Algorithms" checked><span class="box"></span><span class="txt">DSA</span></label>
+              <label class="check-item"><input type="checkbox" name="skills" value="DBMS" checked><span class="box"></span><span class="txt">DBMS</span></label>
+              <label class="check-item"><input type="checkbox" name="skills" value="Computer Networks"><span class="box"></span><span class="txt">Computer Networks</span></label>
+              <label class="check-item"><input type="checkbox" name="skills" value="Operating Systems"><span class="box"></span><span class="txt">Operating Systems</span></label>
+              <label class="check-item"><input type="checkbox" name="skills" value="Machine Learning Basics"><span class="box"></span><span class="txt">ML Basics</span></label>
+              <label class="check-item"><input type="checkbox" name="skills" value="Git & GitHub"><span class="box"></span><span class="txt">Git &amp; GitHub</span></label>
+              <label class="check-item"><input type="checkbox" name="skills" value="MS Office / Excel" checked><span class="box"></span><span class="txt">MS Office / Excel</span></label>
+              <label class="check-item"><input type="checkbox" name="skills" value="UI Design / Figma"><span class="box"></span><span class="txt">UI Design / Figma</span></label>
+            </div>
+          </fieldset>
+
+          <!-- Section 5: NSS & Extracurricular -->
+          <fieldset class="form-group-fieldset">
+            <legend class="fieldset-legend">5. NSS &amp; Extracurricular Activities</legend>
+            <div class="check-grid">
+              <label class="check-item"><input type="checkbox" name="activities" value="NSS Volunteer"><span class="box"></span><span class="txt">NSS (National Service Scheme)</span></label>
+              <label class="check-item"><input type="checkbox" name="activities" value="NCC"><span class="box"></span><span class="txt">NCC</span></label>
+              <label class="check-item"><input type="checkbox" name="activities" value="Sports & Athletics"><span class="box"></span><span class="txt">Sports &amp; Athletics</span></label>
+              <label class="check-item"><input type="checkbox" name="activities" value="Cultural / Arts Club"><span class="box"></span><span class="txt">Cultural / Arts Club</span></label>
+              <label class="check-item"><input type="checkbox" name="activities" value="Coding Club / Hackathons"><span class="box"></span><span class="txt">Coding Club / Hackathons</span></label>
+              <label class="check-item"><input type="checkbox" name="activities" value="Debate / Literary Club"><span class="box"></span><span class="txt">Debate / Literary Club</span></label>
+              <label class="check-item"><input type="checkbox" name="activities" value="Volunteering / Community Service"><span class="box"></span><span class="txt">Volunteering / Community Service</span></label>
+              <label class="check-item"><input type="checkbox" name="activities" value="College Fest Committee"><span class="box"></span><span class="txt">College Fest Committee</span></label>
+              <label class="check-item"><input type="checkbox" name="activities" value="Workshops & Webinars"><span class="box"></span><span class="txt">Workshops &amp; Webinars</span></label>
+              <label class="check-item"><input type="checkbox" name="activities" value="Paper Presentations"><span class="box"></span><span class="txt">Paper Presentations</span></label>
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">&#10003; Save &amp; Update Profile</button>
+            <button type="button" id="resetBtn" class="btn btn-ghost">&#10005; Reset Changes</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ================================================ -->
+      <!-- RIGHT COLUMN: Academic Dossier (Live Preview)    -->
+      <!-- ================================================ -->
+      <aside class="portal-card dossier-section">
+        <div class="card-header">
+          <div class="header-icon-title">
+            <span class="card-icon">&#128196;</span>
+            <div>
+              <h3>Academic Dossier &amp; Placement Card</h3>
+              <p class="card-desc">Live preview — updates as you edit the form</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dossier-paper" id="dossierPaper">
+          <div class="dossier-banner">
+            <img src="stthomaskannur.jpeg" alt="College Campus" class="dossier-campus" />
+            <div class="dossier-banner-overlay">
+              <img src="stthomas-logo.png" alt="College Logo" class="dossier-logo" />
+              <div>
+                <h4>St Thomas College of Engineering and Technology</h4>
+                <p>Student Academic Dossier &bull; Placement Record &bull; 2026–27</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dossier-id-row">
+            <div class="dossier-photo-wrap">
+              <img id="dossierPhoto" src="" alt="Student Photo" />
+              <span class="initials" id="dossierInitials">AP</span>
+            </div>
+            <div class="dossier-id-text">
+              <h4 id="dossierName">Anusree Prakashan</h4>
+              <p id="dossierMeta">Reg No: LSTM23CS058 &bull; BTech CSE</p>
+              <div class="dossier-tags">
+                <span class="d-tag" id="dGenderTag">♀ Female</span>
+                <span class="d-tag" id="dBloodTag">🩸 O+</span>
+                <span class="d-tag gold" id="dCgpaTag">CGPA 8.11</span>
+              </div>
+            </div>
+          </div>
+
+          <table class="dossier-table">
+            <tbody>
+              <tr><td>Student Name</td><td id="dName">Anusree Prakashan</td></tr>
+              <tr><td>Register Number</td><td id="dRegNo">LSTM23CS058</td></tr>
+              <tr><td>Degree &amp; Branch</td><td>BTech in Computer Science and Engineering (CSE)</td></tr>
+              <tr><td>Date of Birth</td><td id="dDob">05 / 11 / 2002</td></tr>
+              <tr><td>Gender</td><td id="dGender">Female</td></tr>
+              <tr><td>Blood Group</td><td id="dBlood">O+</td></tr>
+              <tr><td>Email</td><td id="dEmail">anusreeprakashan1105@gmail.com</td></tr>
+              <tr><td>Phone</td><td id="dPhone">88481 98404</td></tr>
+              <tr><td>Address</td><td id="dAddress">Prarthana, P.O. Palayad</td></tr>
+              <tr><td>Primary Target</td><td id="dPrimary">TCS (Tata Consultancy Services)</td></tr>
+              <tr><td>Secondary Target</td><td id="dSecondary">Infosys</td></tr>
+            </tbody>
+          </table>
+
+          <h5 class="dossier-subhead">University Results — Grade-wise (S3 – S6)</h5>
+          <div class="table-wrap">
+            <table class="dossier-table results">
+              <thead>
+                <tr><th>Sl.</th><th>Code</th><th>Subject</th><th>Cr.</th><th>Grade</th></tr>
+              </thead>
+              <tbody id="dossierResultBody"></tbody>
+            </table>
+          </div>
+
+          <h5 class="dossier-subhead">Semester Performance Summary</h5>
+          <div class="table-wrap">
+            <table class="dossier-table summary">
+              <thead>
+                <tr><th>Semester</th><th>Credits</th><th>SGPA</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>S3</td><td>23.0</td><td>8.00</td></tr>
+                <tr><td>S4</td><td>22.5</td><td>8.58</td></tr>
+                <tr><td>S5</td><td>23.5</td><td>7.77</td></tr>
+                <tr><td>S6</td><td>23.0</td><td>8.09</td></tr>
+                <tr class="cgpa-row"><td colspan="2"><strong>Cumulative CGPA</strong></td><td><strong>8.11</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dossier-cgpa-circle">
+            <div class="cg-ring">
+              <div class="cg-inner">
+                <span class="cg-num">8.11</span>
+                <span class="cg-lbl">CGPA</span>
+              </div>
+            </div>
+            <p class="cg-note">First Class with Distinction &bull; Placement Eligible</p>
+          </div>
+
+          <h5 class="dossier-subhead">Technical Skills</h5>
+          <div class="dossier-chips" id="dSkills"></div>
+
+          <h5 class="dossier-subhead">NSS &amp; Extracurricular Activities</h5>
+          <div class="dossier-chips soft" id="dActivities"></div>
+
+          <h5 class="dossier-subhead">Hobbies &amp; Interests</h5>
+          <div class="dossier-chips soft">
+            <span class="d-chip">🎨 Drawing</span>
+            <span class="d-chip">🌿 Gardening</span>
+            <span class="d-chip">🎬 Animation</span>
+          </div>
+
+          <div class="dossier-footer">
+            <p>Generated on <span id="dDate"></span> &bull; St Thomas CET Academic Portal</p>
+          </div>
+        </div>
+
+        <div class="dossier-actions">
+          <button type="button" class="btn btn-gold" onclick="window.print()">&#128438; Print / Save PDF</button>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+      Crafted with <span class="heart">❤</span> for Anusree Prakashan &bull; B.Tech CSE &bull; Reg No LSTM23CS058
+    </footer>
+  </main>
+
+  <div id="toast">✔ Profile updated!</div>
+
+  <script src="script.js"></script>
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

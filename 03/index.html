@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akash's Profile</title>
+    
+    <!-- Tab Icon (Favicon) -->
+    <link rel="icon" href="AKASHPS.jpeg" type="image/jpeg">
+    
+    <!-- Link Preview Meta Tags -->
+    <meta property="og:title" content="Akash's Profile">
+    <meta property="og:description" content="Computer Science Engineering Student Profile">
+    <meta property="og:image" content="AKASHPS.jpeg">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Page Headings -->
+        <header class="page-heading">
+            <h1>Akash's Profile</h1>
+            <h3>Computer Science Student</h3>
+        </header>
+
+        <!-- Profile Card -->
+        <section class="profile-card">
+            <div class="profile-left">
+                <img src="AKASHPS.jpeg" alt="Profile Photo" class="profile-img">
+                <h2 class="student-name">AKASH P S</h2>
+                <span class="reg-number">STM23CS003</span>
+                <div class="cgpa-badge">
+                    <span class="cgpa-label">CGPA</span>
+                    <span class="cgpa-score">7.09</span>
+                </div>
+            </div>
+            
+            <div class="profile-right">
+                <div class="profile-header-info">
+                    <h3>Computer Science & Engineering</h3>
+                    <p class="college-name">
+                        <span class="icon">🏛️</span>
+                        St. Thomas College of Engineering and Technology, Mattanur
+                    </p>
+                </div>
+                
+                <div class="contact-info-grid">
+                    <div class="contact-item">
+                        <span class="icon">✉️</span>
+                        <span>akashps024@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">📞</span>
+                        <span>+91 9400916024</span>
+                    </div>
+                    <div class="contact-item full-width">
+                        <span class="icon">📍</span>
+                        <span>pullolickal(H), Kolithattu PO Mattini 670706</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Details -->
+        <section class="personal-section content-section">
+            <h2 class="section-title">Personal Details</h2>
+            <div class="form-row">
+                <div class="form-group inline-group">
+                    <label>Gender:</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" class="gender-cb" value="Male" checked> Male</label>
+                        <label><input type="checkbox" class="gender-cb" value="Female"> Female</label>
+                        <label><input type="checkbox" class="gender-cb" value="Other"> Other</label>
+                    </div>
+                </div>
+                <div class="form-group inline-group">
+                    <label>Blood Group:</label>
+                    <select class="styled-select">
+                        <option value="O+">O+</option>
+                        <option value="A+">A+</option>
+                        <option value="B+">B+</option>
+                        <option value="AB+">AB+</option>
+                        <option value="O-">O-</option>
+                        <option value="A-">A-</option>
+                        <option value="B-">B-</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                </div>
+                <div class="form-group inline-group">
+                    <label>Interested Company:</label>
+                    <select class="styled-select" id="company">
+                        <option value="">Select Company</option>
+                        <option value="Google">Google</option>
+                        <option value="Microsoft">Microsoft</option>
+                        <option value="Amazon">Amazon</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Meta">Meta</option>
+                        <option value="TCS">TCS</option>
+                        <option value="Infosys" selected>Infosys</option>
+                        <option value="Wipro">Wipro</option>
+                        <option value="Cognizant">Cognizant</option>
+                        <option value="Accenture">Accenture</option>
+                        <option value="IBM">IBM</option>
+                        <option value="Oracle">Oracle</option>
+                        <option value="Capgemini">Capgemini</option>
+                        <option value="Tech Mahindra">Tech Mahindra</option>
+                        <option value="HCL">HCL</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Performance -->
+        <section class="academic-section content-section">
+            <h2 class="section-title">Academic Performance</h2>
+            
+            <div class="semester-tabs">
+                <button class="sem-btn active" data-sem="s1">S1</button>
+                <button class="sem-btn" data-sem="s2">S2</button>
+                <button class="sem-btn" data-sem="s3">S3</button>
+                <button class="sem-btn" data-sem="s4">S4</button>
+                <button class="sem-btn" data-sem="s5">S5</button>
+                <button class="sem-btn" data-sem="s6">S6</button>
+            </div>
+
+            <div class="table-container">
+                <table class="academic-table" id="marks-table">
+                    <thead>
+                        <tr>
+                            <th>Subject Name</th>
+                            <th>Internal Mark</th>
+                            <th>Attendance</th>
+                            <th>University Result</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+                <div class="sgpa-display">
+                    <strong>Semester SGPA: </strong> <span id="sgpa-value">8.5</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section class="skills-section content-section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-tags">
+                <span class="skill-tag">HTML/CSS</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">C Programming</span>
+                <span class="skill-tag">DBMS</span>
+                <span class="skill-tag">Data Structures</span>
+            </div>
+        </section>
+
+        <!-- Extracurricular Activities -->
+        <section class="activities-section content-section">
+            <h2 class="section-title">Extracurricular Activities</h2>
+            <div class="checkbox-group activities-group">
+                <label><input type="checkbox" name="activities" value="NSS"> NSS</label>
+                <label><input type="checkbox" name="activities" value="NCC"> NCC</label>
+                <label><input type="checkbox" name="activities" value="Sports" checked> Sports</label>
+                <label><input type="checkbox" name="activities" value="Coding Club" checked> Coding Club</label>
+                <label><input type="checkbox" name="activities" value="CSI" checked> CSI</label>
+                <label><input type="checkbox" name="activities" value="Arts"> Arts Club</label>
+                <label><input type="checkbox" name="activities" value="Debate"> Debate Club</label>
+            </div>
+        </section>
+
+        <!-- Contact/Info Form -->
+        <section class="contact-form-section content-section">
+            <h2 class="section-title">Student Information Form</h2>
+            <form id="contact-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="contact-name">Name</label>
+                        <input type="text" id="contact-name" placeholder="Enter full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-roll">Roll Number</label>
+                        <input type="text" id="contact-roll" placeholder="Enter roll number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email</label>
+                        <input type="email" id="contact-email" placeholder="Enter email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-phone">Phone Number</label>
+                        <input type="tel" id="contact-phone" placeholder="Enter phone number" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="contact-msg">Message</label>
+                        <textarea id="contact-msg" rows="4" placeholder="Enter your message here..." required></textarea>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-submit">Submit</button>
+                    <button type="reset" class="btn btn-reset">Reset</button>
+                </div>
+            </form>
+        </section>
+
+    </div>
+    <script src="script.js"></script>
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

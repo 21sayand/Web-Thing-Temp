@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athul's Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="profile-section">
+                <div class="img-wrapper">
+                    <img src="AthulK.jpeg" alt="Athul K Sandeep">
+                </div>
+                <h2>Athul K Sandeep</h2>
+                <p class="role">Computer Science Student</p>
+                <div class="cgpa-highlight">
+                    CGPA <span>6.32</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-btn active" data-target="overview"><i class="fas fa-home"></i> Overview</button>
+                <button class="nav-btn" data-target="academics"><i class="fas fa-graduation-cap"></i> Academics</button>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="mailto:athulatk567@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="tel:6235453661"><i class="fas fa-phone"></i></a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            
+            <!-- Overview Section -->
+            <section id="overview" class="content-section active">
+                <header class="section-header">
+                    <h1>Profile Overview</h1>
+                </header>
+
+                <div class="bento-grid">
+                    <!-- Personal Details Widget -->
+                    <div class="widget info-widget">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        <ul class="info-list">
+                            <li><span class="label">Roll No:</span> 10</li>
+                            <li><span class="label">Reg No:</span> STM23CS011</li>
+                            <li><span class="label">DOB:</span> 11/02/2005</li>
+                            <li><span class="label">Blood Group:</span> B+</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Contact Widget -->
+                    <div class="widget contact-widget">
+                        <h3><i class="fas fa-address-book"></i> Contact Details</h3>
+                        <ul class="info-list">
+                            <li><span class="label">Phone:</span> +91 6235453661</li>
+                            <li><span class="label">Email:</span> athulatk567@gmail.com</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Quick Stats Widget -->
+                    <div class="widget stats-widget">
+                        <h3><i class="fas fa-chart-line"></i> Performance Trend</h3>
+                        <div class="mini-chart">
+                            <div class="bar" style="height: 60%;" title="S1: 6.03"><span>S1</span></div>
+                            <div class="bar" style="height: 62%;" title="S2: 6.19"><span>S2</span></div>
+                            <div class="bar" style="height: 62%;" title="S3: 6.20"><span>S3</span></div>
+                            <div class="bar" style="height: 69%;" title="S4: 6.93"><span>S4</span></div>
+                            <div class="bar" style="height: 64%;" title="S5: 6.44"><span>S5</span></div>
+                            <div class="bar" style="height: 61%;" title="S6: 6.15"><span>S6</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Academics Section -->
+            <section id="academics" class="content-section">
+                <header class="section-header">
+                    <h1>Academic History</h1>
+                </header>
+                
+                <div class="sgpa-grid">
+                    <div class="sgpa-card">
+                        <div class="sem">Semester 1</div>
+                        <div class="score">6.03</div>
+                    </div>
+                    <div class="sgpa-card">
+                        <div class="sem">Semester 2</div>
+                        <div class="score">6.19</div>
+                    </div>
+                    <div class="sgpa-card">
+                        <div class="sem">Semester 3</div>
+                        <div class="score">6.20</div>
+                    </div>
+                    <div class="sgpa-card">
+                        <div class="sem">Semester 4</div>
+                        <div class="score">6.93</div>
+                    </div>
+                    <div class="sgpa-card">
+                        <div class="sem">Semester 5</div>
+                        <div class="score">6.44</div>
+                    </div>
+                    <div class="sgpa-card">
+                        <div class="sem">Semester 6</div>
+                        <div class="score">6.15</div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+    <script src="script.js"></script>
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

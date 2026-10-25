@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Student Profile</h1>
+
+        <!-- Photo -->
+        <img src="student.png" alt="Student Photo" class="photo">
+
+       <h2>Personal Details</h2>
+
+<div class="personal-details">
+
+    <p><b>Name:</b> Roshni K</p>
+
+    <p><b>Email:</b> roshnikelambeth@gmail.com</p>
+
+    <p><b>Phone:</b> 9633151602</p>
+
+    <p>
+        <b>Gender:</b>
+
+        <input type="radio" checked> Female
+        <input type="radio" disabled> Male
+    </p>
+
+    <p>
+        <b>Blood Group:</b>
+        <select id="blood">
+            <option>B+</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B-</option>
+            <option>O+</option>
+            <option>O-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+        </select>
+    </p>
+
+    <p>
+        <b>Interested Company:</b>
+        <select id="company">
+            <option>Infosys</option>
+            <option>TCS</option>
+            <option>Wipro</option>
+            <option>Accenture</option>
+            <option>Google</option>
+            <option>Microsoft</option>
+        </select>
+    </p>
+
+</div>
+           <h2>Academic Details</h2>
+
+<div class="semester-select">
+    <label for="semester">Select Semester:</label>
+
+    <select id="semester" onchange="changeSemester()">
+        <option value="S1">S1</option>
+        <option value="S2">S2</option>
+        <option value="S3">S3</option>
+        <option value="S4">S4</option>
+        <option value="S5">S5</option>
+        <option value="S6">S6</option>
+        <option value="S7">S7</option>
+        <option value="S8">S8</option>
+    </select>
+</div>
+
+<table class="academic-table">
+    <tr>
+        <th>Subject</th>
+        <th>Internal Marks</th>
+    </tr>
+
+    <tbody id="marksTable">
+        <tr>
+            <td>Engineering Chemistry</td>
+            <td>42/50</td>
+        </tr>
+
+        <tr>
+            <td>Engineering Mechanics</td>
+            <td>40/50</td>
+        </tr>
+
+        <tr>
+            <td>Civil and Mechanical Workshop</td>
+            <td>45/50</td>
+        </tr>
+
+        <tr>
+            <td>Engineering Chemistry Lab</td>
+            <td>48/50</td>
+        </tr>
+
+        <tr>
+            <td>Linear Algebra and Calculus</td>
+            <td>39/50</td>
+        </tr>
+
+        <tr>
+            <td>Life Skills</td>
+            <td>41/50</td>
+        </tr>
+
+        <tr>
+            <td>Basics of Civil and Mechanical Engineering</td>
+            <td>43/50</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="sgpa-box">
+    <b>SGPA:</b>
+    <span id="sgpa">5.97</span>
+</div>
+
+<div class="cgpa-box">
+    <b>CGPA:</b>
+    <span>6.28</span>
+</div>
+            <!-- Skills -->
+            <h2>Skills</h2>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="skill" value="HTML" checked>
+                    HTML
+                </label>
+
+                <label>
+                    <input type="checkbox" name="skill" value="CSS" checked>
+                    CSS
+                </label>
+
+                <label>
+                    <input type="checkbox" name="skill" value="JavaScript" checked>
+                    JavaScript
+                </label>
+
+                <label>
+                    <input type="checkbox" name="skill" value="Python" checked>
+                    Python
+                </label>
+            </div>
+
+
+            <!-- NSS / Extracurricular -->
+            <h2>NSS / Extracurricular Activities</h2>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="activity" checked>
+                    NSS
+                </label>
+
+                <label>
+                    <input type="checkbox" name="activity" checked>
+                    Sports
+                </label>
+
+                <label>
+                    <input type="checkbox" name="activity" >
+                    Arts
+                </label>
+
+                <label>
+                    <input type="checkbox" name="activity" checked>
+                    Volunteering
+                </label>
+            </div>
+
+
+            <!-- Buttons -->
+            <div class="buttons">
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </div>
+
+        </form>
+
+        <p id="message"></p>
+
+    </div>
+
+    <script src="script.js"></script>
+
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Portfolio</title>
+
+<style>
+  :root {
+    --cream: #f8f1e7;
+    --paper: #fffaf3;
+    --orange: #809aa0;
+    --orange-dark: #072c3f;
+    --brown: #000000;
+    --soft-brown: #000000;
+    --yellow: #d5d5d5;
+    --blue: #000101;
+    --green: #81afca;
+    --line: #d8c9b9;
+    --white: #fffdf9;
+    --error: #e5ebef;
+    --success: #000000;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    min-height: 100vh;
+    color: var(--brown);
+    background: var(--cream);
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.55;
+  }
+
+  h1,
+  h2,
+  h3,
+  label,
+  button,
+  select,
+  th {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .page {
+    width: min(1280px, 100%);
+    min-height: 100vh;
+    margin: auto;
+    padding: 24px;
+  }
+
+  .top-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 20px;
+    color: var(--white);
+    background: var(--brown);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .top-strip span:last-child {
+    color: var(--yellow);
+  }
+
+  aside {
+    position: relative;
+    display: grid;
+    grid-template-columns: 190px 1fr 260px;
+    gap: 35px;
+    align-items: center;
+    min-height: 280px;
+    padding: 42px 45px;
+    background: var(--orange);
+    border-bottom: 10px solid var(--brown);
+  }
+
+  aside::before {
+    content: "PROFILE";
+    position: absolute;
+    top: 20px;
+    right: 34px;
+    color: rgba(255,255,255,.3);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 4px;
+  }
+
+  .photo-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .avatar {
+    width: 165px;
+    height: 190px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    color: var(--orange-dark);
+    background: var(--yellow);
+    border: 9px solid var(--brown);
+    border-radius: 50% 50% 8px 8px;
+    cursor: pointer;
+    box-shadow: 10px 10px 0 rgba(52,37,31,.2);
+  }
+
+  .avatar img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .avatar img[hidden],
+  .photo-btn[hidden] {
+    display: none;
+  }
+
+  #avatarText {
+    font-family: Georgia, serif;
+    font-size: 54px;
+    font-weight: bold;
+  }
+
+  #photoInput {
+    display: none;
+  }
+
+  .photo-actions {
+    display: flex;
+    gap: 7px;
+  }
+
+  .photo-btn {
+    padding: 7px 12px;
+    color: var(--brown);
+    background: var(--yellow);
+    border: 2px solid var(--brown);
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .photo-btn:hover {
+    color: var(--white);
+    background: var(--brown);
+  }
+
+  aside h1 {
+    max-width: 500px;
+    color: var(--white);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(32px, 5vw, 62px);
+    line-height: .98;
+    letter-spacing: -2px;
+  }
+
+  .course {
+    max-width: 460px;
+    margin-top: 20px;
+    padding-top: 15px;
+    color: #ffe7c5;
+    border-top: 2px solid rgba(255,255,255,.5);
+    font-size: 17px;
+  }
+
+  .contact {
+    list-style: none;
+    border-left: 2px solid rgba(255,255,255,.45);
+  }
+
+  .contact li {
+    padding: 12px 0 12px 20px;
+    color: var(--white);
+    border-bottom: 1px solid rgba(255,255,255,.3);
+    font-size: 14px;
+  }
+
+  .contact span {
+    display: block;
+    margin-bottom: 3px;
+    color: #1f2727;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .contact a {
+    color: var(--white);
+    overflow-wrap: anywhere;
+    text-decoration: underline;
+    text-decoration-color: var(--yellow);
+    text-underline-offset: 4px;
+  }
+
+  main {
+    padding: 45px 35px 70px;
+    background: var(--paper);
+  }
+
+  main > form > section {
+    margin-bottom: 50px;
+  }
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    color: var(--orange-dark);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 29px;
+    font-weight: normal;
+  }
+
+  h2::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .field {
+    margin-bottom: 24px;
+  }
+
+  .field > .label {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--soft-brown);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  .segmented {
+    display: inline-flex;
+    overflow: hidden;
+    border: 2px solid var(--brown);
+  }
+
+  .segmented input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .segmented label {
+    min-width: 110px;
+    padding: 11px 17px;
+    color: var(--brown);
+    background: var(--white);
+    border-right: 1px solid var(--brown);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .segmented label:last-of-type {
+    border-right: 0;
+  }
+
+  .segmented input:checked + label {
+    color: var(--white);
+    background: var(--blue);
+  }
+
+  .segmented input:focus-visible + label {
+    outline: 3px solid var(--yellow);
+    outline-offset: -3px;
+  }
+
+  .selects {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+
+  select {
+    width: 100%;
+    padding: 13px 14px;
+    color: var(--brown);
+    background: var(--white);
+    border: 2px solid var(--line);
+    border-radius: 0;
+    outline: none;
+    font-size: 14px;
+  }
+
+  select:focus {
+    border-color: var(--orange);
+    box-shadow: 5px 5px 0 rgba(214,90,47,.15);
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    background: var(--white);
+    border: 2px solid var(--brown);
+  }
+
+  table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+  }
+
+  th {
+    padding: 15px;
+    color: var(--white);
+    background: var(--blue);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  td {
+    padding: 15px;
+    border-top: 1px solid var(--line);
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  tbody tr:nth-child(odd) {
+    background: #fff8ed;
+  }
+
+  tbody tr:hover {
+    background: #ffedc9;
+  }
+
+  td.pending {
+    color: #aa9b8d;
+    font-style: italic;
+  }
+
+  .bar {
+    display: inline-block;
+    height: 8px;
+    margin-left: 9px;
+    vertical-align: middle;
+    background: var(--orange);
+    border-radius: 0;
+  }
+
+  .two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  .two > div {
+    padding: 25px;
+    background: #f4eadc;
+    border-top: 7px solid var(--green);
+  }
+
+  .two > div:last-child {
+    border-top-color: var(--blue);
+  }
+
+  .two h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .chips input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .chips label {
+    padding: 9px 14px;
+    color: var(--brown);
+    background: var(--white);
+    border: 2px solid var(--brown);
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: .2s ease;
+  }
+
+  .chips label:hover {
+    color: var(--white);
+    background: var(--orange);
+  }
+
+  .chips input:checked + label {
+    color: var(--white);
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  .chips input:focus-visible + label {
+    outline: 3px solid var(--yellow);
+    outline-offset: 2px;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding-top: 8px;
+    border-top: 2px solid var(--brown);
+  }
+
+  button {
+    padding: 13px 25px;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: .7px;
+    text-transform: uppercase;
+  }
+
+  .primary {
+    color: var(--white);
+    background: var(--orange);
+    border: 2px solid var(--orange);
+  }
+
+  .primary:hover {
+    color: var(--orange);
+    background: transparent;
+  }
+
+  .ghost {
+    color: var(--blue);
+    background: transparent;
+    border: 2px solid var(--blue);
+  }
+
+  .ghost:hover {
+    color: var(--white);
+    background: var(--blue);
+  }
+
+  button:focus-visible {
+    outline: 3px solid var(--yellow);
+    outline-offset: 3px;
+  }
+
+  #message {
+    min-height: 1.5em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  @media (max-width: 900px) {
+    aside {
+      grid-template-columns: 180px 1fr;
+    }
+
+    .contact {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-left: 0;
+      border-top: 1px solid rgba(255,255,255,.4);
+    }
+
+    .contact li {
+      padding-left: 0;
+      border-bottom: 0;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .page {
+      padding: 0;
+    }
+
+    .top-strip {
+      padding: 12px;
+      font-size: 9px;
+    }
+
+    aside {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      padding: 40px 20px 30px;
+      text-align: center;
+    }
+
+    aside::before {
+      top: 15px;
+      right: 15px;
+    }
+
+    aside h1 {
+      font-size: 42px;
+    }
+
+    .course {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .contact {
+      display: block;
+      width: 100%;
+      text-align: left;
+    }
+
+    .contact li {
+      padding-left: 0;
+      border-bottom: 1px solid rgba(255,255,255,.3);
+    }
+
+    main {
+      padding: 35px 18px 50px;
+    }
+
+    .selects,
+    .two {
+      grid-template-columns: 1fr;
+    }
+
+    .segmented {
+      display: flex;
+      width: 100%;
+    }
+
+    .segmented label {
+      min-width: 0;
+      flex: 1;
+      padding: 10px 5px;
+    }
+
+    .actions button {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <div class="top-strip">
+    <span>Student Portfolio</span>
+    <span>Academic Year 2025 / 26</span>
+  </div>
+
+  <aside>
+
+    <div class="photo-upload">
+      <label class="avatar" for="photoInput" id="avatar" title="Click to upload a photo">
+        <span id="avatarText">SS</span>
+        <img id="photoPreview" alt="Student photo" hidden>
+      </label>
+
+      <input type="file" id="photoInput" accept="image/*" hidden>
+
+      <div class="photo-actions">
+        <button type="button" class="photo-btn" id="changePhoto">
+          Upload photo
+        </button>
+
+        <button type="button" class="photo-btn" id="removePhoto" hidden>
+          Remove
+        </button>
+      </div>
+    </div>
+
+    <div>
+      <h1>Shijas<br>Shabeer</h1>
+      <p class="course">B.Tech Computer Science and Engineering</p>
+    </div>
+
+    <ul class="contact">
+      <li>
+        <span>Roll number</span>
+        STM23CS045
+      </li>
+
+      <li>
+        <span>Email</span>
+        <a href="mailto:shijaasshabeer@gmail.com">
+          shijaasshabeer@gmail.com
+        </a>
+      </li>
+
+      <li>
+        <span>Phone</span>
+        9895703913
+      </li>
+    </ul>
+
+  </aside>
+
+  <main>
+
+    <form id="studentForm" novalidate>
+
+      <section>
+        <h2>Personal details</h2>
+
+        <div class="field">
+          <span class="label" id="genderLabel">Gender</span>
+
+          <div class="segmented" role="radiogroup" aria-labelledby="genderLabel">
+            <input type="radio" name="gender" id="g1" value="Male">
+            <label for="g1">Male</label>
+
+            <input type="radio" name="gender" id="g2" value="Female">
+            <label for="g2">Female</label>
+
+            <input type="radio" name="gender" id="g3" value="Other">
+            <label for="g3">Other</label>
+          </div>
+        </div>
+
+        <div class="selects">
+
+          <div class="field">
+            <label class="label" for="bloodGroup">Blood group</label>
+            <select id="bloodGroup"></select>
+          </div>
+
+          <div class="field">
+            <label class="label" for="company">Interested company</label>
+            <select id="company"></select>
+          </div>
+
+        </div>
+      </section>
+
+      <section>
+        <h2>Academic performance</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Semester</th>
+                <th>SGPA</th>
+                <th>CGPA</th>
+                <th>Internal marks</th>
+              </tr>
+            </thead>
+
+            <tbody id="gradeBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="two">
+
+        <div>
+          <h2>Skills</h2>
+          <div class="chips" id="skillChips"></div>
+        </div>
+
+        <div>
+          <h2>NSS and extracurricular activities</h2>
+          <div class="chips" id="activityChips"></div>
+        </div>
+
+      </section>
+
+      <div class="actions">
+        <button type="submit" class="primary">
+          Submit profile
+        </button>
+
+        <button type="button" class="ghost" id="resetBtn">
+          Reset form
+        </button>
+
+        <p id="message" role="status" aria-live="polite"></p>
+      </div>
+
+    </form>
+
+  </main>
+
+</div>
+
+<script>
+  const bloodGroups = [
+    "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"
+  ];
+
+  const companies = [
+    "Infosys", "TCS", "Wipro", "Accenture", "IBM",
+    "Microsoft", "Google", "Amazon", "Oracle", "Capgemini"
+  ];
+
+  const skills = [
+    "HTML", "CSS", "JavaScript", "Python", "Java", "SQL"
+  ];
+
+  const activities = [
+    "NSS", "Sports", "Music", "Arts", "Coding Club", "Volunteering"
+  ];
+
+  const grades = [
+    ["Semester 1", 7.53, 7.53, 42],
+    ["Semester 2", 7.64, 7.62, 44],
+    ["Semester 3", 7.22, 7.62, 46],
+    ["Semester 4", 7.94, 7.62, 45],
+    ["Semester 5", 7.50, 7.62, 45],
+    ["Semester 6", 7.80, 7.62, 45],
+    ["Semester 7"],
+    ["Semester 8"]
+  ];
+
+  function fillSelect(id, placeholder, items) {
+    const el = document.getElementById(id);
+
+    el.innerHTML =
+      `<option value="">${placeholder}</option>` +
+      items.map(item => `<option>${item}</option>`).join("");
+  }
+
+  fillSelect("bloodGroup", "Select blood group", bloodGroups);
+  fillSelect("company", "Select company", companies);
+
+  function fillChips(containerId, name, items) {
+    document.getElementById(containerId).innerHTML =
+      items.map((item, index) => {
+        const id = `${name}-${index}`;
+
+        return `
+          <input type="checkbox" name="${name}" id="${id}" value="${item}">
+          <label for="${id}">${item}</label>
+        `;
+      }).join("");
+  }
+
+  fillChips("skillChips", "skills", skills);
+  fillChips("activityChips", "activities", activities);
+
+  document.getElementById("gradeBody").innerHTML =
+    grades.map(([semester, sgpa, cgpa, marks]) => {
+
+      if (sgpa === undefined) {
+        return `
+          <tr>
+            <td>${semester}</td>
+            <td class="pending">Pending</td>
+            <td class="pending">Pending</td>
+            <td class="pending">Pending</td>
+          </tr>
+        `;
+      }
+
+      return `
+        <tr>
+          <td>${semester}</td>
+          <td>
+            ${sgpa.toFixed(2)}
+            <span class="bar" style="width:${sgpa * 8}px"></span>
+          </td>
+          <td>${cgpa.toFixed(2)}</td>
+          <td>${marks} / 50</td>
+        </tr>
+      `;
+    }).join("");
+
+  const photoInput = document.getElementById("photoInput");
+  const photoPreview = document.getElementById("photoPreview");
+  const avatarText = document.getElementById("avatarText");
+  const removePhoto = document.getElementById("removePhoto");
+  const changePhoto = document.getElementById("changePhoto");
+
+  function setPhoto(source) {
+    if (source) {
+      photoPreview.src = source;
+      photoPreview.hidden = false;
+      avatarText.hidden = true;
+      removePhoto.hidden = false;
+      changePhoto.textContent = "Change photo";
+    } else {
+      photoPreview.removeAttribute("src");
+      photoPreview.hidden = true;
+      avatarText.hidden = false;
+      removePhoto.hidden = true;
+      changePhoto.textContent = "Upload photo";
+    }
+  }
+
+  try {
+    setPhoto(localStorage.getItem("studentPhoto"));
+  } catch (error) {
+    setPhoto(null);
+  }
+
+  changePhoto.addEventListener("click", () => {
+    photoInput.click();
+  });
+
+  photoInput.addEventListener("change", () => {
+    const file = photoInput.files[0];
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      show("Please choose an image file.", true);
+      return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      show("Photo must be under 2 MB.", true);
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setPhoto(reader.result);
+
+      try {
+        localStorage.setItem("studentPhoto", reader.result);
+      } catch (error) {}
+
+      message.textContent = "";
+    };
+
+    reader.readAsDataURL(file);
+  });
+
+  removePhoto.addEventListener("click", () => {
+    setPhoto(null);
+    photoInput.value = "";
+
+    try {
+      localStorage.removeItem("studentPhoto");
+    } catch (error) {}
+  });
+
+  const form = document.getElementById("studentForm");
+  const message = document.getElementById("message");
+
+  function show(text, isError) {
+    message.style.color = isError
+      ? "var(--error)"
+      : "var(--success)";
+
+    message.textContent = text;
+  }
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+
+    if (!form.querySelector('input[name="gender"]:checked')) {
+      return show("Please select your gender.", true);
+    }
+
+    if (!document.getElementById("bloodGroup").value) {
+      return show("Please select your blood group.", true);
+    }
+
+    if (!document.getElementById("company").value) {
+      return show("Please select your interested company.", true);
+    }
+
+    if (!form.querySelector('input[name="skills"]:checked')) {
+      return show("Please select at least one skill.", true);
+    }
+
+    show("Student profile submitted successfully!", false);
+  });
+
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    form.reset();
+    message.textContent = "";
+  });
+</script>
+
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

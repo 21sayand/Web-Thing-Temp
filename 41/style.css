@@ -1,0 +1,1701 @@
+/* ==========================================================================
+   B.Tech Student Profile Portal - Master CSS Stylesheet
+   Institution: St. Thomas College of Engineering and Technology, Mattanur
+   Theme: Professional Navy & Azure Blue with Official College Branding
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design Tokens & CSS Variables
+   -------------------------------------------------------------------------- */
+:root {
+  /* Blue & White Color Palette */
+  --primary-navy: #0f2a4a;
+  --primary-dark: #1e3a8a;
+  --primary-blue: #2563eb;
+  --primary-azure: #3b82f6;
+  --primary-light: #60a5fa;
+  --primary-tint: #eff6ff;
+  --primary-subtle: #dbeafe;
+  
+  /* Accent & Status Colors */
+  --accent-cyan: #06b6d4;
+  --accent-teal: #0d9488;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #ef4444;
+  --accent-purple: #8b5cf6;
+
+  /* Neutral & Base Colors */
+  --bg-app: #f4f7fb;
+  --bg-card: #ffffff;
+  --bg-card-alt: #f8fafc;
+  --bg-input: #ffffff;
+  
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  
+  --border-light: #e2e8f0;
+  --border-focus: #3b82f6;
+  --border-error: #ef4444;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(15, 42, 74, 0.06), 0 1px 2px rgba(15, 42, 74, 0.04);
+  --shadow-md: 0 4px 12px rgba(15, 42, 74, 0.08), 0 2px 4px rgba(15, 42, 74, 0.03);
+  --shadow-lg: 0 12px 28px rgba(15, 42, 74, 0.10), 0 4px 8px rgba(15, 42, 74, 0.04);
+  --shadow-xl: 0 20px 40px rgba(15, 42, 74, 0.14);
+
+  /* Radii & Transitions */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Global Reset & Typography
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-weight: 700;
+  color: var(--primary-navy);
+  letter-spacing: -0.02em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   3. Navigation Header & Official Logo
+   -------------------------------------------------------------------------- */
+.navbar {
+  background: linear-gradient(135deg, #0b1e36 0%, #173b66 100%);
+  color: #ffffff;
+  padding: 12px 24px;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+}
+
+.nav-container {
+  max-width: 1260px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-logo-wrap {
+  width: 50px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  flex-shrink: 0;
+}
+
+.brand-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.brand-text h2 {
+  color: #ffffff;
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.brand-text p {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav-tab-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-fast);
+}
+
+.nav-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.nav-tab-btn.active {
+  background: var(--primary-azure);
+  color: #ffffff;
+  border-color: var(--primary-azure);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   4. Buttons & UI Control System
+   -------------------------------------------------------------------------- */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-blue), #1d4ed8);
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-primary.btn-lg {
+  padding: 12px 28px;
+  font-size: 1rem;
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: var(--primary-dark);
+  border: 1px solid var(--border-light);
+  padding: 9px 18px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-tint);
+  border-color: var(--primary-azure);
+  color: var(--primary-blue);
+  transform: translateY(-1px);
+}
+
+.btn-secondary.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.82rem;
+}
+
+.btn-outline-danger {
+  background: transparent;
+  color: var(--accent-rose);
+  border: 1.5px solid var(--accent-rose);
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-fast);
+}
+
+.btn-outline-danger:hover {
+  background: #fef2f2;
+  color: #b91c1c;
+  border-color: #b91c1c;
+}
+
+.btn-text-danger {
+  background: none;
+  border: none;
+  color: var(--accent-rose);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
+}
+
+.btn-text-danger:hover {
+  background: #fee2e2;
+}
+
+/* --------------------------------------------------------------------------
+   5. Main Wrapper & View Switching
+   -------------------------------------------------------------------------- */
+.main-wrapper {
+  max-width: 1260px;
+  width: 100%;
+  margin: 24px auto 48px;
+  padding: 0 20px;
+  flex: 1;
+}
+
+.view-panel {
+  display: none;
+  animation: fadeIn 0.35s ease forwards;
+}
+
+.view-panel.active-panel {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Toast Message */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--primary-navy);
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1000;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-left: 4px solid var(--accent-emerald);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.toast.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  pointer-events: none;
+}
+
+.toast i {
+  color: var(--accent-emerald);
+  font-size: 1.1rem;
+}
+
+/* --------------------------------------------------------------------------
+   6. Form Panel Header & Fieldsets
+   -------------------------------------------------------------------------- */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  background: #ffffff;
+  padding: 22px 28px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  margin-bottom: 24px;
+  border-left: 5px solid var(--primary-azure);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.institute-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary-tint);
+  color: var(--primary-dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 8px;
+  border: 1px solid var(--primary-subtle);
+}
+
+.mini-badge-logo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.panel-title-area h1 {
+  font-size: 1.6rem;
+  color: var(--primary-navy);
+  margin-bottom: 4px;
+}
+
+.panel-title-area p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.required-note {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent-rose);
+  background: #fef2f2;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid #fecaca;
+}
+
+/* Form Card Styling */
+.form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+
+.form-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: #cbd5e1;
+}
+
+.form-card legend {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--primary-dark);
+  padding: 4px 12px;
+  background: var(--primary-tint);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--primary-subtle);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-card legend i {
+  color: var(--primary-azure);
+}
+
+/* --------------------------------------------------------------------------
+   7. Form Controls & Grids
+   -------------------------------------------------------------------------- */
+.form-grid {
+  display: grid;
+  gap: 18px 20px;
+  margin-top: 14px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.full-col-span {
+  grid-column: 1 / -1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-group label .req {
+  color: var(--accent-rose);
+  font-weight: bold;
+}
+
+.section-sublabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--primary-navy);
+  margin-bottom: 12px;
+}
+
+.sub-hint {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Input with Icon Wrapper */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon i {
+  position: absolute;
+  left: 14px;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  pointer-events: none;
+  transition: var(--transition-fast);
+}
+
+.input-with-icon.textarea-icon i {
+  top: 14px;
+}
+
+.input-with-icon input,
+.input-with-icon select,
+.input-with-icon textarea {
+  width: 100%;
+  padding: 10px 14px 10px 40px;
+  background-color: var(--bg-input);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+.input-with-icon textarea {
+  resize: vertical;
+  min-height: 75px;
+}
+
+.input-with-icon input:focus,
+.input-with-icon select:focus,
+.input-with-icon textarea:focus {
+  border-color: var(--primary-azure);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3.5px rgba(59, 130, 246, 0.15);
+}
+
+/* Error State */
+.error-msg {
+  display: none;
+  color: var(--accent-rose);
+  font-size: 0.78rem;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.form-group.has-error input,
+.form-group.has-error select,
+.form-group.has-error textarea {
+  border-color: var(--accent-rose);
+  background-color: #fffafb;
+}
+
+.form-group.has-error .error-msg {
+  display: block;
+}
+
+.helper-text {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   8. Profile Photo Upload Section
+   -------------------------------------------------------------------------- */
+.photo-upload-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 0 20px;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.avatar-preview-box {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(15, 42, 74, 0.15);
+  border: 3px solid #ffffff;
+  outline: 2px solid var(--primary-azure);
+  flex-shrink: 0;
+  background-color: #e2e8f0;
+}
+
+.avatar-preview-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 18%;
+  display: block;
+}
+
+.avatar-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 42, 74, 0.65);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  gap: 4px;
+  opacity: 0;
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+.avatar-preview-box:hover .avatar-overlay {
+  opacity: 1;
+}
+
+.upload-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.custom-file-upload {
+  background: var(--primary-tint);
+  color: var(--primary-blue);
+  border: 1.5px dashed var(--primary-azure);
+  padding: 8px 18px;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  transition: var(--transition-fast);
+}
+
+.custom-file-upload:hover {
+  background: var(--primary-subtle);
+  border-color: var(--primary-dark);
+}
+
+#studentPhotoInput {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   9. Radio Buttons & Pill Checkboxes
+   -------------------------------------------------------------------------- */
+.radio-pill-group {
+  display: flex;
+  gap: 10px;
+}
+
+.radio-pill {
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+}
+
+.radio-pill input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-pill span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--bg-card-alt);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+}
+
+.radio-pill:hover span {
+  border-color: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.radio-pill input[type="radio"]:checked + span {
+  background: var(--primary-tint);
+  border-color: var(--primary-azure);
+  color: var(--primary-blue);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   10. Semester Filter Chips & Academic Table
+   -------------------------------------------------------------------------- */
+.table-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 14px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.semester-filter-chips {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border-light);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.filter-chip:hover {
+  background: var(--primary-tint);
+  color: var(--primary-blue);
+}
+
+.filter-chip.active {
+  background: var(--primary-blue);
+  color: #ffffff;
+  border-color: var(--primary-blue);
+}
+
+.table-responsive {
+  width: 100%;
+  max-height: 480px;
+  overflow-y: auto;
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.academic-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  text-align: left;
+  font-size: 0.86rem;
+}
+
+.academic-table th {
+  background: var(--primary-navy);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px 12px;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.academic-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: middle;
+}
+
+.academic-table tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+.academic-table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+.tbl-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.84rem;
+  outline: none;
+  background: #ffffff;
+}
+
+.tbl-input:focus {
+  border-color: var(--primary-azure);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+.btn-del-row {
+  background: #fee2e2;
+  color: var(--accent-rose);
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.btn-del-row:hover {
+  background: #fecaca;
+  color: #991b1b;
+}
+
+/* --------------------------------------------------------------------------
+   11. Checkbox Cards & Grids
+   -------------------------------------------------------------------------- */
+.checkbox-badge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.company-checkbox-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.company-checkbox-card input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.company-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--bg-card-alt);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  transition: var(--transition-fast);
+}
+
+.company-checkbox-card:hover .company-chip {
+  border-color: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+.company-checkbox-card input[type="checkbox"]:checked + .company-chip {
+  background: var(--primary-tint);
+  border-color: var(--primary-azure);
+  color: var(--primary-dark);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+
+/* Skills */
+.skills-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.skill-pill-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.skill-pill-card input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.skill-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-card-alt);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: var(--transition-fast);
+}
+
+.skill-content i {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+}
+
+.skill-pill-card:hover .skill-content {
+  border-color: var(--primary-azure);
+  background: #ffffff;
+  transform: translateY(-2px);
+}
+
+.skill-pill-card input[type="checkbox"]:checked + .skill-content {
+  background: #f0fdf4;
+  border-color: var(--accent-emerald);
+  color: #166534;
+  font-weight: 600;
+}
+
+.skill-pill-card input[type="checkbox"]:checked + .skill-content i {
+  color: var(--accent-emerald);
+}
+
+/* Activities */
+.activities-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.activity-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.activity-card input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.activity-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--bg-card-alt);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast);
+}
+
+.activity-box i {
+  font-size: 1.2rem;
+  color: var(--primary-azure);
+  background: #ffffff;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.act-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.act-details strong {
+  font-size: 0.88rem;
+  color: var(--text-primary);
+}
+
+.act-details span {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.activity-card input[type="checkbox"]:checked + .activity-box {
+  background: var(--primary-tint);
+  border-color: var(--primary-azure);
+}
+
+/* --------------------------------------------------------------------------
+   12. Profile Dossier Presentation
+   -------------------------------------------------------------------------- */
+.profile-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background: #ffffff;
+  padding: 16px 24px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.status-indicator.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ecfdf5;
+  color: #065f46;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid #a7f3d0;
+}
+
+.status-indicator.live i {
+  color: var(--accent-emerald);
+  font-size: 0.65rem;
+}
+
+.last-updated {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* Dossier Card */
+.student-profile-dossier {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+}
+
+/* Profile Hero Banner with STM Seal */
+.profile-hero-banner {
+  position: relative;
+  background: linear-gradient(135deg, #0b1e36 0%, #173b66 60%, #1e40af 100%);
+  color: #ffffff;
+  padding: 36px 36px;
+  border-bottom: 4px solid var(--accent-cyan);
+  overflow: hidden;
+}
+
+.hero-college-seal {
+  position: absolute;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 140px;
+  height: 140px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-full);
+  padding: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+.hero-seal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  max-width: 85%;
+}
+
+.hero-avatar-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-full);
+  padding: 3px;
+  background: linear-gradient(135deg, var(--accent-cyan), #ffffff);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+}
+
+.hero-avatar-wrapper img {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  object-position: 50% 18%;
+  display: block;
+}
+
+.verified-badge {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: var(--accent-emerald);
+  color: #ffffff;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  border: 2px solid #ffffff;
+}
+
+.name-status-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.name-status-row h1 {
+  font-size: 1.85rem;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.degree-pill {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #e0f2fe;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.id-chips-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.id-chip {
+  background: rgba(15, 42, 74, 0.6);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.id-chip strong {
+  color: #ffffff;
+}
+
+.id-chip.highlight {
+  background: rgba(6, 182, 212, 0.3);
+  border-color: rgba(6, 182, 212, 0.5);
+}
+
+.id-chip.highlight strong {
+  color: #a5f3fc;
+}
+
+.college-affiliation {
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Metric Highlight Cards */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--bg-card-alt);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.metric-card {
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-right: 1px solid var(--border-light);
+}
+
+.metric-card:last-child {
+  border-right: none;
+}
+
+.metric-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.metric-icon.blue { background: #dbeafe; color: #1d4ed8; }
+.metric-icon.indigo { background: #e0e7ff; color: #4338ca; }
+.metric-icon.green { background: #dcfce7; color: #15803d; }
+.metric-icon.amber { background: #fef3c7; color: #b45309; }
+
+.metric-label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: block;
+}
+
+.metric-info h3 {
+  font-size: 1.25rem;
+  color: var(--primary-navy);
+}
+
+.metric-info h3 span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Profile 2-Column Body Layout */
+.profile-layout-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 24px;
+  padding: 28px;
+}
+
+.profile-col-left,
+.profile-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dossier-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.card-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1.5px solid var(--border-light);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+
+.card-heading i {
+  color: var(--primary-azure);
+  font-size: 1.1rem;
+}
+
+.card-heading h3 {
+  font-size: 1rem;
+  color: var(--primary-dark);
+}
+
+.card-heading-with-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid var(--border-light);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.heading-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.heading-title i {
+  color: var(--primary-azure);
+}
+
+.heading-title h3 {
+  font-size: 1rem;
+  color: var(--primary-dark);
+}
+
+.card-sem-filter select {
+  padding: 4px 8px;
+  font-size: 0.82rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+  background: var(--bg-card-alt);
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+/* Info List */
+.info-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.86rem;
+  border-bottom: 1px dashed var(--border-light);
+  padding-bottom: 6px;
+}
+
+.info-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.info-label {
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.info-value {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* SGPA Summary Row */
+.sgpa-summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sgpa-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  background: var(--bg-card-alt);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  border: 1px solid var(--border-light);
+}
+
+.sgpa-row.highlight {
+  background: #ecfeff;
+  border-color: #a5f3fc;
+}
+
+.sgpa-row strong {
+  color: var(--primary-blue);
+}
+
+.badge-credits {
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 0.72rem;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+/* Tags */
+.company-tags-wrap,
+.skills-tags-wrap,
+.activity-tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.pill-tag.company {
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+.pill-tag.skill {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.pill-tag.activity {
+  background: #f5f3ff;
+  color: #5b21b6;
+  border: 1px solid #ddd6fe;
+}
+
+/* Display Academic Table Grades */
+.display-table th {
+  background: #1e3a8a;
+  color: #ffffff;
+  padding: 9px 12px;
+}
+
+.display-table td {
+  padding: 8px 12px;
+  font-size: 0.84rem;
+}
+
+.grade-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.grade-high {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.grade-mid {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.grade-pass {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.badge-score {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+
+.score-high {
+  background: #ecfeff;
+  color: #0891b2;
+}
+
+/* Endorsement Seal */
+.cert-endorsement {
+  background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+  border: 1.5px dashed #93c5fd;
+}
+
+.endorsement-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.endorsement-seal {
+  width: 52px;
+  height: 52px;
+  background: #ffffff;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid #bfdbfe;
+  flex-shrink: 0;
+}
+
+.seal-inner-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.endorsement-text h4 {
+  font-size: 0.92rem;
+  color: var(--primary-dark);
+  margin-bottom: 2px;
+}
+
+.endorsement-text p {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Form Actions Toolbar */
+.form-actions-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 18px 24px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+  margin-top: 10px;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   13. Footer
+   -------------------------------------------------------------------------- */
+.footer {
+  background: #ffffff;
+  border-top: 1px solid var(--border-light);
+  padding: 20px 20px;
+  margin-top: auto;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.footer-container {
+  max-width: 1260px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-brand-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.footer-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.footer-links span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-links i {
+  color: var(--primary-azure);
+}
+
+/* --------------------------------------------------------------------------
+   14. Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .hero-college-seal {
+    display: none;
+  }
+  .hero-content {
+    max-width: 100%;
+  }
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .metric-card:nth-child(2) {
+    border-right: none;
+  }
+  .metric-card:nth-child(3),
+  .metric-card:nth-child(4) {
+    border-top: 1px solid var(--border-light);
+  }
+  .profile-layout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-2, .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .panel-header, .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  .metric-card {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .name-status-row, .id-chips-row, .college-affiliation {
+    justify-content: center;
+  }
+  .profile-layout-grid {
+    padding: 16px;
+  }
+  .form-actions-toolbar {
+    flex-direction: column-reverse;
+  }
+  .actions-left, .actions-right {
+    width: 100%;
+  }
+  .actions-left button, .actions-right button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   15. Print Stylesheet
+   -------------------------------------------------------------------------- */
+@media print {
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+  .navbar, .footer, .form-actions-toolbar, .profile-top-bar, #formSection, .btn-del-row, .semester-filter-chips {
+    display: none !important;
+  }
+  .main-wrapper {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+  }
+  #profileSection {
+    display: block !important;
+  }
+  .student-profile-dossier {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  .profile-hero-banner {
+    background: #1e3a8a !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .metric-card, .dossier-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+  }
+  .academic-table th {
+    background: #1e3a8a !important;
+    color: #ffffff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

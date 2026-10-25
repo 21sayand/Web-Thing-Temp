@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Profile | St Thomas College of Engineering and Technology, Kannur</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Academic Portal Top Navigation -->
+  <header class="portal-header">
+    <div class="header-container">
+      <div class="college-brand">
+        <div class="college-crest" aria-hidden="true">
+          <img src="stthomas-logo.png" alt="St Thomas College of Engineering and Technology Logo" class="college-crest-img" />
+        </div>
+        <div class="brand-text">
+          <h1 class="college-title">St Thomas College of Engineering and Technology</h1>
+          <p class="college-subtitle">Mattannur, Kannur, Kerala &bull; Affiliated to APJ Abdul Kalam Technological University</p>
+        </div>
+      </div>
+      <div class="header-meta">
+        <span class="portal-badge">Academic & Placement Portal</span>
+        <span class="session-badge">Academic Year 2026–2027</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="page-wrapper">
+    <!-- Quick Status Banner -->
+    <section class="student-quick-banner" aria-label="Student Information Summary">
+      <div class="quick-banner-inner">
+        <div class="banner-avatar-wrap">
+          <img id="bannerPhoto" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23E2E8F0'/%3E%3Ccircle cx='60' cy='46' r='24' fill='%2394A3B8'/%3E%3Cpath d='M24 104 C24 78, 40 70, 60 70 C80 70, 96 78, 96 104 Z' fill='%2394A3B8'/%3E%3C/svg%3E" alt="Profile Picture" class="banner-photo" />
+          <span class="status-indicator" title="Active Student"></span>
+        </div>
+        <div class="banner-info">
+          <div class="name-row">
+            <h2 id="bannerName">Anjana K</h2>
+            <span class="verified-tag">&#10003; Verified Profile</span>
+          </div>
+          <div class="meta-row">
+            <span><strong>Reg No:</strong> <span id="bannerRegNo">STM23CS008</span></span>
+            <span>&bull;</span>
+            <span><strong>Roll No:</strong> <span id="bannerRollNo">07</span></span>
+            <span>&bull;</span>
+            <span><strong>Program:</strong> <span id="bannerDegree">BTech in Computer Science and Engineering</span> (<span id="bannerBranch">CSE</span>)</span>
+          </div>
+        </div>
+        <div class="banner-stats">
+          <div class="stat-box primary">
+            <span class="stat-label">Cumulative CGPA</span>
+            <span class="stat-value" id="bannerCGPA">6.59</span>
+            <span class="stat-sub">First Class</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Current Status</span>
+            <span class="stat-value text-green">Eligible</span>
+            <span class="stat-sub">Placement Ready</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Layout Grid: Form (Editor) & Bio-Data Dossier (Preview / Print Record) -->
+    <div class="portal-grid">
+
+      <!-- LEFT COLUMN: Profile Form -->
+      <section class="portal-card form-section" aria-labelledby="form-heading">
+        <div class="card-header">
+          <div class="header-icon-title">
+            <span class="card-icon" aria-hidden="true">&#9998;</span>
+            <div>
+              <h3 id="form-heading">Profile Information & Preferences Form</h3>
+              <p class="card-desc">Update personal details, company preferences, and co-curricular records</p>
+            </div>
+          </div>
+          <button type="button" id="loadDefaultsBtn" class="btn btn-outline-sm" title="Reload Anjana's original college data">
+            &#8635; Load College Defaults
+          </button>
+        </div>
+
+        <form id="studentProfileForm" novalidate>
+
+          <!-- Section: Personal Details -->
+          <fieldset class="form-group-fieldset">
+            <legend class="fieldset-legend">1. Personal & Contact Details</legend>
+            
+            <div class="form-row-grid photo-upload-row">
+              <div class="photo-preview-box">
+                <img id="formPhotoPreview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23E2E8F0'/%3E%3Ccircle cx='60' cy='46' r='24' fill='%2394A3B8'/%3E%3Cpath d='M24 104 C24 78, 40 70, 60 70 C80 70, 96 78, 96 104 Z' fill='%2394A3B8'/%3E%3C/svg%3E" alt="Form Photo Preview" />
+              </div>
+              <div class="photo-upload-controls">
+                <label for="studentPhoto" class="form-label">Upload Profile Photograph</label>
+                <div class="file-input-wrapper">
+                  <input type="file" id="studentPhoto" accept="image/png, image/jpeg, image/webp" class="file-input" />
+                  <span class="file-help">Accepted formats: JPG, PNG, WEBP (Max 2MB). Ideal for ID cards & placements.</span>
+                </div>
+                <div class="photo-btn-group">
+                  <button type="button" id="cropCurrentPhotoBtn" class="btn btn-outline-sm" style="display:none;">
+                    &#9986; Adjust / Crop Photo
+                  </button>
+                  <button type="button" id="resetPhotoBtn" class="btn btn-ghost-sm" style="display:none;">Remove Custom Photo</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row-grid cols-2">
+              <div class="input-control">
+                <label for="fullName" class="form-label">Full Name <span class="required">*</span></label>
+                <input type="text" id="fullName" name="fullName" value="Anjana K" required placeholder="Enter student full name" class="form-input" />
+                <span class="validation-msg" id="nameError"></span>
+              </div>
+              <div class="input-control">
+                <label for="registerNo" class="form-label">Register Number (KTU/College) <span class="required">*</span></label>
+                <input type="text" id="registerNo" name="registerNo" value="STM23CS008" required placeholder="e.g. STM23CS005" class="form-input mono" />
+                <span class="validation-msg" id="regError"></span>
+              </div>
+            </div>
+
+            <div class="form-row-grid cols-2">
+              <div class="input-control">
+                <label for="rollNo" class="form-label">Class Roll Number <span class="required">*</span></label>
+                <input type="number" id="rollNo" name="rollNo" value="7" required min="1" max="150" class="form-input mono" />
+                <span class="validation-msg" id="rollError"></span>
+              </div>
+              <div class="input-control">
+                <label for="dob" class="form-label">Date of Birth <span class="required">*</span></label>
+                <input type="date" id="dob" name="dob" value="2004-07-05" required class="form-input" />
+                <span class="validation-msg" id="dobError"></span>
+              </div>
+            </div>
+
+            <div class="form-row-grid cols-2">
+              <div class="input-control">
+                <label for="email" class="form-label">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" value="anjananishanth62@gmail.com" required placeholder="student@stthomas.ac.in" class="form-input" />
+                <span class="validation-msg" id="emailError"></span>
+              </div>
+              <div class="input-control">
+                <label for="phone" class="form-label">Contact Mobile Number <span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" value="8714538696" required placeholder="10-digit mobile number" class="form-input mono" />
+                <span class="validation-msg" id="phoneError"></span>
+              </div>
+            </div>
+
+            <div class="form-row-grid cols-2">
+              <div class="input-control">
+                <label for="degree" class="form-label">Degree Program</label>
+                <input type="text" id="degree" name="degree" value="BTech in Computer Science and Engineering" class="form-input" />
+              </div>
+              <div class="input-control">
+                <label for="branch" class="form-label">Department / Branch</label>
+                <input type="text" id="branch" name="branch" value="CSE" class="form-input" />
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Section: Gender & Blood Group -->
+          <fieldset class="form-group-fieldset">
+            <legend class="fieldset-legend">2. Demographic Details</legend>
+            <div class="form-row-grid cols-2">
+              <!-- Gender Radio Buttons -->
+              <div class="input-control">
+                <span class="form-label">Gender <span class="required">*</span></span>
+                <div class="radio-pill-group" role="radiogroup" aria-label="Gender selection">
+                  <label class="radio-pill">
+                    <input type="radio" name="gender" value="Male" />
+                    <span class="pill-label">Male</span>
+                  </label>
+                  <label class="radio-pill">
+                    <input type="radio" name="gender" value="Female" checked />
+                    <span class="pill-label">Female</span>
+                  </label>
+                  <label class="radio-pill">
+                    <input type="radio" name="gender" value="Other" />
+                    <span class="pill-label">Other</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Blood Group Dropdown -->
+              <div class="input-control">
+                <label for="bloodGroup" class="form-label">Blood Group <span class="required">*</span></label>
+                <div class="select-wrapper">
+                  <select id="bloodGroup" name="bloodGroup" class="form-select" required>
+                    <option value="" disabled>-- Select Blood Group --</option>
+                    <option value="A+">A+ (A Positive)</option>
+                    <option value="A-">A- (A Negative)</option>
+                    <option value="B+">B+ (B Positive)</option>
+                    <option value="B-">B- (B Negative)</option>
+                    <option value="O+">O+ (O Positive)</option>
+                    <option value="O-">O- (O Negative)</option>
+                    <option value="AB+" selected>AB+ (AB Positive)</option>
+                    <option value="AB-">AB- (AB Negative)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Section: Placement Company Preferences -->
+          <fieldset class="form-group-fieldset">
+            <legend class="fieldset-legend">3. Placement & Industry Preferences</legend>
+            <div class="form-row-grid cols-2">
+              <!-- Primary Interested Company Dropdown -->
+              <div class="input-control">
+                <label for="primaryCompany" class="form-label">Primary Dream / Target Company <span class="required">*</span></label>
+                <div class="select-wrapper">
+                  <select id="primaryCompany" name="primaryCompany" class="form-select" required>
+                    <option value="" disabled>-- Select Target Company --</option>
+                    <option value="Oracle">Oracle (Cloud Systems & Enterprise Tech)</option>
+                    <option value="Infosys" selected>Infosys (Digital Core & Enterprise Services)</option>
+                    <option value="TCS">Tata Consultancy Services (TCS Digital / Ninja)</option>
+                    <option value="Wipro">Wipro (Turbo / Elite National Talent)</option>
+                    <option value="Cognizant">Cognizant (GenC Elevate / Pro)</option>
+                    <option value="Accenture">Accenture (Advanced Tech Architecture)</option>
+                    <option value="Zoho">Zoho Corporation (Product Engineering)</option>
+                    <option value="Capgemini">Capgemini (Exceller Program)</option>
+                    <option value="Amazon">Amazon Web Services / SDE</option>
+                    <option value="L&T Technology Services">L&T Technology Services (LTTS)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Secondary Interested Company Dropdown -->
+              <div class="input-control">
+                <label for="secondaryCompany" class="form-label">Secondary Company Preference</label>
+                <div class="select-wrapper">
+                  <select id="secondaryCompany" name="secondaryCompany" class="form-select">
+                    <option value="">-- Optional Second Preference --</option>
+                    <option value="Infosys">Infosys</option>
+                    <option value="TCS">Tata Consultancy Services (TCS)</option>
+                    <option value="Oracle">Oracle</option>
+                    <option value="Wipro">Wipro</option>
+                    <option value="Cognizant">Cognizant</option>
+                    <option value="Accenture">Accenture</option>
+                    <option value="Zoho">Zoho Corporation</option>
+                    <option value="Capgemini">Capgemini</option>
+                    <option value="Amazon" selected>Amazon</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Section: Technical Skills (Checkboxes) -->
+          <fieldset class="form-group-fieldset">
+            <legend class="fieldset-legend">4. Technical Skills & Proficiencies</legend>
+            <p class="fieldset-help">Select all programming languages, tools, and technical areas you are competent in:</p>
+            <div class="checkbox-grid" id="skillsContainer">
+              <label class="custom-checkbox-card">
+                <input type="checkbox" name="skills" value="Python" checked />
+                <span class="checkbox-indicator"></span>
+                <span class="checkbox-text">
+                  <strong>Python</strong>
+                  <small>OOP, Scripts, Automation</small>
+                </span>
+              </label>
+
+              <label class="custom-checkbox-card">
+                <input type="checkbox" name="skills" value="Java"  />
+                <span class="checkbox-indicator"></span>
+                <span class="checkbox-text">
+                  <strong>Java</strong>
+                  <small>Core Java, JVM, Collections</small>
+                </span>
+              </label>
+
+              <label class="custom-checkbox-card">
+                <input type="checkbox" name="skills" value="C / C++" />
+                <span class="checkbox-indicator"></span>
+                <span class="checkbox-text">
+                  <strong>C / C++</strong>
+                  <small>Pointers, Memory, Systems</small>
+                </span>
+              </label>
+
+              <label class="custom-checkbox-card">
+                <input type="checkbox" name="skills" value="Web Development"  />
+                <span class="checkbox-indicator"></span>
+                <span class="checkbox-text">
+                  <strong>Web Development</strong>
+                  <small>HTML5, Modern CSS, JavaScript</small>
+                </span>
+              </label>
+
+              <label class="custom-checkbox-card">
+                <input type="checkbox" name="skills" value="SQL & Databases"  />
+                <span class="checkbox-indicator"></span>
+                <span class="checkbox-text">
+                  <strong>SQL & DBMS</strong>
+                  <small>PostgreSQL, MySQL, Queries</small>
+                </span>
+              </label>
+
+              <label class="custom-checkbox-card">
+                <input type="checkbox" name="skills" value="Data Structures & Algorithms"  />
+                <span class="checkbox-indicator"></span>
+                <span class="checkbox-text">
+                  <strong>Data Structures & Algos</strong>
+                  <small>Trees, Graphs, Sorting, DP</small>
+                </span>
+              </label>
+
+              <label class="custom-checkbox-card">
+                <input type="checkbox" name="skills" value="Git & Version Control"  />
+                <span class="checkbox-indicator"></span>
+                <span class="checkbox-text">
+                  <strong>Git & GitHub</strong>
+                  <small>Branching, PRs, Workflow</small>
+                </span>
+              </label>
+
+              <label class="custom-checkbox-card">
+                <input type="checkbox" name="skills" value="Cloud Computing Basics" />
+                <span class="checkbox-indicator"></span>
+                <span class="checkbox-text">
+                  <strong>Cloud Computing</strong>
+                  <small>OCI, AWS Fundamentals</small>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Section: NSS & Extracurricular Activities (Checkboxes) -->
+          <fieldset class="form-group-fieldset">
+            <legend class="fieldset-legend">5. NSS & Extracurricular Activities</legend>
+            <p class="fieldset-help">Check all certified campus activities and participation:</p>
+            <div class="checkbox-grid" id="activitiesContainer">
+              <label class="custom-checkbox-card">
+                <input type="checkbox" name="activities" value="NSS Volunteer (Unit 248)"  />
+                <span class="checkbox-indicator"></span>
+                <span class="checkbox-text">
+                  <strong>National Service Scheme (NSS)</strong>
+                  <small>Community Outreach & Blood Donation Drives</small>
+                </span>
+              </label>
+
+              <label class="custom-checkbox-card">
+                <input type="checkbox" name="activities" value="College Coding Club" checked />
+                <span class="checkbox-indicator"></span>
+                <span class="checkbox-text">
+                  <strong>College Tech / Coding Forum</strong>
+                  <small>Competitive Coding & Hackathon Participant</small>
+                </span>
+              </label>
+
+              <label class="custom-checkbox-card">
+                <input type="checkbox" name="activities" value="Inter-Collegiate Sports" />
+                <span class="checkbox-indicator"></span>
+                <span class="checkbox-text">
+                  <strong>Sports & Athletics</strong>
+                  <small>Badminton, Football & Annual Meet</small>
+                </span>
+              </label>
+
+              <label class="custom-checkbox-card">
+                <input type="checkbox" name="activities" value="Cultural Arts Society" />
+                <span class="checkbox-indicator"></span>
+                <span class="checkbox-text">
+                  <strong>Cultural & Arts Club</strong>
+                  <small>Annual College Fest Event Committee</small>
+                </span>
+              </label>
+
+              <label class="custom-checkbox-card">
+                <input type="checkbox" name="activities" value="IEEE Student Branch"  />
+                <span class="checkbox-indicator"></span>
+                <span class="checkbox-text">
+                  <strong>IEEE Student Branch Member</strong>
+                  <small>Technical Workshops & Paper Presentations</small>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Form Action Buttons -->
+          <div class="form-actions-bar">
+            <div class="actions-left">
+              <button type="submit" class="btn btn-primary" id="saveProfileBtn">
+                <span class="btn-icon">&#10003;</span> Save &amp; Update Profile
+              </button>
+              <button type="reset" class="btn btn-secondary" id="resetBtn">
+                <span class="btn-icon">&#10005;</span> Reset Changes
+              </button>
+            </div>
+            <div class="actions-right">
+              <button type="button" class="btn btn-outline" id="printBtn">
+                <span class="btn-icon">&#128438;</span> Print / Save PDF
+              </button>
+            </div>
+          </div>
+
+          <div id="formStatusAlert" class="status-alert" role="alert" style="display:none;"></div>
+        </form>
+      </section>
+
+      <!-- RIGHT COLUMN: Official Academic Dossier & Records Table -->
+      <section class="portal-card dossier-section" aria-labelledby="dossier-heading">
+        <div class="card-header dossier-header">
+          <div class="header-icon-title">
+            <span class="card-icon" aria-hidden="true">&#128220;</span>
+            <div>
+              <h3 id="dossier-heading">Academic Dossier & Placement Card</h3>
+              <p class="card-desc">Official student record for placements, faculty review, and records</p>
+            </div>
+          </div>
+          <span class="academic-seal">KTU CSE &bull; 2023-2027</span>
+        </div>
+
+        <div class="dossier-body" id="printableDossier">
+          <!-- Institutional Bio-Data Header -->
+          <div class="institution-mini-banner">
+            <div class="inst-brand-wrap">
+              <img src="stthomas-logo.png" alt="St Thomas College Emblem" class="dossier-college-logo" />
+              <div class="inst-logo-text">
+                <h4>St Thomas College Of Engineering and Technology, Kannur</h4>
+                <p>Department of Computer Science and Engineering &bull; Student Profile Dossier</p>
+              </div>
+            </div>
+            <div class="inst-reg-box">
+              <span class="dossier-reg-label">Register No</span>
+              <span class="dossier-reg-val" id="dossierRegNo">STM23CS008</span>
+            </div>
+          </div>
+
+          <!-- Student Profile Summary Grid -->
+          <div class="student-summary-grid">
+            <div class="profile-photo-card">
+              <img id="dossierPhoto" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23E2E8F0'/%3E%3Ccircle cx='60' cy='46' r='24' fill='%2394A3B8'/%3E%3Cpath d='M24 104 C24 78, 40 70, 60 70 C80 70, 96 78, 96 104 Z' fill='%2394A3B8'/%3E%3C/svg%3E" alt="Student Profile Picture" class="dossier-photo" />
+              <div class="dossier-badge" id="dossierBloodBadge">Blood: AB+</div>
+            </div>
+
+            <div class="dossier-details-table-wrap">
+              <table class="dossier-kv-table" aria-label="Student Details">
+                <tbody>
+                  <tr>
+                    <th>Student Name:</th>
+                    <td id="dossierName" class="highlight-val">Anjana K</td>
+                    <th>Roll Number:</th>
+                    <td id="dossierRollNo" class="mono">07</td>
+                  </tr>
+                  <tr>
+                    <th>Degree & Branch:</th>
+                    <td colspan="3"><span id="dossierDegree">BTech in Computer Science and Engineering</span> (<span id="dossierBranch">CSE</span>)</td>
+                  </tr>
+                  <tr>
+                    <th>Date of Birth:</th>
+                    <td id="dossierDob" class="mono">05/07/2004</td>
+                    <th>Blood Group:</th>
+                    <td id="dossierBloodGroup">AB+</td>
+                  </tr>
+                  <tr>
+                    <th>Gender:</th>
+                    <td id="dossierGender">Female</td>
+                    <th>Contact Phone:</th>
+                    <td id="dossierPhone" class="mono">+91 8714538696</td>
+                  </tr>
+                  <tr>
+                    <th>Official Email:</th>
+                    <td id="dossierEmail" class="email-link">anjananishanth62@gmail.com</td>
+                    <th>Target Company:</th>
+                    <td id="dossierTargetCompany" class="company-badge-text">Oracle</td>
+                  </tr>
+                  <tr>
+                    <th>Alt Preference:</th>
+                    <td colspan="3" id="dossierAltCompany">Infosys</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Academic Performance Table (SGPA & CGPA Records) -->
+          <div class="academic-records-block">
+            <div class="section-title-bar">
+              <h4>Semester-Wise Academic Performance (SGPA &amp; CGPA)</h4>
+              <span class="cgpa-pill">Aggregate CGPA: <strong id="dossierCGPATag">6.59</strong> / 10.0</span>
+            </div>
+
+            <div class="table-responsive">
+              <table class="academic-table" id="academicTable" aria-label="Semester-wise SGPA and CGPA record">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-center">Semester</th>
+                    <th scope="col">Academic Session</th>
+                    <th scope="col" class="text-center">Credits Earned</th>
+                    <th scope="col" class="text-right">SGPA</th>
+                  </tr>
+                </thead>
+                <tbody id="academicTableBody">
+                  <tr data-sem="1">
+                    <td class="text-center font-bold">Semester 1</td>
+                    <td>2023 - 2024 (Odd)</td>
+                    <td class="text-center">13 / 13</td>
+                    <td class="text-right mono font-semibold">6.0</td>
+                  </tr>
+                  <tr data-sem="2">
+                    <td class="text-center font-bold">Semester 2</td>
+                    <td>2023 - 2024 (Even)</td>
+                    <td class="text-center">21 / 21</td>
+                    <td class="text-right mono font-semibold">6.43</td>
+                  </tr>
+                  <tr data-sem="3">
+                    <td class="text-center font-bold">Semester 3</td>
+                    <td>2024 - 2025 (Odd)</td>
+                    <td class="text-center">22 / 22</td>
+                    <td class="text-right mono font-semibold">6.46</td>
+                  </tr>
+                  <tr data-sem="4">
+                    <td class="text-center font-bold">Semester 4</td>
+                    <td>2024 - 2025 (Even)</td>
+                    <td class="text-center">22 / 22</td>
+                    <td class="text-right mono font-semibold">7.46</td>
+                  </tr>
+                  <tr data-sem="5">
+                    <td class="text-center font-bold">Semester 5</td>
+                    <td>2025 - 2026 (Odd)</td>
+                    <td class="text-center">23 / 23</td>
+                    <td class="text-right mono font-semibold">6.41</td>
+                  </tr>
+                  <tr data-sem="6">
+                    <td class="text-center font-bold">Semester 6</td>
+                    <td>2025 - 2026 (Even)</td>
+                    <td class="text-center">23 / 23</td>
+                    <td class="text-right mono font-semibold">6.61</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr class="table-summary-row">
+                    <td colspan="2" class="font-bold text-left">Overall Cumulative Assessment (S1 - S6)</td>
+                    <td class="text-center font-bold">124 Credits</td>
+                    <td class="text-right font-bold text-highlight mono">CGPA: 6.59</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          <!-- Skills & Activities Tags in Dossier -->
+          <div class="dossier-dual-cards">
+            <!-- Selected Skills -->
+            <div class="dossier-pill-card">
+              <h5>Technical Competencies & Skills</h5>
+              <div class="tag-cloud" id="dossierSkillsList">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">C / C++</span>
+                <span class="skill-tag">Web Development</span>
+                <span class="skill-tag">SQL &amp; Databases</span>
+                <span class="skill-tag">Data Structures &amp; Algorithms</span>
+                <span class="skill-tag">Git &amp; GitHub</span>
+              </div>
+            </div>
+
+            <!-- NSS & Extracurriculars -->
+            <div class="dossier-pill-card">
+              <h5>Extracurricular Activities & NSS</h5>
+              <div class="tag-cloud" id="dossierActivitiesList">
+                <span class="activity-tag">NSS Volunteer (Unit 248)</span>
+                <span class="activity-tag">College Coding Club</span>
+                <span class="activity-tag">IEEE Student Branch</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Placement Eligibility Callout -->
+          <div class="placement-callout-card">
+            <div class="callout-icon">&#9733;</div>
+            <div class="callout-content">
+              <h6>Placement Cell Eligibility Note</h6>
+              <p>Student meets academic cut-off criteria (&ge; 7.5 CGPA, zero standing backlogs) for Tier-1 recruitment drives including <strong>Oracle</strong>, <strong>Infosys</strong>, <strong>TCS Digital</strong>, and <strong>Wipro</strong>.</p>
+            </div>
+          </div>
+
+          <!-- Verification Signatures (Visible on Print/Export) -->
+          <div class="dossier-signatures" aria-hidden="true">
+            <div class="signature-line">
+              <span class="sig-title">Student Signature</span>
+              <span class="sig-name">Anjana K</span>
+            </div>
+            <div class="signature-line">
+              <span class="sig-title">Faculty Advisor / HoD</span>
+              <span class="sig-name">Dept of Computer Science &amp; Engg</span>
+            </div>
+            <div class="signature-line">
+              <span class="sig-title">Training &amp; Placement Officer</span>
+              <span class="sig-name">St Thomas College of Engg, Kannur</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Toast Notification Container -->
+  <aside id="toastNotification" class="toast" role="status" aria-live="polite">
+    <span class="toast-icon" id="toastIcon">&#10003;</span>
+    <span class="toast-message" id="toastMsg">Profile updated successfully!</span>
+  </aside>
+
+  <!-- Reset Confirmation Modal -->
+  <dialog id="resetConfirmModal" class="confirm-modal" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <h4 id="modalTitle">Reset to Default Data?</h4>
+      <p>This will restore Anjana K's original college registration records, S1–S6 SGPA marks, and official preferences.</p>
+      <div class="modal-actions">
+        <button type="button" id="cancelResetBtn" class="btn btn-secondary">Cancel</button>
+        <button type="button" id="confirmResetBtn" class="btn btn-danger">Confirm Reset</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Photo Crop & Alignment Modal -->
+  <dialog id="photoCropModal" class="crop-modal" aria-labelledby="cropModalTitle">
+    <div class="crop-modal-container">
+      <div class="crop-modal-header">
+        <div>
+          <h4 id="cropModalTitle">Adjust &amp; Crop Student Photograph</h4>
+          <p class="crop-modal-subtitle">Align face and shoulders within the official placement ID frame</p>
+        </div>
+        <button type="button" id="closeCropModalBtn" class="crop-modal-close" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="crop-modal-body">
+        <!-- Interactive Crop Viewport -->
+        <div class="crop-viewport-section">
+          <div class="crop-canvas-wrapper" id="cropCanvasWrapper">
+            <canvas id="cropCanvas" width="320" height="320"></canvas>
+            <div class="crop-overlay-guides" aria-hidden="true">
+              <div class="guide-circle"></div>
+              <div class="guide-crosshairs"></div>
+              <div class="guide-face-oval" title="Approximate head alignment zone"></div>
+            </div>
+          </div>
+          <span class="crop-instruction-hint">&#9757; Drag to reposition &bull; Scroll to zoom</span>
+
+          <!-- Crop Controls Toolbar -->
+          <div class="crop-controls-toolbar">
+            <div class="zoom-control-wrap">
+              <label for="cropZoomRange" class="control-label">Zoom:</label>
+              <button type="button" id="zoomOutBtn" class="btn-tool" title="Zoom Out">&minus;</button>
+              <input type="range" id="cropZoomRange" min="0.5" max="3" step="0.02" value="1" />
+              <button type="button" id="zoomInBtn" class="btn-tool" title="Zoom In">&plus;</button>
+            </div>
+            <div class="rotate-control-wrap">
+              <button type="button" id="rotateLeftBtn" class="btn-tool" title="Rotate 90° Left">&#8634; -90&deg;</button>
+              <button type="button" id="rotateRightBtn" class="btn-tool" title="Rotate 90° Right">&#8635; +90&deg;</button>
+              <button type="button" id="centerCropBtn" class="btn-tool" title="Center Photo">&#8982; Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Preview Panel: How the photo should be viewed -->
+        <div class="crop-preview-panel">
+          <h5 class="preview-panel-title">Live Presentation Previews</h5>
+          <p class="preview-panel-desc">How your photo will be displayed across official records:</p>
+
+          <div class="preview-cards-list">
+            <!-- Dossier & Placement ID Preview -->
+            <div class="preview-card-item">
+              <span class="preview-label">Placement Dossier Card (1:1)</span>
+              <div class="preview-box-square">
+                <canvas id="livePreviewSquare" width="96" height="96"></canvas>
+              </div>
+              <span class="preview-note">96 &times; 96 px</span>
+            </div>
+
+            <!-- Header Avatar Preview -->
+            <div class="preview-card-item">
+              <span class="preview-label">Portal Dashboard Avatar</span>
+              <div class="preview-box-circle">
+                <canvas id="livePreviewCircle" width="68" height="68"></canvas>
+              </div>
+              <span class="preview-note">Circular format</span>
+            </div>
+          </div>
+
+          <!-- Academic Guidelines Box -->
+          <div class="photo-guidelines-box">
+            <h6>&#10003; Verification Guidelines:</h6>
+            <ul>
+              <li>Face centered within the oval guide</li>
+              <li>Eyes aligned horizontally with crosshairs</li>
+              <li>Clean lighting &amp; clear shoulders visible</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="crop-modal-footer">
+        <button type="button" id="cancelCropBtn" class="btn btn-secondary">Cancel</button>
+        <button type="button" id="applyCropBtn" class="btn btn-primary">
+          <span class="btn-icon">&#10003;</span> Apply &amp; Set Profile Photo
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Footer -->
+  <footer class="portal-footer">
+    <div class="footer-container">
+      <p>&copy; 2026-2027 St Thomas College Of Engineering and Technology, Mattannur, Kannur. All Rights Reserved.</p>
+      <p class="footer-links">
+        <span>Department of CSE</span> &bull; 
+        <span>KTU Affiliated</span> &bull; 
+        <span>Training &amp; Placement Cell</span>
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

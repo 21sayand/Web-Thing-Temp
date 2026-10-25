@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== HERO / PERSONAL DETAILS ===== -->
+<header class="hero">
+    <div class="hero-inner">
+        <img src="images/photo.jpeg" alt="Student Photo" class="student-photo">
+
+        <div class="hero-text">
+            <p class="tag">Student Profile</p>
+            <h1>Swetha V</h1>
+            <p class="course">B.Tech Computer Science and Engineering</p>
+            <p class="college">St.Thomas College of Engineering and Technology, Kannur</p>
+
+            <ul class="contact-list">
+                <li><span>Register No</span> STM23CS049</li>
+                <li><span>Email</span> swethakunju50@gmail.com</li>
+                <li><span>Phone</span> 9633498457</li>
+                <li><span>Address</span> SWETHAKOMALAM (H), KOLARI (PO), PARIYARAM, MATTANNUR</li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<main class="page">
+
+    <!-- ===== STAT CARDS ===== -->
+    <section class="stats">
+        <div class="stat"><h3 id="cgpaStat">--</h3><p>Overall CGPA</p></div>
+        <div class="stat"><h3 id="bestStat">--</h3><p>Best SGPA</p></div>
+        <div class="stat"><h3 id="latestStat">--</h3><p>Latest SGPA (S6)</p></div>
+        <div class="stat"><h3 id="internalStat">--</h3><p>Avg Internal Marks</p></div>
+    </section>
+
+    <div class="columns">
+
+        <!-- ===== LEFT: ACADEMICS ===== -->
+        <section class="card">
+            <h2>Academic Performance</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Semester</th>
+                        <th>SGPA</th>
+                        <th>CGPA</th>
+                        <th>Internal Marks</th>
+                    </tr>
+                </thead>
+                <tbody id="marksBody"></tbody>
+            </table>
+
+            <h3 class="sub">SGPA Trend</h3>
+            <div class="bars" id="bars"></div>
+        </section>
+
+        <!-- ===== RIGHT: FORM ===== -->
+        <section class="card">
+            <h2>Student Information</h2>
+
+            <form id="studentForm" novalidate>
+
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="options">
+                        <label class="opt"><input type="radio" name="gender" value="Female" checked> Female</label>
+                        <label class="opt"><input type="radio" name="gender" value="Male"> Male</label>
+                        <label class="opt"><input type="radio" name="gender" value="Other"> Other</label>
+                    </div>
+                    <small class="error" id="genderErr"></small>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="bloodGroup">Blood Group</label>
+                        <select id="bloodGroup" name="bloodGroup">
+                            <option value="">Select Blood Group</option>
+                            <option>A+</option><option>A-</option>
+                            <option>B+</option><option>B-</option>
+                            <option>AB+</option><option>AB-</option>
+                            <option selected>O+</option><option>O-</option>
+                        </select>
+                        <small class="error" id="bloodErr"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Interested Company</label>
+                        <select id="company" name="company">
+                            <option value="">Select Company</option>
+                            <option selected>Infosys</option>
+                            <option>TCS</option>
+                            <option>Wipro</option>
+                            <option>Cognizant</option>
+                            <option>Accenture</option>
+                            <option>HCL</option>
+                            <option>Tech Mahindra</option>
+                            <option>Google</option>
+                            <option>Microsoft</option>
+                        </select>
+                        <small class="error" id="companyErr"></small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Skills</label>
+                    <div class="options">
+                        <label class="opt"><input type="checkbox" name="skills" value="HTML"> HTML</label>
+                        <label class="opt"><input type="checkbox" name="skills" value="CSS"> CSS</label>
+                        <label class="opt"><input type="checkbox" name="skills" value="JavaScript"> JavaScript</label>
+                        <label class="opt"><input type="checkbox" name="skills" value="Python"> Python</label>
+                        <label class="opt"><input type="checkbox" name="skills" value="Java"> Java</label>
+                        <label class="opt"><input type="checkbox" name="skills" value="C"> C</label>
+                        <label class="opt"><input type="checkbox" name="skills" value="SQL"> SQL</label>
+                    </div>
+                    <small class="error" id="skillsErr"></small>
+                </div>
+
+                <div class="form-group">
+                    <label>NSS / Extracurricular Activities</label>
+                    <div class="options">
+                        <label class="opt"><input type="checkbox" name="activities" value="NSS"> NSS</label>
+                        <label class="opt"><input type="checkbox" name="activities" value="Sports"> Sports</label>
+                        <label class="opt"><input type="checkbox" name="activities" value="Arts"> Arts</label>
+                        <label class="opt"><input type="checkbox" name="activities" value="Volunteering"> Volunteering</label>
+                        <label class="opt"><input type="checkbox" name="activities" value="Technical Events"> Technical Events</label>
+                    </div>
+                    <small class="error" id="activitiesErr"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="comments">Career Goal (optional)</label>
+                    <textarea id="comments" rows="2" maxlength="150" placeholder="Write a short note..."></textarea>
+                    <small class="counter" id="counter">0 / 150</small>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="btn primary">Submit</button>
+                    <button type="button" class="btn ghost" id="selectAllBtn">Select All Skills</button>
+                    <button type="reset" class="btn danger">Reset</button>
+                </div>
+            </form>
+
+            <div id="result" class="result" hidden></div>
+        </section>
+    </div>
+</main>
+
+<footer>Student Profile Web Page &middot; HTML, CSS &amp; JavaScript</footer>
+
+<script src="js/script.js"></script>
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

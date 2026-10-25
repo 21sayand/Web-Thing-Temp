@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yashika Prasanth | Student Academic & Career Profile | STM23CS052</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Sticky Navigation & Quick Actions -->
+  <header class="top-bar">
+    <div class="top-bar-inner">
+      <div class="brand-wrapper">
+        <div class="college-logo-badge" aria-hidden="true">ST</div>
+        <div class="brand-text">
+          <h1>St. Thomas College of Engineering &amp; Technology</h1>
+          <p>
+            <span>Mattanur, Kannur</span>
+            <span class="dot"></span>
+            <span>APJ Abdul Kalam Technological University</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="top-bar-actions">
+        <div class="live-time-chip">
+          <span class="live-pulse" aria-hidden="true"></span>
+          <span id="liveClock">Loading live time...</span>
+        </div>
+        <button type="button" id="themeToggle" class="btn-icon" aria-label="Toggle light/dark mode">
+          <span id="themeIcon">🌙</span> <span id="themeText">Dark</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Profile Banner & Elevated Card -->
+  <div class="hero-container">
+    <section class="hero-banner">
+      <div class="hero-banner-meta">
+        <div class="hero-institution-pill">
+          🏛️ ST. THOMAS COLLEGE OF ENGINEERING AND TECHNOLOGY, MATTANUR
+        </div>
+        <div class="hero-institution-pill">
+          🎓 B.Tech Computer Science &amp; Engineering • Batch 2023 - 2027
+        </div>
+      </div>
+    </section>
+
+    <!-- Elevated Student Identity Card -->
+    <div class="hero-card">
+      <!-- Profile Avatar & QR Media -->
+      <div class="profile-media">
+        <div class="profile-avatar-wrap">
+          <img src="profile.jpg" alt="Yashika Prasanth" class="profile-photo">
+          <div class="qr-mini-badge" title="KTU Student QR Code">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="1.5">
+              <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+              <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+              <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+              <circle cx="6.5" cy="6.5" r="1.5" fill="#e11d48"></circle>
+              <circle cx="17.5" cy="6.5" r="1.5" fill="#e11d48"></circle>
+              <circle cx="6.5" cy="17.5" r="1.5" fill="#e11d48"></circle>
+              <path d="M14 14h2v2h-2z M18 14h3v3h-3z M14 18h3v3h-3z M19 19h2v2h-2z" fill="#e11d48"></path>
+            </svg>
+          </div>
+        </div>
+        <span class="active-pill"><span class="active-dot"></span> Active Student</span>
+      </div>
+
+      <!-- Identity & Metadata Details -->
+      <div class="profile-info">
+        <div class="profile-name-row">
+          <h2 class="profile-name">YASHIKA PRASANTH</h2>
+          <span class="verified-badge">✓ KTU Verified</span>
+        </div>
+        <p class="profile-degree">
+          💻 Bachelor of Technology (B.Tech) • Computer Science &amp; Engineering
+        </p>
+        <div class="profile-tags-row">
+          <span class="meta-chip">🆔 Reg: <strong>STM23CS052</strong></span>
+          <span class="meta-chip">📅 Batch: <strong>2023 - 2027</strong></span>
+          <span class="meta-chip pink-highlight">🩸 Blood: <strong>A+</strong></span>
+          <span class="meta-chip">⚧ Gender: <strong>Female</strong></span>
+          <span class="meta-chip">📍 <strong>Kannur, Kerala, India</strong></span>
+        </div>
+      </div>
+
+      <!-- Top Metric KPI Summaries -->
+      <div class="hero-kpis">
+        <div class="kpi-card highlight">
+          <span class="kpi-label">Cumulative CGPA</span>
+          <span class="kpi-val">7.25</span>
+          <span class="kpi-sub">Out of 10.0 • S1–S6 KTU</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Earned Credits</span>
+          <span class="kpi-val">128</span>
+          <span class="kpi-sub">100% Completed</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Highest SGPA</span>
+          <span class="kpi-val">7.81</span>
+          <span class="kpi-sub">Semester 2 (May 2024) ⭐</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Dashboard (2-Column Grid) -->
+  <main class="main-dashboard">
+
+    <!-- LEFT COLUMN: Profile & Preferences Form -->
+    <aside class="dashboard-col-left">
+      <div class="dash-card">
+        <div class="dash-card-header">
+          <div class="dash-card-title">
+            <span class="dash-card-icon">👤</span>
+            <span>Student Information &amp; Preferences</span>
+          </div>
+        </div>
+
+        <form id="profileForm" novalidate>
+          <div class="form-section-title">Personal Details</div>
+          
+          <div class="form-field full">
+            <label class="form-label" for="fullName">Candidate Full Name <span class="req">*</span></label>
+            <input type="text" id="fullName" class="input-box" value="Yashika Prasanth" required readonly>
+          </div>
+
+          <div class="form-field full">
+            <label class="form-label">Gender <span class="req">*</span></label>
+            <div class="pill-radio-group">
+              <label class="pill-radio-option">
+                <input type="radio" name="gender" value="Male" disabled>
+                <span class="pill-radio-label">Male</span>
+              </label>
+              <label class="pill-radio-option">
+                <input type="radio" name="gender" value="Female" checked disabled>
+                <span class="pill-radio-label">Female</span>
+              </label>
+              <label class="pill-radio-option">
+                <input type="radio" name="gender" value="Other" disabled>
+                <span class="pill-radio-label">Other</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-field">
+              <label class="form-label" for="bloodGroup">Blood Group <span class="req">*</span></label>
+              <select id="bloodGroup" class="select-box" disabled>
+                <option selected>A+ (A Positive)</option>
+                <option>A- (A Negative)</option>
+                <option>B+ (B Positive)</option>
+                <option>B- (B Negative)</option>
+                <option>O+ (O Positive)</option>
+                <option>O- (O Negative)</option>
+                <option>AB+ (AB Positive)</option>
+                <option>AB- (AB Negative)</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="email">Email Address <span class="req">*</span></label>
+              <input type="email" id="email" class="input-box" value="yashika2004prasanth@gmail.com" required readonly>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-field">
+              <label class="form-label" for="phone">Contact Number <span class="req">*</span></label>
+              <input type="text" id="phone" class="input-box" value="+91 8590461274" required readonly>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="currentSem">Semester</label>
+              <input type="text" id="currentSem" class="input-box" value="Semester 7 (S7)" readonly>
+            </div>
+          </div>
+
+          <div class="form-field full">
+            <label class="form-label" for="college">College / Institute</label>
+            <input type="text" id="college" class="input-box" value="St. Thomas College of Engineering &amp; Technology, Mattanur" readonly>
+          </div>
+
+          <div class="form-field full">
+            <label class="form-label" for="address">Residential Address</label>
+            <textarea id="address" class="textarea-box" readonly>Green Valley, Vilakkode, Kannur, Kerala - 670703</textarea>
+          </div>
+
+          <!-- Career Preferences -->
+          <div class="form-section-title">💼 Career &amp; Placement Aspirations</div>
+
+          <div class="form-field full">
+            <label class="form-label" for="dreamCompany">Target / Dream Recruiter <span class="req">*</span></label>
+            <select id="dreamCompany" class="select-box" disabled>
+              <option selected>Infosys Technologies (Specialist Programmer)</option>
+              <option>Tata Consultancy Services (TCS Digital)</option>
+              <option>Wipro Technologies (Turbo Role)</option>
+              <option>Cognizant Technology Solutions</option>
+              <option>Accenture Advanced Technology</option>
+              <option>IBM India Software Labs</option>
+              <option>Google India Engineering</option>
+              <option>Amazon Web Services (AWS)</option>
+              <option>Microsoft IDC</option>
+            </select>
+          </div>
+
+          <div class="form-field full">
+            <label class="form-label" for="preferredRole">Preferred Job Role</label>
+            <input type="text" id="preferredRole" class="input-box" value="Software Engineer / Full Stack Developer" readonly>
+          </div>
+
+          <div class="form-field full">
+            <label class="form-label">Interested Companies for Placement Drive (Multi-Select Tags)</label>
+            <div class="chip-grid" id="companyChips">
+              <span class="interactive-chip active" data-company="Infosys"><span class="chip-dot"></span> Infosys</span>
+              <span class="interactive-chip active" data-company="TCS"><span class="chip-dot"></span> TCS</span>
+              <span class="interactive-chip active" data-company="Wipro"><span class="chip-dot"></span> Wipro</span>
+              <span class="interactive-chip active" data-company="Cognizant"><span class="chip-dot"></span> Cognizant</span>
+              <span class="interactive-chip active" data-company="Accenture"><span class="chip-dot"></span> Accenture</span>
+              <span class="interactive-chip active" data-company="IBM"><span class="chip-dot"></span> IBM</span>
+              <span class="interactive-chip active" data-company="Google"><span class="chip-dot"></span> Google</span>
+              <span class="interactive-chip active" data-company="Amazon"><span class="chip-dot"></span> Amazon</span>
+              <span class="interactive-chip" data-company="Oracle"><span class="chip-dot"></span> Oracle</span>
+              <span class="interactive-chip" data-company="Capgemini"><span class="chip-dot"></span> Capgemini</span>
+              <span class="interactive-chip" data-company="Tech Mahindra"><span class="chip-dot"></span> Tech Mahindra</span>
+            </div>
+          </div>
+
+          <!-- Skills & Extracurriculars -->
+          <div class="form-section-title">⚡ Skills &amp; Extracurricular Activities</div>
+
+          <div class="form-field full">
+            <label class="form-label">Technical Skill Matrix</label>
+            <div class="chip-grid" id="skillChips">
+              <span class="interactive-chip active"><span class="chip-dot"></span> HTML5</span>
+              <span class="interactive-chip active"><span class="chip-dot"></span> CSS3</span>
+              <span class="interactive-chip active"><span class="chip-dot"></span> JavaScript</span>
+              <span class="interactive-chip active"><span class="chip-dot"></span> Java</span>
+              <span class="interactive-chip active"><span class="chip-dot"></span> Python</span>
+              <span class="interactive-chip active"><span class="chip-dot"></span> SQL / MySQL</span>
+              <span class="interactive-chip active"><span class="chip-dot"></span> Git &amp; GitHub</span>
+              <span class="interactive-chip active"><span class="chip-dot"></span> Data Structures</span>
+            </div>
+          </div>
+
+          <div class="form-field full">
+            <label class="form-label">NSS &amp; Campus Activities</label>
+            <div class="chip-grid">
+              <span class="interactive-chip active"><span class="chip-dot"></span> ✓ NSS Volunteer</span>
+              <span class="interactive-chip active"><span class="chip-dot"></span> ✓ Sports (Badminton &amp; TT)</span>
+              <span class="interactive-chip active"><span class="chip-dot"></span> ✓ Arts &amp; Cultural Club</span>
+              <span class="interactive-chip active"><span class="chip-dot"></span> ✓ Social Volunteering</span>
+              <span class="interactive-chip active"><span class="chip-dot"></span> ✓ Photography</span>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </aside>
+
+    <!-- RIGHT COLUMN: Academic Performance & Internal Marks -->
+    <div class="dashboard-col-right">
+
+      <!-- KTU Official University Banner -->
+      <section class="ktu-official-card">
+        <div class="ktu-official-left">
+          <div class="ktu-seal-badge">🏅</div>
+          <div class="ktu-official-text">
+            <h2>APJ ABDUL KALAM TECHNOLOGICAL UNIVERSITY</h2>
+            <p>Official Consolidated B.Tech Semester Grade Record • St. Thomas College of Engineering &amp; Technology</p>
+          </div>
+        </div>
+        <div class="ktu-official-badges">
+          <span class="ktu-tag">Reg: STM23CS052</span>
+          <span class="ktu-tag">Credits: 128 / 128</span>
+          <span class="ktu-tag cgpa-pill">Final CGPA: 7.25</span>
+        </div>
+      </section>
+
+      <!-- SGPA Progression Trend Chart -->
+      <section class="dash-card">
+        <div class="dash-card-header">
+          <div class="dash-card-title">
+            <span class="dash-card-icon">📈</span>
+            <span>SGPA Progression Trend</span>
+          </div>
+          <span class="card-action-pill">Semester-wise Curve (S1 through S6)</span>
+        </div>
+
+        <div class="chart-card-inner">
+          <div class="chart-header-stats">
+            <div class="chart-legend">
+              <span class="legend-swatch"></span>
+              <span>SGPA Score (Scale: 0.0 – 10.0)</span>
+            </div>
+            <span>Highest: <strong>7.81 (S2)</strong> • Latest: <strong>6.65 (S6)</strong></span>
+          </div>
+
+          <!-- Responsive SVG Curve Chart -->
+          <div class="chart-svg-container">
+            <svg class="chart-svg" viewBox="0 0 700 135" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="pinkLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#f43f5e" />
+                  <stop offset="40%" stop-color="#db2777" />
+                  <stop offset="100%" stop-color="#8b5cf6" />
+                </linearGradient>
+                <linearGradient id="pinkAreaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(244, 63, 94, 0.22)" />
+                  <stop offset="100%" stop-color="rgba(244, 63, 94, 0.0)" />
+                </linearGradient>
+              </defs>
+
+              <!-- Grid reference lines -->
+              <line x1="40" y1="30" x2="660" y2="30" stroke="rgba(148, 163, 184, 0.18)" stroke-dasharray="4" />
+              <line x1="40" y1="75" x2="660" y2="75" stroke="rgba(148, 163, 184, 0.18)" stroke-dasharray="4" />
+              <line x1="40" y1="115" x2="660" y2="115" stroke="rgba(148, 163, 184, 0.25)" />
+
+              <!-- Smooth Area Gradient Under Curve -->
+              <path class="chart-area" d="
+                M 60 115
+                L 60 41
+                C 110 38, 130 35, 180 34
+                C 230 33, 260 70, 300 70
+                C 340 70, 380 54, 420 54
+                C 460 54, 500 66, 540 66
+                C 580 66, 620 90, 640 90
+                L 640 115
+                Z
+              " />
+
+              <!-- Main Trend Stroke -->
+              <path class="chart-line" d="
+                M 60 41
+                C 110 38, 130 35, 180 34
+                C 230 33, 260 70, 300 70
+                C 340 70, 380 54, 420 54
+                C 460 54, 500 66, 540 66
+                C 580 66, 620 90, 640 90
+              " />
+
+              <!-- Data Points & Numeric Tooltip Labels -->
+              <!-- S1: 7.68 -->
+              <circle class="chart-point" cx="60" cy="41" />
+              <text class="chart-label" x="60" y="26">7.68</text>
+              <text class="chart-sem-label" x="60" y="130">S1</text>
+
+              <!-- S2: 7.81 (Peak) -->
+              <circle class="chart-point peak" cx="180" cy="34" />
+              <text class="chart-label" x="180" y="19" fill="#e11d48">7.81 ★</text>
+              <text class="chart-sem-label" x="180" y="130">S2</text>
+
+              <!-- S3: 7.05 -->
+              <circle class="chart-point" cx="300" cy="70" />
+              <text class="chart-label" x="300" y="55">7.05</text>
+              <text class="chart-sem-label" x="300" y="130">S3</text>
+
+              <!-- S4: 7.32 -->
+              <circle class="chart-point" cx="420" cy="54" />
+              <text class="chart-label" x="420" y="39">7.32</text>
+              <text class="chart-sem-label" x="420" y="130">S4</text>
+
+              <!-- S5: 7.13 -->
+              <circle class="chart-point" cx="540" cy="66" />
+              <text class="chart-label" x="540" y="51">7.13</text>
+              <text class="chart-sem-label" x="540" y="130">S5</text>
+
+              <!-- S6: 6.65 -->
+              <circle class="chart-point" cx="640" cy="90" />
+              <text class="chart-label" x="640" y="75">6.65</text>
+              <text class="chart-sem-label" x="640" y="130">S6</text>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- KTU Calculation Formula Ribbon -->
+      <section class="formula-ribbon">
+        <div class="formula-left">
+          <span class="formula-icon">🧮</span>
+          <span class="formula-text">KTU Credit-Weighted CGPA Formula:</span>
+          <span class="formula-math">CGPA = Σ(SGPA × Credits) / Σ(Credits)</span>
+        </div>
+        <div class="formula-result">
+          <span>CGPA = 927.65 / 128 = <strong>7.25</strong></span>
+        </div>
+      </section>
+
+      <!-- Semester-Wise Performance Summary Table -->
+      <section class="dash-card">
+        <div class="dash-card-header">
+          <div class="dash-card-title">
+            <span class="dash-card-icon">📑</span>
+            <span>Semester-Wise Performance Summary</span>
+          </div>
+          <span class="card-action-pill">KTU Authenticated Registrations</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Semester</th>
+                <th>Exam Session</th>
+                <th>Certificate No.</th>
+                <th>Earned Credits</th>
+                <th>SGPA</th>
+                <th>SGPA × Credits</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="sem-pill">Semester 1 (S1)</span></td>
+                <td>December 2023</td>
+                <td><span style="font-family: monospace; font-size: 11px;">GC/2023/01/S1/8942</span></td>
+                <td><strong>17</strong></td>
+                <td><strong>7.68</strong></td>
+                <td>130.56</td>
+                <td><span class="status-badge-pass">✓ Passed</span></td>
+              </tr>
+              <tr>
+                <td><span class="sem-pill">Semester 2 (S2)</span></td>
+                <td>May 2024</td>
+                <td><span style="font-family: monospace; font-size: 11px;">GC/2024/02/S2/18921</span></td>
+                <td><strong>21</strong></td>
+                <td><strong style="color: #e11d48;">7.81</strong></td>
+                <td>164.01</td>
+                <td><span class="status-badge-pass">✓ Passed</span></td>
+              </tr>
+              <tr>
+                <td><span class="sem-pill">Semester 3 (S3)</span></td>
+                <td>November 2024</td>
+                <td><span style="font-family: monospace; font-size: 11px;">GC/2024/03/S3/4192</span></td>
+                <td><strong>22</strong></td>
+                <td><strong>7.05</strong></td>
+                <td>155.10</td>
+                <td><span class="status-badge-pass">✓ Passed</span></td>
+              </tr>
+              <tr>
+                <td><span class="sem-pill">Semester 4 (S4)</span></td>
+                <td>April 2025</td>
+                <td><span style="font-family: monospace; font-size: 11px;">GC/2025/04/S4/7821</span></td>
+                <td><strong>22</strong></td>
+                <td><strong>7.32</strong></td>
+                <td>161.04</td>
+                <td><span class="status-badge-pass">✓ Passed</span></td>
+              </tr>
+              <tr>
+                <td><span class="sem-pill">Semester 5 (S5)</span></td>
+                <td>November 2025</td>
+                <td><span style="font-family: monospace; font-size: 11px;">GC/2025/05/S5/14920</span></td>
+                <td><strong>23</strong></td>
+                <td><strong>7.13</strong></td>
+                <td>163.99</td>
+                <td><span class="status-badge-pass">✓ Passed</span></td>
+              </tr>
+              <tr>
+                <td><span class="sem-pill">Semester 6 (S6)</span></td>
+                <td>April 2026</td>
+                <td><span style="font-family: monospace; font-size: 11px;">GC/2026/06/S6/3891</span></td>
+                <td><strong>23</strong></td>
+                <td><strong>6.65</strong></td>
+                <td>152.95</td>
+                <td><span class="status-badge-pass">✓ Passed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Course-Wise Internal Marks & Attendance (All S1–S6 Subjects) -->
+      <section class="dash-card">
+        <div class="dash-card-header">
+          <div class="dash-card-title">
+            <span class="dash-card-icon">📋</span>
+            <span>Course-Wise Internal Marks &amp; Attendance</span>
+          </div>
+          <span class="card-action-pill">Verified S1 – S6 • 47 Subjects</span>
+        </div>
+
+        <!-- Table Toolbar: Search & Semester Filter Pills -->
+        <div class="table-toolbar">
+          <div class="search-input-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="marksSearch" class="search-field" placeholder="Search course name or code...">
+          </div>
+
+          <div class="filter-pills">
+            <button type="button" class="sem-filter-btn active" data-sem="all">All (47)</button>
+            <button type="button" class="sem-filter-btn" data-sem="S1">S1</button>
+            <button type="button" class="sem-filter-btn" data-sem="S2">S2</button>
+            <button type="button" class="sem-filter-btn" data-sem="S3">S3</button>
+            <button type="button" class="sem-filter-btn" data-sem="S4">S4</button>
+            <button type="button" class="sem-filter-btn" data-sem="S5">S5</button>
+            <button type="button" class="sem-filter-btn" data-sem="S6">S6</button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table" id="marksTable">
+            <thead>
+              <tr>
+                <th>Sem</th>
+                <th>Course Name</th>
+                <th>Code</th>
+                <th>Internal Marks</th>
+                <th>Attendance</th>
+                <th>KTU Eligibility</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Semester 1 -->
+              <tr data-sem="S1">
+                <td><span class="sem-pill">S1</span></td>
+                <td>Linear Algebra and Calculus</td>
+                <td><code>MAT101</code></td>
+                <td><span class="mark-val">45.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S1">
+                <td><span class="sem-pill">S1</span></td>
+                <td>Engineering Chemistry</td>
+                <td><code>CYT100</code></td>
+                <td><span class="mark-val">40.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 97%;"></div></div>
+                    <span>97%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S1">
+                <td><span class="sem-pill">S1</span></td>
+                <td>Engineering Mechanics</td>
+                <td><code>EST100</code></td>
+                <td><span class="mark-val">42.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 99%;"></div></div>
+                    <span>99%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S1">
+                <td><span class="sem-pill">S1</span></td>
+                <td>Basics of Civil and Mechanical Engineering</td>
+                <td><code>EST120</code></td>
+                <td><span class="mark-val">43.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S1">
+                <td><span class="sem-pill">S1</span></td>
+                <td>Life Skills</td>
+                <td><code>HUN101</code></td>
+                <td><span class="mark-val">45.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S1">
+                <td><span class="sem-pill">S1</span></td>
+                <td>Engineering Chemistry Lab</td>
+                <td><code>CYL120</code></td>
+                <td><span class="mark-val high-mark">92.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 95%;"></div></div>
+                    <span>95%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S1">
+                <td><span class="sem-pill">S1</span></td>
+                <td>Civil and Mechanical Workshop</td>
+                <td><code>ESL120</code></td>
+                <td><span class="mark-val high-mark">86.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+
+              <!-- Semester 2 -->
+              <tr data-sem="S2">
+                <td><span class="sem-pill">S2</span></td>
+                <td>Engineering Physics A</td>
+                <td><code>PHT100</code></td>
+                <td><span class="mark-val">45.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S2">
+                <td><span class="sem-pill">S2</span></td>
+                <td>Engineering Graphics</td>
+                <td><code>EST110</code></td>
+                <td><span class="mark-val">39.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S2">
+                <td><span class="sem-pill">S2</span></td>
+                <td>Basics of Electrical and Electronics Engineering</td>
+                <td><code>EST130</code></td>
+                <td><span class="mark-val">45.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S2">
+                <td><span class="sem-pill">S2</span></td>
+                <td>Engineering Physics Lab</td>
+                <td><code>PHL120</code></td>
+                <td><span class="mark-val high-mark">86.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S2">
+                <td><span class="sem-pill">S2</span></td>
+                <td>Electrical and Electronics Workshop</td>
+                <td><code>ESL130</code></td>
+                <td><span class="mark-val high-mark">89.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S2">
+                <td><span class="sem-pill">S2</span></td>
+                <td>Vector Calculus, Differential Equations &amp; Transforms</td>
+                <td><code>MAT102</code></td>
+                <td><span class="mark-val">44.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S2">
+                <td><span class="sem-pill">S2</span></td>
+                <td>Professional Communication</td>
+                <td><code>HUN102</code></td>
+                <td><span class="mark-val">48.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S2">
+                <td><span class="sem-pill">S2</span></td>
+                <td>Programming in C</td>
+                <td><code>EST102</code></td>
+                <td><span class="mark-val">43.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+
+              <!-- Semester 3 -->
+              <tr data-sem="S3">
+                <td><span class="sem-pill">S3</span></td>
+                <td>Design and Engineering</td>
+                <td><code>EST200</code></td>
+                <td><span class="mark-val">49.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S3">
+                <td><span class="sem-pill">S3</span></td>
+                <td>Sustainable Engineering</td>
+                <td><code>MCN201</code></td>
+                <td><span class="mark-val">48.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S3">
+                <td><span class="sem-pill">S3</span></td>
+                <td>Discrete Mathematical Structures</td>
+                <td><code>MAT203</code></td>
+                <td><span class="mark-val">46.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S3">
+                <td><span class="sem-pill">S3</span></td>
+                <td>Data Structures</td>
+                <td><code>CST201</code></td>
+                <td><span class="mark-val">41.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S3">
+                <td><span class="sem-pill">S3</span></td>
+                <td>Logic System Design</td>
+                <td><code>CST203</code></td>
+                <td><span class="mark-val">40.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S3">
+                <td><span class="sem-pill">S3</span></td>
+                <td>Object Oriented Programming Using Java</td>
+                <td><code>CST205</code></td>
+                <td><span class="mark-val">42.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S3">
+                <td><span class="sem-pill">S3</span></td>
+                <td>Data Structures Lab</td>
+                <td><code>CSL201</code></td>
+                <td><span class="mark-val high-mark">65.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S3">
+                <td><span class="sem-pill">S3</span></td>
+                <td>Object Oriented Programming Lab (in Java)</td>
+                <td><code>CSL203</code></td>
+                <td><span class="mark-val high-mark">62.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+
+              <!-- Semester 4 -->
+              <tr data-sem="S4">
+                <td><span class="sem-pill">S4</span></td>
+                <td>Professional Ethics</td>
+                <td><code>HUT200</code></td>
+                <td><span class="mark-val">43.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 98%;"></div></div>
+                    <span>98%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S4">
+                <td><span class="sem-pill">S4</span></td>
+                <td>Constitution of India</td>
+                <td><code>MCN202</code></td>
+                <td><span class="mark-val">41.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 97%;"></div></div>
+                    <span>97%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S4">
+                <td><span class="sem-pill">S4</span></td>
+                <td>Graph Theory</td>
+                <td><code>MAT206</code></td>
+                <td><span class="mark-val">42.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 96%;"></div></div>
+                    <span>96%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S4">
+                <td><span class="sem-pill">S4</span></td>
+                <td>Computer Organisation and Architecture</td>
+                <td><code>CST202</code></td>
+                <td><span class="mark-val">41.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 97%;"></div></div>
+                    <span>97%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S4">
+                <td><span class="sem-pill">S4</span></td>
+                <td>Database Management Systems</td>
+                <td><code>CST204</code></td>
+                <td><span class="mark-val">38.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 97%;"></div></div>
+                    <span>97%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S4">
+                <td><span class="sem-pill">S4</span></td>
+                <td>Operating Systems</td>
+                <td><code>CST206</code></td>
+                <td><span class="mark-val">40.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S4">
+                <td><span class="sem-pill">S4</span></td>
+                <td>Digital Lab</td>
+                <td><code>CSL202</code></td>
+                <td><span class="mark-val high-mark">72.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S4">
+                <td><span class="sem-pill">S4</span></td>
+                <td>Operating Systems Lab</td>
+                <td><code>CSL204</code></td>
+                <td><span class="mark-val high-mark">66.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+
+              <!-- Semester 5 -->
+              <tr data-sem="S5">
+                <td><span class="sem-pill">S5</span></td>
+                <td>Disaster Management</td>
+                <td><code>MCN301</code></td>
+                <td><span class="mark-val">45.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S5">
+                <td><span class="sem-pill">S5</span></td>
+                <td>Formal Languages and Automata Theory</td>
+                <td><code>CST301</code></td>
+                <td><span class="mark-val">39.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 99%;"></div></div>
+                    <span>99%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S5">
+                <td><span class="sem-pill">S5</span></td>
+                <td>Computer Networks</td>
+                <td><code>CST303</code></td>
+                <td><span class="mark-val">42.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S5">
+                <td><span class="sem-pill">S5</span></td>
+                <td>System Software</td>
+                <td><code>CST305</code></td>
+                <td><span class="mark-val">50.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S5">
+                <td><span class="sem-pill">S5</span></td>
+                <td>Microprocessors and Microcontrollers</td>
+                <td><code>CST307</code></td>
+                <td><span class="mark-val">41.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 98%;"></div></div>
+                    <span>98%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S5">
+                <td><span class="sem-pill">S5</span></td>
+                <td>Management of Software Systems</td>
+                <td><code>CST309</code></td>
+                <td><span class="mark-val">42.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S5">
+                <td><span class="sem-pill">S5</span></td>
+                <td>System Software and Microprocessors Lab</td>
+                <td><code>CSL331</code></td>
+                <td><span class="mark-val high-mark">75.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S5">
+                <td><span class="sem-pill">S5</span></td>
+                <td>Database Management Systems Lab</td>
+                <td><code>CSL333</code></td>
+                <td><span class="mark-val high-mark">60.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+
+              <!-- Semester 6 -->
+              <tr data-sem="S6">
+                <td><span class="sem-pill">S6</span></td>
+                <td>Industrial Economics and Foreign Trade</td>
+                <td><code>HUT300</code></td>
+                <td><span class="mark-val">41.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S6">
+                <td><span class="sem-pill">S6</span></td>
+                <td>Compiler Design</td>
+                <td><code>CST302</code></td>
+                <td><span class="mark-val">38.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 99%;"></div></div>
+                    <span>99%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S6">
+                <td><span class="sem-pill">S6</span></td>
+                <td>Computer Graphics and Image Processing</td>
+                <td><code>CST304</code></td>
+                <td><span class="mark-val">40.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 99%;"></div></div>
+                    <span>99%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S6">
+                <td><span class="sem-pill">S6</span></td>
+                <td>Algorithm Analysis and Design</td>
+                <td><code>CST306</code></td>
+                <td><span class="mark-val">40.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 96%;"></div></div>
+                    <span>96%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S6">
+                <td><span class="sem-pill">S6</span></td>
+                <td>Comprehensive Course Work</td>
+                <td><code>CST308</code></td>
+                <td><span class="mark-val">NA</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S6">
+                <td><span class="sem-pill">S6</span></td>
+                <td>Networking Lab</td>
+                <td><code>CSL332</code></td>
+                <td><span class="mark-val high-mark">56.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S6">
+                <td><span class="sem-pill">S6</span></td>
+                <td>Miniproject</td>
+                <td><code>CSD334</code></td>
+                <td><span class="mark-val high-mark">69.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+              <tr data-sem="S6">
+                <td><span class="sem-pill">S6</span></td>
+                <td>Programming in Python</td>
+                <td><code>CST362</code></td>
+                <td><span class="mark-val">37.0</span></td>
+                <td>
+                  <div class="attendance-meter">
+                    <div class="meter-bar"><div class="meter-fill" style="width: 98%;"></div></div>
+                    <span>98%</span>
+                  </div>
+                </td>
+                <td><span class="status-badge-pass">✓ Eligible</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div id="emptySearchState" class="empty-state">
+            🔍 No courses found matching your search.
+          </div>
+        </div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px;">
+          📌 All internal marks for Semester 1 through Semester 6 have been authenticated from KTU portal records. Semester 7 evaluations are currently underway.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Portal Footer -->
+  <footer class="app-footer">
+    <div>
+      <strong>Yashika Prasanth</strong> • B.Tech Computer Science &amp; Engineering • Roll No: <strong>STM23CS052</strong>
+    </div>
+    <div>
+      St. Thomas College of Engineering &amp; Technology, Mattanur • APJ Abdul Kalam Technological University
+    </div>
+    <div class="footer-hash">
+      KTU-AUTH-HASH: 7B9F-841A-2026-STM23CS052
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

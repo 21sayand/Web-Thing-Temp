@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sayand | Student Profile & Systems Portfolio</title>
+    <meta name="description"
+        content="Official Student Profile Web Page and Computer Science systems portfolio of Sayand (CGPA 7.75, Sem 4: 8.45 SGPA, Register No: stm23cs043)." />
+    <meta name="author" content="Sayand" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet" href="static/css/student-profile.css" />
+</head>
+
+<body class="selection:bg-amber-100 selection:text-amber-900">
+
+    <canvas id="liquidCanvas"></canvas>
+
+    <canvas id="zenCanvasOverlay"></canvas>
+
+    <header class="header-nav">
+        <nav class="nav-container liquid-glass">
+            
+            <a href="#about" class="nav-logo group">
+                <img src="static/images/profile.jpg" alt="Sayand" onerror="this.onerror=null; this.src='static/images/profile.png';" class="nav-avatar-mini" />
+                <div class="flex flex-col">
+                    <span
+                        class="font-extrabold text-sm md:text-base tracking-tight text-stone-900 flex items-center gap-1.5">
+                        Sayand
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    </span>
+                    <span class="text-[11px] text-stone-500 font-medium">
+                        B.Tech Computer Science & Engineering &bull; Semester 7
+                    </span>
+                </div>
+            </a>
+
+            <ul class="nav-links hidden md:flex">
+                <li><a href="#about" class="nav-link font-semibold text-stone-800">About</a></li>
+                <li><a href="#student-profile" class="nav-link font-bold text-stone-900 bg-amber-100/70 border border-amber-300/80 px-3 py-1 rounded-full hover:bg-amber-100 transition-colors"><i data-lucide="graduation-cap" class="w-4 h-4 inline mr-1 text-amber-700"></i> Student Profile</a></li>
+                <li><a href="#projects" class="nav-link">Systems</a></li>
+                <li><a href="#skills" class="nav-link">Craft</a></li>
+                <li><a href="#timeline" class="nav-link">Journey</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                
+                <div id="cgpaPillBadge"
+                    class="glass-pill text-stone-900 font-bold bg-stone-100 border-stone-300 cursor-pointer select-none"
+                    title="Triple tap for late night journal note ✦">
+                    <i data-lucide="award" class="w-3.5 h-3.5 text-stone-900"></i> CGPA 7.75
+                </div>
+
+                <a href="#contact" class="hidden sm:inline-flex btn-primary text-xs py-2 px-4 rounded-xl">
+                    Say Hello
+                </a>
+
+                <button id="mobileNavBtn"
+                    onclick="document.getElementById('mobileNavDrawer').classList.toggle('hidden')"
+                    class="md:hidden p-2 rounded-xl text-stone-700 hover:bg-stone-100">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div id="mobileNavDrawer" class="mobile-drawer liquid-glass hidden md:hidden">
+                <a href="#about" onclick="document.getElementById('mobileNavDrawer').classList.add('hidden')"
+                    class="nav-link py-2 border-b border-stone-200 text-stone-900 font-bold">About Sayand</a>
+                <a href="#student-profile" onclick="document.getElementById('mobileNavDrawer').classList.add('hidden')"
+                    class="nav-link py-2 border-b border-stone-200">Student Profile</a>
+                <a href="#projects" onclick="document.getElementById('mobileNavDrawer').classList.add('hidden')"
+                    class="nav-link py-2 border-b border-stone-200">Systems</a>
+                <a href="#skills" onclick="document.getElementById('mobileNavDrawer').classList.add('hidden')"
+                    class="nav-link py-2 border-b border-stone-200">Technical Craft</a>
+                <a href="#timeline" onclick="document.getElementById('mobileNavDrawer').classList.add('hidden')"
+                    class="nav-link py-2 border-b border-stone-200">Education Timeline</a>
+                <a href="#contact" onclick="document.getElementById('mobileNavDrawer').classList.add('hidden')"
+                    class="nav-link py-2 text-stone-900 font-bold">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="relative z-10 pt-28 md:pt-32 pb-24 px-4 md:px-8 max-w-7xl mx-auto space-y-20">
+
+        <section id="about" class="hero-section text-left w-full">
+            <div class="space-y-6 text-left max-w-3xl">
+                <div class="glass-pill text-xs font-semibold text-stone-700">
+                    <i data-lucide="graduation-cap" class="w-4 h-4 text-amber-600"></i>
+                    <span>B.Tech Computer Science &amp; Engineering &bull; Semester 7</span>
+                </div>
+
+                <h1 class="hero-title">
+                    Crafting software with quiet care and human warmth.
+                </h1>
+
+                <blockquote class="hero-quote">
+                    &ldquo;I am into Blissful software development that can bring brightness into people's lives.&rdquo;
+                </blockquote>
+
+                <p class="text-sm md:text-base text-stone-600 leading-relaxed font-normal">
+                    Hi, I am <strong>Sayand</strong>. I am a 7th-semester Computer Science student in Kerala. I like
+                    writing software that respects your attention instead of demanding it — small tools, gentle mobile
+                    apps, and systems that feel calm to live with.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <div class="glass-pill">
+                        <i data-lucide="map-pin" class="w-4 h-4 text-stone-400"></i>
+                        <span>Kerala, India</span>
+                    </div>
+                    <div class="glass-pill">
+                        <i data-lucide="code-2" class="w-4 h-4 text-amber-600"></i>
+                        <span>Python &bull; Kotlin &bull; Dart &bull; PyTorch</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="student-profile" class="scroll-mt-28 space-y-6">
+
+            <div class="space-y-1 text-left border-b border-stone-200 pb-4">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-stone-900">Student Profile &amp; Academic Record</h2>
+                <p class="text-xs md:text-sm text-stone-600 mt-0.5">Immutable verified student record &bull; Verified 7-semester academic performance telemetry.</p>
+            </div>
+
+            <div class="content-grid">
+                
+                <div class="form-column">
+                    <div class="student-dossier-wrap">
+
+                        <div class="form-card-section">
+                            <div class="section-header">
+                                <div class="section-title-wrap">
+                                    <span class="section-num">01</span>
+                                    <div>
+                                        <h3 class="section-title">Personal Details &amp; Identification</h3>
+                                        <p class="section-subtitle">Student identity and academic affiliation</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label class="form-label">Student Full Name</label>
+                                    <input type="text" class="input-field" value="Sayand" readonly />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Register Number</label>
+                                    <input type="text" class="input-field" value="stm23cs043" readonly />
+                                </div>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label class="form-label">Department / Branch</label>
+                                    <input type="text" class="input-field" value="Computer Science & Engineering" readonly />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Current Semester</label>
+                                    <input type="text" class="input-field" value="Semester 7 (Final Year)" readonly />
+                                </div>
+                            </div>
+
+                            <div class="form-grid-3">
+                                <div class="form-group">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="input-field" value="sayand.r23@gmail.com" readonly />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Contact Mobile</label>
+                                    <div class="input-field flex items-center justify-between" style="cursor:pointer;">
+                                        <span class="blurred-phone">+91 99953 11232</span>
+                                        <i data-lucide="eye" class="w-3.5 h-3.5 text-stone-400"></i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Date of Birth</label>
+                                    <input type="text" class="input-field" value="March 2026" readonly />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Permanent Address</label>
+                                <textarea rows="2" class="textarea-field" readonly>Kuthuparamba, Kannur, Kerala</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-card-section">
+                            <div class="section-header">
+                                <div class="section-title-wrap">
+                                    <span class="section-num">02</span>
+                                    <div>
+                                        <h3 class="section-title">Demographics &amp; Favorite Companies</h3>
+                                        <p class="section-subtitle">Gender, blood group, and preferred companies</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Gender</label>
+                                <div class="radio-group-container">
+                                    <label class="radio-card-label" style="cursor:default;">
+                                        <input type="radio" checked disabled class="custom-radio" />
+                                        <span class="radio-text">
+                                            <span>♂</span> Male
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label class="form-label">Blood Group</label>
+                                    <input type="text" class="input-field" value="O+ (O Positive)" readonly />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Favorite Companies</label>
+                                    <input type="text" class="input-field" value="Tesla, IBM" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-card-section">
+                            <div class="section-header">
+                                <div class="section-title-wrap">
+                                    <span class="section-num">03</span>
+                                    <div>
+                                        <h3 class="section-title">Technical Skills &amp; Proficiencies</h3>
+                                        <p class="section-subtitle">Acquired programming languages, frameworks, and tools</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checkbox-grid">
+                                <div class="checkbox-card-label" style="cursor:default;">
+                                    <input type="checkbox" checked disabled class="custom-checkbox" />
+                                    <div class="checkbox-details">
+                                        <span class="checkbox-title">Python Programming</span>
+                                        <span class="checkbox-desc">Data analysis, Flask, AI logic</span>
+                                    </div>
+                                </div>
+
+                                <div class="checkbox-card-label" style="cursor:default;">
+                                    <input type="checkbox" checked disabled class="custom-checkbox" />
+                                    <div class="checkbox-details">
+                                        <span class="checkbox-title">Java &amp; Android SDK</span>
+                                        <span class="checkbox-desc">Native mobile systems &amp; Kotlin</span>
+                                    </div>
+                                </div>
+
+                                <div class="checkbox-card-label" style="cursor:default;">
+                                    <input type="checkbox" checked disabled class="custom-checkbox" />
+                                    <div class="checkbox-details">
+                                        <span class="checkbox-title">HTML5, CSS3 &amp; JavaScript</span>
+                                        <span class="checkbox-desc">Modern responsive web architecture</span>
+                                    </div>
+                                </div>
+
+                                <div class="checkbox-card-label" style="cursor:default;">
+                                    <input type="checkbox" checked disabled class="custom-checkbox" />
+                                    <div class="checkbox-details">
+                                        <span class="checkbox-title">Data Structures &amp; Algorithms</span>
+                                        <span class="checkbox-desc">Trees, graphs, dynamic programming</span>
+                                    </div>
+                                </div>
+
+                                <div class="checkbox-card-label" style="cursor:default;">
+                                    <input type="checkbox" checked disabled class="custom-checkbox" />
+                                    <div class="checkbox-details">
+                                        <span class="checkbox-title">Flutter &amp; Dart</span>
+                                        <span class="checkbox-desc">Cross-platform fluid mobile UIs</span>
+                                    </div>
+                                </div>
+
+                                <div class="checkbox-card-label" style="cursor:default;">
+                                    <input type="checkbox" checked disabled class="custom-checkbox" />
+                                    <div class="checkbox-details">
+                                        <span class="checkbox-title">Databases (SQL &amp; Firebase)</span>
+                                        <span class="checkbox-desc">PostgreSQL, queries, schema design</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-card-section">
+                            <div class="section-header">
+                                <div class="section-title-wrap">
+                                    <span class="section-num">04</span>
+                                    <div>
+                                        <h3 class="section-title">Extracurricular Activities</h3>
+                                        <p class="section-subtitle">Sports, interests, and recreation</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div class="checkbox-card-label" style="cursor:default; display:flex; flex-direction:column; align-items:flex-start; gap:0.75rem;">
+                                    <div style="display:flex; align-items:center; gap:0.75rem;">
+                                        <input type="checkbox" checked disabled class="custom-checkbox" />
+                                        <span class="checkbox-title" style="font-size:1rem; font-weight:700; color:var(--text-primary);">Cricket</span>
+                                    </div>
+                                    <div style="padding-left:1.85rem;">
+                                        <button type="button" class="fav-player-glowing" id="favPlayerTrigger" title="Hover to see favorite player" style="border:none; outline:none; font-family:inherit; font-size:0.85rem; cursor:pointer;">
+                                            fav player
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-card-section">
+                            <div class="section-header">
+                                <div class="section-title-wrap">
+                                    <span class="section-num">05</span>
+                                    <div>
+                                        <h3 class="section-title">Academic Record Table (7 Semesters)</h3>
+                                        <p class="section-subtitle">
+                                            Verified SGPA and cumulative CGPA progression.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="academic-table" id="academicPerformanceTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Semester</th>
+                                            <th>Term &amp; Core Coursework</th>
+                                            <th>SGPA</th>
+                                            <th>Cumulative CGPA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="academicTableBody">
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="table-summary-footer" style="grid-template-columns: 1fr;">
+                                <div class="summary-metric-card">
+                                    <span class="summary-metric-label">Cumulative CGPA</span>
+                                    <span class="summary-metric-val highlight" id="summaryAvgCgpa">7.75</span>
+                                    <span class="summary-metric-sub">Average of 7 Semesters</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <aside class="preview-sidebar">
+                    <div class="student-id-card">
+                        
+                        <div class="card-top-strip">
+                            <span>STUDENT SUMMARY</span>
+                            <span class="card-logo-mini">CS &bull; S7</span>
+                        </div>
+
+                        <div class="id-card-body">
+                            
+                            <div class="id-photo-frame">
+                                <img id="cardAvatarPreview" src="static/images/profile.jpg" alt="Sayand Portrait" onerror="this.onerror=null; this.src='static/images/profile.png';" />
+                                <div class="id-status-dot" title="Active Enrolled Student"></div>
+                            </div>
+
+                            <h3 class="id-name" id="cardStudentName">Sayand</h3>
+                            <span class="id-reg" id="cardRegNo">stm23cs043</span>
+                            <div class="id-dept" id="cardDepartment">Computer Science &amp; Engineering &bull; Sem 7</div>
+
+                            <div class="id-quick-grid">
+                                <div class="id-detail-box">
+                                    <div class="id-detail-label">CGPA (7 Sems)</div>
+                                    <div class="id-detail-value highlight-cgpa" id="cardCgpa">7.75</div>
+                                </div>
+
+                                <div class="id-detail-box">
+                                    <div class="id-detail-label">Blood Group</div>
+                                    <div class="id-detail-value" id="cardBloodGroup">O+</div>
+                                </div>
+
+                                <div class="id-detail-box">
+                                    <div class="id-detail-label">Gender</div>
+                                    <div class="id-detail-value" id="cardGender">Male</div>
+                                </div>
+
+                                <div class="id-detail-box" style="grid-column: span 2;">
+                                    <div class="id-detail-label">Favorite Companies</div>
+                                    <div class="id-detail-value" style="color:#065F46;" id="cardCompany">Tesla, IBM</div>
+                                </div>
+                            </div>
+
+                            <div class="id-skills-cloud">
+                                <div class="id-skills-title">Active Competencies</div>
+                                <div class="id-skills-tags" id="cardSkillsTags">
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="projects" class="space-y-6">
+            <div class="space-y-1 text-left">
+                <span class="text-xs font-bold uppercase tracking-widest text-stone-400">Software Engineering</span>
+                <h3 class="text-2xl md:text-3xl font-extrabold text-stone-900">Systems &amp; Projects</h3>
+                <p class="text-xs md:text-sm text-stone-600">Selected software systems and technical tools built during my studies.</p>
+            </div>
+
+            <div class="space-y-3.5">
+                
+                <div class="liquid-glass p-5 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 text-left hover:border-stone-400 transition-all">
+                    <div class="flex items-start md:items-center gap-3.5">
+                        <div class="w-10 h-10 rounded-lg bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-900 shrink-0">
+                            <i data-lucide="layers" class="w-5 h-5 text-amber-600"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h4 class="text-base font-bold text-stone-900">The Orbit AI</h4>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-stone-100 text-stone-700">Platform Concept</span>
+                            </div>
+                            <p class="text-xs text-stone-600 mt-0.5">Real-time collaborative developer workspace for system architecture design, code sharing, and team planning.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-1.5 md:shrink-0">
+                        <span class="px-2 py-0.5 rounded bg-stone-100 text-[11px] font-medium text-stone-700 font-mono">Python</span>
+                        <span class="px-2 py-0.5 rounded bg-stone-100 text-[11px] font-medium text-stone-700 font-mono">WebSockets</span>
+                        <span class="px-2 py-0.5 rounded bg-stone-100 text-[11px] font-medium text-stone-700 font-mono">System Design</span>
+                    </div>
+                </div>
+
+                <div class="liquid-glass p-5 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 text-left hover:border-stone-400 transition-all">
+                    <div class="flex items-start md:items-center gap-3.5">
+                        <div class="w-10 h-10 rounded-lg bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-900 shrink-0">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-amber-600"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h4 class="text-base font-bold text-stone-900">Vehicle Tracking System</h4>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-stone-100 text-stone-700">Android System</span>
+                            </div>
+                            <p class="text-xs text-stone-600 mt-0.5">Battery-conscious Android fleet telemetry system with background GPS tracking and geofence boundary alerts.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-1.5 md:shrink-0">
+                        <span class="px-2 py-0.5 rounded bg-stone-100 text-[11px] font-medium text-stone-700 font-mono">Kotlin</span>
+                        <span class="px-2 py-0.5 rounded bg-stone-100 text-[11px] font-medium text-stone-700 font-mono">Location Services</span>
+                        <span class="px-2 py-0.5 rounded bg-stone-100 text-[11px] font-medium text-stone-700 font-mono">Google Maps</span>
+                    </div>
+                </div>
+
+                <div class="liquid-glass p-5 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 text-left hover:border-stone-400 transition-all">
+                    <div class="flex items-start md:items-center gap-3.5">
+                        <div class="w-10 h-10 rounded-lg bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-900 shrink-0">
+                            <i data-lucide="shield-check" class="w-5 h-5 text-amber-600"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h4 class="text-base font-bold text-stone-900">Digital Security App</h4>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-stone-100 text-stone-700">Security Tool</span>
+                            </div>
+                            <p class="text-xs text-stone-600 mt-0.5">DNS and network traffic inspector alerting users to suspicious domain lookups, tracking calls, and deceptive links.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-1.5 md:shrink-0">
+                        <span class="px-2 py-0.5 rounded bg-stone-100 text-[11px] font-medium text-stone-700 font-mono">Kotlin</span>
+                        <span class="px-2 py-0.5 rounded bg-stone-100 text-[11px] font-medium text-stone-700 font-mono">Dart</span>
+                        <span class="px-2 py-0.5 rounded bg-stone-100 text-[11px] font-medium text-stone-700 font-mono">VpnService</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="space-y-6">
+            <div class="space-y-1 text-left">
+                <span class="text-xs font-bold uppercase tracking-widest text-stone-400">Technical Foundation</span>
+                <h3 class="text-2xl md:text-3xl font-extrabold text-stone-900">Languages &amp; Tools</h3>
+                <p class="text-xs md:text-sm text-stone-600">Core software capabilities, transformer research, and low-latency systems.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <div class="liquid-glass p-8 space-y-6 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700">
+                            <i data-lucide="terminal" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-stone-900">Core Languages</h4>
+                        <p class="text-xs text-stone-500">Writing clean, maintainable systems for mobile and backend.</p>
+                    </div>
+
+                    <div class="space-y-2.5">
+                        <div class="flex items-center justify-between text-xs font-semibold">
+                            <span>Python</span>
+                            <span class="text-amber-700">Proficient</span>
+                        </div>
+                        <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-stone-900 h-full w-[90%]"></div>
+                        </div>
+
+                        <div class="flex items-center justify-between text-xs font-semibold pt-1">
+                            <span>Kotlin (Android Native)</span>
+                            <span class="text-amber-700">Proficient</span>
+                        </div>
+                        <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-stone-900 h-full w-[88%]"></div>
+                        </div>
+
+                        <div class="flex items-center justify-between text-xs font-semibold pt-1">
+                            <span>Dart (Flutter)</span>
+                            <span class="text-amber-700">Practical</span>
+                        </div>
+                        <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-stone-900 h-full w-[80%]"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="liquid-glass p-8 space-y-6 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700">
+                            <i data-lucide="cpu" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-stone-900">AI / ML &amp; Optimization</h4>
+                        <p class="text-xs text-stone-500">Natural Language Processing, Transformer models, and edge inference.</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-amber-50/70 border border-amber-200 space-y-2">
+                        <p class="text-xs font-semibold italic text-stone-900">
+                            &ldquo;Efficient Intelligence &amp; Optimization&rdquo;
+                        </p>
+                        <p class="text-[11px] text-stone-600">
+                            Working with transformer attention mechanisms, quantization, and edge AI optimization for low-latency reasoning.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-1.5 pt-2">
+                        <span class="glass-pill text-[11px]">Transformer Models</span>
+                        <span class="glass-pill text-[11px]">NLP &amp; Attention</span>
+                        <span class="glass-pill text-[11px]">Edge AI &amp; Quantization</span>
+                    </div>
+                </div>
+
+                <div class="liquid-glass p-8 space-y-6 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700">
+                            <i data-lucide="layers" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-stone-900">Area of Interest</h4>
+                        <p class="text-xs text-stone-500">Transformer design, efficient NLP, and on-device model deployment.</p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="glass-pill w-full justify-start text-xs font-semibold py-2">
+                            <i data-lucide="cpu" class="w-4 h-4 text-amber-600"></i> Transformer Architectures &amp; Attention
+                        </div>
+                        <div class="glass-pill w-full justify-start text-xs font-semibold py-2">
+                            <i data-lucide="zap" class="w-4 h-4 text-amber-600"></i> Edge AI &amp; On-Device Model Optimization
+                        </div>
+                        <div class="glass-pill w-full justify-start text-xs font-semibold py-2">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-amber-600"></i> Efficient NLP &amp; Model Quantization
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="timeline" class="space-y-6">
+            <div class="space-y-1 text-left">
+                <span class="text-xs font-bold uppercase tracking-widest text-stone-400">Background</span>
+                <h3 class="text-2xl md:text-3xl font-extrabold text-stone-900">Education &amp; Open Source</h3>
+                <p class="text-xs md:text-sm text-stone-600">Academic journey and open source contributions.</p>
+            </div>
+
+            <div class="space-y-4">
+                
+                <div class="liquid-glass p-6 md:p-8 space-y-3 text-left">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-stone-100 text-stone-800">
+                                Current Degree
+                            </span>
+                            <span class="text-xs font-mono font-bold text-stone-400">2023 – Present</span>
+                        </div>
+                        <span class="text-xs font-bold text-amber-700">Semester 7 &bull; CGPA: 7.75</span>
+                    </div>
+
+                    <h4 class="text-xl font-bold text-stone-900">B.Tech in Computer Science &amp; Engineering</h4>
+                    <p class="text-xs font-medium text-stone-500">Kerala, India</p>
+
+                    <p class="text-xs md:text-sm text-stone-600 leading-relaxed font-normal">
+                        Diving deep into operating systems, computer architecture, mobile engineering, and writing
+                        clean, understandable code.
+                    </p>
+                </div>
+
+                <div class="liquid-glass p-6 md:p-8 space-y-3 text-left">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-stone-100 text-stone-800">
+                                Open Source
+                            </span>
+                            <span class="text-xs font-mono font-bold text-stone-400">Summer 2026</span>
+                        </div>
+                        <span class="text-xs font-bold text-amber-700">Code Refactoring &amp; Optimizations</span>
+                    </div>
+
+                    <h4 class="text-xl font-bold text-stone-900">Velune Contributor</h4>
+                    <p class="text-xs font-medium text-stone-500">Open Source Community &bull; Remote</p>
+
+                    <p class="text-xs md:text-sm text-stone-600 leading-relaxed font-normal">
+                        Contributed performance cleanups, modular refactoring, and code reviews to the open source
+                        Velune ecosystem.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="space-y-6">
+            <div class="space-y-1 text-left">
+                <span class="text-xs font-bold uppercase tracking-widest text-stone-400">Connect</span>
+                <h3 class="text-2xl md:text-3xl font-extrabold text-stone-900">Sayand</h3>
+                <p class="text-xs md:text-sm text-stone-600">Official contact records and direct inquiries.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                
+                <div onclick="copyToClipboard('sayand.r23@gmail.com', 'Email copied to clipboard!')"
+                    class="p-5 rounded-xl bg-white border border-stone-200 flex items-center justify-between cursor-pointer hover:border-amber-500 transition-colors shadow-sm group">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-lg bg-amber-50 text-amber-700">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-[10px] text-stone-400 font-bold uppercase">Email</span>
+                            <span class="text-xs font-bold text-stone-900">sayand.r23@gmail.com</span>
+                        </div>
+                    </div>
+                    <i data-lucide="copy" class="w-4 h-4 text-stone-400 group-hover:text-stone-900"></i>
+                </div>
+
+                <div onclick="copyToClipboard('+91 9995311232', 'Phone number copied to clipboard!')"
+                    class="p-5 rounded-xl bg-white border border-stone-200 flex items-center justify-between cursor-pointer hover:border-amber-500 transition-colors shadow-sm group">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-lg bg-amber-50 text-amber-700">
+                            <i data-lucide="phone" class="w-4 h-4"></i>
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-[10px] text-stone-400 font-bold uppercase">Direct Mobile</span>
+                            <span class="text-xs font-bold text-stone-900 blurred-phone" id="contactPhone">+91 99953 11232</span>
+                        </div>
+                    </div>
+                    <i data-lucide="copy" class="w-4 h-4 text-stone-400 group-hover:text-stone-900"></i>
+                </div>
+
+                <div id="noContactBtn"
+                    class="p-5 rounded-xl bg-white border border-stone-200 flex items-center justify-between cursor-pointer hover:border-amber-500 transition-colors shadow-sm group">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-lg bg-amber-50 text-amber-700">
+                            <i data-lucide="message-square-dashed" class="w-4 h-4"></i>
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-[10px] text-stone-400 font-bold uppercase">Send Message</span>
+                            <span class="text-xs font-bold text-stone-900">Reach Out &bull; Say Hello</span>
+                        </div>
+                    </div>
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-stone-400 group-hover:text-stone-900"></i>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="relative z-10 py-10 px-4 border-t border-stone-200 text-center text-xs text-stone-500">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>&copy; 2026 Sayand &bull; Portfolio</div>
+            <div class="flex items-center gap-4 font-medium">
+                <span>Kuthuparamba, Kannur, Kerala</span> &bull; <span>CGPA 7.75</span> &bull; <span>Register: stm23cs043</span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="easter-egg-counter"
+        onclick="showToast('Tip: Triple tap the CGPA badge!')"
+        title="Sayand Profile ✦">
+        <span class="text-amber-600">✦</span>
+        <span id="easterEggCountText">Sayand ✦</span>
+    </div>
+
+    <div id="benStokesOverlay" class="fullscreen-blur-overlay">
+        <div class="fullscreen-blur-content">
+            <div class="fullscreen-blur-text" id="benStokesText">😊 benstokes</div>
+            <div class="fullscreen-blur-sub">Headingley 2019 Miracle Grit &bull; Click anywhere to dismiss</div>
+        </div>
+    </div>
+
+    <div id="noContactOverlay" class="fullscreen-blur-overlay">
+        <div class="fullscreen-blur-content">
+            <div class="fullscreen-blur-text">Oh for Goodness Sake dont contact me.</div>
+            <div class="fullscreen-blur-sub">Click anywhere to close</div>
+        </div>
+    </div>
+
+    <div id="hostelNoteModal" class="modal-backdrop" onclick="closeHostelNoteModal()">
+        <div class="modal-content space-y-4 text-left max-w-md" onclick="event.stopPropagation()">
+            <button onclick="closeHostelNoteModal()"
+                class="absolute top-5 right-5 p-2 rounded-xl text-stone-400 hover:text-stone-900">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="flex items-center gap-2 text-xs font-bold text-amber-700 uppercase tracking-wider">
+                <i data-lucide="feather" class="w-4 h-4"></i> Student Journal
+            </div>
+
+            <h3 class="text-xl font-bold text-stone-900">A student's quiet notebook</h3>
+
+            <div
+                class="p-4 rounded-xl bg-amber-50/60 border border-amber-200 text-xs text-stone-700 leading-relaxed font-mono space-y-2">
+                <p>&ldquo;Written during my B.Tech studies in Kerala. I like building reliable software, studying computer systems, and writing code that is clean and dependable.</p>
+                <p>Engineering with discipline and care. That is what drives my work.&rdquo;</p>
+                <p class="pt-2 text-right font-bold text-stone-900">— Sayand</p>
+            </div>
+
+            <div class="pt-2 flex justify-end">
+                <button onclick="closeHostelNoteModal()" class="btn-primary text-xs py-2 px-4">
+                    Close Note
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastBanner" class="toast-banner">
+        <span class="text-amber-400">✦</span>
+        <span id="toastBannerMsg">Notification</span>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="static/js/student-profile.js"></script>
+    <script src="static/js/main.js"></script>
+</body>
+
+</html>

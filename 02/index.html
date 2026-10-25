@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adwaith K | Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="split-layout">
+        <!-- Left Side: Hero Image -->
+        <div class="hero-section">
+            <img src="Adwaith.jpeg" alt="Adwaith K" class="hero-img">
+            <div class="hero-overlay">
+                <div class="overlay-text">COMPUTER SCIENCE</div>
+                <div class="overlay-year">BATCH '23</div>
+            </div>
+        </div>
+
+        <!-- Right Side: Content -->
+        <div class="content-section">
+            <header class="main-header">
+                <h1 class="huge-title">ADWAITH<br>K</h1>
+                <p class="reg-number">REG. NO: STM23CS002</p>
+            </header>
+
+            <div class="info-grid">
+                <div class="info-block">
+                    <span class="label">Date of Birth</span>
+                    <span class="value">15.08.2005</span>
+                </div>
+                <div class="info-block">
+                    <span class="label">Blood Group</span>
+                    <span class="value">A+ve</span>
+                </div>
+                <div class="info-block">
+                    <span class="label">Phone</span>
+                    <span class="value">+91 9745571576</span>
+                </div>
+                <div class="info-block">
+                    <span class="label">Email</span>
+                    <span class="value">kadwaith555123@gmail.com</span>
+                </div>
+            </div>
+
+            <div class="academics-section">
+                <h2 class="section-title">ACADEMIC PERFORMANCE</h2>
+                <div class="academic-stats">
+                    <div class="stat-box">
+                        <div class="stat-label">SEM 6 SGPA</div>
+                        <div class="stat-value">6.00</div>
+                    </div>
+                    <div class="stat-box accent-box">
+                        <div class="stat-label">OVERALL CGPA</div>
+                        <div class="stat-value">5.15</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h2 class="section-title">GET IN TOUCH</h2>
+                <form id="contact-form" class="minimal-form">
+                    <div class="form-group">
+                        <label for="name">NAME</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">EMAIL</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">MESSAGE</label>
+                        <textarea id="message" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">SEND MESSAGE</button>
+                </form>
+            </div>
+
+            <footer class="site-footer">
+                <p>STUDENT PROFILE PLATFORM</p>
+            </footer>
+        </div>
+    </div>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Message sent successfully!');
+            this.reset();
+        });
+    </script>
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

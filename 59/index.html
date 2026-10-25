@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asritha S Nath - Student Profile</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>STUDENT PROFILE</h1>
+
+    <!-- Profile Section -->
+    <div class="profile">
+
+        <img src="student.jpg" alt="Student Photo">
+
+        <div class="personal-info">
+
+            <p><b>Name:</b> Asritha S Nath</p>
+
+            <p><b>Register No:</b> LSTM23CS059</p>
+
+            <p><b>Course:</b> B.Tech Computer Science and Engineering</p>
+
+            <p><b>College:</b> STM </p>
+
+            <p><b>Email:</b> asrithasnath2003@gmail.com</p>
+
+            <p><b>Phone:</b> 8848627372</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Personal Details -->
+
+    <h2>Personal Details</h2>
+
+    <form id="studentForm">
+
+        <label for="name">Name:</label>
+
+        <input type="text"
+               id="name"
+               placeholder="Enter your name">
+
+
+        <label>Gender:</label>
+
+        <div class="options">
+
+            <input type="radio"
+                   name="gender"
+                   value="Male">
+
+            Male
+
+            <input type="radio"
+                   name="gender"
+                   value="Female">
+
+            Female
+
+            <input type="radio"
+                   name="gender"
+                   value="Other">
+
+            Other
+
+        </div>
+
+
+        <label for="blood">Blood Group:</label>
+
+        <select id="blood">
+
+            <option value="">-- Select Blood Group --</option>
+
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+
+        </select>
+
+
+        <label for="company">Interested Company:</label>
+
+        <select id="company">
+
+            <option value="">-- Select Company --</option>
+
+            <option>Infosys</option>
+            <option>TCS</option>
+            <option>Wipro</option>
+            <option>Accenture</option>
+            <option>IBM</option>
+            <option>Google</option>
+
+        </select>
+
+
+        <!-- Academic Details -->
+
+        <h2>Academic Details</h2>
+
+        <table>
+
+            <tr>
+                <th>Semester</th>
+                <th>SGPA</th>
+                <th>CGPA</th>
+                <th>Internal Marks</th>
+            </tr>
+
+            <tr>
+                <td>S1</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+
+            <tr>
+                <td>S2</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+
+            <tr>
+                <td>S3</td>
+                <td>7.68</td>
+                <td>7.68</td>
+                <td>46</td>
+            </tr>
+
+            <tr>
+                <td>S4</td>
+                <td>8.05</td>
+                <td>8.05</td>
+                <td>48</td>
+            </tr>
+
+        </table>
+
+
+        <!-- Skills -->
+
+        <h2>Skills</h2>
+
+        <div class="checkbox-group">
+
+            <label>
+                <input type="checkbox" name="skill" value="Java">
+                Java
+            </label>
+
+            <label>
+                <input type="checkbox" name="skill" value="Python">
+                Python
+            </label>
+
+            <label>
+                <input type="checkbox" name="skill" value="HTML">
+                HTML
+            </label>
+
+            <label>
+                <input type="checkbox" name="skill" value="CSS">
+                CSS
+            </label>
+
+            <label>
+                <input type="checkbox" name="skill" value="JavaScript">
+                JavaScript
+            </label>
+
+        </div>
+
+
+        <!-- Extracurricular Activities -->
+
+        <h2>NSS / Extracurricular Activities</h2>
+
+        <div class="checkbox-group">
+
+            <label>
+                <input type="checkbox"
+                       name="activity"
+                       value="NSS">
+                NSS
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       name="activity"
+                       value="Sports">
+                Sports
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       name="activity"
+                       value="Arts">
+                Arts
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       name="activity"
+                       value="Coding Club">
+                Coding Club
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       name="activity"
+                       value="Volunteering">
+                Volunteering
+            </label>
+
+        </div>
+
+
+        <!-- Buttons -->
+
+        <div class="buttons">
+
+            <button type="button"
+                    onclick="validateForm()">
+                Submit
+            </button>
+
+            <button type="reset"
+                    onclick="resetMessage()">
+                Reset
+            </button>
+
+        </div>
+
+
+        <p id="message"></p>
+
+    </form>
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riya's Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-mesh"></div>
+    <div class="container glass-panel">
+        
+        <!-- Centered Profile Header -->
+        <header class="profile-header">
+            <div class="avatar-ring">
+                <img src="Riya.jpeg" alt="Profile Photo" class="profile-img">
+            </div>
+            <h1 class="student-name">Riya</h1>
+            <p class="tagline">Computer Science & Engineering Student</p>
+            <p class="college-subtext">St. Thomas College of Engineering and Technology, Mattanur</p>
+            
+            <div class="badge-group">
+                <span class="badge cgpa-badge">CGPA: <strong>7.32</strong></span>
+                <span class="badge id-badge">Reg: STM23CS037</span>
+                <span class="badge roll-badge">Roll No: 36</span>
+            </div>
+        </header>
+
+        <!-- Contact Bar -->
+        <div class="contact-bar">
+            <div class="contact-pill"><span class="icon">✉️</span> riyapp779@gmail.com</div>
+            <div class="contact-pill"><span class="icon">📍</span> MEETHALE KAKKOT(H) ELANGODE P.O 670692</div>
+        </div>
+
+        <div class="main-content">
+            <!-- Left Column: Personal & Skills -->
+            <div class="left-col">
+                <section class="glass-card">
+                    <h2 class="card-title">Personal Info</h2>
+                    <div class="form-stack">
+                        <div class="input-wrap">
+                            <label>Gender</label>
+                            <div class="radio-pill-group">
+                                <label><input type="radio" name="gender" value="Male"> Male</label>
+                                <label><input type="radio" name="gender" value="Female" checked> Female</label>
+                                <label><input type="radio" name="gender" value="Other"> Other</label>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Blood Group</label>
+                            <select class="glass-input">
+                                <option value="A+" selected>A+</option>
+                                <option value="O+">O+</option>
+                                <option value="B+">B+</option>
+                                <option value="AB+">AB+</option>
+                                <option value="O-">O-</option>
+                                <option value="A-">A-</option>
+                                <option value="B-">B-</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Interested Company</label>
+                            <select class="glass-input" id="company">
+                                <option value="">Select Company</option>
+                                <option value="Google">Google</option>
+                                <option value="Microsoft">Microsoft</option>
+                                <option value="Amazon">Amazon</option>
+                                <option value="Apple">Apple</option>
+                                <option value="Meta">Meta</option>
+                                <option value="TATA" selected>TATA</option>
+                                <option value="TCS">TCS</option>
+                                <option value="Infosys">Infosys</option>
+                                <option value="Wipro">Wipro</option>
+                                <option value="Cognizant">Cognizant</option>
+                                <option value="Accenture">Accenture</option>
+                                <option value="IBM">IBM</option>
+                                <option value="Oracle">Oracle</option>
+                                <option value="Capgemini">Capgemini</option>
+                                <option value="Tech Mahindra">Tech Mahindra</option>
+                                <option value="HCL">HCL</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="glass-card">
+                    <h2 class="card-title">Technical Skills</h2>
+                    <div class="skill-cloud">
+                        <h4>Programming Languages</h4>
+                        <div class="tags">
+                            <span class="tag">C</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Java</span>
+                        </div>
+                        
+                        <h4>Web Technologies</h4>
+                        <div class="tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">PHP</span>
+                        </div>
+                        
+                        <h4>Database</h4>
+                        <div class="tags">
+                            <span class="tag">MySQL</span>
+                        </div>
+                        
+                        <h4>Tools</h4>
+                        <div class="tags">
+                            <span class="tag">Git</span>
+                            <span class="tag">GitHub</span>
+                            <span class="tag">VS Code</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="glass-card">
+                    <h2 class="card-title">Extracurriculars</h2>
+                    <div class="checkbox-cloud">
+                        <label class="cb-pill"><input type="checkbox" name="activities" value="NSS"> NSS</label>
+                        <label class="cb-pill"><input type="checkbox" name="activities" value="NCC"> NCC</label>
+                        <label class="cb-pill"><input type="checkbox" name="activities" value="Sports" checked> Sports</label>
+                        <label class="cb-pill"><input type="checkbox" name="activities" value="Coding Club" checked> Coding Club</label>
+                        <label class="cb-pill"><input type="checkbox" name="activities" value="Arts"> Arts Club</label>
+                        <label class="cb-pill"><input type="checkbox" name="activities" value="Debate"> Debate Club</label>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Academics & Form -->
+            <div class="right-col">
+                <section class="glass-card academics">
+                    <h2 class="card-title">Academic Performance</h2>
+                    
+                    <div class="tab-pill-container">
+                        <button class="sem-btn active" data-sem="s1">S1</button>
+                        <button class="sem-btn" data-sem="s2">S2</button>
+                        <button class="sem-btn" data-sem="s3">S3</button>
+                        <button class="sem-btn" data-sem="s4">S4</button>
+                        <button class="sem-btn" data-sem="s5">S5</button>
+                        <button class="sem-btn" data-sem="s6">S6</button>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table class="minimal-table">
+                            <thead>
+                                <tr>
+                                    <th>Subject Name</th>
+                                    <th>Internal</th>
+                                    <th>University Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="sgpa-bar">
+                        Semester SGPA: <span id="sgpa-value">0.00</span>
+                    </div>
+                </section>
+                
+                <section class="glass-card">
+                    <h2 class="card-title">Get In Touch</h2>
+                    <form id="contact-form" class="clean-form">
+                        <input type="text" placeholder="Name" required class="glass-input">
+                        <input type="text" placeholder="Roll Number" required class="glass-input">
+                        <input type="email" placeholder="Email" required class="glass-input">
+                        <input type="tel" placeholder="Phone Number" required class="glass-input">
+                        <button type="submit" class="btn-gradient">Submit Info</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>

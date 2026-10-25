@@ -1,0 +1,566 @@
+/* Clean & Minimal Editorial Style for Athul Raj Student Profile */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f7f6f2;
+    color: #1a1a1e;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    padding: 40px 20px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 820px;
+    margin: 0 auto;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 0 4px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.brand-title {
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -0.3px;
+}
+
+.brand-sep {
+    color: #d1d5db;
+}
+
+.brand-sub {
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.nav-tag {
+    background-color: #edebe4;
+    color: #4b5563;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+/* Reusable Clean Card */
+.card {
+    background-color: #ffffff;
+    border: 1px solid #ebe8df;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    margin-bottom: 20px;
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 28px;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+}
+
+/* ID Photo & CGPA directly underneath */
+.id-photo-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 140px;
+    flex-shrink: 0;
+}
+
+.id-photo-frame {
+    width: 140px;
+    aspect-ratio: 731 / 913;
+    border-radius: 14px;
+    border: 1px solid #ebe8df;
+    overflow: hidden;
+    background-color: #f3f4f6;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.id-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.cgpa-badge {
+    margin-top: 10px;
+    width: 100%;
+    background-color: #18181b;
+    color: #ffffff;
+    padding: 6px 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cgpa-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #a1a1aa;
+}
+
+.cgpa-number {
+    font-size: 14px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+/* Hero Info Right Column */
+.hero-info {
+    flex: 1;
+}
+
+.title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+}
+
+.student-name {
+    font-size: 28px;
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -0.6px;
+}
+
+.roll-pill {
+    background-color: #f4f4f5;
+    color: #52525b;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 6px;
+    border: 1px solid #e4e4e7;
+}
+
+.dept-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 2px;
+}
+
+.college-text {
+    font-size: 13.5px;
+    color: #6b7280;
+    margin-bottom: 16px;
+}
+
+/* Contact List */
+.contact-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.contact-item {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12.5px;
+    color: #4b5563;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.contact-item.full-width {
+    flex-grow: 1;
+}
+
+.item-icon {
+    color: #9ca3af;
+    font-size: 12px;
+}
+
+/* Form Sections */
+.form-section {
+    padding: 24px 28px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.section-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -0.3px;
+}
+
+.section-hint {
+    font-size: 12.5px;
+    color: #9ca3af;
+}
+
+/* Form Controls */
+.controls-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.input-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.block-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #374151;
+}
+
+/* Pill Toggle Group for Gender */
+.pill-toggle-group {
+    display: flex;
+    background-color: #f4f4f5;
+    border: 1px solid #e4e4e7;
+    border-radius: 10px;
+    padding: 4px;
+    gap: 4px;
+}
+
+.toggle-pill {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+}
+
+.toggle-pill input {
+    display: none;
+}
+
+.toggle-pill span {
+    display: block;
+    padding: 6px 8px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #71717a;
+    transition: all 0.2s ease;
+}
+
+.toggle-pill input:checked + span {
+    background-color: #ffffff;
+    color: #18181b;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Minimalist Select */
+.minimal-select {
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #1f2937;
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-family: inherit;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.minimal-select:focus {
+    border-color: #18181b;
+    box-shadow: 0 0 0 3px rgba(24, 24, 27, 0.08);
+}
+
+/* Semester Tabs */
+.sem-tabs-bar {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+}
+
+.tab-btn {
+    background-color: #f4f4f5;
+    border: 1px solid transparent;
+    color: #71717a;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    font-family: inherit;
+}
+
+.tab-btn:hover {
+    color: #18181b;
+    background-color: #eaeaea;
+}
+
+.tab-btn.active {
+    background-color: #18181b;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Semester Overview Banner */
+.sem-overview-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #faf9f6;
+    border: 1px solid #ebe8df;
+    border-radius: 10px;
+    padding: 10px 16px;
+    margin-bottom: 14px;
+}
+
+.sem-banner-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.sgpa-chip {
+    font-size: 13px;
+    color: #4b5563;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.sgpa-chip strong {
+    font-size: 15px;
+    font-weight: 800;
+    color: #111827;
+}
+
+/* Clean Minimal Table */
+.table-wrap {
+    overflow-x: auto;
+}
+
+.clean-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.clean-table th {
+    text-align: left;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #6b7280;
+    padding: 10px 14px;
+    background-color: #fafafa;
+    border-top: 1px solid #f3f4f6;
+    border-bottom: 1px solid #e5e7eb;
+    font-weight: 700;
+}
+
+.clean-table td {
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #374151;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.clean-table tbody tr:hover {
+    background-color: #fafafa;
+}
+
+.align-center {
+    text-align: center;
+}
+
+/* Result Tag */
+.result-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: #f4f4f5;
+    border: 1px solid #e4e4e7;
+    color: #27272a;
+}
+
+/* Technical Skills Tags */
+.skills-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.minimal-skill-tag {
+    background-color: #ffffff;
+    border: 1px solid #e4e4e7;
+    color: #27272a;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.15s ease;
+}
+
+.minimal-skill-tag:hover {
+    border-color: #18181b;
+    background-color: #fafafa;
+}
+
+/* Extracurricular Checkboxes */
+.checkbox-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.clean-checkbox {
+    background-color: #ffffff;
+    border: 1px solid #e4e4e7;
+    border-radius: 8px;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: #374151;
+    transition: all 0.15s ease;
+}
+
+.clean-checkbox:hover {
+    border-color: #d1d5db;
+    background-color: #fafafa;
+}
+
+.clean-checkbox input {
+    accent-color: #18181b;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.clean-checkbox input:checked ~ .activity-text {
+    font-weight: 700;
+    color: #111827;
+}
+
+/* Action Buttons */
+.actions-bar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+    margin-bottom: 24px;
+}
+
+.btn {
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+}
+
+.btn-black {
+    background-color: #18181b;
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 12px rgba(24, 24, 27, 0.15);
+}
+
+.btn-black:hover {
+    background-color: #27272a;
+}
+
+.btn-white {
+    background-color: #ffffff;
+    color: #4b5563;
+    border: 1px solid #d1d5db;
+}
+
+.btn-white:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+/* Toast */
+.minimal-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background-color: #18181b;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    display: none;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+/* Responsive */
+@media (max-width: 650px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .id-photo-column {
+        margin: 0 auto;
+    }
+
+    .title-row {
+        justify-content: center;
+    }
+
+    .contact-list {
+        justify-content: center;
+    }
+
+    .sem-overview-banner {
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-start;
+    }
+}

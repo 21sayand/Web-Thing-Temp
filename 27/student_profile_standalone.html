@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile Web Page</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f2f4f8;
+            color: #333333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 25px 30px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            text-align: center;
+            color: #1a56db;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-top: 0;
+            font-size: 14px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #2b3a4a;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 6px;
+            margin-top: 25px;
+            font-size: 18px;
+        }
+
+        h4 {
+            color: #2b3a4a;
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
+
+        .note {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        /* Photo Section */
+        .photo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 12px;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+        }
+
+        .photo-box {
+            width: 100px;
+            height: 100px;
+            border: 2px dashed #9ca3af;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #eeeeee;
+            color: #888888;
+            font-size: 13px;
+            overflow: hidden;
+        }
+
+        .photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Form Layout */
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .form-col {
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="date"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #1a56db;
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* Radio & Checkboxes */
+        .radio-options {
+            margin-top: 5px;
+        }
+
+        .radio-options label {
+            margin-right: 15px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 6px;
+        }
+
+        .checkbox-group label {
+            font-weight: normal;
+            cursor: pointer;
+            background-color: #f8fafc;
+            padding: 6px 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        /* Collapsible Semesters */
+        .sem-box {
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            background-color: #fafafa;
+            overflow: hidden;
+        }
+
+        .sem-box summary {
+            padding: 10px 14px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #1a56db;
+            background-color: #f1f5f9;
+            user-select: none;
+        }
+
+        .sem-box summary:hover {
+            background-color: #e2e8f0;
+        }
+
+        .sem-body {
+            padding: 15px;
+            background-color: #ffffff;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .gpa-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .gpa-row label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: normal;
+        }
+
+        .gpa-row input {
+            width: 95px;
+            padding: 6px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .gpa-row input:focus {
+            border-color: #1a56db;
+            outline: none;
+        }
+
+        /* Marks Table */
+        .marks-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        .marks-table th,
+        .marks-table td {
+            border: 1px solid #d1d5db;
+            padding: 7px 10px;
+            font-size: 13px;
+        }
+
+        .marks-table th {
+            background-color: #f8fafc;
+            color: #1e293b;
+            text-align: left;
+        }
+
+        .marks-table th:last-child,
+        .marks-table td:last-child {
+            text-align: center;
+        }
+
+        .marks-table td input.int-input {
+            width: 80px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .marks-table td input.int-input:focus {
+            border-color: #1a56db;
+            outline: none;
+        }
+
+        /* Buttons */
+        .btn-group {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            font-size: 15px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 8px;
+        }
+
+        .submit-btn {
+            background-color: #1a56db;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background-color: #1646b5;
+        }
+
+        .reset-btn {
+            background-color: #6b7280;
+            color: white;
+        }
+
+        .reset-btn:hover {
+            background-color: #4b5563;
+        }
+
+        /* Result Box */
+        .result-box {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #10b981;
+            background-color: #f0fdf4;
+            border-radius: 6px;
+        }
+
+        .result-box h3 {
+            color: #065f46;
+            margin-top: 0;
+            border-bottom: 1px solid #a7f3d0;
+        }
+
+        #resultContent p {
+            margin: 6px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .gpa-row {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .marks-table td input.int-input {
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Student Profile Form</h2>
+        <p class="subtitle">Department of Computer Science & Engineering - Web Programming Lab</p>
+        <hr>
+
+        <form id="profileForm" onsubmit="return validateForm(event)">
+            
+            <!-- Photo Upload Section -->
+            <div class="photo-section">
+                <div class="photo-box">
+                    <img id="photoPreview" src="" alt="Student Photo" style="display:none;">
+                    <span id="photoPlaceholder">No Photo</span>
+                </div>
+                <div>
+                    <label><b>Upload Passport Size Photo:</b></label><br>
+                    <input type="file" id="photo" accept="image/*" onchange="previewPhoto(event)">
+                </div>
+            </div>
+
+            <!-- Personal Details -->
+            <h3>1. Personal Details</h3>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="studentName">Full Name: *</label>
+                    <input type="text" id="studentName" placeholder="Enter full name">
+                </div>
+                <div class="form-col">
+                    <label for="rollNo">Roll / Register No: *</label>
+                    <input type="text" id="rollNo" placeholder="Enter roll number">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="email">Email: *</label>
+                    <input type="email" id="email" placeholder="Enter email address">
+                </div>
+                <div class="form-col">
+                    <label for="phone">Phone Number: *</label>
+                    <input type="tel" id="phone" placeholder="Enter 10-digit phone number">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="dob">Date of Birth: *</label>
+                    <input type="date" id="dob">
+                </div>
+                <div class="form-col">
+                    <label for="bloodGroup">Blood Group: *</label>
+                    <select id="bloodGroup">
+                        <option value="">-- Select Blood Group --</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label><b>Gender: *</b></label>
+                <div class="radio-options">
+                    <input type="radio" id="male" name="gender" value="Male">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="Female">
+                    <label for="female">Female</label>
+                    <input type="radio" id="other" name="gender" value="Other">
+                    <label for="other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Permanent Address:</label>
+                <textarea id="address" rows="3" placeholder="Enter permanent address here..."></textarea>
+            </div>
+
+            <!-- Academic Performance (Semesters 1 to 8) -->
+            <h3>2. Academic Performance (Semesters 1 to 8)</h3>
+            <p class="note">Click any semester to expand and enter SGPA, CGPA, and subject internal marks (out of 50). You only need to fill completed semesters.</p>
+
+            <!-- Semester 1 -->
+            <details class="sem-box" open>
+                <summary><b>Semester 1</b></summary>
+                <div class="sem-body">
+                    <div class="gpa-row">
+                        <label>SGPA (0 - 10): <input type="number" id="sgpa_s1" step="0.01" min="0" max="10" placeholder="e.g. 8.25"></label>
+                        <label>Cumulative CGPA (0 - 10): <input type="number" id="cgpa_s1" step="0.01" min="0" max="10" placeholder="e.g. 8.25"></label>
+                    </div>
+                    <table class="marks-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code & Name</th>
+                                <th style="width: 140px;">Internal Marks (/50)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MAT 101: Linear Algebra and Calculus</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 1" data-sub="MAT 101: Linear Algebra and Calculus" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>PHT 100: Engineering Physics</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 1" data-sub="PHT 100: Engineering Physics" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>EST 100: Engineering Mechanics</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 1" data-sub="EST 100: Engineering Mechanics" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>EST 120: Basics of Civil & Mechanical Engineering</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 1" data-sub="EST 120: Basics of Civil & Mechanical Engineering" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>HUN 101: Life Skills</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 1" data-sub="HUN 101: Life Skills" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- Semester 2 -->
+            <details class="sem-box">
+                <summary><b>Semester 2</b></summary>
+                <div class="sem-body">
+                    <div class="gpa-row">
+                        <label>SGPA (0 - 10): <input type="number" id="sgpa_s2" step="0.01" min="0" max="10" placeholder="e.g. 8.40"></label>
+                        <label>Cumulative CGPA (0 - 10): <input type="number" id="cgpa_s2" step="0.01" min="0" max="10" placeholder="e.g. 8.32"></label>
+                    </div>
+                    <table class="marks-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code & Name</th>
+                                <th style="width: 140px;">Internal Marks (/50)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MAT 102: Vector Calculus, Differential Equations & Transforms</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 2" data-sub="MAT 102: Vector Calculus, Differential Equations & Transforms" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CYT 100: Engineering Chemistry</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 2" data-sub="CYT 100: Engineering Chemistry" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>EST 110: Engineering Graphics</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 2" data-sub="EST 110: Engineering Graphics" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>EST 130: Basics of Electrical & Electronics Engineering</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 2" data-sub="EST 130: Basics of Electrical & Electronics Engineering" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>EST 102: Programming in C</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 2" data-sub="EST 102: Programming in C" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>HUN 102: Professional Communication</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 2" data-sub="HUN 102: Professional Communication" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- Semester 3 -->
+            <details class="sem-box">
+                <summary><b>Semester 3</b></summary>
+                <div class="sem-body">
+                    <div class="gpa-row">
+                        <label>SGPA (0 - 10): <input type="number" id="sgpa_s3" step="0.01" min="0" max="10" placeholder="e.g. 8.10"></label>
+                        <label>Cumulative CGPA (0 - 10): <input type="number" id="cgpa_s3" step="0.01" min="0" max="10" placeholder="e.g. 8.25"></label>
+                    </div>
+                    <table class="marks-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code & Name</th>
+                                <th style="width: 140px;">Internal Marks (/50)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MAT 203: Discrete Mathematical Structures</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 3" data-sub="MAT 203: Discrete Mathematical Structures" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 201: Data Structures</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 3" data-sub="CST 201: Data Structures" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 203: Logic System Design</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 3" data-sub="CST 203: Logic System Design" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 205: Object Oriented Programming Using Java</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 3" data-sub="CST 205: Object Oriented Programming Using Java" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>EST 200: Design & Engineering</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 3" data-sub="EST 200: Design & Engineering" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>MCN 201: Sustainable Engineering</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 3" data-sub="MCN 201: Sustainable Engineering" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- Semester 4 -->
+            <details class="sem-box">
+                <summary><b>Semester 4</b></summary>
+                <div class="sem-body">
+                    <div class="gpa-row">
+                        <label>SGPA (0 - 10): <input type="number" id="sgpa_s4" step="0.01" min="0" max="10" placeholder="e.g. 8.60"></label>
+                        <label>Cumulative CGPA (0 - 10): <input type="number" id="cgpa_s4" step="0.01" min="0" max="10" placeholder="e.g. 8.34"></label>
+                    </div>
+                    <table class="marks-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code & Name</th>
+                                <th style="width: 140px;">Internal Marks (/50)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MAT 206: Graph Theory</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 4" data-sub="MAT 206: Graph Theory" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 202: Computer Organization and Architecture</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 4" data-sub="CST 202: Computer Organization and Architecture" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 204: Database Management Systems</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 4" data-sub="CST 204: Database Management Systems" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 206: Operating Systems</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 4" data-sub="CST 206: Operating Systems" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>HUT 200: Professional Ethics</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 4" data-sub="HUT 200: Professional Ethics" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>MCN 202: Constitution of India</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 4" data-sub="MCN 202: Constitution of India" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- Semester 5 -->
+            <details class="sem-box">
+                <summary><b>Semester 5</b></summary>
+                <div class="sem-body">
+                    <div class="gpa-row">
+                        <label>SGPA (0 - 10): <input type="number" id="sgpa_s5" step="0.01" min="0" max="10" placeholder="e.g. 8.50"></label>
+                        <label>Cumulative CGPA (0 - 10): <input type="number" id="cgpa_s5" step="0.01" min="0" max="10" placeholder="e.g. 8.37"></label>
+                    </div>
+                    <table class="marks-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code & Name</th>
+                                <th style="width: 140px;">Internal Marks (/50)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CST 301: Formal Languages and Automata Theory</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 5" data-sub="CST 301: Formal Languages and Automata Theory" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 303: Computer Networks</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 5" data-sub="CST 303: Computer Networks" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 305: System Software</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 5" data-sub="CST 305: System Software" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 307: Microprocessors and Microcontrollers</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 5" data-sub="CST 307: Microprocessors and Microcontrollers" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 309: Management of Software Systems</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 5" data-sub="CST 309: Management of Software Systems" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>MCN 301: Disaster Management</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 5" data-sub="MCN 301: Disaster Management" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- Semester 6 -->
+            <details class="sem-box">
+                <summary><b>Semester 6</b></summary>
+                <div class="sem-body">
+                    <div class="gpa-row">
+                        <label>SGPA (0 - 10): <input type="number" id="sgpa_s6" step="0.01" min="0" max="10" placeholder="e.g. 8.75"></label>
+                        <label>Cumulative CGPA (0 - 10): <input type="number" id="cgpa_s6" step="0.01" min="0" max="10" placeholder="e.g. 8.43"></label>
+                    </div>
+                    <table class="marks-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code & Name</th>
+                                <th style="width: 140px;">Internal Marks (/50)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CST 302: Compiler Design</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 6" data-sub="CST 302: Compiler Design" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 304: Computer Graphics and Image Processing</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 6" data-sub="CST 304: Computer Graphics and Image Processing" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 306: Algorithm Analysis and Design</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 6" data-sub="CST 306: Algorithm Analysis and Design" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 312: Foundations of Machine Learning (Elective I)</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 6" data-sub="CST 312: Foundations of Machine Learning (Elective I)" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>HUT 300: Industrial Economics & Foreign Trade</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 6" data-sub="HUT 300: Industrial Economics & Foreign Trade" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 308: Comprehensive Course Work</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 6" data-sub="CST 308: Comprehensive Course Work" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- Semester 7 -->
+            <details class="sem-box">
+                <summary><b>Semester 7</b></summary>
+                <div class="sem-body">
+                    <div class="gpa-row">
+                        <label>SGPA (0 - 10): <input type="number" id="sgpa_s7" step="0.01" min="0" max="10" placeholder="e.g. 8.65"></label>
+                        <label>Cumulative CGPA (0 - 10): <input type="number" id="cgpa_s7" step="0.01" min="0" max="10" placeholder="e.g. 8.46"></label>
+                    </div>
+                    <table class="marks-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code & Name</th>
+                                <th style="width: 140px;">Internal Marks (/50)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CST 401: Artificial Intelligence</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 7" data-sub="CST 401: Artificial Intelligence" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 413: Machine Learning (Elective II)</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 7" data-sub="CST 413: Machine Learning (Elective II)" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 425: Web Programming (Elective III)</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 7" data-sub="CST 425: Web Programming (Elective III)" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>OET 415: Renewable Energy Systems (Open Elective)</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 7" data-sub="OET 415: Renewable Energy Systems (Open Elective)" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>MCN 401: Industrial Safety Engineering</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 7" data-sub="MCN 401: Industrial Safety Engineering" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- Semester 8 -->
+            <details class="sem-box">
+                <summary><b>Semester 8</b></summary>
+                <div class="sem-body">
+                    <div class="gpa-row">
+                        <label>SGPA (0 - 10): <input type="number" id="sgpa_s8" step="0.01" min="0" max="10" placeholder="e.g. 9.00"></label>
+                        <label>Cumulative CGPA (0 - 10): <input type="number" id="cgpa_s8" step="0.01" min="0" max="10" placeholder="e.g. 8.52"></label>
+                    </div>
+                    <table class="marks-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code & Name</th>
+                                <th style="width: 140px;">Internal Marks (/50)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CST 402: Distributed Computing</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 8" data-sub="CST 402: Distributed Computing" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 414: Deep Learning (Elective IV)</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 8" data-sub="CST 414: Deep Learning (Elective IV)" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CST 424: Cryptography and Network Security (Elective V)</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 8" data-sub="CST 424: Cryptography and Network Security (Elective V)" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                            <tr>
+                                <td>CSD 416: Project Phase II</td>
+                                <td><input type="number" class="int-input" data-sem="Semester 8" data-sub="CSD 416: Project Phase II" min="0" max="50" placeholder="Marks"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- Career Preferences -->
+            <h3>3. Interested Placement Companies</h3>
+            <div class="form-group">
+                <label for="company">Preferred Company: *</label>
+                <select id="company">
+                    <option value="">-- Choose Company --</option>
+                    <option value="Infosys">Infosys</option>
+                    <option value="TCS">TCS (Tata Consultancy Services)</option>
+                    <option value="Wipro">Wipro</option>
+                    <option value="Cognizant">Cognizant</option>
+                    <option value="Accenture">Accenture</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- Skills & Extracurricular Activities -->
+            <h3>4. Skills & Extracurricular Activities</h3>
+            
+            <div class="form-group">
+                <label><b>Technical Skills:</b></label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="skills" value="HTML/CSS"> HTML / CSS</label>
+                    <label><input type="checkbox" name="skills" value="JavaScript"> JavaScript</label>
+                    <label><input type="checkbox" name="skills" value="Python"> Python</label>
+                    <label><input type="checkbox" name="skills" value="Java"> Java</label>
+                    <label><input type="checkbox" name="skills" value="C++"> C / C++</label>
+                    <label><input type="checkbox" name="skills" value="SQL"> SQL</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label><b>NSS / Extracurricular Activities:</b></label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="activities" value="NSS"> NSS</label>
+                    <label><input type="checkbox" name="activities" value="NCC"> NCC</label>
+                    <label><input type="checkbox" name="activities" value="Sports"> Sports Club</label>
+                    <label><input type="checkbox" name="activities" value="Arts/Cultural"> Cultural Club</label>
+                    <label><input type="checkbox" name="activities" value="Coding Club"> Coding Club</label>
+                </div>
+            </div>
+
+            <!-- Form Buttons -->
+            <div class="btn-group">
+                <button type="submit" class="btn submit-btn">Submit Profile</button>
+                <button type="reset" class="btn reset-btn" onclick="resetForm()">Reset</button>
+            </div>
+
+        </form>
+
+        <!-- Profile Output Display Card -->
+        <div id="resultBox" class="result-box" style="display: none;">
+            <h3>Submitted Student Profile</h3>
+            <div id="resultContent"></div>
+            
+            <h4>Semester Performance Summary (SGPA & CGPA)</h4>
+            <table class="marks-table" id="resultTable">
+                <thead>
+                    <tr>
+                        <th>Semester</th>
+                        <th>SGPA</th>
+                        <th>CGPA</th>
+                    </tr>
+                </thead>
+                <tbody id="resultTableBody"></tbody>
+            </table>
+
+            <h4>Subject-wise Internal Marks Summary</h4>
+            <table class="marks-table" id="resultSubjectTable">
+                <thead>
+                    <tr>
+                        <th>Semester</th>
+                        <th>Subject</th>
+                        <th>Internal Marks (/50)</th>
+                    </tr>
+                </thead>
+                <tbody id="resultSubjectBody"></tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        function previewPhoto(event) {
+            var file = event.target.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var img = document.getElementById("photoPreview");
+                    img.src = e.target.result;
+                    img.style.display = "block";
+                    document.getElementById("photoPlaceholder").style.display = "none";
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function validateForm(event) {
+            event.preventDefault();
+
+            var name = document.getElementById("studentName").value.trim();
+            var rollNo = document.getElementById("rollNo").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var phone = document.getElementById("phone").value.trim();
+            var dob = document.getElementById("dob").value;
+            var bloodGroup = document.getElementById("bloodGroup").value;
+            var address = document.getElementById("address").value.trim();
+
+            if (name == "") {
+                alert("Please enter your Full Name.");
+                document.getElementById("studentName").focus();
+                return false;
+            }
+
+            if (rollNo == "") {
+                alert("Please enter your Roll / Register Number.");
+                document.getElementById("rollNo").focus();
+                return false;
+            }
+
+            var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (email == "") {
+                alert("Please enter your Email Address.");
+                document.getElementById("email").focus();
+                return false;
+            } else if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address (e.g. user@example.com).");
+                document.getElementById("email").focus();
+                return false;
+            }
+
+            if (phone == "") {
+                alert("Please enter your Phone Number.");
+                document.getElementById("phone").focus();
+                return false;
+            } else if (phone.length != 10 || isNaN(phone)) {
+                alert("Phone Number must contain exactly 10 numeric digits.");
+                document.getElementById("phone").focus();
+                return false;
+            }
+
+            if (dob == "") {
+                alert("Please select your Date of Birth.");
+                document.getElementById("dob").focus();
+                return false;
+            }
+
+            if (bloodGroup == "") {
+                alert("Please choose your Blood Group from the dropdown.");
+                document.getElementById("bloodGroup").focus();
+                return false;
+            }
+
+            var genderOption = document.querySelector('input[name="gender"]:checked');
+            if (!genderOption) {
+                alert("Please select your Gender.");
+                return false;
+            }
+            var gender = genderOption.value;
+
+            var semSummaryList = [];
+            var subjectMarksList = [];
+            var totalSemestersChecked = 0;
+
+            for (var semNum = 1; semNum <= 8; semNum++) {
+                var semName = "Semester " + semNum;
+                var sgpaInput = document.getElementById("sgpa_s" + semNum);
+                var cgpaInput = document.getElementById("cgpa_s" + semNum);
+
+                var sgpaVal = sgpaInput ? sgpaInput.value.trim() : "";
+                var cgpaVal = cgpaInput ? cgpaInput.value.trim() : "";
+
+                var intInputs = document.querySelectorAll('.int-input[data-sem="' + semName + '"]');
+                var hasAnySubjectMark = false;
+                var semSubjectsEntered = [];
+
+                for (var i = 0; i < intInputs.length; i++) {
+                    var markVal = intInputs[i].value.trim();
+                    if (markVal != "") {
+                        hasAnySubjectMark = true;
+                        var markNum = parseFloat(markVal);
+                        if (isNaN(markNum) || markNum < 0 || markNum > 50) {
+                            alert("Internal mark for " + intInputs[i].getAttribute("data-sub") + " (" + semName + ") must be between 0 and 50.");
+                            intInputs[i].focus();
+                            return false;
+                        }
+                        semSubjectsEntered.push({
+                            sem: semName,
+                            subject: intInputs[i].getAttribute("data-sub"),
+                            mark: markNum
+                        });
+                    }
+                }
+
+                if (sgpaVal != "" || cgpaVal != "" || hasAnySubjectMark) {
+                    totalSemestersChecked++;
+
+                    if (sgpaVal != "") {
+                        var sgpaNum = parseFloat(sgpaVal);
+                        if (isNaN(sgpaNum) || sgpaNum < 0 || sgpaNum > 10) {
+                            alert("SGPA for " + semName + " must be between 0.00 and 10.00.");
+                            sgpaInput.focus();
+                            return false;
+                        }
+                    }
+
+                    if (cgpaVal != "") {
+                        var cgpaNum = parseFloat(cgpaVal);
+                        if (isNaN(cgpaNum) || cgpaNum < 0 || cgpaNum > 10) {
+                            alert("CGPA for " + semName + " must be between 0.00 and 10.00.");
+                            cgpaInput.focus();
+                            return false;
+                        }
+                    }
+
+                    semSummaryList.push({
+                        sem: semName,
+                        sgpa: sgpaVal ? sgpaVal : "-",
+                        cgpa: cgpaVal ? cgpaVal : "-"
+                    });
+
+                    for (var k = 0; k < semSubjectsEntered.length; k++) {
+                        subjectMarksList.push(semSubjectsEntered[k]);
+                    }
+                }
+            }
+
+            if (totalSemestersChecked == 0) {
+                alert("Please fill marks for at least one semester.");
+                return false;
+            }
+
+            var company = document.getElementById("company").value;
+            if (company == "") {
+                alert("Please select your interested placement company.");
+                document.getElementById("company").focus();
+                return false;
+            }
+
+            var selectedSkills = [];
+            var skillBoxes = document.querySelectorAll('input[name="skills"]:checked');
+            for (var j = 0; j < skillBoxes.length; j++) {
+                selectedSkills.push(skillBoxes[j].value);
+            }
+
+            var selectedActivities = [];
+            var actBoxes = document.querySelectorAll('input[name="activities"]:checked');
+            for (var a = 0; a < actBoxes.length; a++) {
+                selectedActivities.push(actBoxes[a].value);
+            }
+
+            alert("Student Profile Submitted Successfully!");
+
+            var resultBox = document.getElementById("resultBox");
+            var resultContent = document.getElementById("resultContent");
+            var resultTableBody = document.getElementById("resultTableBody");
+            var resultSubjectBody = document.getElementById("resultSubjectBody");
+
+            resultContent.innerHTML = 
+                "<p><b>Full Name:</b> " + name + "</p>" +
+                "<p><b>Roll / Register No:</b> " + rollNo + "</p>" +
+                "<p><b>Gender:</b> " + gender + "</p>" +
+                "<p><b>Date of Birth:</b> " + dob + "</p>" +
+                "<p><b>Blood Group:</b> " + bloodGroup + "</p>" +
+                "<p><b>Email:</b> " + email + "</p>" +
+                "<p><b>Phone:</b> " + phone + "</p>" +
+                "<p><b>Address:</b> " + (address ? address : "N/A") + "</p>" +
+                "<p><b>Interested Company:</b> " + company + "</p>" +
+                "<p><b>Skills:</b> " + (selectedSkills.length > 0 ? selectedSkills.join(", ") : "None selected") + "</p>" +
+                "<p><b>NSS / Activities:</b> " + (selectedActivities.length > 0 ? selectedActivities.join(", ") : "None selected") + "</p>";
+
+            var semRowsHtml = "";
+            for (var m = 0; m < semSummaryList.length; m++) {
+                semRowsHtml += "<tr>" +
+                    "<td><b>" + semSummaryList[m].sem + "</b></td>" +
+                    "<td>" + semSummaryList[m].sgpa + "</td>" +
+                    "<td>" + semSummaryList[m].cgpa + "</td>" +
+                "</tr>";
+            }
+            resultTableBody.innerHTML = semRowsHtml;
+
+            var subRowsHtml = "";
+            if (subjectMarksList.length > 0) {
+                for (var n = 0; n < subjectMarksList.length; n++) {
+                    subRowsHtml += "<tr>" +
+                        "<td>" + subjectMarksList[n].sem + "</td>" +
+                        "<td>" + subjectMarksList[n].subject + "</td>" +
+                        "<td>" + subjectMarksList[n].mark + " / 50</td>" +
+                    "</tr>";
+                }
+            } else {
+                subRowsHtml = "<tr><td colspan='3' style='text-align:center;'>No subject internal marks entered.</td></tr>";
+            }
+            resultSubjectBody.innerHTML = subRowsHtml;
+
+            resultBox.style.display = "block";
+            return true;
+        }
+
+        function resetForm() {
+            var preview = document.getElementById("photoPreview");
+            preview.src = "";
+            preview.style.display = "none";
+            document.getElementById("photoPlaceholder").style.display = "inline";
+            document.getElementById("resultBox").style.display = "none";
+            document.getElementById("resultTableBody").innerHTML = "";
+            document.getElementById("resultSubjectBody").innerHTML = "";
+        }
+    </script>
+</body>
+</html>

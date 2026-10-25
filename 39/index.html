@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student Profile | Campus Placement Portal</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="mark">SP</span><div><strong>Student Profile</strong><small>Placement Readiness Portal</small></div></div>
+  <button type="button" class="btn ghost light" id="printBtn">Print profile</button>
+</header>
+
+<main class="layout">
+  <!-- Live ID card -->
+  <aside class="idcard" aria-label="Profile preview">
+    <div class="ring"><img id="photoPreview" alt="Student photo" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23dfe7f5'/%3E%3Ccircle cx='60' cy='46' r='22' fill='%236f86b3'/%3E%3Cpath d='M16 120c4-32 24-46 44-46s40 14 44 46z' fill='%236f86b3'/%3E%3C/svg%3E"></div>
+    <h2 id="cName">Your Name</h2>
+    <p id="cMeta" class="muted">Department · Year</p>
+    <dl class="facts">
+      <dt>Roll no.</dt><dd id="cRoll">—</dd>
+      <dt>Gender</dt><dd id="cGender">—</dd>
+      <dt>Blood group</dt><dd id="cBlood">—</dd>
+      <dt>Target company</dt><dd id="cCompany">—</dd>
+    </dl>
+    <div class="gauge">
+      <div><span id="cCgpa">0.00</span><small>CGPA</small></div>
+      <div><span id="cInternal">0</span><small>Internals %</small></div>
+    </div>
+    <div class="chips" id="cChips"></div>
+  </aside>
+
+  <form id="profileForm" novalidate>
+    <section class="panel">
+      <h3>Personal details</h3>
+      <div class="grid">
+        <label class="field">Full name<input id="name" required placeholder="e.g. Anjali Menon"><em class="err"></em></label>
+        <label class="field">Roll number<input id="roll" required placeholder="e.g. 22CS104"><em class="err"></em></label>
+        <label class="field">Email<input id="email" type="email" required placeholder="name@college.edu"><em class="err"></em></label>
+        <label class="field">Phone<input id="phone" inputmode="numeric" maxlength="10" required placeholder="10-digit mobile number"><em class="err"></em></label>
+        <label class="field">Date of birth<input id="dob" type="date" required><em class="err"></em></label>
+        <label class="field">Department
+          <select id="dept" required><option value="">Select department</option><option>Computer Science</option><option>Information Technology</option><option>Electronics &amp; Communication</option><option>Electrical Engineering</option><option>Mechanical Engineering</option><option>Civil Engineering</option></select><em class="err"></em></label>
+        <label class="field">Year of study
+          <select id="year" required><option value="">Select year</option><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option></select><em class="err"></em></label>
+        <label class="field">Profile photo<input id="photo" type="file" accept="image/*"><em class="err"></em></label>
+      </div>
+
+      <div class="grid">
+        <fieldset class="field" id="genderSet"><legend>Gender</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="gender" value="Female"><span>Female</span></label>
+            <label class="opt"><input type="radio" name="gender" value="Male"><span>Male</span></label>
+            <label class="opt"><input type="radio" name="gender" value="Other"><span>Other</span></label>
+          </div><em class="err"></em>
+        </fieldset>
+        <label class="field">Blood group
+          <select id="blood" required><option value="">Select blood group</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select><em class="err"></em></label>
+        <label class="field">Interested company
+          <select id="company" required><option value="">Select company</option><option>Infosys</option><option>TCS</option><option>Wipro</option><option>HCLTech</option><option>Cognizant</option><option>Accenture</option><option>Tech Mahindra</option><option>Capgemini</option><option>IBM</option><option>Zoho</option></select><em class="err"></em></label>
+        <label class="field">Preferred role
+          <select id="role"><option value="">Select role</option><option>Software Engineer</option><option>Data Analyst</option><option>Test Engineer</option><option>Systems Engineer</option><option>Business Analyst</option></select></label>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>Academic record</h3>
+      <div class="tables">
+        <div class="scroll"><table id="gpaTable">
+          <caption>SGPA &amp; CGPA by semester</caption>
+          <thead><tr><th>Semester</th><th>SGPA</th><th>CGPA (cumulative)</th></tr></thead>
+          <tbody></tbody>
+          <tfoot><tr><td>Overall CGPA</td><td></td><td id="overallCgpa">0.00</td></tr></tfoot>
+        </table></div>
+        <div class="scroll"><table id="intTable">
+          <caption>Internal marks (out of 50)</caption>
+          <thead><tr><th>Subject</th><th>Test 1 /20</th><th>Test 2 /20</th><th>Assign. /10</th><th>Total</th></tr></thead>
+          <tbody></tbody>
+          <tfoot><tr><td colspan="4">Internal average</td><td id="intAvg">0%</td></tr></tfoot>
+        </table></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>Skills</h3>
+      <div class="opts wrap" id="skills"></div>
+      <em class="err" id="skillErr"></em>
+    </section>
+
+    <section class="panel">
+      <h3>NSS &amp; extracurricular activities</h3>
+      <div class="opts wrap" id="acts"></div>
+      <label class="field wide">About you<textarea id="about" rows="3" maxlength="240" placeholder="A short note on your goals (max 240 characters)"></textarea><small id="count">0 / 240</small></label>
+    </section>
+
+    <div class="actions">
+      <button type="submit" class="btn">Save profile</button>
+      <button type="reset" class="btn ghost">Clear form</button>
+    </div>
+  </form>
+</main>
+
+<div class="modal" id="modal" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="mt">
+  <h3 id="mt">Profile saved</h3><div id="summary"></div>
+  <button type="button" class="btn" id="closeModal">Done</button></div></div>
+<script src="script.js"></script>
+
+  <!-- Central College Portal Integration -->
+  <script src="../student_assignment_widget.js"></script>
+</body>
+</html>
