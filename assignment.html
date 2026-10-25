@@ -1,277 +1,267 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark-default">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Batch Assignment Matrix & Submission Hub (Faculty Only)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Assignment Evaluation Matrix (Verified Faculty Access)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
   <style>
-    :root {
-      --bg: #0b0f19;
-      --card-bg: rgba(22, 29, 47, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --card-hover-border: rgba(99, 102, 241, 0.5);
-      --primary: #6366f1;
-      --primary-gradient: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --success: #10b981;
-      --success-bg: rgba(16, 185, 129, 0.15);
-      --warning: #f59e0b;
-      --warning-bg: rgba(245, 158, 11, 0.15);
-      --danger: #ef4444;
-      --danger-bg: rgba(239, 68, 68, 0.15);
+    /* Specific Layout and Component Overrides for Matrix Page */
+    .eval-container {
+      max-width: 1360px;
+      margin: 20px auto 60px;
+      padding: 0 20px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      min-height: 100vh;
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.12) 0px, transparent 50%);
-      background-attachment: fixed;
-    }
-
-    header {
-      padding: 1.25rem 2rem;
-      border-bottom: 1px solid var(--card-border);
-      background: rgba(11, 15, 25, 0.85);
-      backdrop-filter: blur(12px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .brand-logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: var(--primary-gradient);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 1.3rem;
-    }
-
-    .brand-text h1 {
-      font-size: 1.2rem;
-      font-weight: 800;
-      background: linear-gradient(to right, #ffffff, #cbd5e1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .brand-text p {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .nav-actions {
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.15rem;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s;
-      border: 1px solid transparent;
-    }
-
-    .btn-primary { background: var(--primary-gradient); color: #fff; }
-    .btn-secondary { background: rgba(255, 255, 255, 0.05); border-color: var(--card-border); color: var(--text); }
-    .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); }
-
-    .container {
-      max-width: 1400px;
-      margin: 2rem auto 5rem;
-      padding: 0 2rem;
-    }
-
-    .assignments-header-row {
+    .matrix-hero {
+      margin-bottom: 24px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-bottom: 1.5rem;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 16px;
     }
 
-    .section-title h2 {
-      font-size: 2rem;
-      font-weight: 800;
-      font-family: 'Space Grotesk', sans-serif;
-      margin-bottom: 0.35rem;
+    .matrix-title h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
     }
 
-    .section-title p {
+    .matrix-title p {
+      font-size: 13px;
       color: var(--text-muted);
-      font-size: 0.95rem;
     }
 
-    .assignments-cards-grid {
+    /* Cards Grid */
+    .eval-cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
     }
 
-    .assign-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 1.25rem 1.5rem;
-      backdrop-filter: blur(10px);
+    .eval-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .assign-card-badge {
+    .eval-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .eval-badge {
       display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 800;
-      padding: 0.25rem 0.6rem;
-      border-radius: 6px;
-      background: rgba(99, 102, 241, 0.15);
-      color: #a5b4fc;
-      margin-bottom: 0.75rem;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: var(--accent-subtle);
+      color: var(--accent);
+      margin-bottom: 8px;
+      border: 1px solid rgba(88, 166, 255, 0.2);
     }
 
-    .assign-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .eval-card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
 
-    .assign-card-meta {
-      font-size: 0.8rem;
-      color: var(--text-muted);
+    .eval-card-meta {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 1rem;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
     }
 
-    .progress-bar-bg {
-      background: rgba(255, 255, 255, 0.08);
-      height: 8px;
-      border-radius: 4px;
+    .eval-progress-track {
+      background: var(--border-muted);
+      height: 6px;
+      border-radius: 3px;
       overflow: hidden;
     }
 
-    .progress-bar-fill {
-      background: var(--primary-gradient);
+    .eval-progress-bar {
+      background: var(--btn-primary-bg);
       height: 100%;
-      border-radius: 4px;
+      border-radius: 3px;
       transition: width 0.4s ease;
     }
 
-    .table-wrapper {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 1.5rem;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      overflow-x: auto;
+    /* Table Surface */
+    .eval-table-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
     }
 
-    .table-toolbar {
+    .eval-table-toolbar {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+      gap: 12px;
       flex-wrap: wrap;
+      background: var(--surface);
     }
 
-    .search-input {
-      background: rgba(11, 15, 25, 0.8);
-      border: 1px solid var(--card-border);
-      padding: 0.65rem 1rem;
-      border-radius: 10px;
+    .eval-search-input {
+      background: var(--bg);
+      border: 1px solid var(--border);
       color: var(--text);
-      font-size: 0.9rem;
-      width: 320px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      width: 300px;
       outline: none;
+      transition: border-color 0.15s;
     }
 
-    table {
+    .eval-search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
+    }
+
+    .eval-table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table.eval-table {
       width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
+      border-collapse: collapse;
       text-align: left;
+      font-size: 13px;
     }
 
-    th {
-      background: rgba(255, 255, 255, 0.03);
+    table.eval-table th {
+      background: var(--bg);
       color: var(--text-muted);
-      font-weight: 700;
-      font-size: 0.8rem;
+      font-size: 11px;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 1rem 1.25rem;
-      border-bottom: 1px solid var(--card-border);
+      letter-spacing: 0.04em;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
     }
 
-    td {
-      padding: 1rem 1.25rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      font-size: 0.9rem;
+    table.eval-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-muted);
+      color: var(--text);
       vertical-align: middle;
+      white-space: nowrap;
     }
 
-    tr:hover td { background: rgba(255, 255, 255, 0.02); }
+    table.eval-table tr:hover td {
+      background: var(--surface-hover);
+    }
+
+    .student-row-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .student-mini-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+
+    .student-mini-fallback {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--border-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 11px;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
 
     .bit-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.35rem;
-      padding: 0.35rem 0.75rem;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 800;
+      min-width: 44px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
       cursor: pointer;
-      border: 1px solid transparent;
-      transition: all 0.2s;
+      border: 1px solid var(--border);
+      background: var(--btn-bg);
+      color: var(--text-muted);
+      transition: all 0.15s ease;
     }
 
-    .bit-1 { background: var(--success-bg); color: var(--success); border-color: rgba(16, 185, 129, 0.4); }
-    .bit-0 { background: rgba(255, 255, 255, 0.05); color: var(--text-muted); border-color: rgba(255, 255, 255, 0.1); }
-    .bit-0:hover { background: var(--warning-bg); color: var(--warning); }
+    .bit-btn.bit-1 {
+      background: var(--status-sub-bg);
+      color: var(--status-sub-text);
+      border-color: rgba(46, 160, 67, 0.4);
+    }
 
-    .student-cell { display: flex; align-items: center; gap: 0.75rem; }
-    .student-mini-avatar { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; }
-    .student-mini-fallback {
-      width: 36px; height: 36px; border-radius: 8px; background: #1e293b;
-      display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; color: #94a3b8;
+    .bit-btn.bit-0:hover {
+      background: var(--status-pen-bg);
+      color: var(--status-pen-text);
+      border-color: rgba(210, 153, 34, 0.4);
+    }
+
+    .badge-pill-chip {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: monospace;
+    }
+
+    .badge-blood {
+      background: var(--badge-blood-bg);
+      color: var(--badge-blood-text);
+      border: 1px solid rgba(248, 81, 73, 0.2);
+    }
+
+    .badge-cgpa {
+      background: var(--badge-cgpa-bg);
+      color: var(--badge-cgpa-text);
+      border: 1px solid rgba(56, 139, 253, 0.2);
+    }
+
+    .link-visit {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .link-visit:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -282,6 +272,10 @@
   <script src="assignment_store.js"></script>
   <script src="auth.js"></script>
   <script>
+    // Synchronize active theme from main directory
+    const savedTheme = localStorage.getItem('college_portal_theme') || 'dark-default';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
     const user = window.CollegeAuth.getCurrentUser();
     if (!user || user.role !== 'faculty') {
       alert('Access Restricted: The Assignment Evaluation Matrix is restricted to verified Faculty members only. Please log in as Faculty.');
@@ -289,62 +283,122 @@
     }
   </script>
 
-  <!-- Navigation -->
+  <!-- Top Strip -->
+  <div class="top-strip">
+    <span class="top-strip-left">St Thomas College of Engineering and Technology, Kannur</span>
+    <span class="top-strip-right" id="facultyBadge">Verified Evaluator: Faculty Access</span>
+  </div>
+
+  <!-- Header -->
   <header>
-    <div class="nav-container">
-      <a href="index.html" class="brand">
-        <div class="brand-logo">ST</div>
+    <div class="nav-inner">
+      <a href="index.html" class="brand-wrap">
+        <div class="brand-icon">ST</div>
         <div class="brand-text">
-          <h1>St Thomas College of Engg. & Technology</h1>
-          <p>Continuous Evaluation Hub • Verified Faculty Access</p>
+          <div class="brand-title">Continuous Evaluation Matrix</div>
+          <div class="brand-sub">Computer Science & Engineering • Faculty Desk</div>
         </div>
       </a>
-      <div class="nav-actions">
-        <a href="index.html" class="btn btn-secondary">
-          ← Back to Directory
+      <div class="nav-tools">
+        <!-- Appearance Settings Button -->
+        <button class="btn" onclick="openThemePickerModal()" title="Appearance & Themes">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          Theme
+        </button>
+        <a href="index.html" class="btn">
+          ← Return to Homepage
         </a>
-        <button class="btn btn-secondary" onclick="window.CollegeAuth.logout()">
+        <button class="btn" onclick="window.CollegeAuth.logout()">
           Sign Out
         </button>
       </div>
     </div>
   </header>
 
-  <main class="container">
-    <div class="assignments-header-row">
-      <div class="section-title">
-        <h2>Assignment Evaluation Matrix</h2>
-        <p>Faculty portal: Click any cell to flip binary submission flags (`0` ⇄ `1`). All changes are synchronized.</p>
+  <main class="eval-container">
+    <div class="matrix-hero">
+      <div class="matrix-title">
+        <h1>Assignment Evaluation Matrix</h1>
+        <p>Interactive Continuous Evaluation Desk. Click any bit cell to toggle submission states (`0` ⇄ `1`). All submissions synchronize live.</p>
+      </div>
+      <div>
+        <button class="btn btn-green" onclick="exportCSV()">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          Download Evaluation CSV
+        </button>
       </div>
     </div>
 
     <!-- Assignment Summary Cards -->
-    <div class="assignments-cards-grid" id="assignCardsGrid"></div>
+    <div class="eval-cards-grid" id="assignCardsGrid"></div>
 
-    <!-- Roster Table -->
-    <div class="table-wrapper">
-      <div class="table-toolbar">
-        <input type="text" id="rosterSearch" class="search-input" placeholder="Search student name, roll, reg no...">
-        <button class="btn btn-secondary" onclick="exportCSV()">Download Evaluation CSV</button>
+    <!-- Roster Table Card -->
+    <div class="eval-table-card">
+      <div class="eval-table-toolbar">
+        <input type="text" id="rosterSearch" class="eval-search-input" placeholder="Search student name, roll, register no...">
+        <div id="rosterCountLabel" style="font-size: 12px; color: var(--text-muted);">
+          Showing 59 Students
+        </div>
       </div>
-      <table>
-        <thead>
-          <tr id="tableHeaderRow">
-            <th style="width: 70px;">Roll</th>
-            <th>Student Details</th>
-            <th style="width: 90px;">Blood</th>
-            <th style="width: 90px;">CGPA</th>
-            <th style="width: 120px; text-align: center;">Completion</th>
-            <th style="width: 110px;">Portfolio</th>
-          </tr>
-        </thead>
-        <tbody id="rosterTableBody"></tbody>
-      </table>
+      <div class="eval-table-scroll">
+        <table class="eval-table">
+          <thead>
+            <tr id="tableHeaderRow">
+              <th style="width: 60px;">Roll</th>
+              <th>Student Details</th>
+              <th style="width: 80px;">Blood</th>
+              <th style="width: 80px;">CGPA</th>
+              <th style="text-align: center; width: 90px;">A1 (Bit)</th>
+              <th style="text-align: center; width: 90px;">A2 (Bit)</th>
+              <th style="text-align: center; width: 120px;">Progress</th>
+              <th style="width: 90px;">Portfolio</th>
+            </tr>
+          </thead>
+          <tbody id="rosterTableBody"></tbody>
+        </table>
+      </div>
     </div>
   </main>
 
+  <!-- Theme Selection Modal -->
+  <div class="modal-overlay" id="themeModal" style="display: none; align-items: center; justify-content: center; position: fixed; inset: 0; background: var(--modal-overlay); z-index: 999999;">
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; width: 440px; max-width: 92vw; padding: 20px; box-shadow: 0 16px 36px rgba(0,0,0,0.4);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <h3 style="font-size: 15px; font-weight: 600; color: var(--text);">Appearance & Themes</h3>
+        <button style="background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer;" onclick="closeThemePickerModal()">&times;</button>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;">
+        <button class="btn" style="justify-content: flex-start; padding: 8px 12px;" onclick="setTheme('dark-default')">GitHub Dark</button>
+        <button class="btn" style="justify-content: flex-start; padding: 8px 12px;" onclick="setTheme('dark-dimmed')">Dark Dimmed</button>
+        <button class="btn" style="justify-content: flex-start; padding: 8px 12px;" onclick="setTheme('dark-protanopia')">Dark Protanopia</button>
+        <button class="btn" style="justify-content: flex-start; padding: 8px 12px;" onclick="setTheme('dark-tritanopia')">Dark Tritanopia</button>
+        <button class="btn" style="justify-content: flex-start; padding: 8px 12px;" onclick="setTheme('light-default')">GitHub Light</button>
+        <button class="btn" style="justify-content: flex-start; padding: 8px 12px;" onclick="setTheme('light-protanopia')">Light Protanopia</button>
+        <button class="btn" style="justify-content: flex-start; padding: 8px 12px;" onclick="setTheme('light-tritanopia')">Light Tritanopia</button>
+      </div>
+      <div style="text-align: right;">
+        <button class="btn" onclick="closeThemePickerModal()">Done</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     let filterQuery = '';
+
+    function openThemePickerModal() {
+      document.getElementById('themeModal').style.display = 'flex';
+    }
+
+    function closeThemePickerModal() {
+      document.getElementById('themeModal').style.display = 'none';
+    }
+
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('college_portal_theme', theme);
+      renderCards();
+      renderTable();
+    }
 
     function init() {
       renderCards();
@@ -380,15 +434,15 @@
         const pct = total > 0 ? Math.round((submittedCount / total) * 100) : 0;
 
         return `
-          <div class="assign-card">
-            <span class="assign-card-badge">ASSIGNMENT ${idx + 1}</span>
+          <div class="eval-card">
+            <span class="eval-badge">ASSIGNMENT ${idx + 1}</span>
             <h3>${a.title}</h3>
-            <div class="assign-card-meta">
+            <div class="eval-card-meta">
               <span>Due: ${a.dueDate || 'Ongoing'}</span>
               <span><strong>${submittedCount} / ${total}</strong> (${pct}%)</span>
             </div>
-            <div class="progress-bar-bg">
-              <div class="progress-bar-fill" style="width: ${pct}%;"></div>
+            <div class="eval-progress-track">
+              <div class="eval-progress-bar" style="width: ${pct}%;"></div>
             </div>
           </div>
         `;
@@ -398,18 +452,8 @@
     function renderTable() {
       const assignments = window.AssignmentStore.getAssignments();
       const students = window.STUDENTS_DATA || [];
-      const headerRow = document.getElementById('tableHeaderRow');
       const tbody = document.getElementById('rosterTableBody');
-
-      headerRow.innerHTML = `
-        <th style="width: 70px;">Roll</th>
-        <th>Student Details</th>
-        <th style="width: 90px;">Blood</th>
-        <th style="width: 90px;">CGPA</th>
-        ${assignments.map(a => `<th style="text-align: center;">${a.id} (Bit)</th>`).join('')}
-        <th style="width: 120px; text-align: center;">Completion</th>
-        <th style="width: 110px;">Portfolio</th>
-      `;
+      const countLabel = document.getElementById('rosterCountLabel');
 
       const filtered = students.filter(s => {
         if (!filterQuery) return true;
@@ -417,6 +461,10 @@
                (s.regNo || '').toLowerCase().includes(filterQuery) ||
                (s.rollNo || '').toString() === filterQuery;
       });
+
+      if (countLabel) {
+        countLabel.textContent = `Showing ${filtered.length} of ${students.length} Students`;
+      }
 
       tbody.innerHTML = filtered.map(s => {
         const stats = window.AssignmentStore.getStudentStats(s.id);
@@ -430,7 +478,7 @@
             <td style="text-align: center;">
               <button class="bit-btn ${isSub ? 'bit-1' : 'bit-0'}" 
                       onclick="window.AssignmentStore.toggleSubmission('${s.id}', '${a.id}')"
-                      title="Click to toggle submission">
+                      title="Click to toggle submission for ${a.id}">
                 ${isSub ? '✓ 1' : '0'}
               </button>
             </td>
@@ -441,26 +489,26 @@
 
         return `
           <tr>
-            <td><strong>#${s.rollNo}</strong></td>
+            <td style="font-family: monospace; font-weight: 600; color: var(--text-muted);">#${s.rollNo}</td>
             <td>
-              <div class="student-cell">
+              <div class="student-row-info">
                 ${avatar}
                 <div>
-                  <div style="font-weight: 700; color: #fff;">${s.name}</div>
-                  <div style="font-size: 0.8rem; color: var(--text-muted); font-family: monospace;">${s.regNo}</div>
+                  <div style="font-weight: 600; color: var(--text);">${s.name}</div>
+                  <div style="font-size: 11px; color: var(--text-muted); font-family: monospace;">${s.regNo}</div>
                 </div>
               </div>
             </td>
-            <td><span style="color: #f43f5e; font-weight: 600;">${s.blood || 'O+'}</span></td>
-            <td><span style="color: #38bdf8; font-weight: 600;">${s.cgpa ? Number(s.cgpa).toFixed(2) : '7.50'}</span></td>
+            <td><span class="badge-pill-chip badge-blood">${s.blood || 'O+'}</span></td>
+            <td><span class="badge-pill-chip badge-cgpa">${s.cgpa ? Number(s.cgpa).toFixed(2) : '7.50'}</span></td>
             ${bitCells}
             <td style="text-align: center;">
-              <span style="font-weight: 800; color: ${pct === 100 ? 'var(--success)' : '#cbd5e1'};">
+              <span style="font-weight: 600; color: ${pct === 100 ? 'var(--status-sub-text)' : 'var(--text-muted)'};">
                 ${stats.submittedCount}/${stats.totalCount} (${pct}%)
               </span>
             </td>
             <td>
-              <a href="${s.id}/index.html" target="_blank" style="color: #a5b4fc; text-decoration: none; font-weight: 600; font-size: 0.85rem;">
+              <a href="${s.id}/index.html" target="_blank" class="link-visit">
                 Visit ↗
               </a>
             </td>
