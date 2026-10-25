@@ -32,6 +32,29 @@
       return newId;
     },
 
+    removeAssignment(assignmentId) {
+      let current = this.getAssignments();
+      current = current.filter(a => a.id !== assignmentId);
+      this.saveAssignments(current);
+
+      // Clean up submissions for this assignment
+      try {
+        const state = this.getState();
+        Object.keys(state).forEach(sId => {
+          if (state[sId] && state[sId][assignmentId] !== undefined) {
+            delete state[sId][assignmentId];
+          }
+          if (state[sId] && state[sId]._meta && state[sId]._meta[assignmentId]) {
+            delete state[sId]._meta[assignmentId];
+          }
+        });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        window.dispatchEvent(new Event('submissionsUpdated'));
+      } catch (e) {}
+
+      return current;
+    },
+
     getState() {
       try {
         const stored = localStorage.getItem(STORAGE_KEY);

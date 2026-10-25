@@ -341,8 +341,10 @@
         <div class="dock-field-group">
           <label>Assignment</label>
           <select id="dockAssignSelect">
-            <option value="A1">Assignment 1 (Web Profile)</option>
-            <option value="A2">Assignment 2 (JS DOM & Validation)</option>
+            ${(window.AssignmentStore ? window.AssignmentStore.getAssignments() : [
+              { id: 'A1', title: 'Assignment 1 (Web Profile)' },
+              { id: 'A2', title: 'Assignment 2 (JS DOM & Validation)' }
+            ]).map(a => `<option value="${a.id}">${a.title}</option>`).join('')}
           </select>
         </div>
 

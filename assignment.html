@@ -321,7 +321,11 @@
         <h1>Assignment Evaluation Matrix</h1>
         <p>Interactive Continuous Evaluation Desk. Click any bit cell to toggle submission states (`0` ⇄ `1`). All submissions synchronize live.</p>
       </div>
-      <div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <button class="btn btn-primary" onclick="openNewAssignmentModal()">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"></path></svg>
+          + Add New Assignment
+        </button>
         <button class="btn btn-green" onclick="exportCSV()">
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
           Download Evaluation CSV
@@ -382,6 +386,30 @@
     </div>
   </div>
 
+  <!-- Create New Assignment Modal -->
+  <div class="modal-overlay" id="newAssignModal" style="display: none; align-items: center; justify-content: center; position: fixed; inset: 0; background: var(--modal-overlay); z-index: 999999;">
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; width: 440px; max-width: 92vw; padding: 22px; box-shadow: 0 16px 36px rgba(0,0,0,0.4);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <h3 style="font-size: 15px; font-weight: 600; color: var(--text);">Create New Batch Assignment</h3>
+        <button style="background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer;" onclick="closeNewAssignmentModal()">&times;</button>
+      </div>
+      <form onsubmit="handleCreateAssignment(event)">
+        <div style="margin-bottom: 12px;">
+          <label style="display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">Assignment Title</label>
+          <input type="text" id="newAssignTitle" class="eval-search-input" style="width: 100%; box-sizing: border-box;" placeholder="e.g. Assignment 3: React Single Page App" required>
+        </div>
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">Submission Due Date</label>
+          <input type="date" id="newAssignDueDate" class="eval-search-input" style="width: 100%; box-sizing: border-box;" required>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 8px;">
+          <button type="button" class="btn" onclick="closeNewAssignmentModal()">Cancel</button>
+          <button type="submit" class="btn btn-green">Create Assignment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
     let filterQuery = '';
 
@@ -391,6 +419,37 @@
 
     function closeThemePickerModal() {
       document.getElementById('themeModal').style.display = 'none';
+    }
+
+    function openNewAssignmentModal() {
+      document.getElementById('newAssignModal').style.display = 'flex';
+      document.getElementById('newAssignTitle').value = '';
+      const today = new Date();
+      today.setDate(today.getDate() + 14);
+      document.getElementById('newAssignDueDate').value = today.toISOString().slice(0, 10);
+      document.getElementById('newAssignTitle').focus();
+    }
+
+    function closeNewAssignmentModal() {
+      document.getElementById('newAssignModal').style.display = 'none';
+    }
+
+    function handleCreateAssignment(e) {
+      e.preventDefault();
+      const title = document.getElementById('newAssignTitle').value.trim();
+      const dueDate = document.getElementById('newAssignDueDate').value;
+      if (!title) return;
+
+      const newId = window.AssignmentStore.addAssignment(title, dueDate);
+      closeNewAssignmentModal();
+      alert(`Assignment ${newId} created successfully! Added to evaluation matrix.`);
+    }
+
+    function handleRemoveAssignment(aId, aTitle) {
+      const confirmed = confirm(`Are you sure you want to remove '${aTitle}' (${aId})?\n\nThis will remove the assignment column and its evaluation records.`);
+      if (confirmed) {
+        window.AssignmentStore.removeAssignment(aId);
+      }
     }
 
     function setTheme(theme) {
@@ -435,7 +494,14 @@
 
         return `
           <div class="eval-card">
-            <span class="eval-badge">ASSIGNMENT ${idx + 1}</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="eval-badge">ASSIGNMENT ${idx + 1} (${a.id})</span>
+              <button class="btn" style="padding: 2px 6px; font-size: 11px; color: var(--badge-blood-text); border-color: rgba(248,81,73,0.3);" 
+                      onclick="handleRemoveAssignment('${a.id}', '${a.title.replace(/'/g, "\\'")}')" 
+                      title="Remove this assignment">
+                ✕ Remove
+              </button>
+            </div>
             <h3>${a.title}</h3>
             <div class="eval-card-meta">
               <span>Due: ${a.dueDate || 'Ongoing'}</span>
@@ -452,8 +518,22 @@
     function renderTable() {
       const assignments = window.AssignmentStore.getAssignments();
       const students = window.STUDENTS_DATA || [];
+      const theadRow = document.getElementById('tableHeaderRow');
       const tbody = document.getElementById('rosterTableBody');
       const countLabel = document.getElementById('rosterCountLabel');
+
+      // Update table header dynamically with assignment columns
+      if (theadRow) {
+        theadRow.innerHTML = `
+          <th style="width: 60px;">Roll</th>
+          <th>Student Details</th>
+          <th style="width: 80px;">Blood</th>
+          <th style="width: 80px;">CGPA</th>
+          ${assignments.map(a => `<th style="text-align: center; width: 95px;">${a.id} (Bit)</th>`).join('')}
+          <th style="text-align: center; width: 120px;">Progress</th>
+          <th style="width: 90px;">Portfolio</th>
+        `;
+      }
 
       const filtered = students.filter(s => {
         if (!filterQuery) return true;
