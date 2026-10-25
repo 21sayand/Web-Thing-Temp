@@ -497,12 +497,37 @@
       color: inherit;
       transition: all 0.15s ease;
       cursor: pointer;
+      position: relative;
     }
 
     .student-card:hover {
       background: var(--surface-hover);
       border-color: var(--accent);
       transform: translateY(-1px);
+    }
+
+    .student-card.my-portfolio {
+      border: 2px solid var(--accent);
+      background: var(--surface-hover);
+      box-shadow: 0 0 16px var(--accent-subtle);
+    }
+
+    .my-portfolio-badge {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: var(--accent-subtle);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 7px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .card-top {
@@ -801,8 +826,8 @@
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
           Evaluation Matrix
         </button>
-        <button class="btn" id="facultyAuthBtn" onclick="toggleFacultySign()">
-          Faculty Sign In
+        <button class="btn" id="authBtn" onclick="toggleAuthSign()">
+          Sign In
         </button>
       </div>
     </div>
@@ -1153,27 +1178,39 @@
     </div>
   </div>
 
-  <!-- Faculty Verification Modal -->
-  <div class="modal-overlay" id="facultyModal">
+  <!-- Unified Authentication Modal (Student & Faculty) -->
+  <div class="modal-overlay" id="authModal">
     <div class="modal-box">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-        <h3 style="font-size: 13px; font-weight: 600;">Faculty Access</h3>
-        <button onclick="closeFacultyModal()" style="background:none; border:none; color:var(--text-muted); font-size:18px; cursor:pointer;">&times;</button>
+        <h3 style="font-size: 14px; font-weight: 600;">Sign In to Portal</h3>
+        <button onclick="closeAuthModal()" style="background:none; border:none; color:var(--text-muted); font-size:18px; cursor:pointer;">&times;</button>
       </div>
-      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">
-        Enter credentials to manage assignments and evaluation flags.
+
+      <!-- Tab Buttons for Student / Faculty -->
+      <div style="display: flex; gap: 6px; margin-bottom: 14px; border-bottom: 1px solid var(--border-muted); padding-bottom: 8px;">
+        <button type="button" id="tabStudentBtn" onclick="switchAuthTab('student')" class="btn" style="flex:1; justify-content:center; font-size:12px; background:var(--surface-hover); border-color:var(--accent);">
+          Student
+        </button>
+        <button type="button" id="tabFacultyBtn" onclick="switchAuthTab('faculty')" class="btn" style="flex:1; justify-content:center; font-size:12px;">
+          Faculty
+        </button>
+      </div>
+
+      <p id="authModalDesc" style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.4;">
+        Sign in to highlight your portfolio at the top and manage your assignment submissions.
       </p>
-      <form onsubmit="handleFacultyLogin(event)">
+
+      <form onsubmit="handleAuthSubmit(event)">
         <div style="margin-bottom: 10px;">
-          <input type="text" id="facultyUser" class="search-input" style="padding-left: 10px;" placeholder="Username" required autocomplete="username">
+          <input type="text" id="authIdentifier" class="search-input" style="padding-left: 10px;" placeholder="Register Number (e.g. STM23CS043)" required autocomplete="username">
         </div>
         <div style="margin-bottom: 14px;">
-          <input type="password" id="facultyPass" class="search-input" style="padding-left: 10px;" placeholder="Password" required autocomplete="current-password">
+          <input type="password" id="authPassword" class="search-input" style="padding-left: 10px;" placeholder="Password" required autocomplete="current-password">
         </div>
-        <div id="facultyError" style="display:none; color:#f85149; font-size:12px; margin-bottom:10px;"></div>
+        <div id="authError" style="display:none; color:#f85149; font-size:12px; margin-bottom:10px;"></div>
         <div style="display: flex; gap: 8px;">
-          <button type="button" class="btn" style="flex:1; justify-content:center;" onclick="closeFacultyModal()">Cancel</button>
-          <button type="submit" class="btn btn-green" style="flex:1; justify-content:center;">Enter</button>
+          <button type="button" class="btn" style="flex:1; justify-content:center;" onclick="closeAuthModal()">Cancel</button>
+          <button type="submit" class="btn btn-green" style="flex:1; justify-content:center;" id="authSubmitBtn">Sign In</button>
         </div>
       </form>
     </div>
@@ -1305,27 +1342,64 @@
       document.getElementById('filterPopover').classList.toggle('open');
     }
 
-    function updateAuthHeader() {
-      const user = window.CollegeAuth.getCurrentUser();
-      const statusText = document.getElementById('authStatusText');
-      const authBtn = document.getElementById('facultyAuthBtn');
+    let currentAuthTab = 'student';
 
-      if (user && user.role === 'faculty') {
-        statusText.textContent = `Faculty: ${user.name}`;
-        authBtn.textContent = 'Sign Out';
+    function switchAuthTab(tab) {
+      currentAuthTab = tab;
+      const tabStudent = document.getElementById('tabStudentBtn');
+      const tabFaculty = document.getElementById('tabFacultyBtn');
+      const desc = document.getElementById('authModalDesc');
+      const idInput = document.getElementById('authIdentifier');
+      const passInput = document.getElementById('authPassword');
+      const err = document.getElementById('authError');
+      err.style.display = 'none';
+
+      if (tab === 'student') {
+        tabStudent.style.background = 'var(--surface-hover)';
+        tabStudent.style.borderColor = 'var(--accent)';
+        tabFaculty.style.background = '';
+        tabFaculty.style.borderColor = '';
+        desc.textContent = 'Sign in to highlight your portfolio at the top and manage your assignment submissions.';
+        idInput.placeholder = 'Register Number (e.g. STM23CS043)';
+        passInput.placeholder = 'Password (Register Number)';
       } else {
-        statusText.textContent = 'Batch Directory';
-        authBtn.textContent = 'Faculty Sign In';
+        tabFaculty.style.background = 'var(--surface-hover)';
+        tabFaculty.style.borderColor = 'var(--accent)';
+        tabStudent.style.background = '';
+        tabStudent.style.borderColor = '';
+        desc.textContent = 'Sign in with faculty credentials to access evaluation matrix and update marks.';
+        idInput.placeholder = 'Faculty Username';
+        passInput.placeholder = 'Faculty Password';
       }
     }
 
-    function toggleFacultySign() {
+    function updateAuthHeader() {
       const user = window.CollegeAuth.getCurrentUser();
-      if (user && user.role === 'faculty') {
+      const statusText = document.getElementById('authStatusText');
+      const authBtn = document.getElementById('authBtn');
+
+      if (user) {
+        if (user.role === 'faculty') {
+          statusText.textContent = `Faculty: ${user.name}`;
+          authBtn.textContent = 'Sign Out';
+        } else if (user.role === 'student') {
+          statusText.textContent = `Signed In: ${user.name} (#${user.id})`;
+          authBtn.textContent = 'Sign Out';
+        }
+      } else {
+        statusText.textContent = 'Batch Directory';
+        authBtn.textContent = 'Sign In';
+      }
+    }
+
+    function toggleAuthSign() {
+      const user = window.CollegeAuth.getCurrentUser();
+      if (user) {
         window.CollegeAuth.logout();
         updateAuthHeader();
+        render();
       } else {
-        openFacultyModal();
+        openAuthModal('student');
       }
     }
 
@@ -1335,26 +1409,39 @@
         window.location.href = 'assignment.html';
         return;
       }
-      document.getElementById('facultyModal').style.display = 'flex';
-      document.getElementById('facultyError').style.display = 'none';
-      document.getElementById('facultyUser').focus();
+      openAuthModal('faculty');
     }
 
-    function closeFacultyModal() {
-      document.getElementById('facultyModal').style.display = 'none';
+    function openAuthModal(defaultTab = 'student') {
+      switchAuthTab(defaultTab);
+      document.getElementById('authModal').style.display = 'flex';
+      document.getElementById('authError').style.display = 'none';
+      document.getElementById('authIdentifier').value = '';
+      document.getElementById('authPassword').value = '';
+      document.getElementById('authIdentifier').focus();
     }
 
-    function handleFacultyLogin(e) {
+    function closeAuthModal() {
+      document.getElementById('authModal').style.display = 'none';
+    }
+
+    function handleAuthSubmit(e) {
       e.preventDefault();
-      const u = document.getElementById('facultyUser').value.trim();
-      const p = document.getElementById('facultyPass').value.trim();
+      const u = document.getElementById('authIdentifier').value.trim();
+      const p = document.getElementById('authPassword').value.trim();
       const res = window.CollegeAuth.login(u, p);
 
-      if (res.success && res.user.role === 'faculty') {
-        window.location.href = 'assignment.html';
+      if (res.success) {
+        closeAuthModal();
+        updateAuthHeader();
+        render();
+
+        if (res.user.role === 'faculty' && currentAuthTab === 'faculty') {
+          window.location.href = 'assignment.html';
+        }
       } else {
-        const err = document.getElementById('facultyError');
-        err.textContent = 'Invalid credentials.';
+        const err = document.getElementById('authError');
+        err.textContent = res.message || 'Invalid credentials.';
         err.style.display = 'block';
       }
     }
@@ -1415,6 +1502,8 @@
     function render() {
       const container = document.getElementById('studentsGrid');
       const students = window.STUDENTS_DATA || [];
+      const user = window.CollegeAuth.getCurrentUser();
+      const currentStudentId = user && user.role === 'student' ? user.id : null;
 
       const filtered = students.filter(s => {
         if (searchQuery) {
@@ -1445,14 +1534,25 @@
         return true;
       });
 
+      // If a student is authenticated, sort their portfolio to the top!
+      if (currentStudentId) {
+        filtered.sort((a, b) => {
+          if (a.id === currentStudentId) return -1;
+          if (b.id === currentStudentId) return 1;
+          return 0;
+        });
+      }
+
       container.innerHTML = filtered.map(s => {
         const isSub = window.AssignmentStore.isSubmitted(s.id, 'A1');
+        const isMe = s.id === currentStudentId;
         const avatar = s.photo 
           ? `<img src="${s.photo}" alt="${s.name}" class="avatar-circle" onerror="this.outerHTML='<div class=\\'avatar-fallback\\'>${(s.name || 'S')[0]}</div>'">`
           : `<div class="avatar-fallback">${(s.name || 'S')[0]}</div>`;
 
         return `
-          <a href="${s.id}/index.html" class="student-card" target="_blank" onmouseenter="playHoverSound()">
+          <a href="${s.id}/index.html" class="student-card ${isMe ? 'my-portfolio' : ''}" target="_blank" onmouseenter="playHoverSound()">
+            ${isMe ? '<div class="my-portfolio-badge">✦ Your Portfolio</div>' : ''}
             <div>
               <div class="card-top">
                 ${avatar}
@@ -1472,7 +1572,7 @@
             </div>
 
             <div class="card-action-bar">
-              <span>View Portfolio</span>
+              <span>${isMe ? 'Open My Portfolio (Full Edit)' : 'View Portfolio'}</span>
               <span>→</span>
             </div>
           </a>

@@ -1,11 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- Zero-Flicker Access Guard -->
-  <style id="auth-shield-style">html{visibility:hidden!important;opacity:0!important;}</style>
-  <script src="../students_data.js"></script>
-  <script src="../auth.js"></script>
-  <script src="../student_assignment_widget.js"></script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#203a30">
 <title>Hredya M | Student Portfolio</title>
 <style>
@@ -117,6 +112,11 @@ document.getElementById('printBtn').addEventListener('click',()=>window.print())
 Object.entries({regNo:'STM23CS021',rollNo:'20',dob:'2005-08-08',email:'hredyam21@gmail.com',phone:'9037191091',targetCompany:'TCS',altCompany:'Google'}).forEach(([id,value])=>document.getElementById(id).value=value);form.querySelector('[name="gender"][value="Female"]').checked=true;
 refresh();
 </script>
+
+  <!-- Central College Portal Integration -->
+  <script src="../students_data.js"></script>
+  <script src="../auth.js"></script>
+  <script src="../student_assignment_widget.js"></script>
 </body></html>
 
 
