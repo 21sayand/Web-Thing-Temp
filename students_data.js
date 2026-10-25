@@ -12,7 +12,7 @@ window.STUDENTS_DATA = [
     "id": "02",
     "rollNo": "2",
     "regNo": "STM23CS002",
-    "name": "ADWAITH K",
+    "name": "Adwaith K",
     "blood": "A",
     "cgpa": 7.5,
     "photo": "02/Adwaith.jpeg"
@@ -21,7 +21,7 @@ window.STUDENTS_DATA = [
     "id": "03",
     "rollNo": "3",
     "regNo": "STM23CS003",
-    "name": "Akash's Profile",
+    "name": "Akash's",
     "blood": "INFOSYS",
     "cgpa": 7.09,
     "photo": "03/AKASHPS.jpeg"
@@ -48,10 +48,10 @@ window.STUDENTS_DATA = [
     "id": "06",
     "rollNo": "6",
     "regNo": "STM23CS007",
-    "name": "Student Profile",
+    "name": "Student 06",
     "blood": "O+",
     "cgpa": 7.5,
-    "photo": ""
+    "photo": "06/image/WhatsApp Image 2026-09-30 at 9.30.26 AM.jpeg"
   },
   {
     "id": "07",
@@ -75,16 +75,16 @@ window.STUDENTS_DATA = [
     "id": "09",
     "rollNo": "9",
     "regNo": "STM23CS010",
-    "name": "Academic Student Profile",
+    "name": "Anjitha V",
     "blood": "A+",
     "cgpa": 9.33,
-    "photo": ""
+    "photo": "09/assets/profile_avatar.png"
   },
   {
     "id": "10",
     "rollNo": "10",
     "regNo": "STM23CS011",
-    "name": "Profile Overview",
+    "name": "Athul's",
     "blood": "O+",
     "cgpa": 7.5,
     "photo": "10/AthulK.jpeg"
@@ -102,7 +102,7 @@ window.STUDENTS_DATA = [
     "id": "12",
     "rollNo": "12",
     "regNo": "STM23CS013",
-    "name": "Student Profile",
+    "name": "Fathima Riza Ershad",
     "blood": "O+",
     "cgpa": 7.5,
     "photo": ""
@@ -111,7 +111,7 @@ window.STUDENTS_DATA = [
     "id": "13",
     "rollNo": "13",
     "regNo": "STM23CS013",
-    "name": "🎓 Student Profile",
+    "name": "Student 13",
     "blood": "O+",
     "cgpa": 7.5,
     "photo": ""
@@ -129,7 +129,7 @@ window.STUDENTS_DATA = [
     "id": "15",
     "rollNo": "15",
     "regNo": "STM23CS016",
-    "name": "Student Profile",
+    "name": "Fathimath Shifana TV",
     "blood": "O+",
     "cgpa": 7.5,
     "photo": ""
@@ -156,7 +156,7 @@ window.STUDENTS_DATA = [
     "id": "18",
     "rollNo": "18",
     "regNo": "STM23CS019",
-    "name": "Student Profile",
+    "name": "Fidha Fathima T",
     "blood": "AB+",
     "cgpa": 7.5,
     "photo": ""
@@ -186,16 +186,16 @@ window.STUDENTS_DATA = [
     "name": "Hridush prakash",
     "blood": "O+",
     "cgpa": 8.82,
-    "photo": ""
+    "photo": "21/21/hp/image/.trashed-1793334528-profile.jpg"
   },
   {
     "id": "22",
     "rollNo": "22",
     "regNo": "STM23CS023",
-    "name": "JEROME JIMMY",
+    "name": "APJ Abdul Kalam Technological University Student Portal",
     "blood": "O+",
     "cgpa": 6.6,
-    "photo": "22/stthomaskannur.png"
+    "photo": "22/assets/jerome_photo.jpg"
   },
   {
     "id": "23",
@@ -219,7 +219,7 @@ window.STUDENTS_DATA = [
     "id": "25",
     "rollNo": "25",
     "regNo": "STM23CS025",
-    "name": "Student Profile",
+    "name": "Student 25",
     "blood": "A",
     "cgpa": 7.5,
     "photo": ""
@@ -228,7 +228,7 @@ window.STUDENTS_DATA = [
     "id": "26",
     "rollNo": "26",
     "regNo": "STM23CS026",
-    "name": "Mishal Majeed",
+    "name": "Student 26",
     "blood": "O+",
     "cgpa": 7.5,
     "photo": ""
@@ -255,7 +255,7 @@ window.STUDENTS_DATA = [
     "id": "29",
     "rollNo": "29",
     "regNo": "STM23CS030",
-    "name": "Muhammed Finas Noufal ap",
+    "name": "Student 29",
     "blood": "O+",
     "cgpa": 7.5,
     "photo": ""
@@ -264,7 +264,7 @@ window.STUDENTS_DATA = [
     "id": "30",
     "rollNo": "30",
     "regNo": "STM23CS031",
-    "name": "Muhammed Mazin KP",
+    "name": "Muhammed Mazin KP — Portfolio",
     "blood": "A",
     "cgpa": 7.5,
     "photo": ""
@@ -273,7 +273,7 @@ window.STUDENTS_DATA = [
     "id": "31",
     "rollNo": "31",
     "regNo": "STM23CS032",
-    "name": "Muhammed Thaha K T",
+    "name": "Muhammed Thaha K T — Portfolio",
     "blood": "O",
     "cgpa": 7.5,
     "photo": ""
@@ -282,7 +282,7 @@ window.STUDENTS_DATA = [
     "id": "32",
     "rollNo": "32",
     "regNo": "STM23CS033",
-    "name": "Muhammed Zaid O.V.",
+    "name": "Student 32",
     "blood": "O+",
     "cgpa": 7.5,
     "photo": ""
@@ -309,7 +309,7 @@ window.STUDENTS_DATA = [
     "id": "35",
     "rollNo": "35",
     "regNo": "STM23CS036",
-    "name": "STUDENT PROFILE",
+    "name": "Student 35",
     "blood": "O+",
     "cgpa": 7.5,
     "photo": "35/pspt.jpeg"
@@ -318,7 +318,7 @@ window.STUDENTS_DATA = [
     "id": "36",
     "rollNo": "36",
     "regNo": "STM23CS037",
-    "name": "Riya",
+    "name": "Riya's",
     "blood": "A+",
     "cgpa": 7.5,
     "photo": "36/Riya.jpeg"
@@ -327,7 +327,7 @@ window.STUDENTS_DATA = [
     "id": "37",
     "rollNo": "37",
     "regNo": "STM23CS038",
-    "name": "STUDENT PROFILE",
+    "name": "Student 37",
     "blood": "O+",
     "cgpa": 7.5,
     "photo": ""
@@ -336,7 +336,7 @@ window.STUDENTS_DATA = [
     "id": "38",
     "rollNo": "38",
     "regNo": "STM23CS038",
-    "name": "Student Profile",
+    "name": "Student 38",
     "blood": "O+",
     "cgpa": 7.5,
     "photo": "38/student.png"
@@ -354,7 +354,7 @@ window.STUDENTS_DATA = [
     "id": "40",
     "rollNo": "40",
     "regNo": "STM23CS041",
-    "name": "EduPortal Profile",
+    "name": "&  Portal",
     "blood": "AB-",
     "cgpa": 8.57,
     "photo": ""
@@ -363,7 +363,7 @@ window.STUDENTS_DATA = [
     "id": "41",
     "rollNo": "41",
     "regNo": "STM23CS042",
-    "name": "B.Tech Student Academic & Placement Profile",
+    "name": "Portal",
     "blood": "A+",
     "cgpa": 0,
     "photo": "41/sayii.jpeg"
@@ -371,17 +371,17 @@ window.STUDENTS_DATA = [
   {
     "id": "42",
     "rollNo": "42",
-    "regNo": "stm23cs043",
-    "name": "Crafting software with quiet care and human warmth.",
+    "regNo": "STM23CS043",
+    "name": "Sayand",
     "blood": "O+",
     "cgpa": 7.75,
-    "photo": ""
+    "photo": "42/static/images/profile.jpg"
   },
   {
     "id": "43",
     "rollNo": "43",
     "regNo": "STM23CS044",
-    "name": "Student Profile",
+    "name": "Sayyidha Sherin K",
     "blood": "AB+",
     "cgpa": 7.5,
     "photo": ""
@@ -390,7 +390,7 @@ window.STUDENTS_DATA = [
     "id": "44",
     "rollNo": "44",
     "regNo": "STM23CS045",
-    "name": "Shijas Shabeer",
+    "name": "Portfolio",
     "blood": "O+",
     "cgpa": 7.5,
     "photo": ""
@@ -408,28 +408,28 @@ window.STUDENTS_DATA = [
     "id": "46",
     "rollNo": "46",
     "regNo": "STM23CS047",
-    "name": "STUDENT PROFILE",
+    "name": "Student 46",
     "blood": "O+",
     "cgpa": 7.5,
-    "photo": ""
+    "photo": "46/images/profile.jpg"
   },
   {
     "id": "47",
     "rollNo": "47",
     "regNo": "STM23CS048",
-    "name": "Student Profile",
+    "name": "Student 47",
     "blood": "O+",
     "cgpa": 7.5,
-    "photo": ""
+    "photo": "47/images/image.jpeg"
   },
   {
     "id": "48",
     "rollNo": "48",
     "regNo": "STM23CS049",
-    "name": "Swetha V",
+    "name": "Student 48",
     "blood": "O+",
     "cgpa": 7.5,
-    "photo": ""
+    "photo": "48/images/photo.jpeg"
   },
   {
     "id": "49",
@@ -438,7 +438,7 @@ window.STUDENTS_DATA = [
     "name": "Yadhu Sagar N",
     "blood": "O+",
     "cgpa": 7.5,
-    "photo": ""
+    "photo": "49/image/.trashed-1793332797-profile.jpg"
   },
   {
     "id": "50",
@@ -465,13 +465,13 @@ window.STUDENTS_DATA = [
     "name": "Yasin V M",
     "blood": "B+",
     "cgpa": 7.5,
-    "photo": ""
+    "photo": "52/images/yasin.jpg"
   },
   {
     "id": "53",
     "rollNo": "53",
     "regNo": "STM23CS054",
-    "name": "Zaid Ibnu Abdul Gafoor",
+    "name": "Student 53",
     "blood": "O+",
     "cgpa": 7.5,
     "photo": ""
@@ -480,7 +480,7 @@ window.STUDENTS_DATA = [
     "id": "54",
     "rollNo": "54",
     "regNo": "STM23CS054",
-    "name": "Student Profile",
+    "name": "Mariyam P",
     "blood": "A+",
     "cgpa": 7.5,
     "photo": ""
@@ -489,7 +489,7 @@ window.STUDENTS_DATA = [
     "id": "55",
     "rollNo": "55",
     "regNo": "LSTM23CS055",
-    "name": "Akash PM",
+    "name": "Student 55",
     "blood": "O+",
     "cgpa": 7.5,
     "photo": ""
@@ -525,7 +525,7 @@ window.STUDENTS_DATA = [
     "id": "59",
     "rollNo": "59",
     "regNo": "LSTM23CS059",
-    "name": "STUDENT PROFILE",
+    "name": "Asritha S Nath",
     "blood": "O+",
     "cgpa": 7.5,
     "photo": "59/student.jpg"
