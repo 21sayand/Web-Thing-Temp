@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Batch Assignment Matrix & Submission Hub</title>
+  <title>Batch Assignment Matrix & Submission Hub (Faculty Only)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -38,7 +38,6 @@
       background-attachment: fixed;
     }
 
-    /* Header */
     header {
       padding: 1.25rem 2rem;
       border-bottom: 1px solid var(--card-border);
@@ -112,29 +111,16 @@
       border: 1px solid transparent;
     }
 
-    .btn-primary {
-      background: var(--primary-gradient);
-      color: #fff;
-    }
+    .btn-primary { background: var(--primary-gradient); color: #fff; }
+    .btn-secondary { background: rgba(255, 255, 255, 0.05); border-color: var(--card-border); color: var(--text); }
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); }
 
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: var(--card-border);
-      color: var(--text);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Container */
     .container {
       max-width: 1400px;
       margin: 2rem auto 5rem;
       padding: 0 2rem;
     }
 
-    /* Assignment Management Cards */
     .assignments-header-row {
       display: flex;
       justify-content: space-between;
@@ -169,7 +155,6 @@
       border-radius: 16px;
       padding: 1.25rem 1.5rem;
       backdrop-filter: blur(10px);
-      position: relative;
     }
 
     .assign-card-badge {
@@ -183,11 +168,7 @@
       margin-bottom: 0.75rem;
     }
 
-    .assign-card h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
+    .assign-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
 
     .assign-card-meta {
       font-size: 0.8rem;
@@ -211,7 +192,6 @@
       transition: width 0.4s ease;
     }
 
-    /* Roster Table Card */
     .table-wrapper {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -242,10 +222,6 @@
       outline: none;
     }
 
-    .search-input:focus {
-      border-color: var(--primary);
-    }
-
     table {
       width: 100%;
       border-collapse: separate;
@@ -271,9 +247,7 @@
       vertical-align: middle;
     }
 
-    tr:hover td {
-      background: rgba(255, 255, 255, 0.02);
-    }
+    tr:hover td { background: rgba(255, 255, 255, 0.02); }
 
     .bit-btn {
       display: inline-flex;
@@ -289,105 +263,31 @@
       transition: all 0.2s;
     }
 
-    .bit-1 {
-      background: var(--success-bg);
-      color: var(--success);
-      border-color: rgba(16, 185, 129, 0.4);
-    }
+    .bit-1 { background: var(--success-bg); color: var(--success); border-color: rgba(16, 185, 129, 0.4); }
+    .bit-0 { background: rgba(255, 255, 255, 0.05); color: var(--text-muted); border-color: rgba(255, 255, 255, 0.1); }
+    .bit-0:hover { background: var(--warning-bg); color: var(--warning); }
 
-    .bit-0 {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-muted);
-      border-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .bit-0:hover {
-      background: var(--warning-bg);
-      color: var(--warning);
-      border-color: rgba(245, 158, 11, 0.4);
-    }
-
-    .student-cell {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .student-mini-avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      object-fit: cover;
-      background: rgba(255, 255, 255, 0.05);
-    }
-
+    .student-cell { display: flex; align-items: center; gap: 0.75rem; }
+    .student-mini-avatar { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; }
     .student-mini-fallback {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      background: #1e293b;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: #94a3b8;
-    }
-
-    /* Modal */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal {
-      background: #131b2e;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 20px;
-      width: 90%;
-      max-width: 480px;
-      padding: 2rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.25rem;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      background: rgba(11, 15, 25, 0.8);
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      color: var(--text);
-      font-size: 0.9rem;
-      outline: none;
+      width: 36px; height: 36px; border-radius: 8px; background: #1e293b;
+      display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; color: #94a3b8;
     }
   </style>
 </head>
 <body>
+
+  <!-- Route Guard -->
+  <script src="students_data.js"></script>
+  <script src="assignment_store.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    const user = window.CollegeAuth.getCurrentUser();
+    if (!user || user.role !== 'faculty') {
+      alert('Access Restricted: The Assignment Evaluation Matrix is restricted to verified Faculty members only. Please log in as Faculty.');
+      window.location.href = 'index.html';
+    }
+  </script>
 
   <!-- Navigation -->
   <header>
@@ -396,17 +296,15 @@
         <div class="brand-logo">ST</div>
         <div class="brand-text">
           <h1>St Thomas College of Engg. & Technology</h1>
-          <p>CSE Batch '23 • Continuous Evaluation & Assignment Tracker</p>
+          <p>Continuous Evaluation Hub • Verified Faculty Access</p>
         </div>
       </a>
       <div class="nav-actions">
         <a href="index.html" class="btn btn-secondary">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-          Back to Central Portal
+          ← Back to Directory
         </a>
-        <button class="btn btn-primary" onclick="openNewAssignModal()">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"></path></svg>
-          + Add New Assignment
+        <button class="btn btn-secondary" onclick="window.CollegeAuth.logout()">
+          Sign Out
         </button>
       </div>
     </div>
@@ -416,7 +314,7 @@
     <div class="assignments-header-row">
       <div class="section-title">
         <h2>Assignment Evaluation Matrix</h2>
-        <p>Click any binary cell `[0]` to mark as submitted `[1]`, or vice-versa. Real-time updates sync across all pages.</p>
+        <p>Faculty portal: Click any cell to flip binary submission flags (`0` ⇄ `1`). All changes are synchronized.</p>
       </div>
     </div>
 
@@ -427,9 +325,7 @@
     <div class="table-wrapper">
       <div class="table-toolbar">
         <input type="text" id="rosterSearch" class="search-input" placeholder="Search student name, roll, reg no...">
-        <div style="display: flex; gap: 0.5rem;">
-          <button class="btn btn-secondary" onclick="exportCSV()">Download Evaluation CSV</button>
-        </div>
+        <button class="btn btn-secondary" onclick="exportCSV()">Download Evaluation CSV</button>
       </div>
       <table>
         <thead>
@@ -438,8 +334,7 @@
             <th>Student Details</th>
             <th style="width: 90px;">Blood</th>
             <th style="width: 90px;">CGPA</th>
-            <!-- Dynamic Assignment Columns injected here -->
-            <th style="width: 120px; text-align: center;">Total Completion</th>
+            <th style="width: 120px; text-align: center;">Completion</th>
             <th style="width: 110px;">Portfolio</th>
           </tr>
         </thead>
@@ -448,32 +343,6 @@
     </div>
   </main>
 
-  <!-- Add New Assignment Modal -->
-  <div class="modal-overlay" id="newAssignModal">
-    <div class="modal">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-        <h3>Create New Assignment</h3>
-        <button class="modal-close" style="background:none; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer;" onclick="closeNewAssignModal()">&times;</button>
-      </div>
-      <form onsubmit="handleCreateAssignment(event)">
-        <div class="form-group">
-          <label>Assignment Title</label>
-          <input type="text" id="newAssignTitle" class="form-control" placeholder="e.g. Assignment 3: React Components" required>
-        </div>
-        <div class="form-group">
-          <label>Due Date</label>
-          <input type="date" id="newAssignDate" class="form-control" value="2026-11-20" required>
-        </div>
-        <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
-          <button type="button" class="btn btn-secondary" style="flex:1;" onclick="closeNewAssignModal()">Cancel</button>
-          <button type="submit" class="btn btn-primary" style="flex:1;">Create Assignment</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <script src="students_data.js"></script>
-  <script src="assignment_store.js"></script>
   <script>
     let filterQuery = '';
 
@@ -506,9 +375,7 @@
       container.innerHTML = assignments.map((a, idx) => {
         let submittedCount = 0;
         students.forEach(s => {
-          if (window.AssignmentStore.isSubmitted(s.id, a.id)) {
-            submittedCount++;
-          }
+          if (window.AssignmentStore.isSubmitted(s.id, a.id)) submittedCount++;
         });
         const pct = total > 0 ? Math.round((submittedCount / total) * 100) : 0;
 
@@ -534,7 +401,6 @@
       const headerRow = document.getElementById('tableHeaderRow');
       const tbody = document.getElementById('rosterTableBody');
 
-      // Update header with dynamic assignment columns
       headerRow.innerHTML = `
         <th style="width: 70px;">Roll</th>
         <th>Student Details</th>
@@ -545,7 +411,6 @@
         <th style="width: 110px;">Portfolio</th>
       `;
 
-      // Filter rows
       const filtered = students.filter(s => {
         if (!filterQuery) return true;
         return (s.name || '').toLowerCase().includes(filterQuery) ||
@@ -564,8 +429,8 @@
           return `
             <td style="text-align: center;">
               <button class="bit-btn ${isSub ? 'bit-1' : 'bit-0'}" 
-                      onclick="toggleBit('${s.id}', '${a.id}')"
-                      title="Click to toggle submission status">
+                      onclick="window.AssignmentStore.toggleSubmission('${s.id}', '${a.id}')"
+                      title="Click to toggle submission">
                 ${isSub ? '✓ 1' : '0'}
               </button>
             </td>
@@ -604,35 +469,12 @@
       }).join('');
     }
 
-    function toggleBit(studentId, assignmentId) {
-      window.AssignmentStore.toggleSubmission(studentId, assignmentId);
-    }
-
-    function openNewAssignModal() {
-      document.getElementById('newAssignModal').classList.add('active');
-    }
-
-    function closeNewAssignModal() {
-      document.getElementById('newAssignModal').classList.remove('active');
-    }
-
-    function handleCreateAssignment(e) {
-      e.preventDefault();
-      const title = document.getElementById('newAssignTitle').value;
-      const date = document.getElementById('newAssignDate').value;
-      window.AssignmentStore.addAssignment(title, date);
-      closeNewAssignModal();
-      document.getElementById('newAssignTitle').value = '';
-    }
-
     function exportCSV() {
       const students = window.STUDENTS_DATA || [];
       const assignments = window.AssignmentStore.getAssignments();
       
       let csv = 'Roll No,Register No,Student Name,Blood Group,CGPA';
-      assignments.forEach(a => {
-        csv += `,${a.title} (Bit)`;
-      });
+      assignments.forEach(a => { csv += `,${a.title} (Bit)`; });
       csv += ',Total Completion Rate\n';
 
       students.forEach(s => {

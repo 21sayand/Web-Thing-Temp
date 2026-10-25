@@ -9,7 +9,6 @@
     }
   }
 
-  // If studentId not found from URL path, check folder name
   if (!studentId) {
     const scripts = document.getElementsByTagName('script');
     for (let s of scripts) {
@@ -22,7 +21,45 @@
 
   if (!studentId) studentId = '01';
 
-  // Inject sleek bottom-right dock styles
+  // 1. Enforce Student Route Protection
+  const authUser = (function() {
+    try {
+      return JSON.parse(sessionStorage.getItem('college_portal_auth_user') || localStorage.getItem('college_portal_auth_user') || 'null');
+    } catch(e) { return null; }
+  })();
+
+  // If not logged in or a student trying to view another student's portfolio:
+  if (!authUser) {
+    // Show login block overlay
+    showAuthGate('Please authenticate with your University Register Number to view this portfolio.');
+    return;
+  } else if (authUser.role === 'student' && authUser.id !== studentId) {
+    // Block access and redirect to their own portfolio
+    showAuthGate(`Access Restricted: You are logged in as ${authUser.name} (${authUser.regNo}). You may only access your own portfolio (#${authUser.id}).`, authUser.id);
+    return;
+  }
+
+  function showAuthGate(message, ownId = null) {
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.innerHTML = `
+        <div style="min-height: 100vh; background: #0f172a; color: #f8fafc; display: flex; align-items: center; justify-content: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 20px;">
+          <div style="background: #1e293b; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 32px; max-width: 440px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div style="width: 56px; height: 56px; border-radius: 12px; background: rgba(239, 68, 68, 0.15); color: #f87171; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+              <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15v2m0 0v2m0-2h2m-2 0H10m11-5a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">Institutional Access Guard</h2>
+            <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.5; margin-bottom: 24px;">${message}</p>
+            <div style="display: flex; gap: 10px;">
+              ${ownId ? `<a href="../${ownId}/index.html" style="flex: 1; background: #2563eb; color: #fff; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.85rem;">Go to My Portfolio (#${ownId})</a>` : ''}
+              <a href="../index.html" style="flex: 1; background: rgba(255,255,255,0.1); color: #fff; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.85rem;">Return to Login</a>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  // 2. Inject sleek bottom-right dock styles
   const style = document.createElement('style');
   style.textContent = `
     .college-bottom-dock {
@@ -37,7 +74,6 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    /* Minimal floating pill toggle button */
     .dock-pill-trigger {
       display: inline-flex;
       align-items: center;
@@ -50,15 +86,14 @@
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      transition: all 0.25s ease;
       user-select: none;
     }
 
     .dock-pill-trigger:hover {
       background: #27272a;
       transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
     }
 
     .dock-status-dot {
@@ -72,28 +107,21 @@
       background: #10b981;
     }
 
-    /* Collapsible action panel */
     .dock-panel {
       background: #18181b;
       color: #fafafa;
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 18px;
-      width: 310px;
+      width: 320px;
       padding: 18px;
       box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
       display: none;
       flex-direction: column;
       gap: 14px;
-      animation: dockSlideUp 0.2s ease-out;
     }
 
     .dock-panel.open {
       display: flex;
-    }
-
-    @keyframes dockSlideUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .dock-panel-header {
@@ -117,31 +145,18 @@
       color: #a1a1aa;
       font-size: 18px;
       cursor: pointer;
-      line-height: 1;
     }
 
-    .dock-nav-links {
+    .dock-user-tag {
+      font-size: 11px;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      padding: 4px 8px;
+      border-radius: 6px;
+      margin-bottom: 4px;
       display: flex;
-      gap: 8px;
-    }
-
-    .dock-nav-btn {
-      flex: 1;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #e4e4e7;
-      padding: 7px 10px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.15s;
-    }
-
-    .dock-nav-btn:hover {
-      background: rgba(255, 255, 255, 0.12);
-      color: #fff;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .dock-field-group label {
@@ -175,26 +190,25 @@
       font-weight: 600;
       font-size: 13px;
       cursor: pointer;
-      transition: background 0.2s;
     }
 
     .dock-submit-btn:hover {
       background: #1d4ed8;
     }
 
-    .dock-badge-status {
+    .dock-logout-btn {
+      background: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ef4444;
+      padding: 6px 10px;
+      border-radius: 6px;
       font-size: 11px;
       font-weight: 600;
-      padding: 4px 8px;
-      border-radius: 6px;
-      background: rgba(245, 158, 11, 0.15);
-      color: #fbbf24;
-      display: inline-block;
+      cursor: pointer;
     }
 
-    .dock-badge-status.submitted {
-      background: rgba(16, 185, 129, 0.15);
-      color: #34d399;
+    .dock-logout-btn:hover {
+      background: rgba(239, 68, 68, 0.1);
     }
   `;
   document.head.appendChild(style);
@@ -217,18 +231,25 @@
       <!-- Collapsible Panel -->
       <div class="dock-panel" id="collegeDockPanel">
         <div class="dock-panel-header">
-          <h4>Portal Hub (Student #${studentId})</h4>
+          <h4>Portal Hub (#${studentId})</h4>
           <button class="dock-close-btn" id="closeDockPanel">&times;</button>
         </div>
 
-        <div class="dock-nav-links">
-          <a href="../index.html" class="dock-nav-btn">← Central Directory</a>
-          <a href="../assignment.html" class="dock-nav-btn">Evaluation Matrix ↗</a>
+        <div class="dock-user-tag">
+          <span>Logged in: <strong>${authUser.name}</strong></span>
+          <button class="dock-logout-btn" id="dockLogoutBtn">Logout</button>
         </div>
+
+        ${authUser.role === 'faculty' ? `
+          <div style="display: flex; gap: 8px; margin-bottom: 6px;">
+            <a href="../index.html" style="flex:1; text-align:center; background:#334155; color:#fff; padding:6px; border-radius:6px; font-size:11px; text-decoration:none;">← Central Directory</a>
+            <a href="../assignment.html" style="flex:1; text-align:center; background:#334155; color:#fff; padding:6px; border-radius:6px; font-size:11px; text-decoration:none;">Evaluation Matrix ↗</a>
+          </div>
+        ` : ''}
 
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <span style="font-size: 12px; color: #a1a1aa;">Assignment 1 Status:</span>
-          <span class="dock-badge-status ${isSub ? 'submitted' : ''}" id="dockStatusBadge">
+          <span style="font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 6px; background: ${isSub ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)'}; color: ${isSub ? '#34d399' : '#fbbf24'};" id="dockStatusBadge">
             ${isSub ? '✓ Submitted (Bit 1)' : '⏳ Pending (Bit 0)'}
           </span>
         </div>
@@ -250,9 +271,9 @@
       </div>
 
       <!-- Floating Pill Trigger -->
-      <div class="dock-pill-trigger" id="dockPillTrigger" title="Click to open college portal actions & assignment upload">
+      <div class="dock-pill-trigger" id="dockPillTrigger" title="Click to view submission status or upload">
         <span class="dock-status-dot ${isSub ? 'submitted' : ''}" id="dockTriggerDot"></span>
-        <span>College Portal</span>
+        <span>My Assignment Hub</span>
         <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"></path></svg>
       </div>
     `;
@@ -263,6 +284,7 @@
     const panel = document.getElementById('collegeDockPanel');
     const closeBtn = document.getElementById('closeDockPanel');
     const submitBtn = document.getElementById('dockSubmitBtn');
+    const logoutBtn = document.getElementById('dockLogoutBtn');
 
     trigger.addEventListener('click', () => {
       panel.classList.toggle('open');
@@ -270,6 +292,12 @@
 
     closeBtn.addEventListener('click', () => {
       panel.classList.remove('open');
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      sessionStorage.removeItem('college_portal_auth_user');
+      localStorage.removeItem('college_portal_auth_user');
+      window.location.href = '../index.html';
     });
 
     submitBtn.addEventListener('click', () => {
@@ -287,10 +315,11 @@
       } catch (e) {}
 
       document.getElementById('dockStatusBadge').textContent = '✓ Submitted (Bit 1)';
-      document.getElementById('dockStatusBadge').classList.add('submitted');
+      document.getElementById('dockStatusBadge').style.background = 'rgba(16, 185, 129, 0.15)';
+      document.getElementById('dockStatusBadge').style.color = '#34d399';
       document.getElementById('dockTriggerDot').classList.add('submitted');
 
-      alert(`Assignment ${aId} submitted for Student #${studentId}! Flag set to 1.`);
+      alert(`Assignment ${aId} submitted successfully! Binary flag set to 1.`);
       panel.classList.remove('open');
     });
   }
