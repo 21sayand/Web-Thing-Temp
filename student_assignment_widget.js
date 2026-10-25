@@ -1,4 +1,12 @@
 (function() {
+  // Ensure responsive viewport meta tag is present on all devices
+  if (!document.querySelector('meta[name="viewport"]')) {
+    const metaVp = document.createElement('meta');
+    metaVp.name = 'viewport';
+    metaVp.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0';
+    document.head.appendChild(metaVp);
+  }
+
   // Determine student folder ID from path (e.g. /01/ or /42/)
   const pathParts = window.location.pathname.split('/').filter(Boolean);
   let studentId = '';
@@ -209,6 +217,45 @@
     }
 
     .dock-logout-btn:hover { background: rgba(248, 81, 73, 0.15); }
+
+    /* Mobile Responsive Safeguards for Dock */
+    @media (max-width: 600px) {
+      .college-bottom-dock {
+        bottom: 14px;
+        right: 14px;
+        left: 14px;
+        align-items: stretch;
+      }
+      .dock-pill-trigger {
+        align-self: flex-end;
+      }
+      .dock-panel {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+    }
+
+    /* Subtle non-destructive responsive safeguard: prevent rigid elements from causing horizontal overflow */
+    @media (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+      }
+      img, video, canvas, svg {
+        max-width: 100%;
+        height: auto;
+      }
+      table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      pre, code {
+        max-width: 100%;
+        overflow-x: auto;
+      }
+    }
   `;
   document.head.appendChild(style);
 
