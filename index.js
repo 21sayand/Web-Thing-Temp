@@ -455,6 +455,11 @@ function init() {
     updateMetrics();
   });
 
+  window.addEventListener('assignmentsUpdated', () => {
+    render();
+    updateMetrics();
+  });
+
   window.addEventListener('guestAccessUpdated', () => {
     render();
   });

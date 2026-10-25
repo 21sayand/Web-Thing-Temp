@@ -726,6 +726,73 @@
         document.getElementById('collegeDockPanel').classList.remove('open');
       });
     }
+
+    // Dynamic Live Sync: Update Assignment Dropdown & Status when Faculty adds an assignment in another tab/window
+    function refreshAssignmentList() {
+      const select = document.getElementById('dockAssignSelect');
+      if (select && window.AssignmentStore) {
+        const currentSelected = select.value;
+        const assignments = window.AssignmentStore.getAssignments();
+        select.innerHTML = assignments.map(a => `<option value="${a.id}" ${a.id === currentSelected ? 'selected' : ''}>${a.title}</option>`).join('');
+      }
+
+      // Check if unread announcement banner should appear
+      try {
+        const rawAnnounce = localStorage.getItem('college_portal_latest_announcement');
+        if (rawAnnounce) {
+          const announce = JSON.parse(rawAnnounce);
+          const dismissedId = localStorage.getItem(`college_portal_dismissed_notif_${studentId}`);
+          if (announce && dismissedId !== announce.id) {
+            let banner = document.getElementById('dockAnnouncementBanner');
+            if (!banner) {
+              banner = document.createElement('div');
+              banner.className = 'dock-announcement-banner';
+              banner.id = 'dockAnnouncementBanner';
+              banner.innerHTML = `
+                <button class="dock-announcement-close" id="dockCloseAnnouncement" title="Dismiss">&times;</button>
+                <div style="font-size: 20px; line-height: 1;">📢</div>
+                <div style="flex: 1;">
+                  <span class="dock-announcement-badge">New Assignment Assigned!</span>
+                  <div style="font-size: 13px; font-weight: 700; color: #f0f6fc; margin-bottom: 2px;">
+                    ${announce.title}
+                  </div>
+                  <div style="font-size: 11px; color: #8b949e;">
+                    Due Date: <strong>${announce.dueDate || 'Ongoing'}</strong> • Open Assignment Desk to submit.
+                  </div>
+                </div>
+              `;
+              dock.insertBefore(banner, dock.firstChild);
+
+              banner.addEventListener('click', (e) => {
+                if (e.target.id === 'dockCloseAnnouncement') return;
+                document.getElementById('collegeDockPanel').classList.add('open');
+                banner.style.display = 'none';
+                localStorage.setItem(`college_portal_dismissed_notif_${studentId}`, announce.id);
+              });
+
+              const closeBtn = banner.querySelector('#dockCloseAnnouncement');
+              if (closeBtn) {
+                closeBtn.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  banner.style.display = 'none';
+                  localStorage.setItem(`college_portal_dismissed_notif_${studentId}`, announce.id);
+                });
+              }
+            }
+
+            const pill = document.getElementById('dockPillTrigger');
+            if (pill) pill.classList.add('has-notification');
+          }
+        }
+      } catch (e) {}
+    }
+
+    window.addEventListener('assignmentsUpdated', refreshAssignmentList);
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'college_portal_assignments_meta' || e.key === 'college_portal_latest_announcement' || e.key === 'college_portal_assignment_sync_ping') {
+        refreshAssignmentList();
+      }
+    });
   }
 
   if (document.readyState === 'loading') {

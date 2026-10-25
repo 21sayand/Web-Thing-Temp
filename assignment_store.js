@@ -20,6 +20,8 @@
 
     saveAssignments(assignments) {
       localStorage.setItem(CONFIG_KEY, JSON.stringify(assignments));
+      // Ping channel for instant notification
+      localStorage.setItem('college_portal_assignment_sync_ping', String(Date.now()));
       window.dispatchEvent(new Event('assignmentsUpdated'));
     },
 
@@ -155,4 +157,17 @@
       return false;
     }
   };
+
+  // Cross-Tab Immediate Storage Event Broadcast
+  window.addEventListener('storage', (e) => {
+    if (e.key === CONFIG_KEY || e.key === 'college_portal_assignment_sync_ping' || e.key === 'college_portal_latest_announcement') {
+      window.dispatchEvent(new Event('assignmentsUpdated'));
+    }
+    if (e.key === STORAGE_KEY) {
+      window.dispatchEvent(new Event('submissionsUpdated'));
+    }
+    if (e.key === 'college_portal_guest_access_allowed') {
+      window.dispatchEvent(new Event('guestAccessUpdated'));
+    }
+  });
 })();
