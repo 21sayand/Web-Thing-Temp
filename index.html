@@ -2,798 +2,19 @@
 <html lang="en" data-theme="dark-default">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>CSE Department Directory & Student Academic Portfolios</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* 1. Dark Default (GitHub Standard Dark) */
-    :root[data-theme="dark-default"] {
-      --bg: #0d1117;
-      --surface: #161b22;
-      --surface-hover: #1f242c;
-      --border: #30363d;
-      --border-muted: #21262d;
-      --text: #f0f6fc;
-      --text-muted: #8b949e;
-      --accent: #58a6ff;
-      --accent-subtle: rgba(56, 139, 253, 0.12);
-      --btn-bg: #21262d;
-      --btn-hover: #30363d;
-      --btn-primary-bg: #238636;
-      --btn-primary-hover: #2ea043;
-      --badge-blood-bg: rgba(248, 81, 73, 0.15);
-      --badge-blood-text: #ff7b72;
-      --badge-cgpa-bg: rgba(56, 139, 253, 0.12);
-      --badge-cgpa-text: #79c0ff;
-      --status-sub-bg: rgba(46, 160, 67, 0.15);
-      --status-sub-text: #3fb950;
-      --status-pen-bg: rgba(210, 153, 34, 0.15);
-      --status-pen-text: #d29922;
-      --dropdown-bg: #161b22;
-      --modal-overlay: rgba(1, 4, 9, 0.75);
-    }
-
-    /* 2. Soft Dark (GitHub Dark Dimmed) */
-    :root[data-theme="dark-dimmed"] {
-      --bg: #22272e;
-      --surface: #2d333b;
-      --surface-hover: #373e47;
-      --border: #444c56;
-      --border-muted: #373e47;
-      --text: #adbac7;
-      --text-muted: #768390;
-      --accent: #539bf5;
-      --accent-subtle: rgba(83, 155, 245, 0.15);
-      --btn-bg: #373e47;
-      --btn-hover: #444c56;
-      --btn-primary-bg: #347d39;
-      --btn-primary-hover: #46954a;
-      --badge-blood-bg: rgba(229, 83, 75, 0.18);
-      --badge-blood-text: #f47067;
-      --badge-cgpa-bg: rgba(83, 155, 245, 0.15);
-      --badge-cgpa-text: #6cb6ff;
-      --status-sub-bg: rgba(87, 171, 90, 0.18);
-      --status-sub-text: #57ab5a;
-      --status-pen-bg: rgba(200, 155, 60, 0.18);
-      --status-pen-text: #c69026;
-      --dropdown-bg: #2d333b;
-      --modal-overlay: rgba(28, 33, 40, 0.75);
-    }
-
-    /* 3. Dark Protanopia & Deuteranopia */
-    :root[data-theme="dark-protanopia"] {
-      --bg: #0d1117;
-      --surface: #161b22;
-      --surface-hover: #1f242c;
-      --border: #30363d;
-      --border-muted: #21262d;
-      --text: #f0f6fc;
-      --text-muted: #8b949e;
-      --accent: #388bfd;
-      --accent-subtle: rgba(56, 139, 253, 0.15);
-      --btn-bg: #21262d;
-      --btn-hover: #30363d;
-      --btn-primary-bg: #bb8009;
-      --btn-primary-hover: #d29922;
-      --badge-blood-bg: rgba(210, 153, 34, 0.15);
-      --badge-blood-text: #e3b341;
-      --badge-cgpa-bg: rgba(56, 139, 253, 0.15);
-      --badge-cgpa-text: #79c0ff;
-      --status-sub-bg: rgba(210, 153, 34, 0.2);
-      --status-sub-text: #e3b341;
-      --status-pen-bg: rgba(139, 148, 158, 0.15);
-      --status-pen-text: #8b949e;
-      --dropdown-bg: #161b22;
-      --modal-overlay: rgba(1, 4, 9, 0.75);
-    }
-
-    /* 4. Dark Tritanopia */
-    :root[data-theme="dark-tritanopia"] {
-      --bg: #0d1117;
-      --surface: #161b22;
-      --surface-hover: #1f242c;
-      --border: #30363d;
-      --border-muted: #21262d;
-      --text: #f0f6fc;
-      --text-muted: #8b949e;
-      --accent: #388bfd;
-      --accent-subtle: rgba(56, 139, 253, 0.15);
-      --btn-bg: #21262d;
-      --btn-hover: #30363d;
-      --btn-primary-bg: #da3633;
-      --btn-primary-hover: #f85149;
-      --badge-blood-bg: rgba(248, 81, 73, 0.15);
-      --badge-blood-text: #ff7b72;
-      --badge-cgpa-bg: rgba(56, 139, 253, 0.15);
-      --badge-cgpa-text: #79c0ff;
-      --status-sub-bg: rgba(248, 81, 73, 0.18);
-      --status-sub-text: #f85149;
-      --status-pen-bg: rgba(139, 148, 158, 0.15);
-      --status-pen-text: #8b949e;
-      --dropdown-bg: #161b22;
-      --modal-overlay: rgba(1, 4, 9, 0.75);
-    }
-
-    /* 5. Light Default (GitHub Standard Light) */
-    :root[data-theme="light-default"] {
-      --bg: #ffffff;
-      --surface: #f6f8fa;
-      --surface-hover: #f0f2f5;
-      --border: #d0d7de;
-      --border-muted: #e1e4e8;
-      --text: #1f2328;
-      --text-muted: #656d76;
-      --accent: #0969da;
-      --accent-subtle: rgba(9, 105, 218, 0.1);
-      --btn-bg: #f6f8fa;
-      --btn-hover: #eaeef2;
-      --btn-primary-bg: #1f883d;
-      --btn-primary-hover: #1a7f37;
-      --badge-blood-bg: #ffebe9;
-      --badge-blood-text: #cf222e;
-      --badge-cgpa-bg: #ddf4ff;
-      --badge-cgpa-text: #0969da;
-      --status-sub-bg: #dafbe1;
-      --status-sub-text: #1a7f37;
-      --status-pen-bg: #fff8c5;
-      --status-pen-text: #9a6700;
-      --dropdown-bg: #ffffff;
-      --modal-overlay: rgba(31, 35, 40, 0.5);
-    }
-
-    /* 6. Light Protanopia & Deuteranopia */
-    :root[data-theme="light-protanopia"] {
-      --bg: #ffffff;
-      --surface: #f6f8fa;
-      --surface-hover: #f0f2f5;
-      --border: #d0d7de;
-      --border-muted: #e1e4e8;
-      --text: #1f2328;
-      --text-muted: #656d76;
-      --accent: #0969da;
-      --accent-subtle: rgba(9, 105, 218, 0.1);
-      --btn-bg: #f6f8fa;
-      --btn-hover: #eaeef2;
-      --btn-primary-bg: #9a6700;
-      --btn-primary-hover: #7d5300;
-      --badge-blood-bg: #fff8c5;
-      --badge-blood-text: #9a6700;
-      --badge-cgpa-bg: #ddf4ff;
-      --badge-cgpa-text: #0969da;
-      --status-sub-bg: #fff8c5;
-      --status-sub-text: #9a6700;
-      --status-pen-bg: #f6f8fa;
-      --status-pen-text: #656d76;
-      --dropdown-bg: #ffffff;
-      --modal-overlay: rgba(31, 35, 40, 0.5);
-    }
-
-    /* 7. Light Tritanopia */
-    :root[data-theme="light-tritanopia"] {
-      --bg: #ffffff;
-      --surface: #f6f8fa;
-      --surface-hover: #f0f2f5;
-      --border: #d0d7de;
-      --border-muted: #e1e4e8;
-      --text: #1f2328;
-      --text-muted: #656d76;
-      --accent: #0969da;
-      --accent-subtle: rgba(9, 105, 218, 0.1);
-      --btn-bg: #f6f8fa;
-      --btn-hover: #eaeef2;
-      --btn-primary-bg: #cf222e;
-      --btn-primary-hover: #a40e26;
-      --badge-blood-bg: #ffebe9;
-      --badge-blood-text: #cf222e;
-      --badge-cgpa-bg: #ddf4ff;
-      --badge-cgpa-text: #0969da;
-      --status-sub-bg: #ffebe9;
-      --status-sub-text: #cf222e;
-      --status-pen-bg: #f6f8fa;
-      --status-pen-text: #656d76;
-      --dropdown-bg: #ffffff;
-      --modal-overlay: rgba(31, 35, 40, 0.5);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      min-height: 100vh;
-      line-height: 1.5;
-      font-size: 14px;
-      transition: background-color 0.15s ease, color 0.15s ease;
-    }
-
-    .top-strip {
-      border-bottom: 1px solid var(--border);
-      padding: 6px 24px;
-      font-size: 12px;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--surface);
-    }
-
-    header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 40;
-    }
-
-    .nav-inner {
-      max-width: 1360px;
-      margin: 0 auto;
-      padding: 10px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .brand-wrap {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .brand-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: var(--btn-bg);
-      border: 1px solid var(--border);
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 13px;
-    }
-
-    .brand-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .brand-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .nav-tools {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-      border: 1px solid var(--border);
-      background: var(--btn-bg);
-      color: var(--text);
-      text-decoration: none;
-      transition: all 0.15s;
-      line-height: 20px;
-    }
-
-    .btn:hover { background: var(--btn-hover); }
-
-    .btn-green {
-      background: var(--btn-primary-bg);
-      border-color: rgba(240, 246, 252, 0.1);
-      color: #fff;
-    }
-
-    .btn-green:hover { background: var(--btn-primary-hover); }
-
-    /* Catalog Header */
-    .catalog-header {
-      max-width: 1360px;
-      margin: 20px auto 14px;
-      padding: 0 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .catalog-heading h2 {
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      margin-bottom: 2px;
-    }
-
-    .catalog-summary-chips {
-      display: flex;
-      gap: 12px;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .summary-chip strong { color: var(--text); }
-
-    /* Action Bar */
-    .action-bar {
-      max-width: 1360px;
-      margin: 0 auto 20px;
-      padding: 0 24px;
-      display: flex;
-      gap: 10px;
-      position: relative;
-    }
-
-    .search-wrap {
-      flex: 1;
-      position: relative;
-    }
-
-    .search-input {
-      width: 100%;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 7px 12px 7px 34px;
-      border-radius: 6px;
-      font-size: 13px;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.15s;
-    }
-
-    .search-input:focus { border-color: var(--accent); }
-
-    .search-icon-svg {
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      pointer-events: none;
-    }
-
-    .filter-btn {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 14px;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 500;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .filter-btn:hover { background: var(--btn-hover); }
-
-    .filter-popover {
-      position: absolute;
-      top: 100%;
-      right: 24px;
-      margin-top: 6px;
-      background: var(--dropdown-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
-      width: 320px;
-      padding: 16px;
-      z-index: 50;
-      display: none;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .filter-popover.open { display: flex; }
-
-    .filter-popover-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 8px;
-    }
-
-    .filter-popover-header h4 {
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .filter-clear-btn {
-      background: none;
-      border: none;
-      color: var(--accent);
-      font-size: 11px;
-      cursor: pointer;
-    }
-
-    .filter-section-title {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .filter-pills-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-    }
-
-    .filter-pill {
-      background: var(--btn-bg);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      padding: 3px 8px;
-      border-radius: 14px;
-      font-size: 11px;
-      font-weight: 500;
-      cursor: pointer;
-    }
-
-    .filter-pill.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
-
-    .filter-select-input {
-      width: 100%;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 5px 8px;
-      border-radius: 6px;
-      font-size: 12px;
-      outline: none;
-    }
-
-    /* Student Cards Grid */
-    .grid-wrap {
-      max-width: 1360px;
-      margin: 0 auto 60px;
-      padding: 0 24px;
-    }
-
-    .students-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 12px;
-    }
-
-    .student-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 14px 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.15s ease;
-      cursor: pointer;
-      position: relative;
-    }
-
-    .student-card:hover {
-      background: var(--surface-hover);
-      border-color: var(--accent);
-      transform: translateY(-1px);
-    }
-
-    .student-card.my-portfolio {
-      border: 2px solid var(--accent);
-      background: var(--surface-hover);
-      box-shadow: 0 0 16px var(--accent-subtle);
-    }
-
-    .my-portfolio-badge {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      background: var(--accent-subtle);
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 2px 7px;
-      border-radius: 10px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .card-top {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .avatar-circle {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      object-fit: cover;
-      background: var(--border);
-      border: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-
-    .avatar-fallback {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-muted);
-      flex-shrink: 0;
-    }
-
-    .student-info h3 {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 1px;
-    }
-
-    .student-meta-line {
-      font-size: 11px;
-      color: var(--text-muted);
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    }
-
-    .tags-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-
-    .tag-chip {
-      font-size: 11px;
-      font-weight: 500;
-      padding: 2px 7px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-    }
-
-    .chip-blood { background: var(--badge-blood-bg); color: var(--badge-blood-text); }
-    .chip-cgpa { background: var(--badge-cgpa-bg); color: var(--badge-cgpa-text); }
-    .chip-sub { background: var(--status-sub-bg); color: var(--status-sub-text); }
-    .chip-pen { background: var(--status-pen-bg); color: var(--status-pen-text); }
-
-    .card-action-bar {
-      border-top: 1px solid var(--border-muted);
-      padding-top: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    /* Modal / Popups */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: var(--modal-overlay);
-      backdrop-filter: blur(4px);
-      z-index: 1000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
-
-    .modal-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      width: 100%;
-      max-width: 350px;
-      padding: 20px;
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
-    }
-
-    /* GitHub Appearance Settings Modal */
-    .settings-modal-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      width: 100%;
-      max-width: 760px;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 24px;
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
-    }
-
-    .theme-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .theme-option-card {
-      background: var(--bg);
-      border: 2px solid var(--border);
-      border-radius: 8px;
-      padding: 12px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.15s ease;
-      user-select: none;
-    }
-
-    .theme-option-card:hover {
-      border-color: var(--border-hover);
-    }
-
-    .theme-option-card.selected {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px var(--accent);
-    }
-
-    .theme-preview-box {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      height: 82px;
-      padding: 8px 10px;
-      margin-bottom: 12px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .preview-header-line {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-    }
-
-    .preview-pills {
-      display: flex;
-      gap: 4px;
-    }
-
-    .preview-pill {
-      height: 4px;
-      border-radius: 2px;
-      width: 22px;
-    }
-
-    .preview-badge-beta {
-      font-size: 8px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0 4px;
-      line-height: 12px;
-      opacity: 0.8;
-    }
-
-    .preview-subline-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-    }
-
-    .preview-subline {
-      height: 4px;
-      border-radius: 2px;
-      width: 38px;
-    }
-
-    .preview-dots {
-      display: flex;
-      gap: 3px;
-    }
-
-    .preview-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 1px;
-    }
-
-    .preview-body-row {
-      display: flex;
-      gap: 6px;
-      align-items: flex-end;
-      height: 38px;
-    }
-
-    .preview-main-canvas {
-      flex: 1;
-      height: 100%;
-      border-radius: 4px;
-      padding: 6px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      border: 1px solid rgba(120, 120, 120, 0.15);
-    }
-
-    .preview-accent-bar {
-      height: 8px;
-      border-radius: 3px;
-      width: 75%;
-    }
-
-    .preview-sidebar {
-      width: 24px;
-      height: 100%;
-      border-radius: 4px;
-    }
-
-    .theme-label-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .theme-radio {
-      accent-color: var(--accent);
-    }
-
-    .theme-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .theme-desc {
-      font-size: 11px;
-      color: var(--text-muted);
-      line-height: 1.35;
-      margin-top: 4px;
-    }
-  </style>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
   <!-- Top Strip -->
   <div class="top-strip">
-    <span>St Thomas College of Engineering and Technology, Kannur</span>
-    <span id="authStatusText">Batch Directory</span>
+    <span class="top-strip-left">St Thomas College of Engineering and Technology, Kannur</span>
+    <span class="top-strip-right" id="authStatusText">Batch Directory</span>
   </div>
 
   <!-- Header -->
@@ -801,26 +22,16 @@
     <div class="nav-inner">
       <a href="index.html" class="brand-wrap">
         <div class="brand-icon">ST</div>
-        <div>
+        <div class="brand-text">
           <div class="brand-title">Student Dossier & Portfolio Hub</div>
           <div class="brand-sub">Computer Science & Engineering</div>
         </div>
       </a>
       <div class="nav-tools">
-        <!-- Sound Effects Toggle Button -->
-        <button class="btn" id="soundToggleBtn" onclick="toggleSound()" title="Card Hover Sound (Click to toggle on/off)">
-          <svg id="soundIcon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-          </svg>
-          <span id="soundLabel">Sound: On</span>
-        </button>
-
-        <!-- Settings Button to choose official themes -->
-        <button class="btn" onclick="openThemeSettingsModal()" title="Appearance & Themes">
+        <!-- Single Consolidated Settings Button (Appearance & Sound) -->
+        <button class="btn" onclick="openSettingsModal()" title="Settings & Appearance">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-          Appearance
+          Settings
         </button>
         <button class="btn btn-green" onclick="openFacultyModal()">
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
@@ -851,7 +62,7 @@
   <section class="action-bar">
     <div class="search-wrap">
       <svg class="search-icon-svg" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
-      <input type="text" id="searchInput" class="search-input" placeholder="Search by student name, roll number, or register number...">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search by name, roll, or register number...">
     </div>
 
     <!-- Filter Popover Trigger -->
@@ -912,266 +123,289 @@
     <div class="students-grid" id="studentsGrid"></div>
   </main>
 
-  <!-- GitHub Appearance Settings Modal (Theme Selector) -->
-  <div class="modal-overlay" id="themeSettingsModal">
+  <!-- Unified Settings Modal (Appearance & Audio) -->
+  <div class="modal-overlay" id="settingsModal">
     <div class="settings-modal-card">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--border); padding-bottom: 14px;">
+      <div class="settings-modal-header">
         <div>
-          <h3 style="font-size: 16px; font-weight: 600;">Theme Preferences</h3>
+          <h3>Portal Settings & Appearance</h3>
           <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
-            Choose how GitHub-style appearance looks across the main college directory.
+            Customize your audio feedback and GitHub-style visual appearance.
           </p>
         </div>
-        <button onclick="closeThemeSettingsModal()" style="background:none; border:none; color:var(--text-muted); font-size:20px; cursor:pointer;">&times;</button>
+        <button class="settings-close-btn" onclick="closeSettingsModal()">&times;</button>
       </div>
 
-      <div class="theme-grid">
-        <!-- 1. Light Default -->
-        <div class="theme-option-card" onclick="selectTheme('light-default')" id="card-light-default">
-          <div class="theme-preview-box" style="background: #ffffff; border-color: #d0d7de;">
-            <div>
-              <div class="preview-header-line">
-                <div class="preview-pills">
-                  <div class="preview-pill" style="background: #eaeef2;"></div>
-                  <div class="preview-pill" style="background: #eaeef2;"></div>
-                  <div class="preview-pill" style="background: #eaeef2;"></div>
-                </div>
-              </div>
-              <div class="preview-subline-row">
-                <div class="preview-subline" style="background: #eaeef2;"></div>
-                <div class="preview-dots">
-                  <div class="preview-dot" style="background: #2da44e;"></div>
-                  <div class="preview-dot" style="background: #cf222e;"></div>
-                </div>
-              </div>
-            </div>
-            <div class="preview-body-row">
-              <div class="preview-main-canvas" style="background: #f6f8fa;">
-                <div class="preview-accent-bar" style="background: #2da44e;"></div>
-              </div>
-              <div class="preview-sidebar" style="background: #f6f8fa;"></div>
-            </div>
-          </div>
+      <div class="settings-modal-body">
+        <!-- Audio Preferences Section -->
+        <div class="settings-section-card">
           <div>
-            <div class="theme-label-row">
-              <input type="radio" name="themeRadio" id="radio-light-default" class="theme-radio">
-              <span class="theme-title">Light default</span>
+            <div class="settings-section-title">Card Hover Sound Effects</div>
+            <div class="settings-section-sub">
+              Synthesized micro-bubble sound when hovering over student portfolios. (Status: <strong id="settingsSoundStatus">Active</strong>)
             </div>
-            <p class="theme-desc">GitHub's standard light theme with full color contrast and brightness.</p>
           </div>
+          <button type="button" class="btn btn-green settings-toggle-btn" id="settingsSoundToggle" onclick="toggleSoundFromSettings()">
+            Enabled (Turn Off)
+          </button>
         </div>
 
-        <!-- 2. Light Protanopia and Deuteranopia -->
-        <div class="theme-option-card" onclick="selectTheme('light-protanopia')" id="card-light-protanopia">
-          <div class="theme-preview-box" style="background: #ffffff; border-color: #d0d7de;">
-            <div>
-              <div class="preview-header-line">
-                <div class="preview-pills">
-                  <div class="preview-pill" style="background: #eaeef2;"></div>
-                  <div class="preview-pill" style="background: #eaeef2;"></div>
-                  <div class="preview-pill" style="background: #eaeef2;"></div>
-                </div>
-                <span class="preview-badge-beta" style="color: #0969da; border-color: #54aeff;">Beta</span>
-              </div>
-              <div class="preview-subline-row">
-                <div class="preview-subline" style="background: #eaeef2;"></div>
-                <div class="preview-dots">
-                  <div class="preview-dot" style="background: #0969da;"></div>
-                  <div class="preview-dot" style="background: #bf8700;"></div>
-                </div>
-              </div>
-            </div>
-            <div class="preview-body-row">
-              <div class="preview-main-canvas" style="background: #ddf4ff;">
-                <div class="preview-accent-bar" style="background: #0969da;"></div>
-              </div>
-              <div class="preview-sidebar" style="background: #f6f8fa;"></div>
-            </div>
-          </div>
-          <div>
-            <div class="theme-label-row">
-              <input type="radio" name="themeRadio" id="radio-light-protanopia" class="theme-radio">
-              <span class="theme-title">Light protanopia and deuteranopia</span>
-            </div>
-            <p class="theme-desc">For people who may find it difficult to distinguish between reds and greens.</p>
-          </div>
-        </div>
+        <!-- Theme Preferences Section -->
+        <div>
+          <div class="settings-section-title" style="margin-bottom: 6px;">Theme Preferences</div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+            Select from GitHub official light, soft dark, and high-contrast accessibility themes.
+          </p>
 
-        <!-- 3. Light Tritanopia -->
-        <div class="theme-option-card" onclick="selectTheme('light-tritanopia')" id="card-light-tritanopia">
-          <div class="theme-preview-box" style="background: #ffffff; border-color: #d0d7de;">
-            <div>
-              <div class="preview-header-line">
-                <div class="preview-pills">
-                  <div class="preview-pill" style="background: #eaeef2;"></div>
-                  <div class="preview-pill" style="background: #eaeef2;"></div>
-                  <div class="preview-pill" style="background: #eaeef2;"></div>
+          <div class="theme-grid">
+            <!-- 1. Light Default -->
+            <div class="theme-option-card" onclick="selectTheme('light-default')" id="card-light-default">
+              <div class="theme-preview-box" style="background: #ffffff; border-color: #d0d7de;">
+                <div>
+                  <div class="preview-header-line">
+                    <div class="preview-pills">
+                      <div class="preview-pill" style="background: #eaeef2;"></div>
+                      <div class="preview-pill" style="background: #eaeef2;"></div>
+                      <div class="preview-pill" style="background: #eaeef2;"></div>
+                    </div>
+                  </div>
+                  <div class="preview-subline-row">
+                    <div class="preview-subline" style="background: #eaeef2;"></div>
+                    <div class="preview-dots">
+                      <div class="preview-dot" style="background: #2da44e;"></div>
+                      <div class="preview-dot" style="background: #cf222e;"></div>
+                    </div>
+                  </div>
                 </div>
-                <span class="preview-badge-beta" style="color: #0969da; border-color: #54aeff;">Beta</span>
-              </div>
-              <div class="preview-subline-row">
-                <div class="preview-subline" style="background: #eaeef2;"></div>
-                <div class="preview-dots">
-                  <div class="preview-dot" style="background: #0969da;"></div>
-                  <div class="preview-dot" style="background: #cf222e;"></div>
+                <div class="preview-body-row">
+                  <div class="preview-main-canvas" style="background: #f6f8fa;">
+                    <div class="preview-accent-bar" style="background: #2da44e;"></div>
+                  </div>
+                  <div class="preview-sidebar" style="background: #f6f8fa;"></div>
                 </div>
               </div>
-            </div>
-            <div class="preview-body-row">
-              <div class="preview-main-canvas" style="background: #ddf4ff;">
-                <div class="preview-accent-bar" style="background: #0969da;"></div>
+              <div>
+                <div class="theme-label-row">
+                  <input type="radio" name="themeRadio" id="radio-light-default" class="theme-radio">
+                  <span class="theme-title">Light default</span>
+                </div>
+                <p class="theme-desc">GitHub's standard light theme with full color contrast and brightness.</p>
               </div>
-              <div class="preview-sidebar" style="background: #f6f8fa;"></div>
             </div>
-          </div>
-          <div>
-            <div class="theme-label-row">
-              <input type="radio" name="themeRadio" id="radio-light-tritanopia" class="theme-radio">
-              <span class="theme-title">Light tritanopia</span>
-            </div>
-            <p class="theme-desc">For people who find it difficult to distinguish between blues and greens, as well as yellows and purples.</p>
-          </div>
-        </div>
 
-        <!-- 4. Dark Default -->
-        <div class="theme-option-card" onclick="selectTheme('dark-default')" id="card-dark-default">
-          <div class="theme-preview-box" style="background: #0d1117; border-color: #30363d;">
-            <div>
-              <div class="preview-header-line">
-                <div class="preview-pills">
-                  <div class="preview-pill" style="background: #21262d;"></div>
-                  <div class="preview-pill" style="background: #21262d;"></div>
-                  <div class="preview-pill" style="background: #21262d;"></div>
+            <!-- 2. Light Protanopia and Deuteranopia -->
+            <div class="theme-option-card" onclick="selectTheme('light-protanopia')" id="card-light-protanopia">
+              <div class="theme-preview-box" style="background: #ffffff; border-color: #d0d7de;">
+                <div>
+                  <div class="preview-header-line">
+                    <div class="preview-pills">
+                      <div class="preview-pill" style="background: #eaeef2;"></div>
+                      <div class="preview-pill" style="background: #eaeef2;"></div>
+                      <div class="preview-pill" style="background: #eaeef2;"></div>
+                    </div>
+                    <span class="preview-badge-beta" style="color: #0969da; border-color: #54aeff;">Beta</span>
+                  </div>
+                  <div class="preview-subline-row">
+                    <div class="preview-subline" style="background: #eaeef2;"></div>
+                    <div class="preview-dots">
+                      <div class="preview-dot" style="background: #0969da;"></div>
+                      <div class="preview-dot" style="background: #bf8700;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="preview-body-row">
+                  <div class="preview-main-canvas" style="background: #ddf4ff;">
+                    <div class="preview-accent-bar" style="background: #0969da;"></div>
+                  </div>
+                  <div class="preview-sidebar" style="background: #f6f8fa;"></div>
                 </div>
               </div>
-              <div class="preview-subline-row">
-                <div class="preview-subline" style="background: #21262d;"></div>
-                <div class="preview-dots">
-                  <div class="preview-dot" style="background: #2ea043;"></div>
-                  <div class="preview-dot" style="background: #f85149;"></div>
+              <div>
+                <div class="theme-label-row">
+                  <input type="radio" name="themeRadio" id="radio-light-protanopia" class="theme-radio">
+                  <span class="theme-title">Light protanopia</span>
                 </div>
+                <p class="theme-desc">For people who find it difficult to distinguish between reds and greens.</p>
               </div>
             </div>
-            <div class="preview-body-row">
-              <div class="preview-main-canvas" style="background: #161b22;">
-                <div class="preview-accent-bar" style="background: #2ea043;"></div>
-              </div>
-              <div class="preview-sidebar" style="background: #161b22;"></div>
-            </div>
-          </div>
-          <div>
-            <div class="theme-label-row">
-              <input type="radio" name="themeRadio" id="radio-dark-default" class="theme-radio">
-              <span class="theme-title">Dark default</span>
-            </div>
-            <p class="theme-desc">GitHub's standard dark theme with full color contrast and brightness on a dark background.</p>
-          </div>
-        </div>
 
-        <!-- 5. Dark Protanopia and Deuteranopia -->
-        <div class="theme-option-card" onclick="selectTheme('dark-protanopia')" id="card-dark-protanopia">
-          <div class="theme-preview-box" style="background: #0d1117; border-color: #30363d;">
-            <div>
-              <div class="preview-header-line">
-                <div class="preview-pills">
-                  <div class="preview-pill" style="background: #21262d;"></div>
-                  <div class="preview-pill" style="background: #21262d;"></div>
-                  <div class="preview-pill" style="background: #21262d;"></div>
+            <!-- 3. Light Tritanopia -->
+            <div class="theme-option-card" onclick="selectTheme('light-tritanopia')" id="card-light-tritanopia">
+              <div class="theme-preview-box" style="background: #ffffff; border-color: #d0d7de;">
+                <div>
+                  <div class="preview-header-line">
+                    <div class="preview-pills">
+                      <div class="preview-pill" style="background: #eaeef2;"></div>
+                      <div class="preview-pill" style="background: #eaeef2;"></div>
+                      <div class="preview-pill" style="background: #eaeef2;"></div>
+                    </div>
+                    <span class="preview-badge-beta" style="color: #0969da; border-color: #54aeff;">Beta</span>
+                  </div>
+                  <div class="preview-subline-row">
+                    <div class="preview-subline" style="background: #eaeef2;"></div>
+                    <div class="preview-dots">
+                      <div class="preview-dot" style="background: #0969da;"></div>
+                      <div class="preview-dot" style="background: #cf222e;"></div>
+                    </div>
+                  </div>
                 </div>
-                <span class="preview-badge-beta" style="color: #58a6ff; border-color: #388bfd;">Beta</span>
-              </div>
-              <div class="preview-subline-row">
-                <div class="preview-subline" style="background: #21262d;"></div>
-                <div class="preview-dots">
-                  <div class="preview-dot" style="background: #58a6ff;"></div>
-                  <div class="preview-dot" style="background: #d29922;"></div>
+                <div class="preview-body-row">
+                  <div class="preview-main-canvas" style="background: #ddf4ff;">
+                    <div class="preview-accent-bar" style="background: #0969da;"></div>
+                  </div>
+                  <div class="preview-sidebar" style="background: #f6f8fa;"></div>
                 </div>
               </div>
-            </div>
-            <div class="preview-body-row">
-              <div class="preview-main-canvas" style="background: #161b22;">
-                <div class="preview-accent-bar" style="background: #d29922;"></div>
+              <div>
+                <div class="theme-label-row">
+                  <input type="radio" name="themeRadio" id="radio-light-tritanopia" class="theme-radio">
+                  <span class="theme-title">Light tritanopia</span>
+                </div>
+                <p class="theme-desc">For people who find it difficult to distinguish blues, greens, yellows and purples.</p>
               </div>
-              <div class="preview-sidebar" style="background: #161b22;"></div>
             </div>
-          </div>
-          <div>
-            <div class="theme-label-row">
-              <input type="radio" name="themeRadio" id="radio-dark-protanopia" class="theme-radio">
-              <span class="theme-title">Dark protanopia and deuteranopia</span>
-            </div>
-            <p class="theme-desc">For people who may find it difficult to distinguish between reds and greens, with a dark background.</p>
-          </div>
-        </div>
 
-        <!-- 6. Dark Tritanopia -->
-        <div class="theme-option-card" onclick="selectTheme('dark-tritanopia')" id="card-dark-tritanopia">
-          <div class="theme-preview-box" style="background: #0d1117; border-color: #30363d;">
-            <div>
-              <div class="preview-header-line">
-                <div class="preview-pills">
-                  <div class="preview-pill" style="background: #21262d;"></div>
-                  <div class="preview-pill" style="background: #21262d;"></div>
-                  <div class="preview-pill" style="background: #21262d;"></div>
+            <!-- 4. Dark Default -->
+            <div class="theme-option-card" onclick="selectTheme('dark-default')" id="card-dark-default">
+              <div class="theme-preview-box" style="background: #0d1117; border-color: #30363d;">
+                <div>
+                  <div class="preview-header-line">
+                    <div class="preview-pills">
+                      <div class="preview-pill" style="background: #21262d;"></div>
+                      <div class="preview-pill" style="background: #21262d;"></div>
+                      <div class="preview-pill" style="background: #21262d;"></div>
+                    </div>
+                  </div>
+                  <div class="preview-subline-row">
+                    <div class="preview-subline" style="background: #21262d;"></div>
+                    <div class="preview-dots">
+                      <div class="preview-dot" style="background: #2ea043;"></div>
+                      <div class="preview-dot" style="background: #f85149;"></div>
+                    </div>
+                  </div>
                 </div>
-                <span class="preview-badge-beta" style="color: #58a6ff; border-color: #388bfd;">Beta</span>
-              </div>
-              <div class="preview-subline-row">
-                <div class="preview-subline" style="background: #21262d;"></div>
-                <div class="preview-dots">
-                  <div class="preview-dot" style="background: #58a6ff;"></div>
-                  <div class="preview-dot" style="background: #f85149;"></div>
+                <div class="preview-body-row">
+                  <div class="preview-main-canvas" style="background: #161b22;">
+                    <div class="preview-accent-bar" style="background: #2ea043;"></div>
+                  </div>
+                  <div class="preview-sidebar" style="background: #161b22;"></div>
                 </div>
               </div>
-            </div>
-            <div class="preview-body-row">
-              <div class="preview-main-canvas" style="background: #161b22;">
-                <div class="preview-accent-bar" style="background: #f85149;"></div>
+              <div>
+                <div class="theme-label-row">
+                  <input type="radio" name="themeRadio" id="radio-dark-default" class="theme-radio">
+                  <span class="theme-title">Dark default</span>
+                </div>
+                <p class="theme-desc">GitHub's standard dark theme with full color contrast on a dark canvas.</p>
               </div>
-              <div class="preview-sidebar" style="background: #161b22;"></div>
             </div>
-          </div>
-          <div>
-            <div class="theme-label-row">
-              <input type="radio" name="themeRadio" id="radio-dark-tritanopia" class="theme-radio">
-              <span class="theme-title">Dark tritanopia</span>
-            </div>
-            <p class="theme-desc">For people who find it difficult to distinguish between blues and greens, as well as yellows and purples, with a dark background.</p>
-          </div>
-        </div>
 
-        <!-- 7. Soft dark -->
-        <div class="theme-option-card" onclick="selectTheme('dark-dimmed')" id="card-dark-dimmed">
-          <div class="theme-preview-box" style="background: #22272e; border-color: #444c56;">
-            <div>
-              <div class="preview-header-line">
-                <div class="preview-pills">
-                  <div class="preview-pill" style="background: #373e47;"></div>
-                  <div class="preview-pill" style="background: #373e47;"></div>
-                  <div class="preview-pill" style="background: #373e47;"></div>
+            <!-- 5. Dark Protanopia and Deuteranopia -->
+            <div class="theme-option-card" onclick="selectTheme('dark-protanopia')" id="card-dark-protanopia">
+              <div class="theme-preview-box" style="background: #0d1117; border-color: #30363d;">
+                <div>
+                  <div class="preview-header-line">
+                    <div class="preview-pills">
+                      <div class="preview-pill" style="background: #21262d;"></div>
+                      <div class="preview-pill" style="background: #21262d;"></div>
+                      <div class="preview-pill" style="background: #21262d;"></div>
+                    </div>
+                    <span class="preview-badge-beta" style="color: #58a6ff; border-color: #388bfd;">Beta</span>
+                  </div>
+                  <div class="preview-subline-row">
+                    <div class="preview-subline" style="background: #21262d;"></div>
+                    <div class="preview-dots">
+                      <div class="preview-dot" style="background: #58a6ff;"></div>
+                      <div class="preview-dot" style="background: #d29922;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="preview-body-row">
+                  <div class="preview-main-canvas" style="background: #161b22;">
+                    <div class="preview-accent-bar" style="background: #d29922;"></div>
+                  </div>
+                  <div class="preview-sidebar" style="background: #161b22;"></div>
                 </div>
               </div>
-              <div class="preview-subline-row">
-                <div class="preview-subline" style="background: #373e47;"></div>
-                <div class="preview-dots">
-                  <div class="preview-dot" style="background: #347d39;"></div>
-                  <div class="preview-dot" style="background: #e5534b;"></div>
+              <div>
+                <div class="theme-label-row">
+                  <input type="radio" name="themeRadio" id="radio-dark-protanopia" class="theme-radio">
+                  <span class="theme-title">Dark protanopia</span>
+                </div>
+                <p class="theme-desc">For people who find it difficult to distinguish between reds and greens.</p>
+              </div>
+            </div>
+
+            <!-- 6. Dark Tritanopia -->
+            <div class="theme-option-card" onclick="selectTheme('dark-tritanopia')" id="card-dark-tritanopia">
+              <div class="theme-preview-box" style="background: #0d1117; border-color: #30363d;">
+                <div>
+                  <div class="preview-header-line">
+                    <div class="preview-pills">
+                      <div class="preview-pill" style="background: #21262d;"></div>
+                      <div class="preview-pill" style="background: #21262d;"></div>
+                      <div class="preview-pill" style="background: #21262d;"></div>
+                    </div>
+                    <span class="preview-badge-beta" style="color: #58a6ff; border-color: #388bfd;">Beta</span>
+                  </div>
+                  <div class="preview-subline-row">
+                    <div class="preview-subline" style="background: #21262d;"></div>
+                    <div class="preview-dots">
+                      <div class="preview-dot" style="background: #58a6ff;"></div>
+                      <div class="preview-dot" style="background: #f85149;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="preview-body-row">
+                  <div class="preview-main-canvas" style="background: #161b22;">
+                    <div class="preview-accent-bar" style="background: #f85149;"></div>
+                  </div>
+                  <div class="preview-sidebar" style="background: #161b22;"></div>
                 </div>
               </div>
-            </div>
-            <div class="preview-body-row">
-              <div class="preview-main-canvas" style="background: #2d333b;">
-                <div class="preview-accent-bar" style="background: #347d39;"></div>
+              <div>
+                <div class="theme-label-row">
+                  <input type="radio" name="themeRadio" id="radio-dark-tritanopia" class="theme-radio">
+                  <span class="theme-title">Dark tritanopia</span>
+                </div>
+                <p class="theme-desc">For people who find it difficult to distinguish blues, greens, yellows and purples.</p>
               </div>
-              <div class="preview-sidebar" style="background: #2d333b;"></div>
             </div>
-          </div>
-          <div>
-            <div class="theme-label-row">
-              <input type="radio" name="themeRadio" id="radio-dark-dimmed" class="theme-radio">
-              <span class="theme-title">Soft dark</span>
+
+            <!-- 7. Soft dark -->
+            <div class="theme-option-card" onclick="selectTheme('dark-dimmed')" id="card-dark-dimmed">
+              <div class="theme-preview-box" style="background: #22272e; border-color: #444c56;">
+                <div>
+                  <div class="preview-header-line">
+                    <div class="preview-pills">
+                      <div class="preview-pill" style="background: #373e47;"></div>
+                      <div class="preview-pill" style="background: #373e47;"></div>
+                      <div class="preview-pill" style="background: #373e47;"></div>
+                    </div>
+                  </div>
+                  <div class="preview-subline-row">
+                    <div class="preview-subline" style="background: #373e47;"></div>
+                    <div class="preview-dots">
+                      <div class="preview-dot" style="background: #347d39;"></div>
+                      <div class="preview-dot" style="background: #e5534b;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="preview-body-row">
+                  <div class="preview-main-canvas" style="background: #2d333b;">
+                    <div class="preview-accent-bar" style="background: #347d39;"></div>
+                  </div>
+                  <div class="preview-sidebar" style="background: #2d333b;"></div>
+                </div>
+              </div>
+              <div>
+                <div class="theme-label-row">
+                  <input type="radio" name="themeRadio" id="radio-dark-dimmed" class="theme-radio">
+                  <span class="theme-title">Soft dark</span>
+                </div>
+                <p class="theme-desc">A dark theme with reduced contrast for softer viewing on eyes.</p>
+              </div>
             </div>
-            <p class="theme-desc">A dark theme with reduced contrast for softer viewing on eyes.</p>
           </div>
         </div>
       </div>
@@ -1216,371 +450,10 @@
     </div>
   </div>
 
+  <!-- External Clean Scripts -->
   <script src="students_data.js"></script>
   <script src="assignment_store.js"></script>
   <script src="auth.js"></script>
-  <script>
-    let activeBlood = 'all';
-    let activeCgpa = 'all';
-    let activeStatus = 'all';
-    let searchQuery = '';
-
-    let soundEnabled = localStorage.getItem('college_portal_sound') !== 'disabled';
-    let audioCtx = null;
-
-    function initAudio() {
-      if (!audioCtx) {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (AudioContext) audioCtx = new AudioContext();
-      }
-      if (audioCtx && audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-    }
-
-    function playHoverSound() {
-      if (!soundEnabled) return;
-      try {
-        initAudio();
-        if (!audioCtx) return;
-
-        // Elegant soft glass pop/bubble sound (sine wave 560Hz -> 720Hz quick decay)
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        const now = audioCtx.currentTime;
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(560, now);
-        osc.frequency.exponentialRampToValueAtTime(740, now + 0.05);
-
-        gain.gain.setValueAtTime(0.04, now);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.07);
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc.start(now);
-        osc.stop(now + 0.08);
-      } catch (e) {
-        // audio policy or unsupported - ignore silently
-      }
-    }
-
-    function toggleSound() {
-      initAudio();
-      soundEnabled = !soundEnabled;
-      localStorage.setItem('college_portal_sound', soundEnabled ? 'enabled' : 'disabled');
-      updateSoundUI();
-      if (soundEnabled) playHoverSound();
-    }
-
-    function updateSoundUI() {
-      const label = document.getElementById('soundLabel');
-      const icon = document.getElementById('soundIcon');
-      if (soundEnabled) {
-        label.textContent = 'Sound: On';
-        icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>';
-      } else {
-        label.textContent = 'Sound: Off';
-        icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>';
-      }
-    }
-
-    function init() {
-      const savedTheme = localStorage.getItem('college_portal_theme') || 'dark-default';
-      applyTheme(savedTheme);
-      updateSoundUI();
-
-      // Resume audio context on first user click anywhere
-      document.addEventListener('pointerdown', initAudio, { once: true });
-
-      setupListeners();
-      render();
-      updateMetrics();
-      updateAuthHeader();
-
-      window.addEventListener('submissionsUpdated', () => {
-        render();
-        updateMetrics();
-      });
-
-      document.addEventListener('click', (e) => {
-        const pop = document.getElementById('filterPopover');
-        const btn = document.getElementById('filterToggleBtn');
-        if (pop && !pop.contains(e.target) && !btn.contains(e.target)) {
-          pop.classList.remove('open');
-        }
-      });
-    }
-
-    function applyTheme(themeKey) {
-      document.documentElement.setAttribute('data-theme', themeKey);
-      localStorage.setItem('college_portal_theme', themeKey);
-
-      // Update theme modal radio & active card state
-      document.querySelectorAll('.theme-option-card').forEach(card => card.classList.remove('selected'));
-      const activeCard = document.getElementById(`card-${themeKey}`);
-      if (activeCard) activeCard.classList.add('selected');
-
-      const radio = document.getElementById(`radio-${themeKey}`);
-      if (radio) radio.checked = true;
-    }
-
-    function selectTheme(themeKey) {
-      applyTheme(themeKey);
-    }
-
-    function openThemeSettingsModal() {
-      document.getElementById('themeSettingsModal').style.display = 'flex';
-    }
-
-    function closeThemeSettingsModal() {
-      document.getElementById('themeSettingsModal').style.display = 'none';
-    }
-
-    function toggleFilterPopover() {
-      document.getElementById('filterPopover').classList.toggle('open');
-    }
-
-    let currentAuthTab = 'student';
-
-    function switchAuthTab(tab) {
-      currentAuthTab = tab;
-      const tabStudent = document.getElementById('tabStudentBtn');
-      const tabFaculty = document.getElementById('tabFacultyBtn');
-      const desc = document.getElementById('authModalDesc');
-      const idInput = document.getElementById('authIdentifier');
-      const passInput = document.getElementById('authPassword');
-      const err = document.getElementById('authError');
-      err.style.display = 'none';
-
-      if (tab === 'student') {
-        tabStudent.style.background = 'var(--surface-hover)';
-        tabStudent.style.borderColor = 'var(--accent)';
-        tabFaculty.style.background = '';
-        tabFaculty.style.borderColor = '';
-        desc.textContent = 'Sign in to highlight your portfolio at the top and manage your assignment submissions.';
-        idInput.placeholder = 'Register Number (e.g. STM23CS043)';
-        passInput.placeholder = 'Password (Register Number)';
-      } else {
-        tabFaculty.style.background = 'var(--surface-hover)';
-        tabFaculty.style.borderColor = 'var(--accent)';
-        tabStudent.style.background = '';
-        tabStudent.style.borderColor = '';
-        desc.textContent = 'Sign in with faculty credentials to access evaluation matrix and update marks.';
-        idInput.placeholder = 'Faculty Username';
-        passInput.placeholder = 'Faculty Password';
-      }
-    }
-
-    function updateAuthHeader() {
-      const user = window.CollegeAuth.getCurrentUser();
-      const statusText = document.getElementById('authStatusText');
-      const authBtn = document.getElementById('authBtn');
-
-      if (user) {
-        if (user.role === 'faculty') {
-          statusText.textContent = `Faculty: ${user.name}`;
-          authBtn.textContent = 'Sign Out';
-        } else if (user.role === 'student') {
-          statusText.textContent = `Signed In: ${user.name} (#${user.id})`;
-          authBtn.textContent = 'Sign Out';
-        }
-      } else {
-        statusText.textContent = 'Batch Directory';
-        authBtn.textContent = 'Sign In';
-      }
-    }
-
-    function toggleAuthSign() {
-      const user = window.CollegeAuth.getCurrentUser();
-      if (user) {
-        window.CollegeAuth.logout();
-        updateAuthHeader();
-        render();
-      } else {
-        openAuthModal('student');
-      }
-    }
-
-    function openFacultyModal() {
-      const user = window.CollegeAuth.getCurrentUser();
-      if (user && user.role === 'faculty') {
-        window.location.href = 'assignment.html';
-        return;
-      }
-      openAuthModal('faculty');
-    }
-
-    function openAuthModal(defaultTab = 'student') {
-      switchAuthTab(defaultTab);
-      document.getElementById('authModal').style.display = 'flex';
-      document.getElementById('authError').style.display = 'none';
-      document.getElementById('authIdentifier').value = '';
-      document.getElementById('authPassword').value = '';
-      document.getElementById('authIdentifier').focus();
-    }
-
-    function closeAuthModal() {
-      document.getElementById('authModal').style.display = 'none';
-    }
-
-    function handleAuthSubmit(e) {
-      e.preventDefault();
-      const u = document.getElementById('authIdentifier').value.trim();
-      const p = document.getElementById('authPassword').value.trim();
-      const res = window.CollegeAuth.login(u, p);
-
-      if (res.success) {
-        closeAuthModal();
-        updateAuthHeader();
-        render();
-
-        if (res.user.role === 'faculty' && currentAuthTab === 'faculty') {
-          window.location.href = 'assignment.html';
-        }
-      } else {
-        const err = document.getElementById('authError');
-        err.textContent = res.message || 'Invalid credentials.';
-        err.style.display = 'block';
-      }
-    }
-
-    function resetFilters() {
-      activeBlood = 'all';
-      activeCgpa = 'all';
-      activeStatus = 'all';
-      document.getElementById('cgpaFilter').value = 'all';
-      document.getElementById('statusFilter').value = 'all';
-      document.querySelectorAll('#bloodPills .filter-pill').forEach(b => b.classList.remove('active'));
-      document.querySelector('#bloodPills [data-blood="all"]').classList.add('active');
-      render();
-    }
-
-    function setupListeners() {
-      document.querySelectorAll('#bloodPills .filter-pill').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('#bloodPills .filter-pill').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          activeBlood = btn.getAttribute('data-blood');
-          render();
-        });
-      });
-
-      document.getElementById('cgpaFilter').addEventListener('change', (e) => {
-        activeCgpa = e.target.value;
-        render();
-      });
-
-      document.getElementById('statusFilter').addEventListener('change', (e) => {
-        activeStatus = e.target.value;
-        render();
-      });
-
-      document.getElementById('searchInput').addEventListener('input', (e) => {
-        searchQuery = e.target.value.toLowerCase().trim();
-        render();
-      });
-    }
-
-    function updateMetrics() {
-      const students = window.STUDENTS_DATA || [];
-      const total = students.length;
-      let submitted = 0;
-
-      students.forEach(s => {
-        if (window.AssignmentStore.isSubmitted(s.id, 'A1')) submitted++;
-      });
-
-      const pending = total - submitted;
-
-      document.getElementById('totalCount').textContent = total;
-      document.getElementById('submittedCount').textContent = submitted;
-      document.getElementById('pendingCount').textContent = pending;
-    }
-
-    function render() {
-      const container = document.getElementById('studentsGrid');
-      const students = window.STUDENTS_DATA || [];
-      const user = window.CollegeAuth.getCurrentUser();
-      const currentStudentId = user && user.role === 'student' ? user.id : null;
-
-      const filtered = students.filter(s => {
-        if (searchQuery) {
-          const matchName = (s.name || '').toLowerCase().includes(searchQuery);
-          const matchReg = (s.regNo || '').toLowerCase().includes(searchQuery);
-          const matchRoll = (s.rollNo || '').toString() === searchQuery;
-          if (!matchName && !matchReg && !matchRoll) return false;
-        }
-
-        if (activeBlood !== 'all') {
-          const b = (s.blood || '').toUpperCase();
-          if (b !== activeBlood.toUpperCase()) return false;
-        }
-
-        if (activeCgpa !== 'all') {
-          const c = s.cgpa || 0;
-          if (activeCgpa === '9' && c < 9.0) return false;
-          if (activeCgpa === '8' && c < 8.0) return false;
-          if (activeCgpa === '7' && c < 7.0) return false;
-          if (activeCgpa === '6' && c < 6.0) return false;
-          if (activeCgpa === 'below6' && c >= 6.0) return false;
-        }
-
-        const isSub = window.AssignmentStore.isSubmitted(s.id, 'A1');
-        if (activeStatus === 'submitted' && !isSub) return false;
-        if (activeStatus === 'pending' && isSub) return false;
-
-        return true;
-      });
-
-      // If a student is authenticated, sort their portfolio to the top!
-      if (currentStudentId) {
-        filtered.sort((a, b) => {
-          if (a.id === currentStudentId) return -1;
-          if (b.id === currentStudentId) return 1;
-          return 0;
-        });
-      }
-
-      container.innerHTML = filtered.map(s => {
-        const isSub = window.AssignmentStore.isSubmitted(s.id, 'A1');
-        const isMe = s.id === currentStudentId;
-        const avatar = s.photo 
-          ? `<img src="${s.photo}" alt="${s.name}" class="avatar-circle" onerror="this.outerHTML='<div class=\\'avatar-fallback\\'>${(s.name || 'S')[0]}</div>'">`
-          : `<div class="avatar-fallback">${(s.name || 'S')[0]}</div>`;
-
-        return `
-          <a href="${s.id}/index.html" class="student-card ${isMe ? 'my-portfolio' : ''}" target="_blank" onmouseenter="playHoverSound()">
-            ${isMe ? '<div class="my-portfolio-badge">✦ Your Portfolio</div>' : ''}
-            <div>
-              <div class="card-top">
-                ${avatar}
-                <div class="student-info">
-                  <h3>${s.name}</h3>
-                  <div class="student-meta-line">Roll ${s.rollNo} • ${s.regNo}</div>
-                </div>
-              </div>
-
-              <div class="tags-row">
-                <span class="tag-chip chip-blood">${s.blood || 'O+'}</span>
-                <span class="tag-chip chip-cgpa">${s.cgpa ? Number(s.cgpa).toFixed(2) : '7.50'} CGPA</span>
-                <span class="tag-chip ${isSub ? 'chip-sub' : 'chip-pen'}">
-                  ${isSub ? '✓ Submitted' : '⏳ Pending'}
-                </span>
-              </div>
-            </div>
-
-            <div class="card-action-bar">
-              <span>${isMe ? 'Open My Portfolio (Full Edit)' : 'View Portfolio'}</span>
-              <span>→</span>
-            </div>
-          </a>
-        `;
-      }).join('');
-    }
-
-    document.addEventListener('DOMContentLoaded', init);
-  </script>
+  <script src="index.js"></script>
 </body>
 </html>
