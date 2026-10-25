@@ -482,8 +482,8 @@
         </div>
 
         <div id="dockInlineLogin" style="display: none; flex-direction: column; gap: 8px;">
-          <input type="text" id="dockLoginUser" placeholder="Register Number" style="background:#0d1117; border:1px solid #30363d; color:#f0f6fc; padding:6px; border-radius:4px; font-size:12px;">
-          <input type="password" id="dockLoginPass" placeholder="Password (Register Number)" style="background:#0d1117; border:1px solid #30363d; color:#f0f6fc; padding:6px; border-radius:4px; font-size:12px;">
+          <input type="text" id="dockLoginUser" placeholder="Register Number" autocomplete="off" spellcheck="false" style="background:#0d1117; border:1px solid #30363d; color:#f0f6fc; padding:6px; border-radius:4px; font-size:12px;">
+          <input type="password" id="dockLoginPass" placeholder="Password (Register Number)" autocomplete="new-password" style="background:#0d1117; border:1px solid #30363d; color:#f0f6fc; padding:6px; border-radius:4px; font-size:12px;">
           <div id="dockLoginErr" style="display:none; color:#f85149; font-size:11px;"></div>
           <button type="button" class="dock-submit-btn" id="dockLoginSubmit">Sign In to Edit</button>
         </div>

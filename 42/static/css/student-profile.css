@@ -1,43 +1,43 @@
 
 
 :root {
-  
-  --bg-primary: #090d16;
-  --bg-surface: #111726;
-  --bg-surface-glass: rgba(17, 23, 38, 0.82);
-  --bg-card: rgba(20, 27, 45, 0.78);
-  --bg-subtle: #182033;
-  --bg-accent-subtle: rgba(245, 158, 11, 0.12);
+  /* VS Code Dark+ Theme Palette */
+  --bg-primary: #1e1e1e;          /* VS Code Main editor background */
+  --bg-surface: #252526;          /* VS Code Sidebar / Tool windows */
+  --bg-surface-glass: rgba(37, 37, 38, 0.90);
+  --bg-card: #252526;             /* Card background */
+  --bg-subtle: #2d2d30;           /* List hover / subtle panels */
+  --bg-accent-subtle: rgba(0, 122, 204, 0.15);
 
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-highlight: rgba(255, 255, 255, 0.16);
-  --border-accent: rgba(245, 158, 11, 0.35);
+  --border-subtle: #333333;       /* VS Code separator line */
+  --border-highlight: #3c3c3c;
+  --border-accent: rgba(0, 122, 204, 0.5);
 
-  --text-primary: #f8fafc;    
-  --text-secondary: #94a3b8;  
-  --text-muted: #64748b;      
-  --text-inverse: #090d16;
+  --text-primary: #d4d4d4;        /* VS Code Light Grey Foreground */
+  --text-secondary: #9cdcfe;      /* VS Code Variable Blue */
+  --text-muted: #6a9955;          /* VS Code Comment Green */
+  --text-inverse: #1e1e1e;
 
-  --ink-primary: #f8fafc;     
-  --ink-hover: #ffffff;
+  --ink-primary: #007acc;         /* VS Code Action Blue */
+  --ink-hover: #1f8ad2;
 
-  --accent-amber: #f59e0b;    
-  --accent-amber-light: rgba(245, 158, 11, 0.15);
-  --accent-amber-border: rgba(245, 158, 11, 0.35);
-  --accent-amber-glow: rgba(245, 158, 11, 0.2);
+  --accent-amber: #007acc;        /* Primary accent: VS Code Blue */
+  --accent-amber-light: rgba(0, 122, 204, 0.16);
+  --accent-amber-border: rgba(0, 122, 204, 0.45);
+  --accent-amber-glow: rgba(0, 122, 204, 0.25);
 
-  --accent-sage: #10b981;     
-  --accent-sage-light: rgba(16, 185, 129, 0.15);
-  --accent-sage-border: rgba(16, 185, 129, 0.3);
-  --accent-sage-glow: rgba(16, 185, 129, 0.2);
+  --accent-sage: #4ec9b0;         /* VS Code Entity Teal / Class name */
+  --accent-sage-light: rgba(78, 201, 176, 0.15);
+  --accent-sage-border: rgba(78, 201, 176, 0.35);
+  --accent-sage-glow: rgba(78, 201, 176, 0.2);
 
-  --accent-terracotta: #f97316;
-  --accent-terracotta-light: rgba(249, 115, 22, 0.15);
-  --accent-terracotta-border: rgba(249, 115, 22, 0.35);
+  --accent-terracotta: #ce9178;   /* VS Code String orange */
+  --accent-terracotta-light: rgba(206, 145, 120, 0.15);
+  --accent-terracotta-border: rgba(206, 145, 120, 0.35);
 
-  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 10px 25px -4px rgba(0, 0, 0, 0.45), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 20px 40px -12px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 10px 25px -4px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 40px -12px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   --shadow-glow: 0 0 25px var(--accent-amber-glow);
 
   --radius-sm: 0.5rem;
@@ -710,15 +710,15 @@ body {
 }
 
 .academic-table tbody tr.sem4-highlight {
-  background: rgba(245, 158, 11, 0.1);
+  background: rgba(0, 122, 204, 0.15);
 }
 
 .academic-table tbody tr.sem4-highlight td {
-  border-bottom: 1px solid rgba(245, 158, 11, 0.35);
+  border-bottom: 1px solid rgba(0, 122, 204, 0.45);
 }
 
 .academic-table tbody tr.sem4-highlight:hover {
-  background: rgba(245, 158, 11, 0.16);
+  background: rgba(0, 122, 204, 0.22);
 }
 
 .sem-badge {
@@ -732,15 +732,15 @@ body {
 }
 
 .sem-badge.sem4 {
-  background: rgba(245, 158, 11, 0.15);
-  color: #fbbf24;
-  border: 1px solid rgba(245, 158, 11, 0.35);
+  background: rgba(0, 122, 204, 0.2);
+  color: #4fc1ff;
+  border: 1px solid rgba(0, 122, 204, 0.5);
 }
 
 .sem-badge.regular {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-primary);
+  background: #252526;
+  border: 1px solid #333333;
+  color: #d4d4d4;
 }
 
 .score-badge {
@@ -748,20 +748,20 @@ body {
   font-weight: 700;
   padding: 0.25rem 0.55rem;
   border-radius: var(--radius-sm);
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-subtle);
+  background: #252526;
+  border: 1px solid #333333;
   font-size: 0.85rem;
-  color: var(--text-primary);
+  color: #d4d4d4;
 }
 
 .sgpa-badge {
   font-family: var(--font-mono);
   font-weight: 800;
-  color: #10b981;
+  color: #4ec9b0; /* VS Code Cyan/Teal */
 }
 
 .sgpa-badge.sem4 {
-  color: #f59e0b;
+  color: #4fc1ff; /* VS Code bright blue */
   font-size: 1rem;
 }
 
@@ -808,7 +808,7 @@ body {
 }
 
 .summary-metric-val.highlight {
-  color: #065F46;
+  color: #4ec9b0;
 }
 
 .summary-metric-sub {
@@ -1033,7 +1033,7 @@ body {
 }
 
 .id-detail-value.highlight-cgpa {
-  color: #10b981;
+  color: #4ec9b0;
   font-family: var(--font-mono);
   font-size: 1rem;
 }

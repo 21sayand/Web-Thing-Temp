@@ -1,40 +1,43 @@
 
 
 :root {
+  /* VS Code Dark+ Theme Palette */
+  --bg-primary: #1e1e1e;          /* VS Code Editor background */
+  --bg-surface: #252526;          /* VS Code Sidebar / View background */
+  --bg-surface-glass: rgba(37, 37, 38, 0.90);
+  --bg-card: rgba(30, 30, 30, 0.88);
+  --bg-subtle: #2d2d30;           /* VS Code Activity Bar / List hover */
+  --bg-accent-subtle: rgba(0, 122, 204, 0.15); /* VS Code Blue glow */
   
-  --bg-primary: #090d16;
-  --bg-surface: #111726;
-  --bg-surface-glass: rgba(17, 23, 38, 0.82);
-  --bg-card: rgba(20, 27, 45, 0.78);
-  --bg-subtle: #182033;
-  --bg-accent-subtle: rgba(245, 158, 11, 0.12);
+  --border-subtle: #333333;       /* VS Code panel border */
+  --border-highlight: #3c3c3c;
+  --border-accent: rgba(0, 122, 204, 0.5); /* VS Code Accent Blue */
   
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-highlight: rgba(255, 255, 255, 0.16);
-  --border-accent: rgba(245, 158, 11, 0.35);
+  --text-primary: #d4d4d4;        /* VS Code Default text */
+  --text-secondary: #9cdcfe;      /* VS Code Variable light blue */
+  --text-muted: #6a9955;          /* VS Code Comment green */
   
-  --text-primary: #f8fafc;    
-  --text-secondary: #94a3b8;  
-  --text-muted: #64748b;      
+  --ink-primary: #007acc;         /* VS Code Brand / Accent Blue */
+  --ink-hover: #1f8ad2;
   
-  --ink-primary: #f8fafc;     
-  --ink-hover: #ffffff;
+  --accent-amber: #007acc;        /* Primary accent: VS Code Blue */
+  --accent-amber-light: rgba(0, 122, 204, 0.18);
+  --accent-amber-border: rgba(0, 122, 204, 0.45);
   
-  --accent-amber: #f59e0b;    
-  --accent-amber-light: rgba(245, 158, 11, 0.15);
-  --accent-amber-border: rgba(245, 158, 11, 0.35);
+  --accent-sage: #4ec9b0;         /* VS Code Type / Entity teal-cyan */
+  --accent-sage-light: rgba(78, 201, 176, 0.15);
+  --accent-sage-border: rgba(78, 201, 176, 0.35);
   
-  --accent-sage: #10b981;     
-  --accent-sage-light: rgba(16, 185, 129, 0.15);
-  --accent-sage-border: rgba(16, 185, 129, 0.3);
+  --accent-terracotta: #ce9178;   /* VS Code String orange-salmon */
+  --accent-yellow: #dcdcaa;       /* VS Code Function yellow */
+  --accent-purple: #c586c0;       /* VS Code Keyword purple */
+  --accent-blue: #569cd6;         /* VS Code Keyword blue */
   
-  --accent-terracotta: #f97316;
-  
-  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 10px 25px -4px rgba(0, 0, 0, 0.45), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 20px 40px -12px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  --shadow-phone: 0 25px 60px -15px rgba(0, 0, 0, 0.75), 0 0 35px rgba(245, 158, 11, 0.1);
-  --shadow-profile: 0 20px 45px -10px rgba(0, 0, 0, 0.65), 0 0 25px rgba(245, 158, 11, 0.12);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 10px 25px -4px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 40px -12px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-phone: 0 25px 60px -15px rgba(0, 0, 0, 0.85), 0 0 35px rgba(0, 122, 204, 0.15);
+  --shadow-profile: 0 20px 45px -10px rgba(0, 0, 0, 0.75), 0 0 25px rgba(0, 122, 204, 0.2);
 
   --radius-sm: 0.5rem;
   --radius-md: 0.875rem;
@@ -1395,89 +1398,96 @@ body {
 }
 
 /* ==========================================================================
-   Dark Mode System-Wide Overrides for 42 Portfolio & Tailwind Utility Classes
+   Dark Mode System-Wide Overrides for 42 Portfolio (VS Code Dark+ Palette)
    ========================================================================== */
 body {
   background-color: var(--bg-primary) !important;
   color: var(--text-primary) !important;
 }
 
-/* Text Overrides */
+/* VS Code Text Syntax Overrides */
 .text-stone-900, .text-zinc-900, .text-neutral-900 {
-  color: #f8fafc !important;
+  color: #ffffff !important;
 }
 .text-stone-800, .text-zinc-800, .text-neutral-800 {
-  color: #f1f5f9 !important;
+  color: #d4d4d4 !important;
 }
 .text-stone-700, .text-zinc-700, .text-neutral-700 {
-  color: #cbd5e1 !important;
+  color: #9cdcfe !important; /* VS Code light blue identifiers */
 }
 .text-stone-600, .text-stone-500, .text-zinc-500, .text-neutral-500 {
-  color: #94a3b8 !important;
+  color: #cccccc !important;
 }
 .text-stone-400, .text-zinc-400 {
-  color: #64748b !important;
+  color: #858585 !important;
 }
 
-/* Background Overrides */
+/* VS Code Surfaces and Containers */
 .bg-white {
   background-color: var(--bg-card) !important;
   color: var(--text-primary) !important;
+  border-color: #333333 !important;
 }
 .bg-stone-50, .bg-stone-100 {
-  background-color: var(--bg-subtle) !important;
+  background-color: #252526 !important;
 }
 .bg-amber-50, .bg-amber-100\/70, .bg-amber-100 {
-  background-color: rgba(245, 158, 11, 0.12) !important;
-  color: #fbbf24 !important;
+  background-color: rgba(0, 122, 204, 0.16) !important;
+  color: #9cdcfe !important;
 }
 .bg-amber-50\/60 {
-  background-color: rgba(245, 158, 11, 0.08) !important;
+  background-color: rgba(0, 122, 204, 0.12) !important;
 }
 .text-amber-700, .text-amber-800, .text-amber-900 {
-  color: #fbbf24 !important;
+  color: #4fc1ff !important;
 }
 .text-amber-600 {
-  color: #f59e0b !important;
+  color: #007acc !important;
 }
 
 /* Border Overrides */
 .border-stone-200, .border-stone-300 {
-  border-color: var(--border-subtle) !important;
+  border-color: #333333 !important;
 }
 .border-amber-200, .border-amber-300\/80 {
-  border-color: rgba(245, 158, 11, 0.3) !important;
+  border-color: rgba(0, 122, 204, 0.45) !important;
 }
 
 /* Nav & Pill Overrides */
 #cgpaPillBadge {
-  background: rgba(245, 158, 11, 0.1) !important;
-  border-color: rgba(245, 158, 11, 0.35) !important;
-  color: #fbbf24 !important;
+  background: rgba(0, 122, 204, 0.18) !important;
+  border-color: rgba(0, 122, 204, 0.5) !important;
+  color: #4fc1ff !important;
 }
 #cgpaPillBadge i {
-  color: #fbbf24 !important;
+  color: #4fc1ff !important;
 }
 
 /* Button & Action Overrides */
 .btn-primary {
-  background: linear-gradient(135deg, #f59e0b, #d97706) !important;
-  color: #090d16 !important;
-  font-weight: 800 !important;
-  border: none !important;
-  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25) !important;
+  background: #007acc !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border: 1px solid #118ee0 !important;
+  box-shadow: 0 4px 14px rgba(0, 122, 204, 0.35) !important;
 }
 .btn-primary:hover {
-  background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
-  color: #000000 !important;
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4) !important;
+  background: #1f8ad2 !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(0, 122, 204, 0.5) !important;
 }
 
 /* Modal and Note styling */
 .modal-content {
-  background: #111726 !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8) !important;
+  background: #1e1e1e !important;
+  border: 1px solid #3c3c3c !important;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9) !important;
+}
+
+.easter-egg-counter {
+  background: #252526 !important;
+  border-color: #333333 !important;
+  color: #9cdcfe !important;
 }
 
 

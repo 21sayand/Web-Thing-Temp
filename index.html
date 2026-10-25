@@ -444,12 +444,12 @@
         Sign in to highlight your portfolio at the top and manage your assignment submissions.
       </p>
 
-      <form onsubmit="handleAuthSubmit(event)">
+      <form onsubmit="handleAuthSubmit(event)" autocomplete="off" data-lpignore="true">
         <div style="margin-bottom: 10px;">
-          <input type="text" id="authIdentifier" class="search-input" style="padding-left: 10px;" placeholder="Register Number (e.g. STM23CS043)" required autocomplete="username">
+          <input type="text" id="authIdentifier" class="search-input" style="padding-left: 10px;" placeholder="Register Number (e.g. STM23CS043)" required autocomplete="off" spellcheck="false">
         </div>
         <div style="margin-bottom: 14px;">
-          <input type="password" id="authPassword" class="search-input" style="padding-left: 10px;" placeholder="Password" required autocomplete="current-password">
+          <input type="password" id="authPassword" class="search-input" style="padding-left: 10px;" placeholder="Password" required autocomplete="new-password">
         </div>
         <div id="authError" style="display:none; color:#f85149; font-size:12px; margin-bottom:10px;"></div>
         <div style="display: flex; gap: 8px;">
